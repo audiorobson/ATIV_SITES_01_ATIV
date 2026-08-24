@@ -1,5 +1,7 @@
 # ATIV — Plataforma Digital Corporativa
 
+> **CODEX / DESENVOLVIMENTO LOCAL:** antes de alterar qualquer arquivo, leia integralmente [`CODEX_START_HERE.md`](./CODEX_START_HERE.md). Ele é a ordem operacional oficial para clone local, sequência de leitura, branch inicial, TASK 001, quality gates e passagem para a TASK 002.
+
 Repositório oficial da nova plataforma digital da **ATIV** (`ativpro.com`).
 
 Este projeto não é apenas um redesign de website. É uma plataforma comercial e técnica para posicionar a ATIV como referência em integração audiovisual corporativa e governamental, gerar oportunidades qualificadas, sustentar campanhas de mídia paga e ampliar autoridade orgânica sem perder o patrimônio SEO existente.
@@ -48,6 +50,7 @@ Versões devem ser fixadas no bootstrap e atualizadas de forma controlada; não 
 
 ```text
 /
+├── CODEX_START_HERE.md
 ├── README.md
 ├── AGENTS.md
 ├── ROADMAP.md
@@ -79,19 +82,27 @@ Versões devem ser fixadas no bootstrap e atualizadas de forma controlada; não 
 
 ## Fluxo obrigatório de trabalho
 
-1. Ler `AGENTS.md` integralmente.
-2. Ler `ROADMAP.md` e localizar a fase atual.
-3. Não iniciar feature sem critérios de aceite claros.
-4. Criar branch curta por tarefa.
-5. Implementar com testes e documentação correspondente.
-6. Executar quality gates locais.
-7. Abrir PR com evidências de teste, screenshots e impacto SEO/performance quando aplicável.
-8. Não fazer merge de alteração que quebre URLs, tracking, acessibilidade ou Brand Kit.
+1. Ler `CODEX_START_HERE.md` integralmente.
+2. Ler `AGENTS.md` integralmente.
+3. Ler `ROADMAP.md` e localizar a fase atual.
+4. Executar a Issue #1 antes da Issue #2.
+5. Não iniciar feature sem critérios de aceite claros.
+6. Criar branch curta por tarefa.
+7. Implementar com testes e documentação correspondente.
+8. Executar quality gates locais.
+9. Abrir PR com evidências de teste, screenshots e impacto SEO/performance quando aplicável.
+10. Não fazer merge de alteração que quebre URLs, tracking, acessibilidade ou Brand Kit.
 
 ## Fase atual
 
 **Fase 0 — Discovery, auditoria e fundações.**
 
+A ordem operacional atual é:
+
+1. **Issue #1 — TASK 001:** bootstrap local da plataforma e fundação técnica.
+2. **Issue #2 — TASK 002:** contratos SEO, rotas Ads e crawl gates, somente depois da fundação estar disponível.
+3. Brand Kit em desenvolvimento: não inventar identidade visual final antes da fonte de verdade ser entregue.
+
 Nesta fase o objetivo é consolidar arquitetura, inventário SEO, design system, tracking contract, política de conteúdo e ambiente de desenvolvimento antes de produzir páginas finais.
 
-Consulte `ROADMAP.md` para sequência completa.
+Consulte `CODEX_START_HERE.md`, `AGENTS.md` e `ROADMAP.md` para a sequência completa.
