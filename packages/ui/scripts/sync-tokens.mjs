@@ -3,7 +3,9 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   brandTokensPath,
+  contrast,
   cssExports,
+  logos,
   masterCssPath,
   masterExceptionsNotExtracted,
   packageTokensPath,
@@ -11,6 +13,7 @@ import {
   prohibited,
   recipes,
   surfaces,
+  typography,
 } from "./lib/token-meta.mjs";
 import { buildContract, parseRootCustomProperties, readCssFile, renderTokensCss } from "./lib/css-tokens.mjs";
 
@@ -36,7 +39,15 @@ export function buildTokenDocument() {
       },
       consumers: {
         json: "brand/tokens.json",
-        css: ["packages/ui/src/styles/tokens.css", "packages/ui/src/styles/foundations.css"],
+        css: [
+          "packages/ui/src/styles/tokens.css",
+          "packages/ui/src/styles/foundations.css",
+          "packages/ui/src/styles/layout.css",
+          "packages/ui/src/styles/controls.css",
+          "packages/ui/src/styles/technical-data.css",
+          "packages/ui/src/styles/editorial.css",
+          "packages/ui/src/styles/forms.css",
+        ],
         package: "@ativ/ui",
         tailwind: "derived-only",
       },
@@ -45,6 +56,9 @@ export function buildTokenDocument() {
     tokens,
     surfaces,
     recipes,
+    logos,
+    contrast,
+    typography,
     masterExceptionsNotExtracted,
     prohibited,
   };

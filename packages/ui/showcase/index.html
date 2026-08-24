@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>ATIV — showcase interno de @ativ/ui</title>
+    <link rel="stylesheet" href="../src/styles/index.css" />
+  </head>
+  <body class="ativ-escuro">
+    <a class="ativ-salto" href="#conteudo">Ir para o conteúdo</a>
+
+    <header class="ativ-secao ativ-secao--densa">
+      <div class="ativ-container ativ-pilha ativ-pilha--5">
+        <img
+          class="ativ-logo ativ-logo--completo"
+          src="../../../brand/logo/logo-2t-claro.svg"
+          width="152"
+          height="78"
+          alt="ATIV Tecnologia"
+        />
+        <p class="ativ-rotulo">Showcase interno · não é página pública</p>
+        <h1 class="ativ-titulo-pagina ativ-medida--titulo">Contrato visual</h1>
+        <p class="ativ-texto ativ-medida">
+          Superfícies, tipo, grade e controles extraídos do CSS mestre. Sem Home
+          comercial, sem claims e sem JavaScript de página.
+        </p>
+      </div>
+    </header>
+
+    <main id="conteudo" class="ativ-alvo-salto" tabindex="-1">
+      <section class="ativ-secao" aria-labelledby="escuro-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Superfície escura</p>
+          <h2 id="escuro-titulo" class="ativ-titulo-secao">Índigo profundo, destaque âmbar</h2>
+          <div class="ativ-grade">
+            <div class="ativ-col--5 ativ-pilha ativ-pilha--5">
+              <p class="ativ-texto ativ-medida">
+                Texto corrido lê <code class="ativ-dado">--ativ-texto-corpo</code>.
+                O botão primário usa o papel de destaque, não um hex local.
+              </p>
+              <div class="ativ-linha">
+                <button type="button" class="ativ-btn ativ-btn--primario">Ação primária</button>
+                <button type="button" class="ativ-btn ativ-btn--secundario">Ação secundária</button>
+                <button type="button" class="ativ-btn ativ-btn--fantasma">Fantasma</button>
+              </div>
+              <label class="ativ-campo-rotulo" for="campo-escuro">Campo</label>
+              <input id="campo-escuro" class="ativ-campo" type="text" placeholder="Sem valor inventado" />
+              <label class="ativ-campo-rotulo" for="busca-escuro">Busca</label>
+              <div class="ativ-busca">
+                <span class="ativ-busca__icone" aria-hidden="true">⌕</span>
+                <input id="busca-escuro" class="ativ-campo" type="search" placeholder="Busca de exemplo" />
+              </div>
+            </div>
+            <div class="ativ-col--7 ativ-pilha ativ-pilha--5">
+              <article class="ativ-cartao ativ-pilha ativ-pilha--3">
+                <p class="ativ-rotulo">Cartão</p>
+                <p class="ativ-texto">Padding 26×28 do mestre, fora da escala, extraído como receita.</p>
+                <div class="ativ-linha">
+                  <span class="ativ-chip">Chip</span>
+                  <span class="ativ-badge">Badge</span>
+                  <span class="ativ-status ativ-status--operando" aria-hidden="true"></span>
+                  <span class="ativ-dado">operando</span>
+                </div>
+              </article>
+              <p class="ativ-rotulo">Seleção</p>
+              <p class="ativ-dado">Estados estáticos. Inativo leva borda visível. Sem JS de página.</p>
+              <div class="ativ-linha">
+                <div class="ativ-toggle is-ligado" role="switch" aria-checked="true" aria-label="Ligado" tabindex="0">
+                  <span class="ativ-toggle__pino" aria-hidden="true"></span>
+                </div>
+                <span class="ativ-texto">Ligado</span>
+                <div class="ativ-toggle" role="switch" aria-checked="false" aria-label="Desligado" tabindex="0">
+                  <span class="ativ-toggle__pino" aria-hidden="true"></span>
+                </div>
+                <span class="ativ-texto">Desligado</span>
+              </div>
+              <div class="ativ-radio-grupo" role="radiogroup" aria-label="Exemplo de escolha única">
+                <div class="ativ-radio is-ativo" role="radio" aria-checked="true">
+                  <span class="ativ-radio__marca" aria-hidden="true"></span>
+                  <span class="ativ-texto">Selecionado</span>
+                </div>
+                <div class="ativ-radio" role="radio" aria-checked="false">
+                  <span class="ativ-radio__marca" aria-hidden="true"></span>
+                  <span class="ativ-texto">Não selecionado</span>
+                </div>
+              </div>
+              <div class="ativ-checkbox is-ativo" role="checkbox" aria-checked="true">
+                <span class="ativ-checkbox__caixa" aria-hidden="true">✓</span>
+                <span class="ativ-texto">Marcado</span>
+              </div>
+              <div class="ativ-checkbox" role="checkbox" aria-checked="false">
+                <span class="ativ-checkbox__caixa" aria-hidden="true"></span>
+                <span class="ativ-texto">Desmarcado</span>
+              </div>
+            </div>
+          </div>
+          <div class="ativ-grade">
+            <div class="ativ-col--5 ativ-pilha ativ-pilha--3">
+              <p class="ativ-rotulo">Slider</p>
+              <div
+                class="ativ-slider"
+                role="slider"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="62"
+                aria-valuetext="62 por cento"
+                aria-label="Nível de exemplo"
+              >
+                <div class="ativ-slider__trilha">
+                  <div class="ativ-slider__preenchido" style="width: 62%"></div>
+                  <span class="ativ-slider__pino" style="left: 62%"></span>
+                  <span class="ativ-slider__valor" style="left: 62%">62%</span>
+                </div>
+              </div>
+            </div>
+            <div class="ativ-col--7 ativ-pilha ativ-pilha--3">
+              <p class="ativ-rotulo">Dropdown</p>
+              <p class="ativ-dado">Painel aberto de propósito. Sombra decorativa omitida.</p>
+              <div class="ativ-dropdown">
+                <button type="button" class="ativ-dropdown__gatilho" aria-expanded="true" aria-controls="painel-escuro">
+                  <span>Opção A</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div id="painel-escuro" class="ativ-dropdown__painel is-aberto">
+                  <button type="button" class="ativ-dropdown__opcao">Opção A</button>
+                  <button type="button" class="ativ-dropdown__opcao">Opção B</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ativ-claro ativ-secao" aria-labelledby="claro-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Superfície clara</p>
+          <h2 id="claro-titulo" class="ativ-titulo-secao">Gelo, destaque índigo</h2>
+          <div class="ativ-grade">
+            <div class="ativ-col--5 ativ-pilha ativ-pilha--5">
+              <img
+                class="ativ-logo ativ-logo--completo"
+                src="../../../brand/logo/logo-2t-indigo.svg"
+                width="152"
+                height="78"
+                alt=""
+              />
+              <p class="ativ-texto ativ-medida">
+                Âmbar não aparece como texto aqui. O destaque desta superfície é
+                Índigo, inclusive no anel de foco.
+              </p>
+              <div class="ativ-linha">
+                <button type="button" class="ativ-btn ativ-btn--primario">Ação primária</button>
+                <button type="button" class="ativ-btn ativ-btn--secundario">Ação secundária</button>
+              </div>
+              <div class="ativ-linha">
+                <div class="ativ-toggle is-ligado" role="switch" aria-checked="true" aria-label="Ligado na superfície clara" tabindex="0">
+                  <span class="ativ-toggle__pino" aria-hidden="true"></span>
+                </div>
+                <span class="ativ-texto">Ligado</span>
+              </div>
+            </div>
+            <div class="ativ-col--7 ativ-pilha ativ-pilha--5">
+              <div class="ativ-segmentado" aria-label="Exemplo de segmentado">
+                <button type="button" class="ativ-segmentado__item is-ativo">Um</button>
+                <button type="button" class="ativ-segmentado__item">Dois</button>
+              </div>
+              <nav class="ativ-paginacao" aria-label="Paginação de exemplo">
+                <button type="button" class="ativ-paginacao__item ativ-paginacao__seta" aria-label="Anterior">‹</button>
+                <button type="button" class="ativ-paginacao__item is-ativo" aria-current="page">1</button>
+                <button type="button" class="ativ-paginacao__item">2</button>
+                <button type="button" class="ativ-paginacao__item ativ-paginacao__seta" aria-label="Próxima">›</button>
+              </nav>
+              <p class="ativ-dado">
+                Paginação 38 px permanece abaixo do alvo de 44 px — lacuna do mestre, não corrigida.
+              </p>
+              <div class="ativ-radio-grupo" role="radiogroup" aria-label="Exemplo claro de escolha única">
+                <div class="ativ-radio is-ativo" role="radio" aria-checked="true">
+                  <span class="ativ-radio__marca" aria-hidden="true"></span>
+                  <span class="ativ-texto">Selecionado</span>
+                </div>
+                <div class="ativ-radio" role="radio" aria-checked="false">
+                  <span class="ativ-radio__marca" aria-hidden="true"></span>
+                  <span class="ativ-texto">Não selecionado</span>
+                </div>
+              </div>
+              <div class="ativ-checkbox is-ativo" role="checkbox" aria-checked="true">
+                <span class="ativ-checkbox__caixa" aria-hidden="true">✓</span>
+                <span class="ativ-texto">Marcado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ativ-secao" aria-labelledby="layout-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Layout</p>
+          <h2 id="layout-titulo" class="ativ-titulo-secao">Primitives de disposição</h2>
+          <p class="ativ-texto ativ-medida">
+            Container, seção, pilha e grade vêm do CSS mestre. Agrupamento, lateral e
+            quadro compostam tokens oficiais. Sem Header, Footer ou Home.
+          </p>
+          <span class="ativ-somente-leitura">Rótulo só para leitor de tela, nesta superfície de preview.</span>
+          <div class="ativ-agrupamento">
+            <span class="ativ-chip">Agrupamento</span>
+            <span class="ativ-chip">reflow</span>
+            <span class="ativ-chip">zoom</span>
+          </div>
+          <div class="ativ-com-lateral">
+            <aside class="ativ-cartao">
+              <p class="ativ-rotulo">Lateral</p>
+              <p class="ativ-dado">flex-basis no mínimo auto-fit já documentado (280 px).</p>
+            </aside>
+            <div class="ativ-cartao">
+              <p class="ativ-rotulo">Principal</p>
+              <p class="ativ-texto">
+                Envolve quando não cabe <code class="ativ-dado">--ativ-grade-texto</code>
+                ao lado da lateral. Sem breakpoint novo.
+              </p>
+            </div>
+          </div>
+          <div class="ativ-grade ativ-grade--auto">
+            <article class="ativ-cartao"><p class="ativ-dado">auto-fit 1</p></article>
+            <article class="ativ-cartao"><p class="ativ-dado">auto-fit 2</p></article>
+            <article class="ativ-cartao"><p class="ativ-dado">auto-fit 3</p></article>
+          </div>
+          <div>
+            <p class="ativ-rotulo">Quadro</p>
+            <div class="ativ-quadro" aria-label="Slot de mídia">
+              <p class="ativ-dado">
+                Slot de mídia. Direção fotográfica permanece lacuna; sem razão 16/9 inventada.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ativ-secao" aria-labelledby="dado-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Dado técnico</p>
+          <h2 id="dado-titulo" class="ativ-titulo-secao">Primitives de especificação</h2>
+          <p class="ativ-texto ativ-medida">
+            Espécime. Não é spec de produto, contrato nem medição da ATIV. Valores
+            fictícios só para validar tabela, par, métrica, estado, código e fluxo.
+          </p>
+
+          <figure class="ativ-pilha ativ-pilha--3">
+            <table class="ativ-ficha">
+              <caption>Espécime de ficha — reflow abaixo de 860 px</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Parâmetro</th>
+                  <th scope="col">Valor</th>
+                  <th scope="col">Unidade</th>
+                  <th scope="col">Nota</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Parâmetro A</th>
+                  <td data-rotulo="Valor">12,5</td>
+                  <td data-rotulo="Unidade">exemplo</td>
+                  <td data-rotulo="Nota">n.d.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Parâmetro B</th>
+                  <td data-rotulo="Valor">&lt; 1</td>
+                  <td data-rotulo="Unidade">passo</td>
+                  <td data-rotulo="Nota">tolerância fictícia</td>
+                </tr>
+                <tr>
+                  <th scope="row">Parâmetro C</th>
+                  <td data-rotulo="Valor">aberto</td>
+                  <td data-rotulo="Unidade">—</td>
+                  <td data-rotulo="Nota">não é claim</td>
+                </tr>
+              </tbody>
+            </table>
+            <figcaption class="ativ-legenda">Legenda do espécime. Sem fotografia.</figcaption>
+          </figure>
+
+          <div class="ativ-grade ativ-grade--2">
+            <div class="ativ-pilha ativ-pilha--3">
+              <p class="ativ-rotulo">Pares chave / valor</p>
+              <dl class="ativ-pares">
+                <div class="ativ-par">
+                  <dt>Chave um</dt>
+                  <dd>valor de exemplo</dd>
+                </div>
+                <div class="ativ-par">
+                  <dt>Chave dois</dt>
+                  <dd>n.d.</dd>
+                </div>
+                <div class="ativ-par">
+                  <dt>Chave três</dt>
+                  <dd>texto longo que quebra a 320 px</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="ativ-pilha ativ-pilha--3">
+              <p class="ativ-rotulo">Métrica</p>
+              <div class="ativ-metrica">
+                <p class="ativ-metrica__leitura">
+                  <span class="ativ-metrica__valor">1920</span>
+                  <abbr class="ativ-metrica__unidade" title="unidade de espécime">un</abbr>
+                </p>
+                <div
+                  class="ativ-indicador"
+                  role="meter"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="62"
+                  aria-valuetext="62 por cento — espécime"
+                  style="--ativ-indicador-valor: 62%"
+                >
+                  <span class="ativ-indicador__preenchido"></span>
+                </div>
+              </div>
+              <p class="ativ-estado">
+                <span class="ativ-status ativ-status--operando" aria-hidden="true"></span>
+                <span>Operando — texto visível, não só a cor</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="ativ-pilha ativ-pilha--3">
+            <p class="ativ-rotulo">Configuração</p>
+            <pre class="ativ-config"><code>modo: especime
+porta: n.d.
+edid: desligado</code></pre>
+          </div>
+
+          <div class="ativ-pilha ativ-pilha--3">
+            <p class="ativ-rotulo">Fluxo de sinal</p>
+            <ol class="ativ-fluxo">
+              <li>Origem (espécime)</li>
+              <li>Processamento</li>
+              <li>Destino</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="ativ-secao" aria-labelledby="editorial-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Editorial</p>
+          <h2 id="editorial-titulo" class="ativ-titulo-secao">Texto longo</h2>
+          <p class="ativ-texto ativ-medida">
+            Texto fictício. Não é artigo, case nem insight da ATIV. Serve só para
+            medida, hierarquia, citação, nota, tabela e rastreio.
+          </p>
+
+          <article class="ativ-editorial">
+            <p>
+              Parágrafo de espécime com
+              <a href="#editorial-titulo">ligação interna</a>
+              sublinhada. A medida segue
+              <code class="ativ-dado">--ativ-grade-texto</code>.
+            </p>
+            <h3>Subseção fictícia</h3>
+            <p>Segundo parágrafo. Seleção de texto permanece habilitada.</p>
+            <h4>Lista e ritmo</h4>
+            <ul>
+              <li>Item um — sem valor comercial</li>
+              <li>Item dois — n.d.</li>
+            </ul>
+            <ol>
+              <li>Passo fictício A</li>
+              <li>Passo fictício B</li>
+            </ol>
+            <blockquote class="ativ-citacao">
+              <p>Citação de espécime. Não é depoimento de cliente.</p>
+              <footer>
+                <cite>Fonte fictícia</cite>
+              </footer>
+            </blockquote>
+            <figure>
+              <div class="ativ-quadro" aria-label="Slot editorial sem fotografia">
+                <p class="ativ-dado">Slot vazio. Sem imagem de banco.</p>
+              </div>
+              <figcaption>Legenda fictícia do slot.</figcaption>
+            </figure>
+            <table>
+              <caption class="ativ-legenda">Tabela editorial de espécime</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Tema</th>
+                  <th scope="col">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-rotulo="Tema">Tema A</td>
+                  <td data-rotulo="Estado">exemplo</td>
+                </tr>
+                <tr>
+                  <td data-rotulo="Tema">Tema B</td>
+                  <td data-rotulo="Estado">n.d.</td>
+                </tr>
+              </tbody>
+            </table>
+            <aside class="ativ-nota">
+              <span class="ativ-nota__rotulo">Nota</span>
+              Esclarecimento lateral. Não substitui evidência de claim.
+            </aside>
+            <aside class="ativ-chamada">
+              Chamada neutra. Sem cor de alerta e sem CTA comercial.
+            </aside>
+            <p class="ativ-fonte">
+              Rastreio do espécime: texto inventado para o showcase interno, sem
+              fonte editorial real.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="ativ-secao" aria-labelledby="form-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Formulário</p>
+          <h2 id="form-titulo" class="ativ-titulo-secao">Estados acessíveis</h2>
+          <p class="ativ-texto ativ-medida">
+            Espécime estático. Não envia dados, não é captura de lead e não tem
+            backend. Mensagens ligadas por aria-describedby.
+          </p>
+
+          <div class="ativ-alerta ativ-alerta--erro" role="alert">
+            <span class="ativ-alerta__titulo">Erro</span>
+            Há um campo com erro neste espécime. A cor da borda não é o único aviso.
+          </div>
+
+          <form class="ativ-formulario" action="#" method="get" autocomplete="off">
+            <div class="ativ-campo-grupo">
+              <label class="ativ-campo-rotulo" for="form-nome">
+                Nome
+                <span class="ativ-obrigatorio">(obrigatório)</span>
+              </label>
+              <input
+                id="form-nome"
+                class="ativ-campo"
+                name="nome"
+                type="text"
+                required
+                aria-describedby="form-nome-ajuda"
+              />
+              <p id="form-nome-ajuda" class="ativ-campo-ajuda">Dica visível, não placeholder.</p>
+            </div>
+
+            <div class="ativ-campo-grupo">
+              <label class="ativ-campo-rotulo" for="form-erro">Campo com erro</label>
+              <input
+                id="form-erro"
+                class="ativ-campo"
+                name="erro"
+                type="text"
+                value="valor inválido — espécime"
+                aria-invalid="true"
+                aria-describedby="form-erro-msg"
+              />
+              <p id="form-erro-msg" class="ativ-campo-erro" role="alert">Erro: informe um valor de exemplo válido.</p>
+            </div>
+
+            <div class="ativ-campo-grupo ativ-campo-grupo--sucesso">
+              <label class="ativ-campo-rotulo" for="form-ok">Campo aceito</label>
+              <input
+                id="form-ok"
+                class="ativ-campo"
+                name="ok"
+                type="text"
+                value="aceito — espécime"
+                aria-describedby="form-ok-msg"
+              />
+              <p id="form-ok-msg" class="ativ-campo-sucesso">Sucesso: formato aceito neste espécime.</p>
+            </div>
+
+            <div class="ativ-campo-grupo" aria-busy="true">
+              <label class="ativ-campo-rotulo" for="form-load">Campo a carregar</label>
+              <input id="form-load" class="ativ-campo" name="load" type="text" value="" aria-describedby="form-load-msg" />
+              <p id="form-load-msg" class="ativ-carregando">Carregando — texto, sem pulso.</p>
+            </div>
+
+            <div class="ativ-campo-grupo">
+              <label class="ativ-campo-rotulo" for="form-ro">Somente leitura</label>
+              <input id="form-ro" class="ativ-campo" name="ro" type="text" readonly value="somente leitura — espécime" />
+            </div>
+
+            <div class="ativ-campo-grupo ativ-campo-grupo--desativado">
+              <label class="ativ-campo-rotulo" for="form-off">Desativado</label>
+              <input id="form-off" class="ativ-campo" name="off" type="text" disabled value="desativado" />
+            </div>
+
+            <div class="ativ-campo-grupo">
+              <label class="ativ-campo-rotulo" for="form-msg">Mensagem</label>
+              <textarea id="form-msg" class="ativ-textarea" name="msg" aria-describedby="form-msg-ajuda"></textarea>
+              <p id="form-msg-ajuda" class="ativ-campo-ajuda">Textarea com mínimo na escala e-10.</p>
+            </div>
+
+            <div class="ativ-campo-grupo">
+              <label class="ativ-campo-rotulo" for="form-sel">Seleção</label>
+              <select id="form-sel" class="ativ-select" name="sel">
+                <option value="">Escolher — espécime</option>
+                <option value="a">Opção A</option>
+                <option value="b">Opção B</option>
+              </select>
+            </div>
+
+            <fieldset class="ativ-conjunto">
+              <legend>Escolha única</legend>
+              <div class="ativ-pilha ativ-pilha--2">
+                <label class="ativ-escolha">
+                  <input type="radio" name="escolha" value="um" checked />
+                  Um
+                </label>
+                <label class="ativ-escolha">
+                  <input type="radio" name="escolha" value="dois" />
+                  Dois
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="ativ-conjunto">
+              <legend>Escolha múltipla</legend>
+              <label class="ativ-escolha">
+                <input type="checkbox" name="check" value="sim" checked />
+                Marcado — espécime
+              </label>
+            </fieldset>
+
+            <div class="ativ-linha">
+              <button type="button" class="ativ-btn ativ-btn--primario">Enviar (inativo)</button>
+              <button type="button" class="ativ-btn ativ-btn--secundario">Cancelar</button>
+            </div>
+          </form>
+
+          <div class="ativ-alerta ativ-alerta--sucesso" role="status">
+            <span class="ativ-alerta__titulo">Sucesso</span>
+            Mensagem global de espécime. Nada foi enviado.
+          </div>
+          <div class="ativ-alerta ativ-alerta--carregando" role="status">
+            <span class="ativ-alerta__titulo">Carregando</span>
+            Estado global sem animação fora da escala.
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

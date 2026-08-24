@@ -9,7 +9,12 @@
     "./tokens.json": "./src/data/tokens.json",
     "./styles.css": "./src/styles/index.css",
     "./styles/tokens.css": "./src/styles/tokens.css",
-    "./styles/foundations.css": "./src/styles/foundations.css"
+    "./styles/foundations.css": "./src/styles/foundations.css",
+    "./styles/layout.css": "./src/styles/layout.css",
+    "./styles/controls.css": "./src/styles/controls.css",
+    "./styles/technical-data.css": "./src/styles/technical-data.css",
+    "./styles/editorial.css": "./src/styles/editorial.css",
+    "./styles/forms.css": "./src/styles/forms.css"
   },
   "files": [
     "src",

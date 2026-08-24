@@ -3,8 +3,9 @@
  * Fonte de verdade: design_guide/brand/tokens/ativ-ui.css
  * Consumir depois de @ativ/ui/styles/tokens.css (ou via @ativ/ui/styles.css).
  *
- * Escopo desta rodada: superficies, tipografia, espaco, grade, raio, foco,
- * movimento, iconografia e logo. Componentes de controle permanecem no CSS mestre.
+ * Escopo desta rodada: superficies, tipografia, raio, foco,
+ * movimento, iconografia e logo. Layout (secao, container, grade, pilha)
+ * vive em layout.css. Componentes de controle permanecem no CSS mestre.
  */
 
 /* =====================================================================
@@ -214,154 +215,6 @@ summary:focus-visible,
 #ativ-salto:focus,
 .ativ-salto:focus {
   transform: translateY(0);
-}
-
-/* =====================================================================
-   ESPACO E GRADE
-   ===================================================================== */
-
-#ativ-secao,
-.ativ-secao {
-  padding: var(--ativ-e-8) var(--ativ-grade-margem);
-}
-
-@media (min-width: 900px) {
-  #ativ-secao,
-  .ativ-secao {
-    padding: var(--ativ-e-9) var(--ativ-grade-margem);
-  }
-}
-
-.ativ-secao--abertura {
-  padding-top: var(--ativ-e-10);
-}
-
-.ativ-secao--densa {
-  padding-block: var(--ativ-e-7);
-}
-
-#ativ-container,
-.ativ-container {
-  max-width: var(--ativ-grade-max);
-  margin-inline: auto;
-  width: 100%;
-}
-
-#ativ-grade,
-.ativ-grade {
-  display: grid;
-  grid-template-columns: repeat(var(--ativ-grade-colunas), minmax(0, 1fr));
-  gap: var(--ativ-grade-calha);
-}
-
-.ativ-grade--2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.ativ-grade--3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.ativ-grade--4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.ativ-grade--auto {
-  grid-template-columns: repeat(auto-fit, minmax(var(--ativ-min-col, 280px), 1fr));
-}
-
-@media (max-width: 860px) {
-  .ativ-grade--2,
-  .ativ-grade--3,
-  .ativ-grade--4 {
-    grid-template-columns: 1fr;
-  }
-}
-
-.ativ-col--3 {
-  grid-column: span 3;
-}
-
-.ativ-col--4 {
-  grid-column: span 4;
-}
-
-.ativ-col--5 {
-  grid-column: span 5;
-}
-
-.ativ-col--6 {
-  grid-column: span 6;
-}
-
-.ativ-col--7 {
-  grid-column: span 7;
-}
-
-.ativ-col--8 {
-  grid-column: span 8;
-}
-
-.ativ-col--12 {
-  grid-column: 1 / -1;
-}
-
-@media (max-width: 860px) {
-  [class*="ativ-col--"] {
-    grid-column: 1 / -1;
-  }
-}
-
-#ativ-pilha,
-.ativ-pilha {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ativ-e-4);
-}
-
-.ativ-pilha--1 {
-  gap: var(--ativ-e-1);
-}
-
-.ativ-pilha--2 {
-  gap: var(--ativ-e-2);
-}
-
-.ativ-pilha--3 {
-  gap: var(--ativ-e-3);
-}
-
-.ativ-pilha--5 {
-  gap: var(--ativ-e-5);
-}
-
-.ativ-pilha--6 {
-  gap: var(--ativ-e-6);
-}
-
-.ativ-pilha--7 {
-  gap: var(--ativ-e-7);
-}
-
-#ativ-linha,
-.ativ-linha {
-  display: flex;
-  align-items: center;
-  gap: var(--ativ-e-3);
-  flex-wrap: wrap;
-}
-
-#ativ-medida,
-.ativ-medida {
-  max-width: var(--ativ-grade-texto);
-}
-
-.ativ-medida--curta {
-  max-width: 46ch;
-}
-
-.ativ-medida--titulo {
-  max-width: 22ch;
 }
 
 /* =====================================================================

@@ -1,7 +1,11 @@
 # Implementação do design system ATIV
 
-**Status: READY para o Codex integrar.** Branch congelada: `feat/design-tokens-foundation`
-(`1def7cf`). Pacote de integração: `docs/HANDOFF_CURSOR_TO_CODEX.md`.
+**Status: READY para o Codex integrar a fatia de tokens** em
+`feat/design-tokens-foundation` (`bee5055`). Pacote: `docs/HANDOFF_CURSOR_TO_CODEX.md`.
+
+Esta branch (`feat/ui-form-state-foundations`) continua a Fase 2 com o contrato
+de formulário e estados, a partir de `feat/ui-editorial-foundations` (`e3b941b`).
+Não bloqueia e não altera o handoff congelado de tokens.
 
 Este documento descreve o contrato visual entregue nessa branch.
 Ele não conclui a Fase 2 nem a TASK 002. Não há páginas finais, componentes React
@@ -15,19 +19,26 @@ ou Home comercial.
 4. `design_guide/brand/tokens/tailwind.ativ.js` e `theme.ativ.css` — derivados.
    Tailwind não é fonte de verdade e não foi promovido a dependência.
 
-Um valor visual ausente no CSS mestre não existe. Lacunas são registradas aqui;
-não foram preenchidas com padrões genéricos.
+Um valor visual ausente no CSS mestre não vira token. Famílias autorizadas
+(WAVE 4+) compostam tokens oficiais e ficam em `recipes`; o restante permanece
+lacuna, sem padrão genérico.
 
 ## O que foi entregue
 
 | Artefato | Papel |
 | --- | --- |
-| `brand/tokens.json` | Contrato canônico serializável. Cada entrada aponta para `--ativ-*`. |
+| `brand/logo/` | 28 SVGs do kit, copiados sem alteração, para consumo de produção. |
 | `packages/ui/src/data/tokens.json` | Cópia verificada para export do pacote. Deve permanecer idêntica ao arquivo em `brand/`. |
 | `packages/ui/src/styles/tokens.css` | `:root` de produção, gerado a partir do CSS mestre. |
-| `packages/ui/src/styles/foundations.css` | Superfícies, tipografia, espaço, grade, raio aplicado, foco, salto, movimento, iconografia e mínimos de logo. |
+| `packages/ui/src/styles/foundations.css` | Superfícies, tipografia, raio aplicado, foco, salto, movimento, iconografia e mínimos de logo. |
+| `packages/ui/src/styles/layout.css` | Seção, container, pilha, agrupamento, grade 12/auto-fit, lateral, quadro e somente-leitura. |
+| `packages/ui/src/styles/controls.css` | Cartão, botões, campos, seleção, slider, paginação, chip, status e badge extraídos do CSS mestre. |
+| `packages/ui/src/styles/technical-data.css` | Ficha, pares chave/valor, métrica com unidade, estado rotulado, legenda, configuração e fluxo textual. |
+| `packages/ui/src/styles/editorial.css` | Medida de leitura, hierarquia h2–h4, listas, tabela editorial, citação, figura, nota, chamada neutra e rastreio. |
+| `packages/ui/src/styles/forms.css` | Agrupamento, textarea, select, fieldset, obrigatório, disabled, readonly, erro, sucesso, loading e alerta. |
 | `packages/ui/src/styles/index.css` | Bundle local (`@import` relativo, sem CDN). |
 | `packages/ui/src/index.ts` | Export JS/TS do contrato e dos caminhos de CSS. |
+| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies, controles, layout, dado técnico, artigo fictício e formulário de estados. Não é página pública. |
 | `packages/ui/scripts/` | Sincronização e validação independentes do workspace raiz. |
 
 ## Como importar
@@ -45,7 +56,12 @@ Imports explícitos:
 ```ts
 import "@ativ/ui/styles/tokens.css";
 import "@ativ/ui/styles/foundations.css";
-import tokens from "@ativ/ui/tokens.json";
+import "@ativ/ui/styles/layout.css";
+import "@ativ/ui/styles/controls.css";
+import "@ativ/ui/styles/technical-data.css";
+import "@ativ/ui/styles/editorial.css";
+import "@ativ/ui/styles/forms.css";
+import { tokens, logos, contrast, typography } from "@ativ/ui";
 ```
 
 HTML mínimo esperado:
@@ -53,7 +69,7 @@ HTML mínimo esperado:
 ```html
 <body class="ativ-escuro">
   <a class="ativ-salto" href="#conteudo">Ir para o conteúdo</a>
-  <main id="conteudo"></main>
+  <main id="conteudo" class="ativ-alvo-salto" tabindex="-1"></main>
 </body>
 ```
 
@@ -94,6 +110,24 @@ node packages/ui/scripts/sync-tokens.mjs
 - `prefers-reduced-motion` centralizado, como no CSS mestre.
 - Iconografia Lucide em CSS (grade, traço, tamanhos). Lucide não é dependência
   npm deste pacote.
+- Logos de UI mapeados por superfície; arquivos em `brand/logo/` idênticos ao kit.
+- Contraste de texto proibido: Âmbar sobre Gelo/branco; Índigo sobre Índigo Profundo.
+- Tipografia: Archivo / IBM Plex Sans / IBM Plex Mono, fallbacks do CSS mestre,
+  `font-display: swap`, sem `@font-face` e sem CDN neste pacote.
+- Showcase HTML interno em `packages/ui/showcase/` — não indexável, sem JS de página.
+- Layout: seção, container, pilha, agrupamento, grade auto-fit, lateral por
+  `min-inline-size`, quadro sem razão fotográfica inventada, somente-leitura.
+- Dado técnico: ficha responsiva (`.ativ-ficha`), pares chave/valor (`.ativ-pares`),
+  métrica com unidade e indicador (`.ativ-metrica`, `--ativ-indicador-valor` do
+  consumidor), estado com texto (`.ativ-estado`), legenda, bloco `.ativ-config` e
+  fluxo textual (`.ativ-fluxo`). Sem hex, sem razão fotográfica e sem desenho de rack.
+- Editorial: `.ativ-editorial` na medida `--ativ-grade-texto`, hierarquia h2–h4,
+  listas, tabela que reflowa, citação, nota, chamada neutra, fonte/rastreio, links
+  sublinhados, seleção de texto e `@media print`.
+- Formulário: `.ativ-formulario` / `.ativ-campo-grupo`, textarea e select nativos,
+  fieldset, obrigatório em texto, disabled/readonly, erro (`aria-invalid` +
+  `:user-invalid`), sucesso, loading (`aria-busy` + borda tracejada) e alerta
+  global com título visível. Sem captura de lead.
 
 ## Lacunas preservadas
 
@@ -102,20 +136,21 @@ inventadas famílias visuais para fechá-las.
 
 | Lacuna | Estado |
 | --- | --- |
-| Dado técnico (tabela de spec, medidor, unidade, diagrama de sinal) | Ausente. Maior lacuna de identidade. |
+| Dado técnico (tabela de spec, medidor, unidade, diagrama de sinal) | Ficha, par, métrica, estado rotulado, config e fluxo textual entregues. Diagrama de rack, planta com cotas e elevação permanecem lacuna — exigiriam desenho, não CSS. |
 | Iconografia proprietária e repertório por setor | Lucide permanece a família vigente; conjunto próprio não aprovado. |
 | Navegação global, submenu, condensação mobile, breadcrumb | Não definida como linguagem de produto. |
-| Formulário completo, validação, vazio, loading, erro, sucesso | Controles soltos existem no CSS mestre; estados não. |
+| Formulário completo, validação, vazio, loading, erro, sucesso | Contrato visual entregue. Sem backend, sem vazio de página, sem modal/gaveta/404. Campo do mestre permanece 15px (zoom iOS é lacuna). |
 | Modal, gaveta, abas de produto, 404/500 | Não extraído. |
-| Direção fotográfica e o que entra nos slots de mídia | Não definida. |
-| Tipografia editorial longa (citação, nota, legenda, artigo) | Não definida. |
+| Direção fotográfica e o que entra nos slots de mídia | Não definida. `.ativ-quadro--proporcao` espera `--ativ-quadro-proporcao` do consumidor; 16/9 não foi inventado. |
+| Tipografia editorial longa (citação, nota, legenda, artigo) | Entregue como CSS de artigo. Sem loader Markdown, sem conteúdo real e sem depoimento de cliente. |
 | Abertura de página interna | Só abertura de topo no guia. |
 | Norma de quando usar movimento/fundo | Tokens existem; política de uso ainda é lacuna. |
-| Arquivos SVG de logo em `design_guide/brand/logo/` | Citados no README do kit; não versionados neste clone. Classes de mínimo e respiro estão no CSS. |
-| Padding do cartão `26px 28px` | Presente no CSS mestre, fora da escala. Não virou token nem foundation. |
-| Medidas soltas de botão, campo, dropdown, toggle | Permanecem no CSS mestre. |
-| Sombra do dropdown | Não promovida; sombra decorativa fica fora do contrato. |
+| Arquivos SVG de logo | Versionados em `brand/logo/`, idênticos ao kit. Variantes `*-preto.svg` são só documento; UI usa Índigo Profundo. Não há wordmark sobre âmbar. |
+| Padding do cartão `26px 28px` | Extraído como receita do mestre, sem virar token. |
+| Medidas soltas de botão, campo, dropdown, toggle | Extraídas como receitas. Não promovidas a tokens. |
+| Sombra do dropdown | Continua omitida; sombra decorativa fica fora do contrato. |
 | `.ativ-pulso` com `1.6s` | Fora das cinco durações; não extraído. |
+| Paginação `38px` | Extraída como no mestre, abaixo do alvo de 44px; lacuna de acessibilidade preservada. |
 | Padding `18px` do `.ativ-salto` | Extraído como receita do mestre, não como degrau de espaço. |
 
 ## Validações desta branch
@@ -135,7 +170,15 @@ Cobertura:
 - foundations sem hex e sem curvas cruas;
 - CSS parseável, sem `@import` remoto;
 - exports do `package.json` apontando para arquivos existentes;
-- pacote sem dependências de runtime.
+- Contraste medido do kit (Âmbar 2.0:1 sobre branco; Índigo 2.3:1 sobre Índigo
+  Profundo) validado contra os HEX canônicos.
+- Contrato de tipografia alinhado às famílias do CSS mestre, sem `@font-face` e
+  sem import remoto;
+- Showcase interno sem CDN, com skip link, um H1 e ambas as superfícies.
+- Primitives de layout sem hex, sem 16/9 e sem import remoto.
+- Dado técnico sem hex, sem razão fotográfica, sem sombra e com estado rotulado (texto + ponto).
+- Editorial sem hex, com medida `--ativ-grade-texto`, print e `user-select: text`.
+- Formulários sem hex, com `aria-invalid`, texto de erro/sucesso e alvo 44px.
 
 ## Gates que dependem do Codex
 
@@ -144,7 +187,8 @@ criado runner temporário na raiz. Depois da integração, o Codex precisa:
 
 1. reconhecer `@ativ/ui` no workspace `packages/*` (já previsto no ADR 0001);
 2. conectar o pacote à app mínima sem transformar a rota `/` em Home final;
-3. carregar fontes locais;
+3. carregar fontes locais (Archivo, IBM Plex Sans, IBM Plex Mono) com
+   `font-display: swap`, conforme `typography` no JSON;
 4. incluir `packages/ui` nos scripts de format/lint/typecheck se for o padrão do
    monorepo;
 5. executar `pnpm --filter @ativ/ui test` junto dos gates da TASK 001;
@@ -169,9 +213,14 @@ aqui. O pacote usa `node:test` para permanecer independente.
 - Importar o CSS mestre e o CSS de `@ativ/ui` ao mesmo tempo duplica regras.
   Produção deve consumir `@ativ/ui`; o arquivo em `design_guide/` permanece
   referência.
-- `foundations.css` não inclui botões, campos, chips ou cartão. Usá-lo não
-  reproduz a biblioteca completa de `componentes.dc.html`.
+- `foundations.css` cobre o contrato de superfície. `layout.css` cobre disposição.
+  `controls.css` cobre os controles do mestre, sem sombra de dropdown e sem
+  `.ativ-pulso`. `technical-data.css` cobre ficha, par, métrica, estado, config e
+  fluxo textual; não substitui diagrama de rack nem formulário.
+- `editorial.css` cobre artigo longo. Não carrega Markdown nem copy comercial.
+- `forms.css` cobre estados de formulário. Não captura leads nem fala com backend.
 - O export `./tokens.json` é cópia verificada. Editar só um dos JSONs quebra o
   teste; usar o script de sync.
-- Sem os SVGs de logo, a app não consegue cumprir as variantes por fundo até o
-  Brand Kit versionar os arquivos.
+- Sem os SVGs de logo no caminho `brand/logo`, a app não consegue cumprir as
+  variantes por fundo. Os arquivos já estão nessa pasta; o Codex só precisa
+  publicá-los/servi-los, sem recolorir.
