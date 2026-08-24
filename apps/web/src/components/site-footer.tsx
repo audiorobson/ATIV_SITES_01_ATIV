@@ -1,3 +1,5 @@
+import { SiteLogo } from "./site-logo";
+
 export function SiteFooter() {
   return (
     <footer className="site-footer" id="contato">
@@ -16,7 +18,7 @@ export function SiteFooter() {
             href="#inicio"
             aria-label="ATIV — voltar ao início"
           >
-            <span aria-hidden="true">ATIV</span>
+            <SiteLogo className="site-brand__logo" />
           </a>
           <p className="ativ-dado">Conteúdo comercial ainda não publicado.</p>
         </div>
