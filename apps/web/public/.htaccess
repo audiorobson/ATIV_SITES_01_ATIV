@@ -1,0 +1,15 @@
+Options -Indexes
+
+<IfModule mod_headers.c>
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Remove direct /index.html requests without changing query strings.
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L,NE]
+</IfModule>
