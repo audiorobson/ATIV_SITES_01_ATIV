@@ -97,6 +97,7 @@ test("CSS de producao reproduz o :root canonico e nao importa remoto", () => {
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/editorial.css")), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/forms.css")), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/chrome.css")), false);
+  assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/pages.css")), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/index.css")), false);
   assert.equal(bracesBalanced(actual), true);
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/foundations.css")), true);
@@ -106,6 +107,7 @@ test("CSS de producao reproduz o :root canonico e nao importa remoto", () => {
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/editorial.css")), true);
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/forms.css")), true);
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/chrome.css")), true);
+  assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/pages.css")), true);
   assert.deepEqual(parseRootCustomProperties(actual), masterTokens);
 });
 
@@ -124,6 +126,7 @@ test("ausencia de hex nao aprovado e de preto puro", () => {
   const editorialHex = extractHex(readRepo("packages/ui/src/styles/editorial.css"));
   const formsHex = extractHex(readRepo("packages/ui/src/styles/forms.css"));
   const chromeHex = extractHex(readRepo("packages/ui/src/styles/chrome.css"));
+  const pagesHex = extractHex(readRepo("packages/ui/src/styles/pages.css"));
 
   for (const hex of productionHex) {
     assert.equal(approved.has(hex), true, hex);
@@ -137,6 +140,7 @@ test("ausencia de hex nao aprovado e de preto puro", () => {
   assert.deepEqual(editorialHex, []);
   assert.deepEqual(formsHex, []);
   assert.deepEqual(chromeHex, []);
+  assert.deepEqual(pagesHex, []);
   assert.equal(approved.has("#000000"), false);
   assert.equal(approved.has("#000"), false);
 });
@@ -166,6 +170,7 @@ test("tokens de espaco, raio, duracao e curva ficam no sistema", () => {
   const editorialCss = readRepo("packages/ui/src/styles/editorial.css");
   const formsCss = readRepo("packages/ui/src/styles/forms.css");
   const chromeCss = readRepo("packages/ui/src/styles/chrome.css");
+  const pagesCss = readRepo("packages/ui/src/styles/pages.css");
   const rawCubics = [
     ...(foundationCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
     ...(layoutCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
@@ -174,6 +179,7 @@ test("tokens de espaco, raio, duracao e curva ficam no sistema", () => {
     ...(editorialCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
     ...(formsCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
     ...(chromeCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
+    ...(pagesCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
   ];
   assert.deepEqual(rawCubics, []);
 
@@ -198,6 +204,7 @@ test("exports do pacote apontam somente para arquivos existentes", () => {
     pkg.exports["./styles/editorial.css"],
     pkg.exports["./styles/forms.css"],
     pkg.exports["./styles/chrome.css"],
+    pkg.exports["./styles/pages.css"],
   ];
 
   for (const target of exportTargets) {
@@ -320,6 +327,60 @@ test("chrome de navegacao usa details, alvo 44px e nao inventa 16/9", () => {
   assert.equal(extractHex(css).length, 0);
 });
 
+test("paginas internas usam ancoras, alvo 44px e nao inventam 16/9", () => {
+  const css = readRepo("packages/ui/src/styles/pages.css");
+  assert.match(css, /\.ativ-pagina\b/);
+  assert.match(css, /\.ativ-abertura-pagina\b/);
+  assert.match(css, /\.ativ-pagina--solucao\b/);
+  assert.match(css, /\.ativ-pagina--setor\b/);
+  assert.match(css, /\.ativ-indice\b/);
+  assert.match(css, /\.ativ-especificacao\b/);
+  assert.match(css, /\.ativ-integracoes\b/);
+  assert.match(css, /\.ativ-relacionados\b/);
+  assert.match(css, /\.ativ-proxima\b/);
+  assert.match(css, /:target/);
+  assert.match(css, /position:\s*sticky/);
+  assert.match(css, /max-width:\s*860px/);
+  assert.match(css, /min-height:\s*var\(--ativ-alvo-min\)/);
+  assert.match(css, /box-sizing:\s*border-box/);
+  assert.equal(/16\s*\/\s*9/.test(css), false);
+  assert.equal(/box-shadow/i.test(css), false);
+  assert.equal(/linear-gradient|backdrop-filter|glass/i.test(css), false);
+  assert.equal(hasRemoteImport(css), false);
+  assert.equal(extractHex(css).length, 0);
+
+  const solucao = readRepo("packages/ui/showcase/pagina-solucao.html");
+  const setor = readRepo("packages/ui/showcase/pagina-setor.html");
+
+  for (const html of [solucao, setor]) {
+    assert.match(html, /class="ativ-salto"/);
+    assert.match(html, /href="#conteudo"/);
+    assert.match(html, /id="conteudo"/);
+    assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1);
+    assert.match(html, /noindex/);
+    assert.equal(/<script[\s>]/i.test(html), false);
+    assert.equal(/googleapis|gstatic|fonts\.google|cdn\.|unpkg|jsdelivr|typekit/i.test(html), false);
+    assert.equal(/box-shadow/i.test(html), false);
+    assert.match(html, /ativ-trilha/);
+    assert.match(html, /ativ-abertura-pagina/);
+    assert.match(html, /ativ-indice/);
+    assert.match(html, /ativ-relacionados/);
+    assert.match(html, /ativ-proxima/);
+  }
+
+  assert.match(solucao, /ativ-pagina--solucao/);
+  assert.match(solucao, /href="#problema"/);
+  assert.match(solucao, /href="#arquitetura"/);
+  assert.match(solucao, /href="#escopo"/);
+  assert.match(solucao, /href="#evidencia"/);
+  assert.match(solucao, /ativ-ficha/);
+  assert.match(solucao, /ativ-integracoes/);
+  assert.match(setor, /ativ-pagina--setor/);
+  assert.match(setor, /href="#contexto"/);
+  assert.match(setor, /href="#operacao"/);
+  assert.equal(/ativ-ficha/.test(setor), false);
+});
+
 test("logos de producao copiam o kit e mapeiam superficies de UI", () => {
   const parsed = JSON.parse(readRepo(brandTokensPath));
   const sourceDir = resolve(repoRoot, logos.source);
@@ -368,6 +429,7 @@ test("contrato de tipografia usa familias do mestre e nao aponta CDN", () => {
     readRepo("packages/ui/src/styles/editorial.css"),
     readRepo("packages/ui/src/styles/forms.css"),
     readRepo("packages/ui/src/styles/chrome.css"),
+    readRepo("packages/ui/src/styles/pages.css"),
     readRepo("packages/ui/src/styles/index.css"),
   ].join("\n");
 
@@ -437,6 +499,10 @@ test("showcase interno e estatico, semantico e sem host remoto", () => {
   assert.match(html, /ativ-figura/);
   assert.match(html, /ativ-legenda/);
   assert.match(html, /<details/);
+  assert.match(html, /pagina-solucao\.html/);
+  assert.match(html, /pagina-setor\.html/);
+  assert.match(html, /ativ-pagina--estreito/);
+  assert.match(html, /ativ-pagina--largo/);
 });
 
 test("pares de contraste do kit batem com os HEX canonicos", () => {
