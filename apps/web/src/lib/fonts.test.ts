@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { typography } from "@ativ/ui";
 import { describe, expect, it } from "vitest";
 
+import { foundationHeadingClass } from "./foundation";
 import {
   localFontFaces,
   localFontPreloads,
@@ -23,7 +24,8 @@ describe("local font contract", () => {
     expect(typography.loading.remoteImport).toBe(false);
   });
 
-  it("preloads only the H1 display cut and the body cut", () => {
+  it("preloads Archivo 900 only because the H1 uses the display role", () => {
+    expect(foundationHeadingClass).toBe("ativ-titulo-pagina");
     expect(localFontPreloads).toEqual([
       "/fonts/archivo-latin-900-normal.woff2",
       "/fonts/ibm-plex-sans-latin-400-normal.woff2",

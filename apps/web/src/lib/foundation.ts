@@ -7,6 +7,8 @@ export const foundationChecks = [
   "Fontes locais com font-display: swap",
 ] as const;
 
+export const foundationHeadingClass = "ativ-titulo-pagina";
+
 export function hasUniqueFoundationChecks(checks: readonly string[]): boolean {
   return new Set(checks).size === checks.length;
 }
