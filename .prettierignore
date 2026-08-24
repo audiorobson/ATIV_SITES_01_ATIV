@@ -1,0 +1,6 @@
+.next
+coverage
+node_modules
+pnpm-lock.yaml
+design_guide/brand/*.dc.html
+design_guide/brand/logo/*.svg

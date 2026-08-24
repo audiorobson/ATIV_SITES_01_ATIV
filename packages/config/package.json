@@ -1,0 +1,11 @@
+{
+  "name": "@ativ/config",
+  "version": "0.1.0",
+  "private": true,
+  "files": [
+    "typescript"
+  ],
+  "exports": {
+    "./typescript/nextjs.json": "./typescript/nextjs.json"
+  }
+}

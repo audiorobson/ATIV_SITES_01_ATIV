@@ -1,0 +1,26 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# tests and coverage
+coverage/
+test-results/
+playwright-report/
+
+# environment files: examples remain versioned
+.env
+.env.*
+!.env.example
+
+# local tooling
+.turbo/
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+pnpm-debug.log*
