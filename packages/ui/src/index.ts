@@ -16,6 +16,7 @@ export const cssExports = {
   editorial: "@ativ/ui/styles/editorial.css",
   forms: "@ativ/ui/styles/forms.css",
   chrome: "@ativ/ui/styles/chrome.css",
+  pages: "@ativ/ui/styles/pages.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",
 } as const;
