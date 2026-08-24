@@ -1,8 +1,8 @@
 # CODEX — START HERE
 
-Este arquivo é a **ordem operacional de início do desenvolvimento local** da nova plataforma digital da ATIV.
+Este arquivo é a **ordem operacional de desenvolvimento local** da plataforma digital da ATIV.
 
-Se você é o Codex ou outro agente de desenvolvimento, **comece por este arquivo e não improvise a sequência**.
+Se você é Codex ou outro agente de desenvolvimento, comece aqui e não improvise arquitetura, hosting ou sequência de tasks.
 
 ---
 
@@ -11,27 +11,17 @@ Se você é o Codex ou outro agente de desenvolvimento, **comece por este arquiv
 ```bash
 git clone https://github.com/audiorobson/ATIV_SITES_01_ATIV.git
 cd ATIV_SITES_01_ATIV
-```
-
-Confirme:
-
-```bash
 git remote -v
 git status
 git branch --show-current
-```
-
-A fonte de verdade inicial é `main`.
-
-Antes de criar qualquer código:
-
-```bash
 git pull --ff-only origin main
 ```
 
+A fonte de verdade remota é `main`, somada às branches/PRs explicitamente indicadas por tasks ainda não mergeadas.
+
 ---
 
-## 2. Leitura obrigatória antes de qualquer implementação
+## 2. Leitura obrigatória
 
 Ler integralmente, nesta ordem:
 
@@ -39,100 +29,78 @@ Ler integralmente, nesta ordem:
 2. `AGENTS.md`
 3. `ROADMAP.md`
 4. `README.md`
-5. `docs/local-development.md`
-6. `docs/architecture.md`
-7. `docs/site-audit.md`
-8. `docs/seo-inventory-2026-08-24.md`
-9. `docs/seo-strategy.md`
-10. `docs/seo-migration.md`
-11. `docs/ads-route-strategy.md`
-12. `docs/ads-tracking.md`
-13. `docs/domain-authority-ecosystem.md`
-14. `docs/brand-system.md`
-15. `docs/content-strategy.md`
-16. `docs/quality-gates.md`
-17. `docs/seo-open-source-tooling.md`
-18. `docs/references.md`
-19. `seo/url-inventory.csv`
-20. `seo/keyword-map.csv`
-21. `seo/route-plan.csv`
-22. `seo/redirect-map.csv`
-23. `seo/cross-domain-link-plan.csv`
+5. `docs/hostgator-deployment-contract.md`
+6. `docs/local-development.md`
+7. `docs/architecture.md`
+8. `docs/site-audit.md`
+9. `docs/seo-inventory-2026-08-24.md`
+10. `docs/seo-strategy.md`
+11. `docs/seo-migration.md`
+12. `docs/ads-route-strategy.md`
+13. `docs/ads-tracking.md`
+14. `docs/domain-authority-ecosystem.md`
+15. `docs/brand-system.md`
+16. `docs/content-strategy.md`
+17. `docs/quality-gates.md`
+18. `docs/seo-open-source-tooling.md`
+19. `docs/references.md`
+20. `seo/url-inventory.csv`
+21. `seo/keyword-map.csv`
+22. `seo/route-plan.csv`
+23. `seo/redirect-map.csv`
+24. `seo/cross-domain-link-plan.csv`
+25. `content/TECHNICAL_CONTENT_TOPICS.md`
 
-Também ler integralmente as Issues, nesta sequência:
-
-- Issue #1 — `TASK 001 — Codex: bootstrap local da plataforma web`
-- Issue #2 — `TASK 002 — SEO foundation, route contracts e crawl gates`
-
-Issue #2 depende da fundação entregue na Issue #1.
+Depois, ler as Issues abertas aplicáveis, em ordem de dependência.
 
 ---
 
-## 3. Missão imediata
+## 3. DECISÃO DE HOSTING NÃO NEGOCIÁVEL
 
-A missão inicial é executar a **TASK 001**.
+A baseline atual de produção é **publicação direta no HostGator por upload dos artefatos finais**.
 
-NÃO iniciar ainda:
+Enquanto não houver ADR aprovado alterando o ambiente:
 
-- Home final;
-- design visual definitivo;
-- aplicação do Brand Kit incompleto;
-- páginas comerciais finais;
-- landing pages finais de Ads;
-- redirects de produção;
-- migração de URLs;
-- CMS editorial completo;
-- Three.js ou efeitos visuais pesados;
-- conteúdo SEO em escala.
+- NÃO assumir Node.js em produção;
+- NÃO assumir Docker;
+- NÃO assumir PostgreSQL;
+- NÃO assumir Payload CMS runtime;
+- NÃO depender de SSR/ISR/API Routes/Server Actions em request time;
+- NÃO depender de crawler, dashboard ou SaaS SEO;
+- NÃO transformar GitHub Actions em requisito operacional;
+- TODO SEO essencial deve existir nos arquivos finais publicados.
 
-Primeiro deve existir uma fundação reproduzível, testável e documentada.
+Next.js + TypeScript continuam permitidos para desenvolvimento/build.
 
----
+O resultado deve ser static-first e compatível com `public_html`.
 
-## 4. Branch inicial
+Referência obrigatória:
 
-Criar:
-
-```bash
-git checkout -b feat/foundation-bootstrap
-```
-
-Não desenvolver diretamente em `main`.
+`docs/hostgator-deployment-contract.md`
 
 ---
 
-## 5. Verificar versões atuais antes do scaffold
+## 4. Regra de portabilidade
 
-Não assumir versões presentes em memória ou exemplos antigos.
+Antes de adotar qualquer feature, responder:
 
-Antes de instalar dependências:
+- funciona sem processo Node permanente?
+- funciona sem Docker?
+- funciona sem banco para servir páginas públicas?
+- funciona sem serviço SEO externo?
+- conteúdo principal existe no HTML final?
+- metadata/schema existem no artefato final?
+- sitemap/robots são arquivos publicáveis?
+- assets funcionam após upload simples?
+- redirects necessários podem ser representados em Apache/`.htaccess`?
 
-1. verificar versões estáveis e compatíveis de Node.js LTS;
-2. verificar Next.js, React e TypeScript estáveis compatíveis;
-3. confirmar `pnpm` apropriado;
-4. avaliar Payload CMS/PostgreSQL conforme `docs/architecture.md`;
-5. registrar a decisão em:
-
-```text
-docs/adr/0001-web-stack.md
-```
-
-O ADR deve explicar:
-
-- decisão;
-- versões escolhidas;
-- alternativas consideradas;
-- impacto em SEO;
-- impacto em performance;
-- impacto em manutenção;
-- compatibilidade com CMS;
-- riscos conhecidos.
+Se alguma resposta for NÃO, não implementar na baseline sem ADR.
 
 ---
 
-## 6. Fundação esperada na TASK 001
+## 5. Fundação esperada
 
-Criar uma estrutura coerente aproximadamente assim:
+Estrutura alvo:
 
 ```text
 apps/
@@ -141,105 +109,238 @@ apps/
 packages/
 ├── config/
 ├── ui/
-└── seo/
+├── seo/
+└── analytics/
 
+content/
+scripts/
 .github/
-└── workflows/
 ```
 
-Arquivos/fundações esperados:
+Arquivos/fundações:
 
-- `package.json` na raiz;
+- `package.json` raiz;
 - `pnpm-workspace.yaml`;
-- lockfile versionado;
+- lockfile;
 - `.gitignore`;
 - `.editorconfig`;
 - `.env.example` sem segredos;
-- TypeScript `strict`;
-- lint;
-- format;
-- app Next.js mínima;
-- renderização server-first adequada a SEO;
+- TypeScript strict;
+- lint/format;
+- app Next mínima;
 - metadata mínima;
-- CI;
+- geração estática compatível;
+- testes locais;
 - scripts previsíveis.
 
-Scripts obrigatórios ao final:
+Scripts alvo:
 
 ```bash
 pnpm dev
 pnpm lint
 pnpm typecheck
 pnpm test
+pnpm seo:check
 pnpm build
+pnpm build:hostgator
 ```
 
-Todos devem estar documentados e funcionar em fresh clone.
+Tudo deve funcionar em fresh clone.
 
 ---
 
-## 7. Regras arquiteturais não negociáveis
+## 6. ADR da stack
 
-### SEO
+Antes de consolidar decisões:
 
-- conteúdo principal precisa existir no HTML renderizado;
-- H1/H2 semânticos não podem ser destruídos por animação;
-- não mudar slugs existentes sem aprovação baseada em inventário/GSC;
-- não gerar redirects por preferência estética;
-- não criar páginas cidade × serviço em massa;
-- não criar conteúdo programático raso;
-- páginas orgânicas e landing pages de Ads têm contratos diferentes.
+`docs/adr/0001-web-stack.md`
 
-### Brand
+Deve explicar:
 
-O Brand Kit ainda está em desenvolvimento.
+- versões atuais escolhidas;
+- Next.js/React/TypeScript;
+- static export;
+- impacto em SEO;
+- impacto em performance;
+- manutenção;
+- limitações de hosting;
+- compatibilidade HostGator;
+- recursos deliberadamente não utilizados por exigirem Node runtime.
 
-Portanto:
+---
 
-- criar apenas infraestrutura de tokens;
-- não inventar cores oficiais;
-- não inventar fonte oficial;
-- não redesenhar logo;
-- não definir estética final por conta própria;
-- não gerar UI genérica como se fosse design aprovado.
+## 7. SEO — contrato atual
 
-### Conteúdo
+Criar/manter `packages/seo` como fonte central para:
 
-É proibido inventar:
+- title/description;
+- canonical;
+- robots;
+- Open Graph/social metadata;
+- JSON-LD;
+- Organization;
+- WebSite;
+- WebPage;
+- BreadcrumbList;
+- Service quando válido;
+- Article/BlogPosting;
+- FAQ somente quando válido;
+- sitemap;
+- internal linking;
+- redirect validation;
+- acquisition parameters.
 
-- clientes;
-- cases;
-- certificações;
-- métricas;
-- quantidade de projetos;
-- SLA;
-- uptime;
-- fabricantes/parcerias;
-- contratos públicos;
-- depoimentos.
+### Dependência ADOPT
 
-Claims futuros devem respeitar o Claim Registry definido na documentação.
+- `google/schema-dts`
 
-### Ads / Tracking
+### EVALUATE
 
-- não inserir IDs inventados ou reais sem configuração aprovada;
-- não criar redirects cross-domain como destino intermediário de anúncio;
-- preparar arquitetura para `gclid`, `gbraid`, `wbraid`, `msclkid` e UTM;
-- preservar consentimento e atribuição conforme documentação.
+- `iamvishnusankar/next-sitemap`, apenas se geração própria/nativa não for suficiente e continuar 100% estática.
 
-### Segurança
+### OPTIONAL LOCAL — não requisito do projeto
+
+- Lighthouse/Lighthouse CI;
+- Lychee;
+- Unlighthouse;
+- SiteOne Crawler;
+- Playwright para QA quando útil.
+
+Não criar dependência operacional dessas ferramentas.
+
+---
+
+## 8. SEO check próprio
+
+Criar validação local, por exemplo:
+
+```text
+scripts/seo-check.ts
+```
+
+Comando:
+
+```bash
+pnpm seo:check
+```
+
+Deve detectar pelo menos:
+
+- title/description ausentes;
+- title duplicado em P0;
+- canonical inválido;
+- H1 semântico ausente/destruído;
+- `noindex` acidental;
+- `/lp/**` indexável indevidamente;
+- sitemap com rota proibida;
+- robots incoerente;
+- JSON-LD inválido estruturalmente;
+- links internos para rota inexistente;
+- alteração indevida de URL protegida;
+- inconsistência `www` / non-`www` / `/index.html`.
+
+---
+
+## 9. Build HostGator
+
+Implementar comando previsível:
+
+```bash
+pnpm build:hostgator
+```
+
+A saída deve gerar um único diretório final para upload ao `public_html`.
+
+Ele deve conter quando aplicável:
+
+- HTML;
+- CSS;
+- JS;
+- assets;
+- `robots.txt`;
+- `sitemap.xml`;
+- `.htaccess`;
+- 404;
+- metadata/schema incorporados.
+
+O diretório final deve funcionar sem `next start` ou processo Node.
+
+---
+
+## 10. Conteúdo
+
+`content/` é fonte editorial versionada e portável.
+
+Não duplicar copy dentro dos componentes se já existir documento editorial.
+
+Para conteúdo técnico, respeitar integralmente:
+
+`content/TECHNICAL_CONTENT_TOPICS.md`
+
+Regras centrais:
+
+- empresa sempre `ATIV` em caixa alta;
+- nunca usar “ATIV Pro” como nome da empresa;
+- `ativpro.com` é domínio/endereço;
+- utilizar base RAG conforme contrato do conteúdo técnico;
+- claims exigem evidência;
+- conteúdo deve ser estruturado para site/CMS/RAG.
+
+---
+
+## 11. CMS e backend
+
+Payload CMS + PostgreSQL estão **DEFER** na baseline atual.
+
+Não inicializar como requisito da aplicação pública.
+
+Somente reconsiderar via ADR se houver hosting com runtime apropriado e necessidade comercial/editorial real.
+
+Conteúdo deve funcionar em build time a partir do repositório.
+
+---
+
+## 12. Formulários
+
+Não criar API Routes/Server Actions como solução de produção por padrão.
+
+Na fase de leads:
+
+- confirmar hosting real;
+- se continuar compartilhado, avaliar endpoint PHP coimplantado;
+- manter segredos fora do bundle;
+- validar server-side;
+- documentar em ADR/task específica.
+
+---
+
+## 13. Ads / tracking
+
+- não inserir IDs inventados;
+- não criar redirects cross-domain intermediários;
+- preparar `gclid`, `gbraid`, `wbraid`, `msclkid` e UTM;
+- `/lp/**` deve ser estático/publicável;
+- `noindex,follow` por padrão;
+- fora do sitemap;
+- AdsBot acessível;
+- tracking não pode impedir conteúdo/SEO.
+
+---
+
+## 14. Segurança
 
 - nenhum segredo no Git;
-- `.env.example` contém apenas nomes/descrições de variáveis;
-- validar inputs;
-- não expor tokens client-side;
-- seguir princípio de menor privilégio.
+- nenhum segredo no bundle client;
+- `.env.example` apenas nomes/placeholders;
+- headers/regras Apache quando aplicáveis;
+- dependências atualizadas;
+- qualquer endpoint PHP futuro deve ter validação e proteção próprias.
 
 ---
 
-## 8. Rotas e patrimônio SEO
+## 15. Patrimônio SEO
 
-O inventário atual está em:
+Inventários:
 
 ```text
 seo/url-inventory.csv
@@ -248,175 +349,97 @@ seo/route-plan.csv
 seo/redirect-map.csv
 ```
 
-Regra:
+URL existente com histórico potencial é preservada por padrão.
 
-> URL existente com histórico potencial é preservada por padrão até haver dado suficiente para justificar mudança.
+P0 legado que não pode voltar:
 
-P0 conhecido do legado que o novo código não pode repetir:
-
-- Home com H1 semântico equivalente a `|`;
-- headings animados fragmentados caractere por caractere para crawler/acessibilidade;
-- titles genéricos em múltiplas páginas comerciais;
-- `/solucoes/colaboracao-uc/` com HTTP 406 observado;
-- telefone placeholder em `/contato/`;
-- contadores de prova que podem renderizar `0`;
-- inconsistência `www` / non-`www` / `/index.html`;
+- Home com H1 `|`;
+- headings caractere-a-caractere sem semântica íntegra;
+- titles genéricos;
+- `/solucoes/colaboracao-uc/` com 406;
+- telefone placeholder;
+- contadores renderizando `0` como prova;
+- inconsistência `www`/non-`www`/`index.html`;
 - claims sem evidência.
 
-Nenhum redirect de produção deve ser ativado na TASK 001.
+---
+
+## 16. Redirects
+
+Nenhum redirect de produção fora do processo de migração aprovado.
+
+Quando aprovado para HostGator/Apache:
+
+- gerar `.htaccess` ou regra compatível;
+- single-hop;
+- preservar query string quando necessário;
+- sem doorway/cross-domain intermediary.
 
 ---
 
-## 9. Ecossistema de domínios
+## 17. Quality gates locais
 
-Domínios relacionados:
-
-- `www.ativpro.com` — integração, engenharia e serviços;
-- `www.easywall.com.br` — software/produto de gestão de videowall;
-- `www.videowallbr.com.br` — portal editorial técnico, atualmente requer saneamento de identidade antes de interlink SEO ativo;
-- `www.expertav.com.br` — atualmente bloqueado para autoridade até remover placeholders e definir função editorial/técnica real.
-
-Não criar rede artificial de backlinks.
-
-Usar links cross-domain somente quando forem editorialmente úteis e conforme:
-
-```text
-docs/domain-authority-ecosystem.md
-seo/cross-domain-link-plan.csv
-```
-
----
-
-## 10. Depois de concluir a TASK 001
-
-Somente após a fundação estar estável e a PR da TASK 001 estar pronta/aprovada, executar a **TASK 002**.
-
-A TASK 002 deve implementar os contratos técnicos de SEO e mídia paga:
-
-- metadata contract;
-- canonical;
-- robots;
-- sitemap;
-- H1 semantic contract;
-- JSON-LD tipado;
-- Lighthouse CI;
-- link checker;
-- testes de rotas/indexação;
-- infraestrutura `/lp/**` sem conteúdo final.
-
-Dependências já classificadas:
-
-### ADOPT
-
-- `GoogleChrome/lighthouse-ci`
-- `google/schema-dts`
-- `lycheeverse/lychee`
-
-### EVALUATE
-
-- `harlan-zw/unlighthouse`
-- `iamvishnusankar/next-sitemap`
-
-### DEFER
-
-- `QwikDev/partytown`
-
-Não adicionar dependência apenas porque está listada; respeitar a classificação e registrar decisão técnica.
-
----
-
-## 11. Quality gates antes de abrir PR
-
-Executar no mínimo:
+Antes de PR:
 
 ```bash
 pnpm lint
 pnpm typecheck
 pnpm test
+pnpm seo:check
 pnpm build
+```
+
+Quando implementado:
+
+```bash
+pnpm build:hostgator
 ```
 
 Também verificar:
 
-- nenhum segredo versionado;
-- nenhum placeholder apresentado como dado real;
-- nenhuma alteração indevida de URL;
-- nenhuma dependência desnecessária;
-- documentação correspondente atualizada;
+- nenhum segredo;
+- nenhum placeholder como fato;
+- nenhuma mudança de URL indevida;
+- nenhuma dependência de runtime incompatível;
+- documentação atualizada;
 - fresh clone reproduzível.
 
-Se algum gate falhar, corrigir antes da PR. Não mascarar erro desabilitando regra sem justificativa documentada.
+---
+
+## 18. PRs
+
+Usar Conventional Commits e branches temáticas.
+
+Toda PR arquitetural deve declarar:
+
+- impacto em SEO;
+- impacto em HostGator/static export;
+- dependências novas;
+- testes executados;
+- riscos/rollback;
+- se exige ADR.
 
 ---
 
-## 12. Commits
+## 19. Ordem de execução das tasks
 
-Usar commits pequenos e semânticos, por exemplo:
-
-```text
-chore: initialize pnpm workspace
-feat: bootstrap Next.js web app
-chore: add strict TypeScript configuration
-ci: add foundation quality gates
-docs: record web stack ADR
-```
-
-Não misturar implementação visual futura na PR de foundation.
+- concluir/sincronizar TASK 001 quando ainda pendente;
+- executar TASK 002 usando **a versão atualizada da Issue #2**;
+- qualquer instrução antiga da TASK 002 que torne Lighthouse CI/Lychee/Unlighthouse requisito obrigatório está revogada pela decisão de hosting atual;
+- priorizar `schema-dts`, SEO próprio, `seo:check`, build estático e `build:hostgator`.
 
 ---
 
-## 13. PR da TASK 001
+## 20. Prompt operacional curto para Codex
 
-Título esperado:
-
-```text
-feat: bootstrap web platform foundation
-```
-
-A PR deve:
-
-- referenciar Issue #1;
-- preencher `.github/pull_request_template.md`;
-- informar comandos executados;
-- informar resultados dos gates;
-- listar decisões arquiteturais;
-- listar riscos/pendências;
-- não declarar como concluído o que não foi implementado.
+> Trabalhe no repositório `audiorobson/ATIV_SITES_01_ATIV`. Antes de alterar código, sincronize o remoto e leia `CODEX_START_HERE.md`, `AGENTS.md`, `ROADMAP.md` e `docs/hostgator-deployment-contract.md`. A produção deve ser static-first e publicável diretamente no HostGator sem processo Node, Docker, banco ou serviço SEO obrigatório. Next.js/TypeScript são ferramentas de desenvolvimento/build. Atualize a implementação local e os contratos para essa baseline, mantenha `packages/seo`, adote `schema-dts`, crie `pnpm seo:check` e prepare `pnpm build:hostgator`. Não iniciar Payload/PostgreSQL/runtime Node sem ADR. Execute lint/typecheck/test/seo-check/build e documente a portabilidade na PR.
 
 ---
 
-## 14. Definition of Done da sessão inicial
+## 21. Regra final
 
-A primeira sessão de desenvolvimento só é considerada concluída quando:
+Quando houver conflito entre feature e portabilidade, **portabilidade vence até ADR explícito**.
 
-- repositório foi clonado localmente;
-- branch `feat/foundation-bootstrap` criada;
-- ADR 0001 criado;
-- workspace configurado;
-- app mínima funciona;
-- lint funciona e passa;
-- typecheck funciona e passa;
-- testes estão configurados e passam;
-- production build passa;
-- CI equivalente existe;
-- `.env.example` não contém segredo;
-- documentação local está coerente;
-- PR `feat: bootstrap web platform foundation` foi aberta referenciando Issue #1.
+Quando houver conflito entre velocidade e SEO/Brand/segurança, **qualidade vence**.
 
----
-
-## 15. Prompt operacional curto para Codex
-
-Caso este repositório seja aberto em uma nova sessão do Codex, interpretar o texto abaixo como ordem de execução:
-
-> Trabalhe no repositório `audiorobson/ATIV_SITES_01_ATIV`. Clone-o localmente se ainda não existir. Leia `CODEX_START_HERE.md` e `AGENTS.md` integralmente antes de alterar qualquer arquivo. Execute primeiro a Issue #1 (`TASK 001 — Codex: bootstrap local da plataforma web`) na branch `feat/foundation-bootstrap`. Respeite todos os guardrails de SEO, Brand, Ads, conteúdo, segurança e migração. Não desenvolva a Home final nem aplique Brand Kit ainda em desenvolvimento. Confirme versões atuais da stack, registre o ADR, crie a fundação reproduzível, execute lint/typecheck/test/build e abra a PR definida. Somente depois da TASK 001 aprovada avance para a Issue #2.
-
----
-
-## 16. Regra final
-
-Quando existir conflito entre improvisação e documentação do repositório, **a documentação versionada vence**.
-
-Quando existir conflito entre velocidade e preservação de SEO/Brand/segurança, **preservação e qualidade vencem**.
-
-Quando uma informação empresarial não estiver comprovada, **não inventar — registrar como pendência**.
+Quando uma informação empresarial não estiver comprovada, **não inventar**.
