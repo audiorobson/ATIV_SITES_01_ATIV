@@ -19,7 +19,7 @@ quando existir, é consumidor derivado — nunca fonte.
 | `@ativ/ui/tokens.json` | o mesmo contrato em JSON |
 | `@ativ/ui/styles/tokens.css` | custom properties canônicas |
 | `@ativ/ui/styles/foundations.css` | superfícies, tipo, foco, movimento, ícone e logo |
-| `@ativ/ui/styles/layout.css` | seção, container, pilha, agrupamento, grade, lateral, quadro e somente-leitura |
+| `@ativ/ui/styles/layout.css` | seção, container, pilha, agrupamento, grade, lateral, quadro, figura e somente-leitura |
 | `@ativ/ui/styles/controls.css` | cartão, botões, campos, seleção, slider, paginação, chip, status e badge |
 | `@ativ/ui/styles/technical-data.css` | ficha, pares chave/valor, métrica, estado rotulado, legenda, configuração e fluxo textual |
 | `@ativ/ui/styles/editorial.css` | medida de leitura, hierarquia, listas, tabela editorial, citação, nota, chamada neutra e fonte |
@@ -69,7 +69,8 @@ lateral, grade auto-fit e quadro. Inclui espécimes fictícios de ficha, pares,
 métrica, estado rotulado, configuração e fluxo. Inclui artigo fictício com
 citação, nota, chamada e rastreio. Inclui formulário estático com erro, sucesso,
 loading e alerta global. Inclui topo, menu condensado, trilha, abertura, quadro
-vazio e rodapé de espécime. Sem JavaScript de página e sem CDN.
+vazio, figura com legenda de candidata e rodapé de espécime. Sem JavaScript de
+página e sem CDN.
 
 ## Validação local
 
