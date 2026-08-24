@@ -33,7 +33,7 @@ não foram preenchidas com padrões genéricos.
 | `packages/ui/src/styles/controls.css` | Cartão, botões, campos, seleção, slider, paginação, chip, status e badge extraídos do CSS mestre. |
 | `packages/ui/src/styles/index.css` | Bundle local (`@import` relativo, sem CDN). |
 | `packages/ui/src/index.ts` | Export JS/TS do contrato e dos caminhos de CSS. |
-| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies escura e clara. Não é página pública. |
+| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies escura e clara, e espécimes dos controles extraídos (incluindo dropdown aberto sem sombra). Não é página pública. |
 | `packages/ui/scripts/` | Sincronização e validação independentes do workspace raiz. |
 
 ## Como importar

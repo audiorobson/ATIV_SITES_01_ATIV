@@ -53,7 +53,8 @@ Calibri, Helvetica, Times e Inter. O pacote não embute `@font-face`.
 
 Showcase interno (não é rota pública): abra `packages/ui/showcase/index.html`.
 Usa o CSS relativo do pacote, skip link, um H1 e as superfícies `.ativ-escuro` e
-`.ativ-claro`. Sem JavaScript de página e sem CDN.
+`.ativ-claro`. Inclui espécimes estáticos de busca, dropdown (painel aberto, sem
+sombra), toggle, rádio, checkbox e slider. Sem JavaScript de página e sem CDN.
 
 ## Validação local
 
