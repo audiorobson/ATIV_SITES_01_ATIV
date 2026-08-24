@@ -1,12 +1,14 @@
 # ATIV — Propostas de Temas para Conteúdo Técnico AV
 
-**Objetivo:** criar uma base editorial técnica de alta autoridade para alimentar páginas comerciais, Insights, materiais de apoio e futuras campanhas da ATIV.
+**Objetivo:** criar uma base editorial técnica de alta autoridade para alimentar páginas comerciais, Insights, materiais de apoio, campanhas, CMS e futuras bases RAG da ATIV.
 
-Este arquivo é um **backlog para o agente especialista AV**. Ele deve produzir conteúdo tecnicamente correto, verificável e útil — não textos genéricos de marketing.
+Este arquivo é um **backlog e contrato de produção para o agente especialista AV**. Ele deve produzir conteúdo tecnicamente correto, verificável, reutilizável e útil — não textos genéricos de marketing.
 
 ---
 
-## 1. Regras para o agente especialista AV
+# 1. CONTRATO OBRIGATÓRIO PARA O AGENTE ESPECIALISTA AV
+
+## 1.1 — Leitura obrigatória antes de produzir qualquer texto
 
 Antes de escrever qualquer conteúdo:
 
@@ -16,23 +18,377 @@ Antes de escrever qualquer conteúdo:
 4. ler `docs/content-strategy.md`;
 5. ler `docs/seo-strategy.md`;
 6. consultar `seo/keyword-map.csv` e `seo/route-plan.csv`;
-7. não criar URL nova sem necessidade;
-8. não inventar números, clientes, SLA, certificações, parceiros ou resultados;
-9. citar documentação técnica oficial sempre que fizer afirmação de norma, protocolo ou especificação;
-10. separar claramente fato técnico, recomendação de projeto e exemplo conceitual.
+7. identificar o ID do tema neste arquivo;
+8. consultar sua base RAG técnica conforme o protocolo da seção 1.2;
+9. levantar as fontes oficiais necessárias para validação;
+10. somente depois iniciar a redação.
+
+O agente não deve criar URL nova sem necessidade e não deve modificar a arquitetura SEO definida no projeto por iniciativa própria.
+
+---
+
+## 1.2 — USO OBRIGATÓRIO DA BASE RAG
+
+A base RAG do agente especialista AV deve ser usada como **fonte técnica primária de pesquisa e contexto** para desenvolver cada conteúdo.
+
+O agente NÃO deve escrever o artigo apenas com conhecimento geral do modelo.
+
+### Fluxo obrigatório de consulta RAG
+
+Para cada tema:
+
+1. pesquisar o título principal do tema na base RAG;
+2. pesquisar separadamente cada tecnologia, protocolo, norma, conceito e subtema listado no briefing;
+3. recuperar documentação relacionada a arquitetura, aplicação, limitações, interoperabilidade, instalação, configuração, operação, manutenção e troubleshooting;
+4. cruzar diferentes documentos da própria base quando houver mais de uma fonte sobre o mesmo ponto;
+5. identificar divergências, versões antigas ou recomendações dependentes de fabricante;
+6. não transformar uma recomendação específica de fabricante em regra universal do setor;
+7. separar claramente:
+   - fato técnico;
+   - requisito normativo;
+   - recomendação de fabricante;
+   - boa prática de engenharia;
+   - experiência de campo;
+   - exemplo conceitual;
+8. validar informações sensíveis a versão ou data em documentação oficial atual quando necessário;
+9. registrar as principais fontes utilizadas na seção `Fontes e rastreabilidade` do conteúdo;
+10. se a RAG não possuir evidência suficiente, declarar a lacuna e pesquisar documentação oficial complementar em vez de preencher por inferência.
+
+### Regra de confiança
+
+A ordem preferencial de confiança é:
+
+```text
+norma / standards body
+        ↓
+documentação oficial do protocolo
+        ↓
+documentação oficial do fabricante
+        ↓
+paper / guia técnico reconhecido
+        ↓
+base RAG interna validada
+        ↓
+experiência documentada da ATIV
+        ↓
+exemplo conceitual claramente identificado
+```
+
+A RAG serve para recuperar, relacionar e sintetizar conhecimento técnico. Ela **não autoriza inventar informação ausente na documentação recuperada**.
+
+### Quando houver conflito de fontes
+
+O agente deve:
+
+- privilegiar a fonte oficial mais atual e aplicável ao contexto;
+- informar quando a resposta depende de versão, fabricante, topologia ou configuração;
+- evitar afirmações absolutas quando a engenharia depende do cenário;
+- registrar a divergência nas notas técnicas do conteúdo quando ela for relevante para projeto ou operação.
+
+---
+
+## 1.3 — REGRA ABSOLUTA DE NOMENCLATURA DA MARCA
+
+A empresa deve ser mencionada **sempre como `ATIV`, em letras maiúsculas**.
+
+### Forma correta
+
+- ATIV
+- engenharia da ATIV
+- equipe técnica da ATIV
+- soluções da ATIV
+- projetos da ATIV
+- falar com a ATIV
+- especialistas da ATIV
+
+### Formas proibidas
+
+Não usar como nome da empresa:
+
+- Ativ
+- ativ
+- ATIV Pro
+- Ativ Pro
+- ATIV PRO
+- Ativpro
+- AtivPro
+
+### Sobre `ativpro.com`
+
+`ativpro.com` é **somente o endereço/domínio do site**.
+
+Pode aparecer exclusivamente quando tecnicamente necessário como URL, por exemplo:
+
+```text
+https://www.ativpro.com/
+```
+
+Nunca transformar o domínio em nome comercial.
+
+Exemplo incorreto:
+
+> A ATIV Pro desenvolve projetos audiovisuais.
+
+Exemplo correto:
+
+> A ATIV desenvolve projetos e integra sistemas audiovisuais.
+
+Essa regra vale para:
+
+- títulos;
+- subtítulos;
+- corpo de texto;
+- CTA;
+- metadata;
+- alt text;
+- schema;
+- FAQ;
+- artigos;
+- landing pages;
+- legendas;
+- documentos;
+- textos de Ads;
+- qualquer conteúdo entregue ao projeto.
+
+---
+
+## 1.4 — PRINCÍPIOS DE REDAÇÃO TÉCNICA
 
 A produção deve privilegiar:
+
 - engenharia;
 - arquitetura;
 - interoperabilidade;
 - critérios de projeto;
+- critérios de decisão;
+- limitações;
 - troubleshooting;
 - comissionamento;
 - operação;
 - segurança;
 - documentação;
 - manutenção;
-- experiência real de campo.
+- lifecycle;
+- experiência real de campo quando documentável.
+
+O agente deve:
+
+- explicar como o sistema funciona;
+- explicar por que determinada decisão existe;
+- explicar dependências e trade-offs;
+- explicar como a solução pode falhar;
+- explicar como validar a implementação;
+- diferenciar solução, produto, protocolo e arquitetura;
+- evitar superlativos sem evidência;
+- evitar marketing abstrato;
+- evitar esconder limitações relevantes.
+
+É proibido inventar:
+
+- números;
+- quantidade de projetos;
+- clientes;
+- SLA;
+- disponibilidade;
+- certificações;
+- parceiros;
+- resultados;
+- contratos;
+- métricas;
+- capacidades não comprovadas da ATIV.
+
+Claims institucionais só podem ser usados quando aprovados no Claim Registry.
+
+---
+
+## 1.5 — FORMATO ÚNICO DE ENTREGA: UM ARQUIVO `.MD`
+
+Para cada tema solicitado, o agente deve devolver **um único arquivo Markdown autocontido**.
+
+Não entregar:
+
+- vários arquivos separados;
+- texto solto fora do Markdown;
+- explicações paralelas fora do documento;
+- JSON separado;
+- HTML como fonte editorial;
+- conteúdo dividido em mensagens sem estrutura.
+
+A saída deve poder ser salva diretamente no repositório e servir como fonte para:
+
+- website;
+- CMS;
+- SEO;
+- landing pages;
+- snippets;
+- FAQs;
+- treinamento de agentes;
+- futuras bases RAG.
+
+### Nome recomendado
+
+```text
+content/technical/<ID>-<slug-do-tema>.md
+```
+
+Exemplo:
+
+```text
+content/technical/P0.08-av-over-ip-fundamentos-projetos-corporativos.md
+```
+
+---
+
+## 1.6 — ESTRUTURA DE INDEXAÇÃO OBRIGATÓRIA DO `.MD`
+
+Todo arquivo técnico produzido deve começar com frontmatter YAML.
+
+Modelo:
+
+```yaml
+---
+content_id: P0.08
+content_type: technical_article
+status: draft
+brand: ATIV
+language: pt-BR
+title: "AV-over-IP: fundamentos para projetos corporativos"
+slug: "av-over-ip-fundamentos-projetos-corporativos"
+primary_intent: "informational + commercial"
+primary_keyword: "AV over IP"
+secondary_keywords:
+  - "AV-over-IP corporativo"
+  - "rede audiovisual"
+  - "encoder decoder AV"
+audiences:
+  - engenharia
+  - TI
+  - operação
+related_route: "/solucoes/av-over-ip/"
+funnel_stage: "consideration"
+technical_reviewer: "pending"
+rag_used: true
+rag_topics:
+  - "AV-over-IP"
+  - "multicast"
+  - "IGMP"
+  - "PTP"
+  - "QoS"
+source_review_date: "YYYY-MM-DD"
+last_reviewed: "YYYY-MM-DD"
+---
+```
+
+Os campos devem refletir o conteúdo real. Não preencher dados fictícios para completar o frontmatter.
+
+---
+
+## 1.7 — ÁRVORE INTERNA OBRIGATÓRIA DO CONTEÚDO
+
+Depois do frontmatter, usar uma árvore Markdown previsível.
+
+```text
+# [CONTENT_ID] Título principal
+
+## 0. Resumo editorial
+## 1. Resumo executivo
+## 2. Problema que este conteúdo resolve
+## 3. Conceitos fundamentais
+## 4. Arquitetura e funcionamento
+## 5. Componentes e tecnologias envolvidas
+## 6. Critérios de projeto
+## 7. Interoperabilidade e dependências
+## 8. Limitações e trade-offs
+## 9. Erros comuns
+## 10. Troubleshooting
+## 11. Boas práticas
+## 12. Comissionamento e validação
+## 13. Operação e manutenção
+## 14. Quando a solução faz sentido
+## 15. Quando a solução não faz sentido
+## 16. Checklist técnico
+## 17. FAQ técnica
+## 18. Glossário relacionado
+## 19. Sugestões de links internos
+## 20. CTA técnico
+## 21. Fontes e rastreabilidade
+## 22. Notas para o editor/CMS
+```
+
+Uma seção pode ser marcada `Não aplicável` quando realmente não fizer sentido ao tema. Não remover seções silenciosamente: a estrutura previsível melhora ingestão, indexação, revisão e recuperação por RAG.
+
+---
+
+## 1.8 — DELIMITADORES PARA RAG, CMS E SITE
+
+Cada arquivo deve usar delimitadores explícitos para facilitar parsing e chunking.
+
+No início do conteúdo:
+
+```html
+<!-- ATIV_CONTENT_START:P0.08 -->
+```
+
+No final:
+
+```html
+<!-- ATIV_CONTENT_END:P0.08 -->
+```
+
+Se houver blocos técnicos extensos, podem ser identificados com comentários semânticos:
+
+```html
+<!-- ATIV_BLOCK:ARCHITECTURE -->
+<!-- ATIV_BLOCK:TROUBLESHOOTING -->
+<!-- ATIV_BLOCK:FAQ -->
+<!-- ATIV_BLOCK:SOURCES -->
+```
+
+Os comentários existem para indexação e automação. Não devem prejudicar a leitura humana do Markdown.
+
+---
+
+## 1.9 — FONTES E RASTREABILIDADE
+
+Toda afirmação técnica relevante deve ser sustentada por fonte adequada.
+
+A seção final deve registrar, quando aplicável:
+
+```md
+## 21. Fontes e rastreabilidade
+
+### Standards / normas
+- Organização — documento — versão/data — URL ou identificação
+
+### Fabricantes
+- Fabricante — documento técnico — versão/data — URL
+
+### Papers / referências técnicas
+- Autor/organização — título — data — referência
+
+### Base RAG utilizada
+- coleção/tópico recuperado — assunto — data da consulta
+
+### Evidência interna ATIV
+- somente quando houver material autorizado e identificável
+```
+
+Não copiar trechos longos das fontes. Sintetizar tecnicamente e preservar rastreabilidade.
+
+---
+
+## 1.10 — REGRA DE SAÍDA FINAL DO AGENTE
+
+Quando o usuário solicitar um tema deste backlog, o agente deve responder **somente com o conteúdo do arquivo `.md` produzido**, completo do frontmatter ao delimitador final.
+
+Não adicionar antes ou depois frases como:
+
+- “Aqui está o artigo”;
+- “Espero que ajude”;
+- “Posso criar o próximo”;
+- explicações sobre o processo interno.
+
+A entrega deve ser diretamente persistível no repositório.
 
 ---
 
@@ -741,7 +1097,9 @@ Criar entradas próprias e interligadas para:
 
 # 12. Estrutura obrigatória para cada artigo técnico
 
-Cada texto entregue pelo agente especialista deve conter:
+Cada texto entregue pelo agente especialista deve seguir a estrutura completa definida nas seções 1.5 a 1.9 deste arquivo.
+
+Como mínimo editorial, o conteúdo precisa conter:
 
 ```text
 1. Título técnico claro
@@ -761,6 +1119,8 @@ Cada texto entregue pelo agente especialista deve conter:
 15. CTA técnico discreto
 ```
 
+A estrutura completa de 22 seções prevalece quando houver material técnico suficiente.
+
 ---
 
 # 13. Fontes preferenciais
@@ -773,7 +1133,8 @@ Usar prioritariamente:
 4. papers técnicos;
 5. guias de engenharia reconhecidos;
 6. normas brasileiras/internacionais quando publicamente acessíveis e pertinentes;
-7. experiência prática da ATIV, quando documentável.
+7. base RAG técnica validada;
+8. experiência prática da ATIV, quando documentável.
 
 Não usar como fonte principal:
 - blog SEO sem autoria técnica;
@@ -806,6 +1167,27 @@ Depois atacar os temas P1 com maior ligação aos projetos em andamento e às co
 
 O conteúdo técnico deve fazer um engenheiro, gerente de TI ou responsável por operação pensar:
 
-> “Esta empresa entende como o sistema funciona, como ele falha, como se projeta e como se mantém.”
+> “A ATIV entende como o sistema funciona, como ele falha, como se projeta e como se mantém.”
 
 Se o texto apenas disser que a ATIV oferece tecnologia, inovação, qualidade e experiência, ele ainda não está pronto.
+
+## Checklist final antes da entrega
+
+O agente deve confirmar:
+
+- [ ] consultou a base RAG para o tema e subtemas;
+- [ ] validou informações sensíveis a versão/data;
+- [ ] identificou claramente as fontes;
+- [ ] não inventou claims institucionais;
+- [ ] utilizou `ATIV` em caixa alta em todas as referências à empresa;
+- [ ] não utilizou `ATIV Pro` como nome da empresa;
+- [ ] tratou `ativpro.com` apenas como endereço de domínio quando necessário;
+- [ ] entregou um único arquivo `.md`;
+- [ ] incluiu frontmatter indexável;
+- [ ] preservou `content_id` estável;
+- [ ] utilizou os delimitadores `ATIV_CONTENT_START` e `ATIV_CONTENT_END`;
+- [ ] manteve hierarquia H1/H2/H3 coerente;
+- [ ] incluiu fontes e rastreabilidade;
+- [ ] incluiu links internos sugeridos;
+- [ ] incluiu CTA técnico discreto;
+- [ ] o conteúdo pode ser ingerido pelo site/CMS/RAG sem reestruturação manual.
