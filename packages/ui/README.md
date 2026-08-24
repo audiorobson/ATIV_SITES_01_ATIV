@@ -2,8 +2,8 @@
 
 Contrato visual framework-neutral da ATIV. Esta rodada entrega tokens canônicos,
 foundations CSS, controles extraídos, logos de produção, primitives de layout,
-dado técnico e um showcase HTML estático. Não contém componentes React, Radix,
-shadcn ou Motion.
+dado técnico, texto editorial e um showcase HTML estático. Não contém componentes
+React, Radix, shadcn ou Motion.
 
 ## Fonte de verdade
 
@@ -22,7 +22,8 @@ quando existir, é consumidor derivado — nunca fonte.
 | `@ativ/ui/styles/layout.css` | seção, container, pilha, agrupamento, grade, lateral, quadro e somente-leitura |
 | `@ativ/ui/styles/controls.css` | cartão, botões, campos, seleção, slider, paginação, chip, status e badge |
 | `@ativ/ui/styles/technical-data.css` | ficha, pares chave/valor, métrica, estado rotulado, legenda, configuração e fluxo textual |
-| `@ativ/ui/styles.css` | bundle local (`tokens` + `foundations` + `layout` + `controls` + `technical-data`) |
+| `@ativ/ui/styles/editorial.css` | medida de leitura, hierarquia, listas, tabela editorial, citação, nota, chamada neutra e fonte |
+| `@ativ/ui/styles.css` | bundle local (`tokens` + `foundations` + `layout` + `controls` + `technical-data` + `editorial`) |
 
 ## Como importar
 
@@ -41,6 +42,7 @@ Ou, de forma explícita:
 @import "@ativ/ui/styles/layout.css";
 @import "@ativ/ui/styles/controls.css";
 @import "@ativ/ui/styles/technical-data.css";
+@import "@ativ/ui/styles/editorial.css";
 ```
 
 ```ts
@@ -60,7 +62,8 @@ Showcase interno (não é rota pública): abra `packages/ui/showcase/index.html`
 Usa o CSS relativo do pacote, skip link, um H1 e as superfícies `.ativ-escuro` e
 `.ativ-claro`. Inclui espécimes de busca, dropdown, seleção, slider, agrupamento,
 lateral, grade auto-fit e quadro. Inclui espécimes fictícios de ficha, pares,
-métrica, estado rotulado, configuração e fluxo. Sem JavaScript de página e sem CDN.
+métrica, estado rotulado, configuração e fluxo. Inclui artigo fictício com
+citação, nota, chamada e rastreio. Sem JavaScript de página e sem CDN.
 
 ## Validação local
 
@@ -84,7 +87,7 @@ node packages/ui/scripts/sync-tokens.mjs
 
 ## Fora desta fatia
 
-Navegação global, formulário completo com estados, tipografia editorial longa e
-React/Radix/shadcn não entram neste pacote. A sombra do dropdown e `.ativ-pulso`
-continuam omitidas de propósito. Diagrama de rack/planta e direção fotográfica
-permanecem lacuna. Ver `docs/design-system-implementation.md`.
+Navegação global, formulário completo com estados e React/Radix/shadcn não entram
+neste pacote. A sombra do dropdown e `.ativ-pulso` continuam omitidas de propósito.
+Diagrama de rack/planta e direção fotográfica permanecem lacuna. Ver
+`docs/design-system-implementation.md`.

@@ -3,9 +3,9 @@
 **Status: READY para o Codex integrar a fatia de tokens** em
 `feat/design-tokens-foundation` (`bee5055`). Pacote: `docs/HANDOFF_CURSOR_TO_CODEX.md`.
 
-Esta branch (`feat/ui-technical-data-foundations`) continua a Fase 2 com
-primitives CSS de dado técnico, a partir de `feat/ui-layout-foundations`
-(`8865925`). Não bloqueia e não altera o handoff congelado de tokens.
+Esta branch (`feat/ui-editorial-foundations`) continua a Fase 2 com primitives
+CSS de texto longo, a partir de `feat/ui-technical-data-foundations` (`86a2905`).
+Não bloqueia e não altera o handoff congelado de tokens.
 
 Este documento descreve o contrato visual entregue nessa branch.
 Ele não conclui a Fase 2 nem a TASK 002. Não há páginas finais, componentes React
@@ -34,6 +34,7 @@ lacuna, sem padrão genérico.
 | `packages/ui/src/styles/layout.css` | Seção, container, pilha, agrupamento, grade 12/auto-fit, lateral, quadro e somente-leitura. |
 | `packages/ui/src/styles/controls.css` | Cartão, botões, campos, seleção, slider, paginação, chip, status e badge extraídos do CSS mestre. |
 | `packages/ui/src/styles/technical-data.css` | Ficha, pares chave/valor, métrica com unidade, estado rotulado, legenda, configuração e fluxo textual. |
+| `packages/ui/src/styles/editorial.css` | Medida de leitura, hierarquia h2–h4, listas, tabela editorial, citação, figura, nota, chamada neutra e rastreio. |
 | `packages/ui/src/styles/index.css` | Bundle local (`@import` relativo, sem CDN). |
 | `packages/ui/src/index.ts` | Export JS/TS do contrato e dos caminhos de CSS. |
 | `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies escura e clara, controles, layout e espécimes fictícios de dado técnico. Não é página pública. |
@@ -57,6 +58,7 @@ import "@ativ/ui/styles/foundations.css";
 import "@ativ/ui/styles/layout.css";
 import "@ativ/ui/styles/controls.css";
 import "@ativ/ui/styles/technical-data.css";
+import "@ativ/ui/styles/editorial.css";
 import { tokens, logos, contrast, typography } from "@ativ/ui";
 ```
 
@@ -116,7 +118,10 @@ node packages/ui/scripts/sync-tokens.mjs
 - Dado técnico: ficha responsiva (`.ativ-ficha`), pares chave/valor (`.ativ-pares`),
   métrica com unidade e indicador (`.ativ-metrica`, `--ativ-indicador-valor` do
   consumidor), estado com texto (`.ativ-estado`), legenda, bloco `.ativ-config` e
-  fluxo textual (`.ativ-fluxo`). Sem hex, sem 16/9 e sem desenho de rack.
+  fluxo textual (`.ativ-fluxo`). Sem hex, sem razão fotográfica e sem desenho de rack.
+- Editorial: `.ativ-editorial` na medida `--ativ-grade-texto`, hierarquia h2–h4,
+  listas, tabela que reflowa, citação, nota, chamada neutra, fonte/rastreio, links
+  sublinhados, seleção de texto e `@media print`.
 
 ## Lacunas preservadas
 
@@ -131,7 +136,7 @@ inventadas famílias visuais para fechá-las.
 | Formulário completo, validação, vazio, loading, erro, sucesso | Controles soltos existem no CSS mestre; estados não. |
 | Modal, gaveta, abas de produto, 404/500 | Não extraído. |
 | Direção fotográfica e o que entra nos slots de mídia | Não definida. `.ativ-quadro--proporcao` espera `--ativ-quadro-proporcao` do consumidor; 16/9 não foi inventado. |
-| Tipografia editorial longa (citação, nota, legenda, artigo) | Não definida. |
+| Tipografia editorial longa (citação, nota, legenda, artigo) | Entregue como CSS de artigo. Sem loader Markdown, sem conteúdo real e sem depoimento de cliente. |
 | Abertura de página interna | Só abertura de topo no guia. |
 | Norma de quando usar movimento/fundo | Tokens existem; política de uso ainda é lacuna. |
 | Arquivos SVG de logo | Versionados em `brand/logo/`, idênticos ao kit. Variantes `*-preto.svg` são só documento; UI usa Índigo Profundo. Não há wordmark sobre âmbar. |
@@ -165,7 +170,8 @@ Cobertura:
   sem import remoto;
 - Showcase interno sem CDN, com skip link, um H1 e ambas as superfícies.
 - Primitives de layout sem hex, sem 16/9 e sem import remoto.
-- Dado técnico sem hex, sem 16/9, sem sombra e com estado rotulado (texto + ponto).
+- Dado técnico sem hex, sem razão fotográfica, sem sombra e com estado rotulado (texto + ponto).
+- Editorial sem hex, com medida `--ativ-grade-texto`, print e `user-select: text`.
 
 ## Gates que dependem do Codex
 
@@ -204,6 +210,7 @@ aqui. O pacote usa `node:test` para permanecer independente.
   `controls.css` cobre os controles do mestre, sem sombra de dropdown e sem
   `.ativ-pulso`. `technical-data.css` cobre ficha, par, métrica, estado, config e
   fluxo textual; não substitui diagrama de rack nem formulário.
+- `editorial.css` cobre artigo longo. Não carrega Markdown nem copy comercial.
 - O export `./tokens.json` é cópia verificada. Editar só um dos JSONs quebra o
   teste; usar o script de sync.
 - Sem os SVGs de logo no caminho `brand/logo`, a app não consegue cumprir as
