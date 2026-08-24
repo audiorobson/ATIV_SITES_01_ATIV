@@ -38,8 +38,10 @@ Ou, de forma explícita:
 ```
 
 ```ts
-import { tokens, cssExports } from "@ativ/ui";
+import { tokens, cssExports, logos, contrast } from "@ativ/ui";
 ```
+
+Logos de UI: `logos.ui.escuro.lockup` → `brand/logo/logo-2t-claro.svg`. Não recolorir.
 
 Aplique `.ativ-escuro` ou `.ativ-claro` no contêiner. Componentes leem papéis
 (`--ativ-fundo`, `--ativ-texto`, `--ativ-destaque`), nunca hex.
