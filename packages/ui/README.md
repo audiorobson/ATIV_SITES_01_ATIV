@@ -17,7 +17,8 @@ quando existir, é consumidor derivado — nunca fonte.
 | `@ativ/ui/tokens.json` | o mesmo contrato em JSON |
 | `@ativ/ui/styles/tokens.css` | custom properties canônicas |
 | `@ativ/ui/styles/foundations.css` | superfícies, tipo, espaço, grade, foco, movimento, ícone e logo |
-| `@ativ/ui/styles.css` | bundle local (`tokens` + `foundations`) |
+| `@ativ/ui/styles/controls.css` | cartão, botões, campos, seleção, slider, paginação, chip, status e badge |
+| `@ativ/ui/styles.css` | bundle local (`tokens` + `foundations` + `controls`) |
 
 ## Como importar
 
@@ -33,6 +34,7 @@ Ou, de forma explícita:
 ```css
 @import "@ativ/ui/styles/tokens.css";
 @import "@ativ/ui/styles/foundations.css";
+@import "@ativ/ui/styles/controls.css";
 ```
 
 ```ts
@@ -62,8 +64,8 @@ Para regenerar JSON e `tokens.css` a partir do CSS mestre:
 node packages/ui/scripts/sync-tokens.mjs
 ```
 
-## Fora desta rodada
+## Fora desta fatia
 
-Controles, cartão com padding fora da escala, navegação, formulário completo,
-dado técnico e SVGs de logo não entram neste pacote. Ver
-`docs/design-system-implementation.md`.
+Navegação global, formulário completo com estados, dado técnico, React/Radix/shadcn
+e SVGs de logo não entram neste pacote. A sombra do dropdown e `.ativ-pulso` continuam
+omitidas de propósito. Ver `docs/design-system-implementation.md`.

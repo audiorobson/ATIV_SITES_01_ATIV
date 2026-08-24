@@ -1,0 +1,571 @@
+/*
+ * ATIV — controles visuais de producao.
+ * Fonte de verdade: design_guide/brand/tokens/ativ-ui.css
+ * Consumir depois de tokens.css e foundations.css (ou via @ativ/ui/styles.css).
+ *
+ * Medidas soltas abaixo sao receitas do CSS mestre, nao tokens novos.
+ * Painel de dropdown entra com borda; elevacao por sombra fica de fora.
+ * Animacao de pulso fora da escala de tempo tambem fica de fora.
+ */
+
+/* =====================================================================
+   CARTAO
+   ===================================================================== */
+
+#ativ-cartao,
+.ativ-cartao {
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-cartao);
+  padding: 26px 28px;
+}
+
+/* =====================================================================
+   BOTOES
+   ===================================================================== */
+
+#ativ-btn,
+[id^="ativ-btn"],
+.ativ-btn {
+  font-family: var(--ativ-font-corpo);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  min-height: var(--ativ-alvo-min);
+  padding: 12px 22px;
+  border-radius: var(--ativ-raio-controle);
+  border: var(--ativ-borda) solid transparent;
+  background: transparent;
+  color: var(--ativ-texto);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+  transition:
+    background var(--ativ-transicao),
+    border-color var(--ativ-transicao),
+    color var(--ativ-transicao);
+}
+
+#ativ-btn-primario,
+.ativ-btn--primario {
+  background: var(--ativ-destaque);
+  border-color: var(--ativ-destaque);
+  color: var(--ativ-sobre-destaque);
+  font-weight: var(--ativ-peso-forte);
+}
+
+#ativ-btn-primario:hover,
+.ativ-btn--primario:hover {
+  background: var(--ativ-destaque-hover);
+  border-color: var(--ativ-destaque-hover);
+}
+
+#ativ-btn-secundario,
+.ativ-btn--secundario {
+  background: transparent;
+  border-color: var(--ativ-borda-forte);
+  color: var(--ativ-texto);
+}
+
+#ativ-btn-secundario:hover,
+.ativ-btn--secundario:hover {
+  border-color: var(--ativ-destaque);
+  background: var(--ativ-superficie);
+}
+
+#ativ-btn-fantasma,
+.ativ-btn--fantasma {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ativ-texto-corpo);
+  padding: 12px 16px;
+}
+
+#ativ-btn-fantasma:hover,
+.ativ-btn--fantasma:hover {
+  color: var(--ativ-texto);
+  background: var(--ativ-superficie);
+}
+
+#ativ-btn-desativado,
+.ativ-btn--desativado,
+.ativ-btn:disabled {
+  background: var(--ativ-superficie);
+  border-color: var(--ativ-borda-cor);
+  color: var(--ativ-ardosia);
+  cursor: not-allowed;
+}
+
+#ativ-btn-icone,
+.ativ-btn--icone {
+  width: var(--ativ-alvo-min);
+  height: var(--ativ-alvo-min);
+  min-height: var(--ativ-alvo-min);
+  padding: 0;
+  border-color: var(--ativ-borda-forte);
+}
+
+#ativ-btn-icone:hover,
+.ativ-btn--icone:hover {
+  border-color: var(--ativ-destaque);
+}
+
+.ativ-btn--primario:focus-visible {
+  outline-color: var(--ativ-indigo-profundo);
+}
+
+.ativ-btn .ativ-icone,
+.ativ-chip .ativ-icone {
+  margin-right: var(--ativ-e-2);
+}
+
+.ativ-btn--icone .ativ-icone {
+  margin: 0;
+}
+
+/* --- segmentado ------------------------------------------------------ */
+
+#ativ-segmentado,
+.ativ-segmentado {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-controle);
+}
+
+.ativ-segmentado__item {
+  font-family: var(--ativ-font-dados);
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ativ-texto-suave);
+  border: none;
+  padding: 9px 16px;
+  border-radius: var(--ativ-raio-menu);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--ativ-transicao), color var(--ativ-transicao);
+}
+
+.ativ-segmentado__item[aria-selected="true"],
+.ativ-segmentado__item.is-ativo {
+  background: var(--ativ-destaque);
+  color: var(--ativ-sobre-destaque);
+  font-weight: var(--ativ-peso-forte);
+}
+
+/* =====================================================================
+   CAMPOS
+   ===================================================================== */
+
+#ativ-campo,
+.ativ-campo {
+  width: 100%;
+  font-family: var(--ativ-font-corpo);
+  font-size: 15px;
+  color: var(--ativ-texto);
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-controle);
+  padding: 12px 14px;
+  min-height: var(--ativ-alvo-min);
+  outline: none;
+  transition: border-color var(--ativ-transicao);
+}
+
+#ativ-campo:focus,
+.ativ-campo:focus {
+  border-color: var(--ativ-destaque);
+}
+
+#ativ-campo::placeholder,
+.ativ-campo::placeholder {
+  color: var(--ativ-texto-suave);
+}
+
+#ativ-campo-rotulo,
+.ativ-campo-rotulo {
+  display: block;
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+  margin-bottom: 8px;
+}
+
+#ativ-busca,
+.ativ-busca {
+  position: relative;
+}
+
+.ativ-busca .ativ-campo {
+  padding-left: 40px;
+}
+
+.ativ-busca__icone {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ativ-ardosia);
+  pointer-events: none;
+}
+
+/* --- dropdown : elevacao por sombra permanece fora do contrato ------ */
+
+#ativ-dropdown,
+.ativ-dropdown {
+  position: relative;
+}
+
+.ativ-dropdown__gatilho {
+  width: 100%;
+  font-family: var(--ativ-font-corpo);
+  font-size: 15px;
+  color: var(--ativ-texto);
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-controle);
+  padding: 12px 14px;
+  min-height: var(--ativ-alvo-min);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+}
+
+.ativ-dropdown__gatilho:hover,
+.ativ-dropdown__gatilho[aria-expanded="true"] {
+  border-color: var(--ativ-destaque);
+}
+
+.ativ-dropdown__painel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-controle);
+  padding: 6px;
+  z-index: 20;
+}
+
+.ativ-dropdown__painel.is-aberto {
+  display: block;
+}
+
+.ativ-dropdown__opcao {
+  width: 100%;
+  text-align: left;
+  font-family: var(--ativ-font-corpo);
+  font-size: 14px;
+  color: var(--ativ-texto);
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  border-radius: var(--ativ-raio-menu);
+  cursor: pointer;
+}
+
+.ativ-dropdown__opcao:hover {
+  background: var(--ativ-superficie);
+}
+
+/* =====================================================================
+   SELECAO — todo estado inativo tem borda visivel
+   ===================================================================== */
+
+#ativ-toggle,
+.ativ-toggle {
+  width: 52px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: var(--ativ-raio-pilula);
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--ativ-transicao), border-color var(--ativ-transicao);
+}
+
+.ativ-toggle__pino {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--ativ-indigo-300);
+  transition: left var(--ativ-transicao), background var(--ativ-transicao);
+}
+
+.ativ-toggle[aria-checked="true"],
+.ativ-toggle.is-ligado {
+  background: var(--ativ-destaque);
+  border-color: var(--ativ-destaque);
+}
+
+.ativ-toggle[aria-checked="true"] .ativ-toggle__pino,
+.ativ-toggle.is-ligado .ativ-toggle__pino {
+  left: 26px;
+  background: var(--ativ-sobre-destaque);
+}
+
+#ativ-radio-grupo,
+.ativ-radio-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#ativ-radio,
+.ativ-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  min-height: 28px;
+}
+
+.ativ-radio__marca {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid var(--ativ-borda-forte);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--ativ-transicao);
+}
+
+.ativ-radio__marca::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background var(--ativ-transicao);
+}
+
+.ativ-radio[aria-checked="true"] .ativ-radio__marca,
+.ativ-radio.is-ativo .ativ-radio__marca {
+  border-color: var(--ativ-destaque);
+}
+
+.ativ-radio[aria-checked="true"] .ativ-radio__marca::after,
+.ativ-radio.is-ativo .ativ-radio__marca::after {
+  background: var(--ativ-destaque);
+}
+
+#ativ-checkbox,
+.ativ-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  min-height: 28px;
+}
+
+.ativ-checkbox__caixa {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  border-radius: var(--ativ-raio-menu);
+  background: transparent;
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ativ-sobre-destaque);
+  transition: background var(--ativ-transicao), border-color var(--ativ-transicao);
+}
+
+.ativ-checkbox[aria-checked="true"] .ativ-checkbox__caixa,
+.ativ-checkbox.is-ativo .ativ-checkbox__caixa {
+  background: var(--ativ-destaque);
+  border-color: var(--ativ-destaque);
+}
+
+/* =====================================================================
+   SLIDER
+   ===================================================================== */
+
+#ativ-slider,
+.ativ-slider {
+  position: relative;
+  cursor: pointer;
+  padding: 20px 0 4px;
+  touch-action: none;
+}
+
+.ativ-slider__trilha {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+}
+
+.ativ-slider__preenchido {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-radius: 3px;
+  background: var(--ativ-destaque);
+}
+
+.ativ-slider__pino {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--ativ-gelo);
+  border: 2px solid var(--ativ-destaque);
+}
+
+.ativ-slider__valor {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  transform: translateX(-50%);
+  background: var(--ativ-gelo);
+  color: var(--ativ-indigo-profundo);
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: var(--ativ-peso-forte);
+  padding: 3px 8px;
+  border-radius: var(--ativ-raio-menu);
+  white-space: nowrap;
+}
+
+/* =====================================================================
+   PAGINACAO
+   ===================================================================== */
+
+#ativ-paginacao,
+.ativ-paginacao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ativ-paginacao__item {
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  color: var(--ativ-texto-corpo);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-controle);
+  cursor: pointer;
+  transition: border-color var(--ativ-transicao), color var(--ativ-transicao);
+}
+
+.ativ-paginacao__item:hover {
+  border-color: var(--ativ-borda-forte);
+  color: var(--ativ-texto);
+}
+
+.ativ-paginacao__item[aria-current="page"],
+.ativ-paginacao__item.is-ativo {
+  background: var(--ativ-destaque);
+  border-color: var(--ativ-destaque);
+  color: var(--ativ-sobre-destaque);
+  font-weight: var(--ativ-peso-forte);
+}
+
+.ativ-paginacao__seta {
+  color: var(--ativ-texto);
+  border-color: var(--ativ-borda-forte);
+}
+
+.ativ-paginacao__seta:hover {
+  border-color: var(--ativ-destaque);
+}
+
+/* =====================================================================
+   CHIPS, STATUS E BADGE
+   ===================================================================== */
+
+#ativ-chip,
+.ativ-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-pilula);
+  padding: 7px 14px;
+  font-family: var(--ativ-font-dados);
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-corpo);
+  white-space: nowrap;
+}
+
+.ativ-chip--destaque {
+  color: var(--ativ-texto);
+}
+
+#ativ-status,
+.ativ-status {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+}
+
+.ativ-status--operando {
+  background: var(--ativ-ativo);
+}
+
+.ativ-status--manutencao {
+  background: var(--ativ-ambar);
+}
+
+.ativ-status--parado {
+  background: var(--ativ-reprovado);
+}
+
+.ativ-status--inativo {
+  background: var(--ativ-ardosia);
+}
+
+#ativ-badge,
+.ativ-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ativ-destaque);
+  color: var(--ativ-sobre-destaque);
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: var(--ativ-peso-forte);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border-radius: var(--ativ-raio-pilula);
+}
