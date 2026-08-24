@@ -3,9 +3,9 @@
 **Status: READY para o Codex integrar a fatia de tokens** em
 `feat/design-tokens-foundation` (`bee5055`). Pacote: `docs/HANDOFF_CURSOR_TO_CODEX.md`.
 
-Esta branch (`feat/ui-form-state-foundations`) continua a Fase 2 com o contrato
-de formulário e estados, a partir de `feat/ui-editorial-foundations` (`e3b941b`).
-Não bloqueia e não altera o handoff congelado de tokens.
+Esta branch (`feat/ui-chrome-foundations`) parte de `origin/main` e adiciona o
+chrome visual (topo, nav, rodapé, abertura). Não continua as branches das
+Waves 3–6 e não altera o handoff congelado de tokens.
 
 Este documento descreve o contrato visual entregue nessa branch.
 Ele não conclui a Fase 2 nem a TASK 002. Não há páginas finais, componentes React
@@ -31,14 +31,15 @@ lacuna, sem padrão genérico.
 | `packages/ui/src/data/tokens.json` | Cópia verificada para export do pacote. Deve permanecer idêntica ao arquivo em `brand/`. |
 | `packages/ui/src/styles/tokens.css` | `:root` de produção, gerado a partir do CSS mestre. |
 | `packages/ui/src/styles/foundations.css` | Superfícies, tipografia, raio aplicado, foco, salto, movimento, iconografia e mínimos de logo. |
-| `packages/ui/src/styles/layout.css` | Seção, container, pilha, agrupamento, grade 12/auto-fit, lateral, quadro e somente-leitura. |
+| `packages/ui/src/styles/layout.css` | Seção, container, pilha, agrupamento, grade 12/auto-fit, lateral, quadro (vazio/foto/documento/sobrepor) e somente-leitura. |
 | `packages/ui/src/styles/controls.css` | Cartão, botões, campos, seleção, slider, paginação, chip, status e badge extraídos do CSS mestre. |
 | `packages/ui/src/styles/technical-data.css` | Ficha, pares chave/valor, métrica com unidade, estado rotulado, legenda, configuração e fluxo textual. |
 | `packages/ui/src/styles/editorial.css` | Medida de leitura, hierarquia h2–h4, listas, tabela editorial, citação, figura, nota, chamada neutra e rastreio. |
 | `packages/ui/src/styles/forms.css` | Agrupamento, textarea, select, fieldset, obrigatório, disabled, readonly, erro, sucesso, loading e alerta. |
+| `packages/ui/src/styles/chrome.css` | Topo, navegação, menu condensado, trilha, rodapé, abertura e faixa. |
 | `packages/ui/src/styles/index.css` | Bundle local (`@import` relativo, sem CDN). |
 | `packages/ui/src/index.ts` | Export JS/TS do contrato e dos caminhos de CSS. |
-| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies, controles, layout, dado técnico, artigo fictício e formulário de estados. Não é página pública. |
+| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies, controles, layout, dado técnico, artigo, formulário, topo/menu/rodapé e slots de mídia vazios. Não é página pública. |
 | `packages/ui/scripts/` | Sincronização e validação independentes do workspace raiz. |
 
 ## Como importar
@@ -61,6 +62,7 @@ import "@ativ/ui/styles/controls.css";
 import "@ativ/ui/styles/technical-data.css";
 import "@ativ/ui/styles/editorial.css";
 import "@ativ/ui/styles/forms.css";
+import "@ativ/ui/styles/chrome.css";
 import { tokens, logos, contrast, typography } from "@ativ/ui";
 ```
 
@@ -128,6 +130,10 @@ node packages/ui/scripts/sync-tokens.mjs
   fieldset, obrigatório em texto, disabled/readonly, erro (`aria-invalid` +
   `:user-invalid`), sucesso, loading (`aria-busy` + borda tracejada) e alerta
   global com título visível. Sem captura de lead.
+- Chrome: `.ativ-topo` com nav de 44px, submenu em `details`, condensação a 860px
+  (símbolo + `.ativ-menu`), trilha, `.ativ-rodape`, `.ativ-abertura` / `.ativ-faixa`.
+  Quadro vazio, foto (`object-fit: cover`), documento A4 e sobreposição do logo
+  branco. Sem 16/9 inventado.
 
 ## Lacunas preservadas
 
@@ -138,12 +144,12 @@ inventadas famílias visuais para fechá-las.
 | --- | --- |
 | Dado técnico (tabela de spec, medidor, unidade, diagrama de sinal) | Ficha, par, métrica, estado rotulado, config e fluxo textual entregues. Diagrama de rack, planta com cotas e elevação permanecem lacuna — exigiriam desenho, não CSS. |
 | Iconografia proprietária e repertório por setor | Lucide permanece a família vigente; conjunto próprio não aprovado. |
-| Navegação global, submenu, condensação mobile, breadcrumb | Não definida como linguagem de produto. |
+| Navegação global, submenu, condensação mobile, breadcrumb | Topo, submenu `details`, menu condensado e trilha entregues. Overlay modal e abas com ARIA continuam lacuna (precisam de JS). |
 | Formulário completo, validação, vazio, loading, erro, sucesso | Contrato visual entregue. Sem backend, sem vazio de página, sem modal/gaveta/404. Campo do mestre permanece 15px (zoom iOS é lacuna). |
 | Modal, gaveta, abas de produto, 404/500 | Não extraído. |
-| Direção fotográfica e o que entra nos slots de mídia | Não definida. `.ativ-quadro--proporcao` espera `--ativ-quadro-proporcao` do consumidor; 16/9 não foi inventado. |
+| Direção fotográfica e o que entra nos slots de mídia | Tratamento de quadro (vazio, cover, A4, logo branco) entregue. O que fotografar e 16/9 continuam lacuna; `--ativ-quadro-proporcao` segue do consumidor. |
 | Tipografia editorial longa (citação, nota, legenda, artigo) | Entregue como CSS de artigo. Sem loader Markdown, sem conteúdo real e sem depoimento de cliente. |
-| Abertura de página interna | Só abertura de topo no guia. |
+| Abertura de página interna | `.ativ-abertura` cobre abertura de topo. Abertura de página interna de setor continua lacuna. |
 | Norma de quando usar movimento/fundo | Tokens existem; política de uso ainda é lacuna. |
 | Arquivos SVG de logo | Versionados em `brand/logo/`, idênticos ao kit. Variantes `*-preto.svg` são só documento; UI usa Índigo Profundo. Não há wordmark sobre âmbar. |
 | Padding do cartão `26px 28px` | Extraído como receita do mestre, sem virar token. |
@@ -179,11 +185,12 @@ Cobertura:
 - Dado técnico sem hex, sem razão fotográfica, sem sombra e com estado rotulado (texto + ponto).
 - Editorial sem hex, com medida `--ativ-grade-texto`, print e `user-select: text`.
 - Formulários sem hex, com `aria-invalid`, texto de erro/sucesso e alvo 44px.
+- Chrome sem hex, sem 16/9, com `details` e alvo 44px.
 
 ## Gates que dependem do Codex
 
-O workspace raiz desta branch ainda não contém o bootstrap da TASK 001. Não foi
-criado runner temporário na raiz. Depois da integração, o Codex precisa:
+O workspace em `origin/main` já contém o bootstrap. Esta branch não edita a raiz
+nem `apps/web`. Depois de integrar o chrome, o Codex precisa:
 
 1. reconhecer `@ativ/ui` no workspace `packages/*` (já previsto no ADR 0001);
 2. conectar o pacote à app mínima sem transformar a rota `/` em Home final;
@@ -219,6 +226,8 @@ aqui. O pacote usa `node:test` para permanecer independente.
   fluxo textual; não substitui diagrama de rack nem formulário.
 - `editorial.css` cobre artigo longo. Não carrega Markdown nem copy comercial.
 - `forms.css` cobre estados de formulário. Não captura leads nem fala com backend.
+- `chrome.css` cobre topo, menu, trilha, rodapé e abertura. Não é Header/Footer da
+  app nem Home comercial; o Codex liga o HTML sem inventar URLs.
 - O export `./tokens.json` é cópia verificada. Editar só um dos JSONs quebra o
   teste; usar o script de sync.
 - Sem os SVGs de logo no caminho `brand/logo`, a app não consegue cumprir as
