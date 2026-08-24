@@ -15,6 +15,7 @@ export const cssExports = {
   technicalData: "@ativ/ui/styles/technical-data.css",
   editorial: "@ativ/ui/styles/editorial.css",
   forms: "@ativ/ui/styles/forms.css",
+  chrome: "@ativ/ui/styles/chrome.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",
 } as const;

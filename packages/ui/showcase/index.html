@@ -542,6 +542,189 @@ edid: desligado</code></pre>
           </div>
         </div>
       </section>
+
+      <section class="ativ-secao" aria-labelledby="chrome-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Chrome</p>
+          <h2 id="chrome-titulo" class="ativ-titulo-secao">Topo, menu e rodapé</h2>
+          <p class="ativ-texto ativ-medida">
+            Espécime. Não é Header/Footer de produção nem Home comercial. Links
+            apontam para #conteudo. Sem rotas, sem claims e sem fotografia de case.
+          </p>
+
+          <p class="ativ-rotulo">Topo largo — nav inline</p>
+          <header class="ativ-topo ativ-topo--largo">
+            <div class="ativ-topo__barra ativ-container">
+              <a class="ativ-topo__marca" href="#conteudo" aria-label="ATIV">
+                <img
+                  class="ativ-logo ativ-logo--wordmark"
+                  src="../../../brand/logo/wordmark-2t-claro.svg"
+                  width="120"
+                  height="36"
+                  alt="ATIV Tecnologia"
+                />
+              </a>
+              <ul class="ativ-nav ativ-nav--inline" role="list">
+                <li><a href="#conteudo" aria-current="page">Item A</a></li>
+                <li><a href="#conteudo">Item B</a></li>
+                <li>
+                  <details class="ativ-nav__ramo" open>
+                    <summary>Grupo</summary>
+                    <ul class="ativ-nav__submenu" role="list">
+                      <li><a href="#conteudo">Sub A — espécime</a></li>
+                      <li><a href="#conteudo">Sub B — espécime</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+          </header>
+
+          <p class="ativ-rotulo">Topo estreito — menu aberto</p>
+          <header class="ativ-topo ativ-topo--estreito">
+            <div class="ativ-topo__barra ativ-container">
+              <a class="ativ-topo__marca" href="#conteudo" aria-label="ATIV">
+                <img
+                  class="ativ-logo ativ-logo--simbolo"
+                  src="../../../brand/logo/icon-claro.svg"
+                  width="36"
+                  height="36"
+                  alt="ATIV"
+                />
+              </a>
+              <details class="ativ-menu" open>
+                <summary>
+                  <span class="ativ-somente-leitura">Abrir ou fechar o menu</span>
+                  <span class="ativ-menu__tracos" aria-hidden="true">
+                    <span class="ativ-menu__traco"></span>
+                    <span class="ativ-menu__traco"></span>
+                    <span class="ativ-menu__traco"></span>
+                  </span>
+                </summary>
+                <nav class="ativ-menu__painel" aria-label="Principal condensado">
+                  <ul class="ativ-nav" role="list">
+                    <li><a href="#conteudo" aria-current="page">Item A</a></li>
+                    <li><a href="#conteudo">Item B</a></li>
+                    <li><a href="#conteudo">Grupo / Sub A</a></li>
+                  </ul>
+                </nav>
+              </details>
+            </div>
+          </header>
+
+          <p class="ativ-rotulo">Topo estreito — menu fechado</p>
+          <header class="ativ-topo ativ-topo--estreito">
+            <div class="ativ-topo__barra ativ-container">
+              <a class="ativ-topo__marca" href="#conteudo" aria-label="ATIV">
+                <img
+                  class="ativ-logo ativ-logo--simbolo"
+                  src="../../../brand/logo/icon-claro.svg"
+                  width="36"
+                  height="36"
+                  alt=""
+                />
+              </a>
+              <details class="ativ-menu">
+                <summary>
+                  <span class="ativ-somente-leitura">Abrir ou fechar o menu</span>
+                  <span class="ativ-menu__tracos" aria-hidden="true">
+                    <span class="ativ-menu__traco"></span>
+                    <span class="ativ-menu__traco"></span>
+                    <span class="ativ-menu__traco"></span>
+                  </span>
+                </summary>
+                <nav class="ativ-menu__painel" aria-label="Principal fechado">
+                  <ul class="ativ-nav" role="list">
+                    <li><a href="#conteudo">Item A</a></li>
+                  </ul>
+                </nav>
+              </details>
+            </div>
+          </header>
+
+          <nav aria-label="Trilha de espécime">
+            <ol class="ativ-trilha">
+              <li><a href="#conteudo">Raiz</a></li>
+              <li><a href="#conteudo">Grupo</a></li>
+              <li><span aria-current="page">Atual — espécime</span></li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <section class="ativ-abertura" aria-labelledby="abertura-titulo">
+        <div class="ativ-container ativ-com-lateral">
+          <div class="ativ-pilha ativ-pilha--5">
+            <p class="ativ-rotulo">Abertura — composição</p>
+            <h2 id="abertura-titulo" class="ativ-titulo-secao">Padrão de seção, não Home</h2>
+            <p class="ativ-texto">
+              Texto fictício. Não é claim, case nem setor. A mídia ao lado é slot
+              vazio: sem banco de imagem e sem 16/9.
+            </p>
+            <div class="ativ-linha">
+              <a class="ativ-btn ativ-btn--primario" href="#conteudo">Ação de espécime</a>
+              <a class="ativ-btn ativ-btn--secundario" href="#conteudo">Secundária</a>
+            </div>
+          </div>
+          <div class="ativ-quadro ativ-quadro--vazio" aria-label="Slot de mídia vazio">
+            <p class="ativ-dado">Slot vazio — sem fotografia de case</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="ativ-faixa" aria-labelledby="midia-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--5">
+          <p class="ativ-rotulo">Mídia</p>
+          <h2 id="midia-titulo" class="ativ-titulo-secao">Tratamento de quadro</h2>
+          <div class="ativ-grade ativ-grade--2">
+            <div class="ativ-quadro ativ-quadro--vazio ativ-quadro--sobrepor">
+              <img
+                class="ativ-logo ativ-logo--wordmark"
+                src="../../../brand/logo/logo-mono-branco.svg"
+                width="120"
+                height="40"
+                alt=""
+              />
+              <p class="ativ-dado">Sobreposição em foto: logo mono branco. Sem imagem real.</p>
+            </div>
+            <div class="ativ-quadro ativ-quadro--vazio ativ-quadro--documento">
+              <p class="ativ-dado">Proporção A4 (210/297) dos documentos oficiais. Não é foto 16/9.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+      <footer class="ativ-rodape">
+        <div class="ativ-container">
+          <div class="ativ-rodape__grade">
+            <div class="ativ-rodape__marca ativ-pilha ativ-pilha--3">
+              <img
+                class="ativ-logo ativ-logo--wordmark"
+                src="../../../brand/logo/wordmark-2t-claro.svg"
+                width="120"
+                height="36"
+                alt=""
+              />
+              <p class="ativ-dado">Espécime de rodapé. Sem CNPJ, telefone ou endereço.</p>
+            </div>
+            <nav aria-label="Rodapé de espécime">
+              <p class="ativ-rotulo">Coluna um</p>
+              <ul class="ativ-rodape__lista" role="list">
+                <li><a href="#conteudo">Ligação A</a></li>
+                <li><a href="#conteudo">Ligação B</a></li>
+              </ul>
+            </nav>
+            <nav aria-label="Rodapé secundário de espécime">
+              <p class="ativ-rotulo">Coluna dois</p>
+              <ul class="ativ-rodape__lista" role="list">
+                <li><a href="#conteudo">Ligação C</a></li>
+                <li><a href="#conteudo">Ligação D</a></li>
+              </ul>
+            </nav>
+          </div>
+          <p class="ativ-rodape__nota ativ-dado">Não é página pública. Links não alteram o inventário de URLs.</p>
+        </div>
+      </footer>
   </body>
 </html>

@@ -96,6 +96,7 @@ test("CSS de producao reproduz o :root canonico e nao importa remoto", () => {
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/technical-data.css")), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/editorial.css")), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/forms.css")), false);
+  assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/chrome.css")), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/index.css")), false);
   assert.equal(bracesBalanced(actual), true);
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/foundations.css")), true);
@@ -104,6 +105,7 @@ test("CSS de producao reproduz o :root canonico e nao importa remoto", () => {
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/technical-data.css")), true);
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/editorial.css")), true);
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/forms.css")), true);
+  assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/chrome.css")), true);
   assert.deepEqual(parseRootCustomProperties(actual), masterTokens);
 });
 
@@ -121,6 +123,7 @@ test("ausencia de hex nao aprovado e de preto puro", () => {
   const technicalHex = extractHex(readRepo("packages/ui/src/styles/technical-data.css"));
   const editorialHex = extractHex(readRepo("packages/ui/src/styles/editorial.css"));
   const formsHex = extractHex(readRepo("packages/ui/src/styles/forms.css"));
+  const chromeHex = extractHex(readRepo("packages/ui/src/styles/chrome.css"));
 
   for (const hex of productionHex) {
     assert.equal(approved.has(hex), true, hex);
@@ -133,6 +136,7 @@ test("ausencia de hex nao aprovado e de preto puro", () => {
   assert.deepEqual(technicalHex, []);
   assert.deepEqual(editorialHex, []);
   assert.deepEqual(formsHex, []);
+  assert.deepEqual(chromeHex, []);
   assert.equal(approved.has("#000000"), false);
   assert.equal(approved.has("#000"), false);
 });
@@ -161,6 +165,7 @@ test("tokens de espaco, raio, duracao e curva ficam no sistema", () => {
   const technicalCss = readRepo("packages/ui/src/styles/technical-data.css");
   const editorialCss = readRepo("packages/ui/src/styles/editorial.css");
   const formsCss = readRepo("packages/ui/src/styles/forms.css");
+  const chromeCss = readRepo("packages/ui/src/styles/chrome.css");
   const rawCubics = [
     ...(foundationCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
     ...(layoutCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
@@ -168,6 +173,7 @@ test("tokens de espaco, raio, duracao e curva ficam no sistema", () => {
     ...(technicalCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
     ...(editorialCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
     ...(formsCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
+    ...(chromeCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
   ];
   assert.deepEqual(rawCubics, []);
 
@@ -191,6 +197,7 @@ test("exports do pacote apontam somente para arquivos existentes", () => {
     pkg.exports["./styles/technical-data.css"],
     pkg.exports["./styles/editorial.css"],
     pkg.exports["./styles/forms.css"],
+    pkg.exports["./styles/chrome.css"],
   ];
 
   for (const target of exportTargets) {
@@ -287,6 +294,28 @@ test("layout primitives usam tokens oficiais e nao inventam razao fotografica", 
   assert.equal(hasRemoteImport(css), false);
   assert.match(css, /scroll-margin-block:\s*var\(--ativ-alvo-min\)/);
   assert.match(css, /min-inline-size:\s*var\(--ativ-grade-texto\)/);
+  assert.match(css, /\.ativ-quadro--vazio\b/);
+  assert.match(css, /\.ativ-quadro--foto\b/);
+  assert.match(css, /\.ativ-quadro--documento\b/);
+  assert.match(css, /aspect-ratio:\s*210\s*\/\s*297/);
+});
+
+test("chrome de navegacao usa details, alvo 44px e nao inventa 16/9", () => {
+  const css = readRepo("packages/ui/src/styles/chrome.css");
+  assert.match(css, /\.ativ-topo\b/);
+  assert.match(css, /\.ativ-nav\b/);
+  assert.match(css, /\.ativ-menu\b/);
+  assert.match(css, /\.ativ-rodape\b/);
+  assert.match(css, /\.ativ-abertura\b/);
+  assert.match(css, /\.ativ-faixa\b/);
+  assert.match(css, /\.ativ-trilha\b/);
+  assert.match(css, /min-height:\s*var\(--ativ-alvo-min\)/);
+  assert.match(css, /max-width:\s*860px/);
+  assert.equal(/16\s*\/\s*9/.test(css), false);
+  assert.equal(/box-shadow/i.test(css), false);
+  assert.equal(/linear-gradient|backdrop-filter|glass/i.test(css), false);
+  assert.equal(hasRemoteImport(css), false);
+  assert.equal(extractHex(css).length, 0);
 });
 
 test("logos de producao copiam o kit e mapeiam superficies de UI", () => {
@@ -336,6 +365,7 @@ test("contrato de tipografia usa familias do mestre e nao aponta CDN", () => {
     readRepo("packages/ui/src/styles/technical-data.css"),
     readRepo("packages/ui/src/styles/editorial.css"),
     readRepo("packages/ui/src/styles/forms.css"),
+    readRepo("packages/ui/src/styles/chrome.css"),
     readRepo("packages/ui/src/styles/index.css"),
   ].join("\n");
 
@@ -396,6 +426,13 @@ test("showcase interno e estatico, semantico e sem host remoto", () => {
   assert.match(html, /aria-describedby/);
   assert.match(html, /ativ-alerta/);
   assert.match(html, /ativ-conjunto/);
+  assert.match(html, /ativ-topo/);
+  assert.match(html, /ativ-menu/);
+  assert.match(html, /ativ-rodape/);
+  assert.match(html, /ativ-abertura/);
+  assert.match(html, /ativ-trilha/);
+  assert.match(html, /ativ-quadro--vazio/);
+  assert.match(html, /<details/);
 });
 
 test("pares de contraste do kit batem com os HEX canonicos", () => {
