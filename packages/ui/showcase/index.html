@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>ATIV — showcase interno de @ativ/ui</title>
+    <link rel="stylesheet" href="../src/styles/index.css" />
+  </head>
+  <body class="ativ-escuro">
+    <a class="ativ-salto" href="#conteudo">Ir para o conteúdo</a>
+
+    <header class="ativ-secao ativ-secao--densa">
+      <div class="ativ-container ativ-pilha ativ-pilha--5">
+        <img
+          class="ativ-logo ativ-logo--completo"
+          src="../../../brand/logo/logo-2t-claro.svg"
+          width="152"
+          height="78"
+          alt="ATIV Tecnologia"
+        />
+        <p class="ativ-rotulo">Showcase interno · não é página pública</p>
+        <h1 class="ativ-titulo-pagina ativ-medida--titulo">Contrato visual</h1>
+        <p class="ativ-texto ativ-medida">
+          Superfícies, tipo, grade e controles extraídos do CSS mestre. Sem Home
+          comercial, sem claims e sem JavaScript de página.
+        </p>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="ativ-secao" aria-labelledby="escuro-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Superfície escura</p>
+          <h2 id="escuro-titulo" class="ativ-titulo-secao">Índigo profundo, destaque âmbar</h2>
+          <div class="ativ-grade">
+            <div class="ativ-col--5 ativ-pilha ativ-pilha--5">
+              <p class="ativ-texto ativ-medida">
+                Texto corrido lê <code class="ativ-dado">--ativ-texto-corpo</code>.
+                O botão primário usa o papel de destaque, não um hex local.
+              </p>
+              <div class="ativ-linha">
+                <button type="button" class="ativ-btn ativ-btn--primario">Ação primária</button>
+                <button type="button" class="ativ-btn ativ-btn--secundario">Ação secundária</button>
+                <button type="button" class="ativ-btn ativ-btn--fantasma">Fantasma</button>
+              </div>
+              <label class="ativ-campo-rotulo" for="campo-escuro">Campo</label>
+              <input id="campo-escuro" class="ativ-campo" type="text" placeholder="Sem valor inventado" />
+            </div>
+            <div class="ativ-col--7">
+              <article class="ativ-cartao ativ-pilha ativ-pilha--3">
+                <p class="ativ-rotulo">Cartão</p>
+                <p class="ativ-texto">Padding 26×28 do mestre, fora da escala, extraído como receita.</p>
+                <div class="ativ-linha">
+                  <span class="ativ-chip">Chip</span>
+                  <span class="ativ-badge">Badge</span>
+                  <span class="ativ-status ativ-status--operando" aria-hidden="true"></span>
+                  <span class="ativ-dado">operando</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ativ-claro ativ-secao" aria-labelledby="claro-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Superfície clara</p>
+          <h2 id="claro-titulo" class="ativ-titulo-secao">Gelo, destaque índigo</h2>
+          <div class="ativ-grade">
+            <div class="ativ-col--5 ativ-pilha ativ-pilha--5">
+              <img
+                class="ativ-logo ativ-logo--completo"
+                src="../../../brand/logo/logo-2t-indigo.svg"
+                width="152"
+                height="78"
+                alt=""
+              />
+              <p class="ativ-texto ativ-medida">
+                Âmbar não aparece como texto aqui. O destaque desta superfície é
+                Índigo, inclusive no anel de foco.
+              </p>
+              <div class="ativ-linha">
+                <button type="button" class="ativ-btn ativ-btn--primario">Ação primária</button>
+                <button type="button" class="ativ-btn ativ-btn--secundario">Ação secundária</button>
+              </div>
+            </div>
+            <div class="ativ-col--7 ativ-pilha ativ-pilha--5">
+              <div class="ativ-segmentado" aria-label="Exemplo de segmentado">
+                <button type="button" class="ativ-segmentado__item is-ativo">Um</button>
+                <button type="button" class="ativ-segmentado__item">Dois</button>
+              </div>
+              <nav class="ativ-paginacao" aria-label="Paginação de exemplo">
+                <button type="button" class="ativ-paginacao__item ativ-paginacao__seta" aria-label="Anterior">‹</button>
+                <button type="button" class="ativ-paginacao__item is-ativo" aria-current="page">1</button>
+                <button type="button" class="ativ-paginacao__item">2</button>
+                <button type="button" class="ativ-paginacao__item ativ-paginacao__seta" aria-label="Próxima">›</button>
+              </nav>
+              <p class="ativ-dado">
+                Paginação 38 px permanece abaixo do alvo de 44 px — lacuna do mestre, não corrigida.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

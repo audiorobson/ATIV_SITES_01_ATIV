@@ -494,3 +494,35 @@ export const contrast = {
     },
   ],
 };
+
+export const typography = {
+  source: "design_guide/brand/tokens/ativ-ui.css",
+  loading: {
+    strategy: "local",
+    fontDisplay: "swap",
+    remoteImport: false,
+    owner: "app/Codex",
+    note: "O pacote nao embute @font-face. A app carrega Archivo, IBM Plex Sans e IBM Plex Mono localmente.",
+  },
+  roles: {
+    display: {
+      cssVar: "--ativ-font-display",
+      family: "Archivo",
+      fallback: "sans-serif",
+      weights: [800, 900],
+    },
+    corpo: {
+      cssVar: "--ativ-font-corpo",
+      family: "IBM Plex Sans",
+      fallback: "sans-serif",
+      weights: [400, 500, 600],
+    },
+    dados: {
+      cssVar: "--ativ-font-dados",
+      family: "IBM Plex Mono",
+      fallback: "monospace",
+      weights: [400, 500],
+    },
+  },
+  forbiddenFamilies: ["Arial", "Calibri", "Helvetica", "Times", "Times New Roman", "Inter"],
+};

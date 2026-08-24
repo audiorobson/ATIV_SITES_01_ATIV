@@ -5,6 +5,7 @@ export type AtivTokens = typeof contract;
 
 export const logos = contract.logos;
 export const contrast = contract.contrast;
+export const typography = contract.typography;
 
 export const cssExports = {
   tokens: "@ativ/ui/styles/tokens.css",

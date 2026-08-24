@@ -13,6 +13,7 @@ import {
   prohibited,
   recipes,
   surfaces,
+  typography,
 } from "./lib/token-meta.mjs";
 import { buildContract, parseRootCustomProperties, readCssFile, renderTokensCss } from "./lib/css-tokens.mjs";
 
@@ -53,6 +54,7 @@ export function buildTokenDocument() {
     recipes,
     logos,
     contrast,
+    typography,
     masterExceptionsNotExtracted,
     prohibited,
   };
