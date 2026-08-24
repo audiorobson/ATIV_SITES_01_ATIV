@@ -1,11 +1,12 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 import {
   brandTokensPath,
   groups,
+  logos,
   masterCssPath,
   masterExceptionsNotExtracted,
   packageTokensPath,
@@ -13,6 +14,7 @@ import {
   prohibited,
   recipes,
 } from "./lib/token-meta.mjs";
+import { contrastRatio, ratioLabel } from "./lib/contrast.mjs";
 import {
   bracesBalanced,
   extractHex,
@@ -177,4 +179,49 @@ test("controles extraidos do mestre sem sombra decorativa nem pulso", () => {
   assert.equal(/rgba\(/i.test(css), false);
   assert.equal(/1\.6s/.test(css), false);
   assert.equal(/\.ativ-pulso/.test(css), false);
+});
+
+test("logos de producao copiam o kit e mapeiam superficies de UI", () => {
+  const parsed = JSON.parse(readRepo(brandTokensPath));
+  const sourceDir = resolve(repoRoot, logos.source);
+  const productionDir = resolve(repoRoot, logos.production);
+  const sourceFiles = readdirSync(sourceDir).filter((name) => name.endsWith(".svg")).sort();
+  const productionFiles = readdirSync(productionDir).filter((name) => name.endsWith(".svg")).sort();
+
+  assert.deepEqual(sourceFiles, [...logos.files].sort());
+  assert.deepEqual(productionFiles, [...logos.files].sort());
+  assert.deepEqual(parsed.logos, logos);
+
+  for (const file of logos.files) {
+    assert.equal(readRepo(`${logos.source}/${file}`), readRepo(`${logos.production}/${file}`), file);
+  }
+
+  const uiFiles = Object.values(logos.ui).flatMap((entry) =>
+    [entry.lockup, entry.wordmark, entry.icon].filter(Boolean),
+  );
+  for (const file of uiFiles) {
+    assert.equal(logos.documentOnly.includes(file), false, file);
+    assert.equal(logos.notUi.includes(file), false, file);
+  }
+});
+
+test("pares de contraste do kit batem com os HEX canonicos", () => {
+  const parsed = JSON.parse(readRepo(brandTokensPath));
+  const hexByToken = Object.fromEntries(
+    Object.entries(parsed.tokens)
+      .filter(([, token]) => token.value.startsWith("#"))
+      .map(([name, token]) => [name, token.value]),
+  );
+
+  for (const pair of parsed.contrast.pairs) {
+    const actual = ratioLabel(contrastRatio(hexByToken[pair.fg], hexByToken[pair.bg]));
+    assert.equal(actual, pair.ratio, `${pair.fg} on ${pair.bg}`);
+  }
+
+  for (const rule of parsed.contrast.forbiddenText) {
+    for (const background of rule.bg) {
+      const ratio = contrastRatio(hexByToken[rule.fg], hexByToken[background]);
+      assert.equal(ratio < 4.5, true, `${rule.fg} on ${background}`);
+    }
+  }
 });
