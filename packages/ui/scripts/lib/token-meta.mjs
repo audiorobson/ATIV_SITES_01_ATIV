@@ -375,6 +375,16 @@ export const recipes = {
     values: ["0.2em", "15px", "11px"],
     note: "Barra da citacao reusa --ativ-foco-anel. Callout e neutro: borda forte, sem cor semantica de alerta.",
   },
+  "form.grupo": {
+    selectors: [".ativ-formulario", ".ativ-campo-grupo", ".ativ-conjunto"],
+    values: ["15px", "13px", "11px"],
+    note: "Agrupa label, hint e mensagem. Proximidade e-2 dentro do grupo, e-5 entre grupos. Campo continua 15px do mestre (zoom iOS permanece lacuna).",
+  },
+  "form.estados": {
+    selectors: [".ativ-campo-erro", ".ativ-alerta", ".ativ-escolha"],
+    values: ["19px", "dashed"],
+    note: "Erro/sucesso usam --ativ-reprovado/--ativ-aprovado na borda e texto visivel. Loading e borda tracejada + aria-busy, sem pulso. Checkbox/radio nativos 19px do mestre, alvo 44px no rotulo.",
+  },
 };
 
 export const masterExceptionsNotExtracted = [
@@ -419,6 +429,7 @@ export const cssExports = {
   controls: "@ativ/ui/styles/controls.css",
   technicalData: "@ativ/ui/styles/technical-data.css",
   editorial: "@ativ/ui/styles/editorial.css",
+  forms: "@ativ/ui/styles/forms.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",
 };

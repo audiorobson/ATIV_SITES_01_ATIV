@@ -1,0 +1,202 @@
+/*
+ * ATIV — formularios e estados de producao.
+ * Consumir depois de tokens, foundations, layout e controls
+ * (ou via @ativ/ui/styles.css).
+ *
+ * Campos visuais ja existem em controls.css. Esta fatia fecha o contrato
+ * de agrupamento, native select/textarea, obrigatorio, disabled, readonly,
+ * erro, sucesso, loading e mensagem global. Sem hex, sem sombra, sem JS
+ * e sem captura de leads.
+ */
+
+.ativ-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ativ-e-5);
+  max-inline-size: var(--ativ-grade-texto);
+}
+
+.ativ-campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ativ-e-2);
+}
+
+.ativ-campo-grupo .ativ-campo-rotulo {
+  margin-bottom: 0;
+}
+
+.ativ-obrigatorio {
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ativ-texto);
+}
+
+.ativ-campo-ajuda,
+.ativ-campo-erro,
+.ativ-campo-sucesso,
+.ativ-carregando {
+  margin: 0;
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ativ-campo-ajuda {
+  color: var(--ativ-texto-suave);
+}
+
+.ativ-campo-erro,
+.ativ-campo-sucesso,
+.ativ-carregando {
+  color: var(--ativ-texto);
+}
+
+.ativ-textarea,
+.ativ-select {
+  width: 100%;
+  font-family: var(--ativ-font-corpo);
+  font-size: 15px;
+  color: var(--ativ-texto);
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-controle);
+  padding: 12px 14px;
+  min-height: var(--ativ-alvo-min);
+  outline: none;
+  transition: border-color var(--ativ-transicao);
+}
+
+.ativ-textarea {
+  min-block-size: var(--ativ-e-10);
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.ativ-select {
+  cursor: pointer;
+}
+
+.ativ-textarea:focus,
+.ativ-select:focus {
+  border-color: var(--ativ-destaque);
+}
+
+.ativ-campo:disabled,
+.ativ-textarea:disabled,
+.ativ-select:disabled,
+.ativ-campo-grupo--desativado .ativ-campo,
+.ativ-campo-grupo--desativado .ativ-textarea,
+.ativ-campo-grupo--desativado .ativ-select {
+  background: var(--ativ-superficie);
+  border-color: var(--ativ-borda-cor);
+  color: var(--ativ-ardosia);
+  cursor: not-allowed;
+}
+
+.ativ-campo[readonly],
+.ativ-textarea[readonly] {
+  background: var(--ativ-superficie);
+  color: var(--ativ-texto);
+}
+
+.ativ-campo[aria-invalid="true"],
+.ativ-textarea[aria-invalid="true"],
+.ativ-select[aria-invalid="true"] {
+  border-color: var(--ativ-reprovado);
+}
+
+.ativ-campo:user-invalid,
+.ativ-textarea:user-invalid,
+.ativ-select:user-invalid {
+  border-color: var(--ativ-reprovado);
+}
+
+.ativ-campo-grupo--sucesso .ativ-campo,
+.ativ-campo-grupo--sucesso .ativ-textarea,
+.ativ-campo-grupo--sucesso .ativ-select {
+  border-color: var(--ativ-aprovado);
+}
+
+.ativ-campo-grupo[aria-busy="true"] .ativ-campo,
+.ativ-campo-grupo[aria-busy="true"] .ativ-textarea,
+.ativ-campo-grupo[aria-busy="true"] .ativ-select {
+  border-style: dashed;
+  cursor: progress;
+}
+
+.ativ-conjunto {
+  margin: 0;
+  min-inline-size: 0;
+  padding: var(--ativ-e-4);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-controle);
+}
+
+.ativ-conjunto legend {
+  padding-inline: var(--ativ-e-2);
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+}
+
+.ativ-escolha {
+  display: flex;
+  align-items: center;
+  gap: var(--ativ-e-3);
+  min-height: var(--ativ-alvo-min);
+  cursor: pointer;
+  font-family: var(--ativ-font-corpo);
+  font-size: 15px;
+  color: var(--ativ-texto);
+}
+
+.ativ-escolha input {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  accent-color: var(--ativ-destaque);
+}
+
+.ativ-escolha:has(input:disabled) {
+  color: var(--ativ-ardosia);
+  cursor: not-allowed;
+}
+
+.ativ-alerta {
+  margin: 0;
+  padding: var(--ativ-e-4);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-controle);
+  background: var(--ativ-superficie);
+  color: var(--ativ-texto-corpo);
+}
+
+.ativ-alerta__titulo {
+  display: block;
+  margin-block-end: var(--ativ-e-2);
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ativ-texto);
+}
+
+.ativ-alerta--erro {
+  border-color: var(--ativ-reprovado);
+}
+
+.ativ-alerta--sucesso {
+  border-color: var(--ativ-aprovado);
+}
+
+.ativ-alerta--carregando {
+  border-style: dashed;
+}
