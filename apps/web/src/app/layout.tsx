@@ -1,6 +1,8 @@
 import { buildMetadata } from "@ativ/seo";
 import "@ativ/ui/styles.css";
 import type { ReactNode } from "react";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
 import "./globals.css";
 
@@ -23,7 +25,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <a className="skip-link" href="#conteudo-principal">
           Pular para o conteúdo
         </a>
+        <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
