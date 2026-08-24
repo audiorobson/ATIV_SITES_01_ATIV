@@ -3,8 +3,8 @@
 **Status: READY para o Codex integrar a fatia de tokens** em
 `feat/design-tokens-foundation` (`bee5055`). Pacote: `docs/HANDOFF_CURSOR_TO_CODEX.md`.
 
-Esta branch (`feat/ui-editorial-foundations`) continua a Fase 2 com primitives
-CSS de texto longo, a partir de `feat/ui-technical-data-foundations` (`86a2905`).
+Esta branch (`feat/ui-form-state-foundations`) continua a Fase 2 com o contrato
+de formulário e estados, a partir de `feat/ui-editorial-foundations` (`e3b941b`).
 Não bloqueia e não altera o handoff congelado de tokens.
 
 Este documento descreve o contrato visual entregue nessa branch.
@@ -35,9 +35,10 @@ lacuna, sem padrão genérico.
 | `packages/ui/src/styles/controls.css` | Cartão, botões, campos, seleção, slider, paginação, chip, status e badge extraídos do CSS mestre. |
 | `packages/ui/src/styles/technical-data.css` | Ficha, pares chave/valor, métrica com unidade, estado rotulado, legenda, configuração e fluxo textual. |
 | `packages/ui/src/styles/editorial.css` | Medida de leitura, hierarquia h2–h4, listas, tabela editorial, citação, figura, nota, chamada neutra e rastreio. |
+| `packages/ui/src/styles/forms.css` | Agrupamento, textarea, select, fieldset, obrigatório, disabled, readonly, erro, sucesso, loading e alerta. |
 | `packages/ui/src/styles/index.css` | Bundle local (`@import` relativo, sem CDN). |
 | `packages/ui/src/index.ts` | Export JS/TS do contrato e dos caminhos de CSS. |
-| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies escura e clara, controles, layout e espécimes fictícios de dado técnico. Não é página pública. |
+| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies, controles, layout, dado técnico, artigo fictício e formulário de estados. Não é página pública. |
 | `packages/ui/scripts/` | Sincronização e validação independentes do workspace raiz. |
 
 ## Como importar
@@ -59,6 +60,7 @@ import "@ativ/ui/styles/layout.css";
 import "@ativ/ui/styles/controls.css";
 import "@ativ/ui/styles/technical-data.css";
 import "@ativ/ui/styles/editorial.css";
+import "@ativ/ui/styles/forms.css";
 import { tokens, logos, contrast, typography } from "@ativ/ui";
 ```
 
@@ -122,6 +124,10 @@ node packages/ui/scripts/sync-tokens.mjs
 - Editorial: `.ativ-editorial` na medida `--ativ-grade-texto`, hierarquia h2–h4,
   listas, tabela que reflowa, citação, nota, chamada neutra, fonte/rastreio, links
   sublinhados, seleção de texto e `@media print`.
+- Formulário: `.ativ-formulario` / `.ativ-campo-grupo`, textarea e select nativos,
+  fieldset, obrigatório em texto, disabled/readonly, erro (`aria-invalid` +
+  `:user-invalid`), sucesso, loading (`aria-busy` + borda tracejada) e alerta
+  global com título visível. Sem captura de lead.
 
 ## Lacunas preservadas
 
@@ -133,7 +139,7 @@ inventadas famílias visuais para fechá-las.
 | Dado técnico (tabela de spec, medidor, unidade, diagrama de sinal) | Ficha, par, métrica, estado rotulado, config e fluxo textual entregues. Diagrama de rack, planta com cotas e elevação permanecem lacuna — exigiriam desenho, não CSS. |
 | Iconografia proprietária e repertório por setor | Lucide permanece a família vigente; conjunto próprio não aprovado. |
 | Navegação global, submenu, condensação mobile, breadcrumb | Não definida como linguagem de produto. |
-| Formulário completo, validação, vazio, loading, erro, sucesso | Controles soltos existem no CSS mestre; estados não. |
+| Formulário completo, validação, vazio, loading, erro, sucesso | Contrato visual entregue. Sem backend, sem vazio de página, sem modal/gaveta/404. Campo do mestre permanece 15px (zoom iOS é lacuna). |
 | Modal, gaveta, abas de produto, 404/500 | Não extraído. |
 | Direção fotográfica e o que entra nos slots de mídia | Não definida. `.ativ-quadro--proporcao` espera `--ativ-quadro-proporcao` do consumidor; 16/9 não foi inventado. |
 | Tipografia editorial longa (citação, nota, legenda, artigo) | Entregue como CSS de artigo. Sem loader Markdown, sem conteúdo real e sem depoimento de cliente. |
@@ -172,6 +178,7 @@ Cobertura:
 - Primitives de layout sem hex, sem 16/9 e sem import remoto.
 - Dado técnico sem hex, sem razão fotográfica, sem sombra e com estado rotulado (texto + ponto).
 - Editorial sem hex, com medida `--ativ-grade-texto`, print e `user-select: text`.
+- Formulários sem hex, com `aria-invalid`, texto de erro/sucesso e alvo 44px.
 
 ## Gates que dependem do Codex
 
@@ -211,6 +218,7 @@ aqui. O pacote usa `node:test` para permanecer independente.
   `.ativ-pulso`. `technical-data.css` cobre ficha, par, métrica, estado, config e
   fluxo textual; não substitui diagrama de rack nem formulário.
 - `editorial.css` cobre artigo longo. Não carrega Markdown nem copy comercial.
+- `forms.css` cobre estados de formulário. Não captura leads nem fala com backend.
 - O export `./tokens.json` é cópia verificada. Editar só um dos JSONs quebra o
   teste; usar o script de sync.
 - Sem os SVGs de logo no caminho `brand/logo`, a app não consegue cumprir as
