@@ -2,8 +2,8 @@
 
 Contrato visual framework-neutral da ATIV. Esta rodada entrega tokens canônicos,
 foundations CSS, controles extraídos, logos de produção, primitives de layout,
-texto editorial, estados de formulário, chrome de navegação e um showcase HTML
-estático. Não contém componentes React, Radix, shadcn ou Motion.
+texto editorial, estados de formulário, chrome de navegação, páginas internas
+e um showcase HTML estático. Não contém componentes React, Radix, shadcn ou Motion.
 
 ## Fonte de verdade
 
@@ -25,7 +25,8 @@ quando existir, é consumidor derivado — nunca fonte.
 | `@ativ/ui/styles/editorial.css` | medida de leitura, hierarquia, listas, tabela editorial, citação, nota, chamada neutra e fonte |
 | `@ativ/ui/styles/forms.css` | agrupamento, textarea, select, fieldset, obrigatório, disabled, readonly, erro, sucesso, loading e alerta |
 | `@ativ/ui/styles/chrome.css` | topo, nav, menu condensado, trilha, rodapé, abertura e faixa |
-| `@ativ/ui/styles.css` | bundle local (`tokens` + `foundations` + `layout` + `controls` + `technical-data` + `editorial` + `forms` + `chrome`) |
+| `@ativ/ui/styles/pages.css` | página interna de solução/setor: abertura, índice, composição, spec, relacionados |
+| `@ativ/ui/styles.css` | bundle local (`tokens` + `foundations` + `layout` + `controls` + `technical-data` + `editorial` + `forms` + `chrome` + `pages`) |
 
 ## Como importar
 
@@ -47,6 +48,7 @@ Ou, de forma explícita:
 @import "@ativ/ui/styles/editorial.css";
 @import "@ativ/ui/styles/forms.css";
 @import "@ativ/ui/styles/chrome.css";
+@import "@ativ/ui/styles/pages.css";
 ```
 
 ```ts
@@ -69,7 +71,8 @@ lateral, grade auto-fit e quadro. Inclui espécimes fictícios de ficha, pares,
 métrica, estado rotulado, configuração e fluxo. Inclui artigo fictício com
 citação, nota, chamada e rastreio. Inclui formulário estático com erro, sucesso,
 loading e alerta global. Inclui topo, menu condensado, trilha, abertura, quadro
-vazio, figura com legenda de candidata e rodapé de espécime. Sem JavaScript de
+vazio, figura com legenda de candidata e rodapé de espécime. Páginas internas:
+`pagina-solucao.html` e `pagina-setor.html` (um H1 cada). Sem JavaScript de
 página e sem CDN.
 
 ## Validação local
@@ -95,5 +98,6 @@ node packages/ui/scripts/sync-tokens.mjs
 ## Fora desta fatia
 
 React/Radix/shadcn não entram neste pacote. A sombra do dropdown e `.ativ-pulso`
-continuam omitidas. Overlay modal, abas com ARIA e direção fotográfica (o que
-fotografar) permanecem lacuna. Ver `docs/design-system-implementation.md`.
+continuam omitidas. Overlay modal, abas com ARIA, oito heros por setor e direção
+fotográfica (o que fotografar) permanecem lacuna. Ver
+`docs/design-system-implementation.md`.
