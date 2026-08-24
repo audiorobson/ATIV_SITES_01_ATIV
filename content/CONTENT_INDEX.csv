@@ -1,0 +1,14 @@
+content_id,source_file,content_type,status,target_route,technical_review,seo_review,commercial_review,notes
+PAGE-HOME-001,content/pages/home.md,page_brief,brief,/,pending,pending,pending,Briefing P0; não publicar antes das três aprovações
+ATIV-CT-001-R00,content/inbox/ATIV-CT-001-R00.md,editorial_backlog,technical_review,,pending,pending,pending,Backlog interno; não publicar
+CT-AUD-02-R00,content/inbox/CT-AUD-02-R00.md,technical_article,draft,,pending,pending,pending,Exige validação de fontes e claims
+CT-AUD-04-R00,content/inbox/CT-AUD-04-R00.md,technical_article,draft,,pending,pending,pending,Exige validação de fontes e claims
+CT-DOC-01-R00,content/inbox/CT-DOC-01-R00.md,technical_guide,draft,,pending,pending,pending,Exige validação normativa e jurídica
+CT-DOC-02-R00,content/inbox/CT-DOC-02-R00.md,technical_guide,draft,,pending,pending,pending,Exige validação de fontes e claims
+CT-INF-01-R00,content/inbox/CT-INF-01-R00.md,technical_article,draft,,pending,pending,pending,Exige validação de fontes e claims
+CT-NET-01-R00,content/inbox/CT-NET-01-R00.md,technical_guide,draft,,pending,pending,pending,Exige validação de fontes e claims
+CT-PUB-01-R00,content/inbox/CT-PUB-01-R00.md,technical_article,draft,,pending,pending,pending,Exige validação normativa e jurídica
+CT-PUB-02-R00,content/inbox/CT-PUB-02-R00.md,technical_article,draft,,pending,pending,pending,Exige validação normativa e jurídica
+CT-VID-02-R00,content/inbox/CT-VID-02-R00.md,technical_guide,draft,,pending,pending,pending,Exige validação de fontes e claims
+CT-VID-03-R00,content/inbox/CT-VID-03-R00.md,technical_guide,draft,,pending,pending,pending,Exige validação de fontes e claims
+CT-VW-02-R00,content/inbox/CT-VW-02-R00.md,technical_comparison,draft,,pending,pending,pending,Claims comerciais e TCO ainda não aprovados
