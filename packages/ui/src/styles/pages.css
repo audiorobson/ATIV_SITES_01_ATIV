@@ -130,6 +130,18 @@
   gap: var(--ativ-e-2);
 }
 
+.ativ-pagina--estreito .ativ-com-lateral {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.ativ-pagina--estreito .ativ-com-lateral > :first-child,
+.ativ-pagina--estreito .ativ-com-lateral > :last-child {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
 @media (max-width: 860px) {
   .ativ-pagina:not(.ativ-pagina--largo) .ativ-indice {
     position: static;
@@ -140,6 +152,18 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: var(--ativ-e-2);
+  }
+
+  .ativ-pagina:not(.ativ-pagina--largo) .ativ-com-lateral {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ativ-pagina:not(.ativ-pagina--largo) .ativ-com-lateral > :first-child,
+  .ativ-pagina:not(.ativ-pagina--largo) .ativ-com-lateral > :last-child {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    max-inline-size: 100%;
   }
 }
 
