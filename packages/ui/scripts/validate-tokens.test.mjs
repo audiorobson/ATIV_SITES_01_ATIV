@@ -253,6 +253,14 @@ test("showcase interno e estatico, semantico e sem host remoto", () => {
   assert.match(html, /noindex/);
   assert.equal(/<script[\s>]/i.test(html), false);
   assert.equal(/googleapis|gstatic|fonts\.google|cdn\.|unpkg|jsdelivr|typekit/i.test(html), false);
+  assert.match(html, /ativ-dropdown/);
+  assert.match(html, /ativ-dropdown__painel is-aberto/);
+  assert.match(html, /ativ-toggle/);
+  assert.match(html, /ativ-radio/);
+  assert.match(html, /ativ-checkbox/);
+  assert.match(html, /ativ-slider/);
+  assert.match(html, /ativ-busca/);
+  assert.equal(/box-shadow/i.test(html), false);
 });
 
 test("pares de contraste do kit batem com os HEX canonicos", () => {
