@@ -1,0 +1,239 @@
+/*
+ * ATIV — primitives de layout de producao.
+ * Fonte de verdade: design_guide/brand/tokens/ativ-ui.css
+ * Consumir depois de tokens.css e foundations.css (ou via @ativ/ui/styles.css).
+ *
+ * Container, secao, pilha e grade 12 colunas saem do CSS mestre.
+ * Agrupamento, lateral, quadro e somente-leitura compostam tokens oficiais.
+ * Nao ha razao fotografica canonica; --ativ-quadro-proporcao e do consumidor.
+ */
+
+/* =====================================================================
+   SECAO, CONTAINER, MEDIDA
+   ===================================================================== */
+
+#ativ-secao,
+.ativ-secao {
+  padding: var(--ativ-e-8) var(--ativ-grade-margem);
+}
+
+@media (min-width: 900px) {
+  #ativ-secao,
+  .ativ-secao {
+    padding: var(--ativ-e-9) var(--ativ-grade-margem);
+  }
+}
+
+.ativ-secao--abertura {
+  padding-top: var(--ativ-e-10);
+}
+
+.ativ-secao--densa {
+  padding-block: var(--ativ-e-7);
+}
+
+#ativ-container,
+.ativ-container {
+  max-width: var(--ativ-grade-max);
+  margin-inline: auto;
+  width: 100%;
+}
+
+#ativ-medida,
+.ativ-medida {
+  max-width: var(--ativ-grade-texto);
+}
+
+.ativ-medida--curta {
+  max-width: 46ch;
+}
+
+.ativ-medida--titulo {
+  max-width: 22ch;
+}
+
+/* =====================================================================
+   GRADE 12 E AUTO-FIT
+   ===================================================================== */
+
+#ativ-grade,
+.ativ-grade {
+  display: grid;
+  grid-template-columns: repeat(var(--ativ-grade-colunas), minmax(0, 1fr));
+  gap: var(--ativ-grade-calha);
+}
+
+.ativ-grade--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ativ-grade--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ativ-grade--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ativ-grade--auto {
+  grid-template-columns: repeat(auto-fit, minmax(var(--ativ-min-col, 280px), 1fr));
+}
+
+@media (max-width: 860px) {
+  .ativ-grade--2,
+  .ativ-grade--3,
+  .ativ-grade--4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ativ-col--3 {
+  grid-column: span 3;
+}
+
+.ativ-col--4 {
+  grid-column: span 4;
+}
+
+.ativ-col--5 {
+  grid-column: span 5;
+}
+
+.ativ-col--6 {
+  grid-column: span 6;
+}
+
+.ativ-col--7 {
+  grid-column: span 7;
+}
+
+.ativ-col--8 {
+  grid-column: span 8;
+}
+
+.ativ-col--12 {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 860px) {
+  [class*="ativ-col--"] {
+    grid-column: 1 / -1;
+  }
+}
+
+/* =====================================================================
+   PILHA (stack) E AGRUPAMENTO (cluster)
+   ===================================================================== */
+
+#ativ-pilha,
+.ativ-pilha {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ativ-e-4);
+}
+
+.ativ-pilha--1 {
+  gap: var(--ativ-e-1);
+}
+
+.ativ-pilha--2 {
+  gap: var(--ativ-e-2);
+}
+
+.ativ-pilha--3 {
+  gap: var(--ativ-e-3);
+}
+
+.ativ-pilha--5 {
+  gap: var(--ativ-e-5);
+}
+
+.ativ-pilha--6 {
+  gap: var(--ativ-e-6);
+}
+
+.ativ-pilha--7 {
+  gap: var(--ativ-e-7);
+}
+
+#ativ-linha,
+.ativ-linha,
+.ativ-agrupamento {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--ativ-e-3);
+  flex-wrap: wrap;
+}
+
+/* =====================================================================
+   LATERAL (sidebar) — reflow por min-inline-size, sem breakpoint novo
+   ===================================================================== */
+
+.ativ-com-lateral {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ativ-grade-calha);
+}
+
+.ativ-com-lateral > :first-child {
+  flex-grow: 1;
+  flex-basis: var(--ativ-min-col, 280px);
+}
+
+.ativ-com-lateral > :last-child {
+  flex-grow: 999;
+  flex-basis: 0;
+  min-inline-size: var(--ativ-grade-texto);
+}
+
+/* =====================================================================
+   QUADRO (frame) — proporcao so se o consumidor definir a custom property
+   ===================================================================== */
+
+.ativ-quadro {
+  display: block;
+  overflow: hidden;
+  background: var(--ativ-superficie);
+}
+
+.ativ-quadro > img,
+.ativ-quadro > svg,
+.ativ-quadro > video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ativ-quadro--proporcao {
+  aspect-ratio: var(--ativ-quadro-proporcao);
+}
+
+.ativ-quadro--proporcao > img,
+.ativ-quadro--proporcao > svg,
+.ativ-quadro--proporcao > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================================================================
+   SOMENTE LEITURA (visually hidden) E ALVO DE SALTO
+   ===================================================================== */
+
+.ativ-somente-leitura:where(:not(:focus-within, :active)) {
+  position: absolute;
+  clip-path: inset(50%);
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+}
+
+.ativ-alvo-salto,
+#conteudo {
+  scroll-margin-block: var(--ativ-alvo-min);
+}

@@ -241,9 +241,24 @@ export const recipes = {
     note: "Breakpoint de colapso da grade no CSS mestre. Nao e token de espaco.",
   },
   "layout.grade-auto-min": {
-    selectors: [".ativ-grade--auto"],
+    selectors: [".ativ-grade--auto", ".ativ-com-lateral > :first-child"],
     values: ["280px"],
-    note: "Minimo de coluna auto-fit no CSS mestre. Fora da escala e-1..e-10; nao promovido a token.",
+    note: "Minimo de coluna auto-fit no CSS mestre. Fora da escala e-1..e-10; nao promovido a token. A lateral reusa o mesmo minimo.",
+  },
+  "layout.somente-leitura": {
+    selectors: [".ativ-somente-leitura"],
+    values: ["1px", "-1px", "50%"],
+    note: "Recorte visual de acessibilidade. Nao e token de espaco nem de cor.",
+  },
+  "layout.quadro-proporcao": {
+    selectors: [".ativ-quadro--proporcao"],
+    values: ["var(--ativ-quadro-proporcao)"],
+    note: "Nao existe razao fotografica canonica no CSS mestre. O consumidor define --ativ-quadro-proporcao.",
+  },
+  "layout.alvo-salto": {
+    selectors: [".ativ-alvo-salto", "#conteudo"],
+    values: ["var(--ativ-alvo-min)"],
+    note: "scroll-margin do alvo de salto usa o token de alvo minimo ja versionado.",
   },
   "motion.cascata": {
     selectors: [".ativ-cascata"],
@@ -355,6 +370,7 @@ export const prohibited = {
 export const cssExports = {
   tokens: "@ativ/ui/styles/tokens.css",
   foundations: "@ativ/ui/styles/foundations.css",
+  layout: "@ativ/ui/styles/layout.css",
   controls: "@ativ/ui/styles/controls.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",

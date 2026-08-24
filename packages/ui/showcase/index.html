@@ -28,7 +28,7 @@
       </div>
     </header>
 
-    <main id="conteudo">
+    <main id="conteudo" class="ativ-alvo-salto" tabindex="-1">
       <section class="ativ-secao" aria-labelledby="escuro-titulo">
         <div class="ativ-container ativ-pilha ativ-pilha--7">
           <p class="ativ-rotulo">Superfície escura</p>
@@ -188,6 +188,49 @@
                 <span class="ativ-checkbox__caixa" aria-hidden="true">✓</span>
                 <span class="ativ-texto">Marcado</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ativ-secao" aria-labelledby="layout-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Layout</p>
+          <h2 id="layout-titulo" class="ativ-titulo-secao">Primitives de disposição</h2>
+          <p class="ativ-texto ativ-medida">
+            Container, seção, pilha e grade vêm do CSS mestre. Agrupamento, lateral e
+            quadro compostam tokens oficiais. Sem Header, Footer ou Home.
+          </p>
+          <span class="ativ-somente-leitura">Rótulo só para leitor de tela, nesta superfície de preview.</span>
+          <div class="ativ-agrupamento">
+            <span class="ativ-chip">Agrupamento</span>
+            <span class="ativ-chip">reflow</span>
+            <span class="ativ-chip">zoom</span>
+          </div>
+          <div class="ativ-com-lateral">
+            <aside class="ativ-cartao">
+              <p class="ativ-rotulo">Lateral</p>
+              <p class="ativ-dado">flex-basis no mínimo auto-fit já documentado (280 px).</p>
+            </aside>
+            <div class="ativ-cartao">
+              <p class="ativ-rotulo">Principal</p>
+              <p class="ativ-texto">
+                Envolve quando não cabe <code class="ativ-dado">--ativ-grade-texto</code>
+                ao lado da lateral. Sem breakpoint novo.
+              </p>
+            </div>
+          </div>
+          <div class="ativ-grade ativ-grade--auto">
+            <article class="ativ-cartao"><p class="ativ-dado">auto-fit 1</p></article>
+            <article class="ativ-cartao"><p class="ativ-dado">auto-fit 2</p></article>
+            <article class="ativ-cartao"><p class="ativ-dado">auto-fit 3</p></article>
+          </div>
+          <div>
+            <p class="ativ-rotulo">Quadro</p>
+            <div class="ativ-quadro" aria-label="Slot de mídia">
+              <p class="ativ-dado">
+                Slot de mídia. Direção fotográfica permanece lacuna; sem razão 16/9 inventada.
+              </p>
             </div>
           </div>
         </div>

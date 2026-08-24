@@ -10,6 +10,7 @@
     "./styles.css": "./src/styles/index.css",
     "./styles/tokens.css": "./src/styles/tokens.css",
     "./styles/foundations.css": "./src/styles/foundations.css",
+    "./styles/layout.css": "./src/styles/layout.css",
     "./styles/controls.css": "./src/styles/controls.css"
   },
   "files": [
