@@ -46,8 +46,13 @@
               </div>
               <label class="ativ-campo-rotulo" for="campo-escuro">Campo</label>
               <input id="campo-escuro" class="ativ-campo" type="text" placeholder="Sem valor inventado" />
+              <label class="ativ-campo-rotulo" for="busca-escuro">Busca</label>
+              <div class="ativ-busca">
+                <span class="ativ-busca__icone" aria-hidden="true">⌕</span>
+                <input id="busca-escuro" class="ativ-campo" type="search" placeholder="Busca de exemplo" />
+              </div>
             </div>
-            <div class="ativ-col--7">
+            <div class="ativ-col--7 ativ-pilha ativ-pilha--5">
               <article class="ativ-cartao ativ-pilha ativ-pilha--3">
                 <p class="ativ-rotulo">Cartão</p>
                 <p class="ativ-texto">Padding 26×28 do mestre, fora da escala, extraído como receita.</p>
@@ -58,6 +63,70 @@
                   <span class="ativ-dado">operando</span>
                 </div>
               </article>
+              <p class="ativ-rotulo">Seleção</p>
+              <p class="ativ-dado">Estados estáticos. Inativo leva borda visível. Sem JS de página.</p>
+              <div class="ativ-linha">
+                <div class="ativ-toggle is-ligado" role="switch" aria-checked="true" aria-label="Ligado" tabindex="0">
+                  <span class="ativ-toggle__pino" aria-hidden="true"></span>
+                </div>
+                <span class="ativ-texto">Ligado</span>
+                <div class="ativ-toggle" role="switch" aria-checked="false" aria-label="Desligado" tabindex="0">
+                  <span class="ativ-toggle__pino" aria-hidden="true"></span>
+                </div>
+                <span class="ativ-texto">Desligado</span>
+              </div>
+              <div class="ativ-radio-grupo" role="radiogroup" aria-label="Exemplo de escolha única">
+                <div class="ativ-radio is-ativo" role="radio" aria-checked="true">
+                  <span class="ativ-radio__marca" aria-hidden="true"></span>
+                  <span class="ativ-texto">Selecionado</span>
+                </div>
+                <div class="ativ-radio" role="radio" aria-checked="false">
+                  <span class="ativ-radio__marca" aria-hidden="true"></span>
+                  <span class="ativ-texto">Não selecionado</span>
+                </div>
+              </div>
+              <div class="ativ-checkbox is-ativo" role="checkbox" aria-checked="true">
+                <span class="ativ-checkbox__caixa" aria-hidden="true">✓</span>
+                <span class="ativ-texto">Marcado</span>
+              </div>
+              <div class="ativ-checkbox" role="checkbox" aria-checked="false">
+                <span class="ativ-checkbox__caixa" aria-hidden="true"></span>
+                <span class="ativ-texto">Desmarcado</span>
+              </div>
+            </div>
+          </div>
+          <div class="ativ-grade">
+            <div class="ativ-col--5 ativ-pilha ativ-pilha--3">
+              <p class="ativ-rotulo">Slider</p>
+              <div
+                class="ativ-slider"
+                role="slider"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="62"
+                aria-valuetext="62 por cento"
+                aria-label="Nível de exemplo"
+              >
+                <div class="ativ-slider__trilha">
+                  <div class="ativ-slider__preenchido" style="width: 62%"></div>
+                  <span class="ativ-slider__pino" style="left: 62%"></span>
+                  <span class="ativ-slider__valor" style="left: 62%">62%</span>
+                </div>
+              </div>
+            </div>
+            <div class="ativ-col--7 ativ-pilha ativ-pilha--3">
+              <p class="ativ-rotulo">Dropdown</p>
+              <p class="ativ-dado">Painel aberto de propósito. Sombra decorativa omitida.</p>
+              <div class="ativ-dropdown">
+                <button type="button" class="ativ-dropdown__gatilho" aria-expanded="true" aria-controls="painel-escuro">
+                  <span>Opção A</span>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <div id="painel-escuro" class="ativ-dropdown__painel is-aberto">
+                  <button type="button" class="ativ-dropdown__opcao">Opção A</button>
+                  <button type="button" class="ativ-dropdown__opcao">Opção B</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -84,6 +153,12 @@
                 <button type="button" class="ativ-btn ativ-btn--primario">Ação primária</button>
                 <button type="button" class="ativ-btn ativ-btn--secundario">Ação secundária</button>
               </div>
+              <div class="ativ-linha">
+                <div class="ativ-toggle is-ligado" role="switch" aria-checked="true" aria-label="Ligado na superfície clara" tabindex="0">
+                  <span class="ativ-toggle__pino" aria-hidden="true"></span>
+                </div>
+                <span class="ativ-texto">Ligado</span>
+              </div>
             </div>
             <div class="ativ-col--7 ativ-pilha ativ-pilha--5">
               <div class="ativ-segmentado" aria-label="Exemplo de segmentado">
@@ -99,6 +174,20 @@
               <p class="ativ-dado">
                 Paginação 38 px permanece abaixo do alvo de 44 px — lacuna do mestre, não corrigida.
               </p>
+              <div class="ativ-radio-grupo" role="radiogroup" aria-label="Exemplo claro de escolha única">
+                <div class="ativ-radio is-ativo" role="radio" aria-checked="true">
+                  <span class="ativ-radio__marca" aria-hidden="true"></span>
+                  <span class="ativ-texto">Selecionado</span>
+                </div>
+                <div class="ativ-radio" role="radio" aria-checked="false">
+                  <span class="ativ-radio__marca" aria-hidden="true"></span>
+                  <span class="ativ-texto">Não selecionado</span>
+                </div>
+              </div>
+              <div class="ativ-checkbox is-ativo" role="checkbox" aria-checked="true">
+                <span class="ativ-checkbox__caixa" aria-hidden="true">✓</span>
+                <span class="ativ-texto">Marcado</span>
+              </div>
             </div>
           </div>
         </div>
