@@ -4,6 +4,7 @@ export const foundationChecks = [
   "Navegação por teclado com atalho para o conteúdo",
   "TypeScript em modo strict",
   "Build de produção reproduzível",
+  "Fontes locais com font-display: swap",
 ] as const;
 
 export function hasUniqueFoundationChecks(checks: readonly string[]): boolean {
