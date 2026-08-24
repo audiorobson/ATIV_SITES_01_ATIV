@@ -1,0 +1,13 @@
+cluster,intent,primary_keyword,secondary_keywords,target_url,status,priority,audience,cta,notes
+Integracao AV,commercial,integração audiovisual corporativa,"empresa de integração audiovisual|integrador audiovisual|sistemas audiovisuais corporativos|projeto audiovisual corporativo",,research,P0,"Executivo|TI|Engenharia",Falar com especialista,"Validate volume/CPC/Search Console before assigning final URL"
+Salas e UC,commercial,sala de reunião híbrida,"sala de reunião inteligente|videoconferência corporativa|automação de sala de reunião|solução para sala de reunião",,research,P0,"TI|Executivo",Projetar uma sala,
+Teams Rooms,commercial,Microsoft Teams Rooms,"integração Teams Rooms|sala Microsoft Teams|MTR",,research,P0,"TI|Executivo",Falar com especialista,
+Videowall,commercial,videowall corporativo,"sistema de videowall|video wall para monitoramento|videowall sala de controle",,research,P0,"Operações|TI|Engenharia",Solicitar projeto,
+NOC SOC,commercial,centro de comando e controle,"NOC audiovisual|SOC audiovisual|sala de controle|sala de situação",,research,P0,"Operações|TI|Engenharia",Falar com engenharia,
+Auditorios,commercial,sistema audiovisual para auditório,"auditório corporativo audiovisual|automação de auditório|sonorização de auditório",,research,P0,"Facilities|Engenharia|Executivo",Solicitar projeto,
+Governo,commercial,audiovisual para governo,"integração audiovisual para órgão público|modernização audiovisual órgão público|solução audiovisual governo",,research,P0,"Governo|Engenharia|Compras",Falar com especialista em Governo,
+Tribunais e Plenarios,commercial,sistema audiovisual para plenário,"sistema audiovisual para tribunal|audiovisual para câmara municipal|gravação e transmissão de sessões|sonorização para plenário",,research,P0,"Governo|Engenharia|Compras",Solicitar avaliação técnica,
+AV over IP,commercial,av over ip,"distribuição de vídeo IP|matriz AV IP|infraestrutura audiovisual em rede",,research,P1,"TI|Engenharia",Falar com engenharia,
+Dante,informational,dante áudio em rede,"áudio sobre IP|audio over ip|rede Dante audiovisual",,research,P1,"TI|Engenharia",Conversar com especialista,
+Servicos,commercial,manutenção audiovisual corporativa,"suporte audiovisual|contrato de manutenção AV|serviços gerenciados AV|comissionamento audiovisual",,research,P1,"TI|Facilities|Operações",Solicitar suporte,
+Engenharia,commercial,engenharia audiovisual,"projeto audiovisual|especificação audiovisual|comissionamento audiovisual",,research,P1,"Engenharia|TI|Projetista",Falar com engenharia,
