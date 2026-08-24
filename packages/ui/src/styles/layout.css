@@ -247,6 +247,18 @@
   inset-inline-start: var(--ativ-e-4);
 }
 
+.ativ-figura {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ativ-e-3);
+}
+
+.ativ-figura .ativ-legenda,
+.ativ-figura > figcaption {
+  margin-block: 0;
+}
+
 /* =====================================================================
    SOMENTE LEITURA (visually hidden) E ALVO DE SALTO
    ===================================================================== */

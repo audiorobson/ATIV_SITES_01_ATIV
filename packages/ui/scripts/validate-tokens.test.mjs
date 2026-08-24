@@ -297,6 +297,7 @@ test("layout primitives usam tokens oficiais e nao inventam razao fotografica", 
   assert.match(css, /\.ativ-quadro--vazio\b/);
   assert.match(css, /\.ativ-quadro--foto\b/);
   assert.match(css, /\.ativ-quadro--documento\b/);
+  assert.match(css, /\.ativ-figura\b/);
   assert.match(css, /aspect-ratio:\s*210\s*\/\s*297/);
 });
 
@@ -311,6 +312,7 @@ test("chrome de navegacao usa details, alvo 44px e nao inventa 16/9", () => {
   assert.match(css, /\.ativ-trilha\b/);
   assert.match(css, /min-height:\s*var\(--ativ-alvo-min\)/);
   assert.match(css, /max-width:\s*860px/);
+  assert.match(css, /position:\s*absolute/);
   assert.equal(/16\s*\/\s*9/.test(css), false);
   assert.equal(/box-shadow/i.test(css), false);
   assert.equal(/linear-gradient|backdrop-filter|glass/i.test(css), false);
@@ -432,6 +434,8 @@ test("showcase interno e estatico, semantico e sem host remoto", () => {
   assert.match(html, /ativ-abertura/);
   assert.match(html, /ativ-trilha/);
   assert.match(html, /ativ-quadro--vazio/);
+  assert.match(html, /ativ-figura/);
+  assert.match(html, /ativ-legenda/);
   assert.match(html, /<details/);
 });
 

@@ -27,6 +27,7 @@
   gap: var(--ativ-e-4);
   min-height: 62px;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .ativ-topo__marca {
@@ -116,6 +117,7 @@
 
 .ativ-menu {
   display: none;
+  margin-inline-start: auto;
 }
 
 .ativ-menu > summary {
@@ -156,8 +158,13 @@
   flex-direction: column;
   align-items: stretch;
   gap: var(--ativ-e-1);
-  width: 100%;
-  padding-block: var(--ativ-e-3);
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 100%;
+  z-index: 91;
+  width: auto;
+  padding: var(--ativ-e-3) var(--ativ-e-4);
+  background: var(--ativ-fundo);
   border-block-start: var(--ativ-borda) solid var(--ativ-borda-cor);
 }
 
