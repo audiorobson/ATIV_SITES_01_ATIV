@@ -1,6 +1,6 @@
 # Arquitetura Técnica — ATIV
 
-Status: **direção inicial; confirmar por ADR na Fase 1**.
+Status: **direção atual aprovada; decisões de stack específicas continuam registradas por ADR**.
 
 ## 1. Objetivos arquiteturais
 
@@ -10,31 +10,134 @@ A plataforma deve equilibrar:
 - desempenho e Core Web Vitals;
 - experiência visual sofisticada;
 - manutenção por anos;
-- conteúdo editável;
-- integrações de marketing e CRM;
+- conteúdo versionado e editável;
+- integrações de marketing e CRM quando necessárias;
 - segurança;
-- baixo acoplamento com fornecedores.
+- baixo acoplamento com fornecedores;
+- **deploy portável para HostGator por upload dos artefatos finais**.
 
-## 2. Arquitetura proposta
+A referência obrigatória de hosting é:
 
-### Web
+`docs/hostgator-deployment-contract.md`
+
+## 2. Baseline de produção
+
+Enquanto não existir ADR posterior alterando a hospedagem, a aplicação pública deve ser compatível com o ambiente mais restritivo planejado: **HostGator compartilhado + Apache + `public_html`**.
+
+Isso implica:
+
+- não assumir processo Node.js em produção;
+- não assumir Docker em produção;
+- não exigir banco de dados para servir páginas públicas;
+- não exigir crawler/dashboard/serviço SEO externo;
+- não depender de SSR/ISR/API Routes/Server Actions em runtime;
+- gerar HTML, CSS, JS, metadata, schema, sitemap e robots como artefatos publicáveis.
+
+## 3. Web
+
+Direção:
+
 - Next.js + React + TypeScript;
-- App Router;
-- Server Components por padrão;
-- Client Components apenas em ilhas interativas;
-- SSR/SSG/ISR escolhidos por tipo de conteúdo, não globalmente;
-- metadata API + geração centralizada de canonical/OG/schema.
+- App Router quando compatível com o build definido;
+- TypeScript strict;
+- conteúdo principal pré-renderizado;
+- Client Components somente para ilhas interativas;
+- metadata centralizada;
+- canonical/OG/schema gerados por código próprio;
+- static-first;
+- progressive enhancement.
 
-### CMS/backend
-- Payload CMS;
-- PostgreSQL;
-- migrations versionadas;
-- media storage abstrato;
-- collections tipadas;
-- server actions/routes apenas quando apropriado;
-- validação de schema no servidor.
+Next.js é ferramenta de desenvolvimento/build. Não é autorização automática para usar recursos que exijam servidor Node em produção.
 
-### Monorepo
+Qualquer feature que exija runtime Node deve:
+
+1. ser identificada antes da implementação;
+2. ser comparada com alternativa estática/browser/PHP coimplantável;
+3. ser rejeitada para a baseline se não houver alternativa;
+4. somente entrar após ADR de mudança de hosting.
+
+## 4. Pipeline de publicação
+
+Baseline conceitual:
+
+```text
+source
+  ↓
+Next.js + TypeScript + conteúdo Markdown
+  ↓
+build/export
+  ↓
+artefatos estáticos
+  ↓
+validação local
+  ↓
+pasta de deploy HostGator
+  ↓
+public_html/
+```
+
+Criar comando previsível, por exemplo:
+
+```bash
+pnpm build:hostgator
+```
+
+O diretório final deve ser autocontido e documentado.
+
+## 5. Renderização por classe de página
+
+### Institucional / solução / setor / case / insight
+
+Preferência obrigatória: geração estática/prerender com HTML completo.
+
+O conteúdo canônico deve existir no HTML final.
+
+### Busca interna / filtros
+
+Podem usar JavaScript no cliente como enhancement. Conteúdo indexável não pode depender dessa camada.
+
+### Landing pages de campanha
+
+Geradas estaticamente, extremamente rápidas, com conteúdo original, sem cloaking e sem redirect cross-domain intermediário.
+
+### CMS/admin
+
+Não faz parte da baseline imediata de produção.
+
+## 6. Conteúdo
+
+`content/` é uma fonte editorial versionada e portável.
+
+O site deve conseguir consumir conteúdo Markdown durante o build.
+
+Benefícios:
+
+- histórico Git;
+- revisão técnica;
+- integração com a base RAG;
+- independência de banco/runtime;
+- possibilidade de migração futura para CMS sem perder a fonte editorial.
+
+## 7. CMS/backend
+
+Payload CMS + PostgreSQL deixam de ser requisito imediato.
+
+Podem ser reavaliados futuramente, porém somente por ADR que cubra:
+
+- necessidade real;
+- disponibilidade de Node no hosting;
+- banco e migrations;
+- backups/restore;
+- segurança;
+- preview;
+- deploy;
+- migração/sincronização do conteúdo versionado;
+- impacto SEO;
+- custo operacional.
+
+Até esse ADR, Codex não deve iniciar Payload/PostgreSQL como dependência da aplicação pública.
+
+## 8. Monorepo
 
 ```text
 apps/
@@ -44,39 +147,61 @@ packages/
   seo/
   analytics/
   config/
+content/
+scripts/
 ```
 
-Evitar separar backend em serviço independente sem necessidade demonstrada. A complexidade operacional deve crescer somente quando houver requisito real.
+Evitar separar serviços ou criar backend sem necessidade demonstrada.
 
-## 3. Renderização por classe de página
+## 9. SEO package
 
-### Institucional / solução / setor / case / insight
-Preferência: prerender/ISR ou SSR com HTML completo e cache apropriado.
+`packages/seo` deve concentrar:
 
-### Busca interna / filtros
-Podem usar client-side enhancement, mas o conteúdo canônico e páginas indexáveis não devem depender da busca em JavaScript.
+- metadata builders;
+- canonical builder;
+- robots rules;
+- social metadata;
+- schema builders tipados;
+- breadcrumb helpers;
+- sitemap generation;
+- internal-link helpers;
+- redirect validation utilities;
+- acquisition parameter helpers quando apropriado.
 
-### Landing pages de campanha
-SSR/SSG, extremamente rápidas, com conteúdo original e sem cloaking. Mesmo destino deve fazer sentido para usuário e AdsBot.
+`google/schema-dts` é permitido como dependência de desenvolvimento/tipagem.
 
-### CMS/admin
-Não indexável; protegido conforme ambiente.
+Schemas só devem ser emitidos quando os dados necessários existirem.
 
-## 4. Client JavaScript budget
+## 10. SEO validation
+
+Preferir validação própria do repositório:
+
+```bash
+pnpm seo:check
+```
+
+A implementação pode viver em `scripts/seo-check.ts` ou suíte equivalente.
+
+Ferramentas como Lighthouse, Lychee, Unlighthouse e SiteOne podem ser usadas manualmente no desenvolvimento, mas não são requisito do runtime ou deploy.
+
+## 11. Client JavaScript budget
 
 Princípios:
+
 - nenhuma biblioteca de animação no root se somente uma seção usar;
 - WebGL carregado sob demanda;
-- não hidratar conteúdo estático;
+- não hidratar conteúdo estático sem necessidade;
 - preferir CSS para transições simples;
 - evitar carrosséis automáticos pesados;
-- medir bundle por rota.
+- medir bundle por rota;
+- conteúdo principal deve continuar legível/indexável sem JS crítico.
 
-## 5. Design system
+## 12. Design system
 
 `packages/ui` deve conter componentes próprios da ATIV construídos sobre primitives acessíveis.
 
 Camadas:
+
 1. design tokens;
 2. primitives;
 3. components;
@@ -85,88 +210,108 @@ Camadas:
 
 Não permitir estilos globais ad-hoc proliferarem por páginas.
 
-## 6. SEO package
+## 13. Analytics package
 
-`packages/seo` deve concentrar:
-- metadata builders;
-- canonical builder;
-- robots rules;
-- schema builders tipados;
-- breadcrumb helpers;
-- sitemap generation;
-- redirect validation utilities.
+`packages/analytics` pode conter:
 
-Schemas só devem ser emitidos quando os dados necessários existirem. Não marcar conteúdo invisível ou claims falsos.
-
-## 7. Analytics package
-
-`packages/analytics` deve conter:
 - nomes e tipos de eventos;
 - payload schemas;
 - dataLayer adapter;
 - acquisition context parser;
 - helpers para consent-aware tracking.
 
-O componente de UI dispara intenção sem conhecer GTM/GA4 internamente.
+Tracking client-side deve ser carregado de forma controlada e não pode impedir renderização/indexação.
 
-## 8. Formulários
+## 14. Formulários
 
-Pipeline recomendado:
+Não criar API Route ou Server Action como requisito de produção na baseline.
 
-`UI -> schema validation -> server endpoint/action -> anti-spam/rate limit -> persistence/integration -> analytics outcome`
+Na fase de leads, avaliar a solução compatível com o hosting real.
 
-Requisitos:
+Se continuar em HostGator compartilhado, endpoint PHP coimplantado pode ser considerado via ADR/contrato específico.
+
+Requisitos mínimos para qualquer backend de formulário:
+
+- validação server-side;
+- anti-spam;
+- segredo fora do bundle;
 - mensagens de erro úteis;
 - idempotência quando aplicável;
-- timeout de integração externa não pode destruir lead já validado;
-- logs sem expor PII desnecessária.
+- proteção adequada ao ambiente;
+- logs sem PII desnecessária.
 
-## 9. Observabilidade
+## 15. Redirects e Apache
 
-No mínimo:
-- erros de aplicação;
-- erros de formulário;
-- status de integrações;
-- deploy/version identifier;
-- métricas Web Vitals no cliente quando infraestrutura estiver definida.
+Redirects aprovados devem possuir representação compatível com o ambiente final.
 
-## 10. Ambientes
+Na baseline HostGator/Apache, usar `.htaccess` quando apropriado.
+
+Nunca:
+
+- gerar redirect por preferência estética;
+- criar redirect chain;
+- mudar slug fora do inventário/processo de migração;
+- usar cross-domain intermediary redirect em landing page de Ads.
+
+## 16. Ambientes
 
 ### local
-Dados fake/seed; nenhuma credencial de produção.
 
-### staging
-Conteúdo próximo de produção; protegido contra indexação por mecanismos adequados ao ambiente e nunca por alterações que possam vazar para produção sem teste.
+Node/pnpm e ferramentas de desenvolvimento são permitidos.
+
+### preview/staging local ou temporário
+
+Pode existir para QA, mas não é requisito para a produção funcionar.
 
 ### production
-Domínio canônico, analytics e integrações reais.
 
-## 11. Segurança
+HostGator recebe artefatos finais e não deve depender das ferramentas de desenvolvimento.
 
-Planejar:
-- CSP;
-- HSTS em produção;
+## 17. Segurança
+
+Planejar de forma compatível com Apache/static hosting:
+
+- HTTPS;
+- HSTS quando seguro para o domínio;
 - Referrer-Policy;
 - Permissions-Policy;
 - X-Content-Type-Options;
-- proteção CSRF conforme fluxo;
-- validação e sanitização contextual;
-- rate limit;
-- dependabot/atualização equivalente.
+- CSP compatível com assets e tracking aprovados;
+- nenhuma credencial no bundle client;
+- `.htaccess` versionado/gerado quando fizer parte da configuração;
+- dependency audit no desenvolvimento.
 
-## 12. Decisões que exigem ADR
+## 18. Decisões que exigem ADR
 
 Criar ADR antes de consolidar:
-- stack final CMS;
-- hosting/deploy;
-- storage de mídia;
+
+- mudança do target HostGator compartilhado para VPS/Dedicado/Node;
+- CMS com runtime;
+- banco de dados em produção;
+- backend de formulários;
+- storage de mídia externo;
 - CRM/marketing automation;
 - consent platform;
 - error monitoring;
 - uso de Three.js em produção;
-- estratégia de busca interna;
-- internacionalização, se necessária.
+- internacionalização;
+- qualquer feature incompatível com static export.
 
-## 13. Critério de simplicidade
+## 19. Gate de portabilidade
 
-A arquitetura deve ser avançada no resultado e conservadora na manutenção. Complexidade visual não justifica complexidade sistêmica desnecessária.
+Antes de considerar uma feature pronta, confirmar:
+
+- [ ] funciona sem processo Node permanente;
+- [ ] funciona sem Docker;
+- [ ] funciona sem serviço SEO externo;
+- [ ] conteúdo principal está no HTML final;
+- [ ] metadata/schema estão no artefato final;
+- [ ] sitemap/robots são publicáveis;
+- [ ] assets resolvem corretamente após upload;
+- [ ] redirects têm solução Apache compatível quando necessários.
+
+## 20. Critério de simplicidade
+
+A arquitetura deve ser avançada no resultado e conservadora na operação.
+
+> Complexidade visual não justifica complexidade de hosting. Desenvolvimento moderno é permitido; dependência operacional desnecessária não.

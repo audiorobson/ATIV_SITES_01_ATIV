@@ -2,7 +2,11 @@
 
 ## Objetivo
 
-Permitir que Codex ou qualquer desenvolvedor faça um fresh clone e reproduza o ambiente sem conhecimento implícito.
+Permitir que Codex ou qualquer desenvolvedor faça um fresh clone, desenvolva com stack moderna e produza um artefato final publicável diretamente no HostGator.
+
+A referência obrigatória de deploy é:
+
+`docs/hostgator-deployment-contract.md`
 
 ## 1. Clone
 
@@ -11,41 +15,59 @@ git clone https://github.com/audiorobson/ATIV_SITES_01_ATIV.git
 cd ATIV_SITES_01_ATIV
 ```
 
+Antes de trabalhar:
+
+```bash
+git pull --ff-only origin main
+```
+
 ## 2. Leitura obrigatória antes do bootstrap
 
 Nesta ordem:
-1. `README.md`;
+
+1. `CODEX_START_HERE.md`;
 2. `AGENTS.md`;
 3. `ROADMAP.md`;
-4. `docs/architecture.md`;
-5. `docs/site-audit.md`;
-6. `docs/seo-migration.md`;
-7. `docs/quality-gates.md`.
+4. `docs/hostgator-deployment-contract.md`;
+5. `docs/architecture.md`;
+6. `docs/site-audit.md`;
+7. `docs/seo-strategy.md`;
+8. `docs/seo-migration.md`;
+9. `docs/seo-open-source-tooling.md`;
+10. `docs/quality-gates.md`.
 
-## 3. Estado atual
+## 3. Regra de ambiente
 
-O repositório inicia documentalmente na **Fase 0/Fase 1**. Caso ainda não exista `package.json`, o primeiro trabalho de engenharia é o bootstrap de fundação — não a criação da home final.
+Node.js, pnpm, TypeScript, Playwright e outras ferramentas são permitidos no computador de desenvolvimento.
 
-## 4. Pré-requisitos alvo
+A aplicação publicada **não pode assumir que Node.js estará rodando no HostGator** enquanto o contrato de hosting atual estiver vigente.
+
+Logo:
+
+> desenvolvimento pode ser dinâmico; deploy deve ser portável e static-first.
+
+## 4. Pré-requisitos locais
 
 Confirmar no bootstrap:
-- Git recente;
-- Node.js LTS compatível com as dependências escolhidas;
-- pnpm via Corepack;
-- Docker Desktop ou PostgreSQL local apenas se Payload/Postgres já fizerem parte do spike;
-- navegador Chromium para QA inicial.
 
-Não fixar versões apenas porque estão descritas em documentação antiga. A versão exata deve ser escolhida no dia do bootstrap e registrada em lockfile/packageManager.
+- Git recente;
+- Node.js LTS compatível;
+- pnpm via Corepack;
+- navegador Chromium para QA;
+- nenhum Docker/PostgreSQL obrigatório para a aplicação pública;
+- ferramentas opcionais apenas quando agregarem valor local.
+
+Não fixar versões a partir de memória. Registrar versões escolhidas em lockfile/packageManager/ADR.
 
 ## 5. Branch inicial do Codex
 
-```bash
-git checkout -b feat/foundation-bootstrap
-```
+Para TASK 001, seguir a branch definida na issue/contrato correspondente.
+
+Para mudanças posteriores, sempre criar branch temática e não trabalhar diretamente em `main`.
 
 ## 6. Primeira entrega de engenharia esperada
 
-O Codex deve criar uma PR de fundação contendo, no mínimo:
+Estrutura mínima:
 
 ```text
 package.json
@@ -56,120 +78,216 @@ pnpm-workspace.yaml
 .env.example
 apps/web/
 packages/config/
-.github/workflows/ci.yml
+packages/seo/
+packages/ui/
+content/
+scripts/
+.github/workflows/
 ```
 
-Mais arquivos podem ser adicionados se forem necessários e coerentes com o ADR.
+A existência de `.github/workflows/` não cria dependência operacional de CI para o site funcionar.
 
 ## 7. ADR antes de lock arquitetural
 
-Criar `docs/adr/0001-web-stack.md` documentando:
-- decisão;
-- contexto;
-- alternativas consideradas;
-- consequências;
-- versões escolhidas no bootstrap;
-- por que a stack atende SEO/performance/manutenção.
+`docs/adr/0001-web-stack.md` deve registrar:
 
-Se Payload/PostgreSQL forem inicializados já nesta primeira PR, criar ADR ou seção específica justificando.
+- versões escolhidas;
+- estratégia de Next.js;
+- compatibilidade com static export;
+- impacto em SEO/performance/manutenção;
+- limitações conhecidas;
+- por que a solução é publicável no HostGator.
 
-## 8. Scripts mínimos pretendidos
+Não inicializar Payload/PostgreSQL como requisito de produção sem ADR posterior específico.
 
-O `package.json` raiz deve evoluir para fornecer comandos previsíveis, por exemplo:
+## 8. Scripts mínimos
+
+O `package.json` raiz deve evoluir para fornecer comandos previsíveis:
 
 ```bash
 pnpm dev
 pnpm lint
 pnpm typecheck
 pnpm test
-pnpm test:e2e
+pnpm seo:check
 pnpm build
+pnpm build:hostgator
 ```
 
-Os nomes finais podem ser ajustados, mas devem ser documentados e funcionar no fresh clone.
+`pnpm test:e2e` pode existir quando Playwright for adotado localmente.
 
-## 9. TypeScript
+Todos devem ser documentados e funcionar em fresh clone.
+
+## 9. `build:hostgator`
+
+Esse script é obrigatório antes da primeira publicação real.
+
+Ele deve:
+
+1. executar/depender do build de produção;
+2. gerar somente recursos compatíveis com a baseline de hosting;
+3. produzir diretório final claramente documentado;
+4. incluir metadata, schema, sitemap, robots e assets;
+5. incluir `.htaccess` quando houver regras Apache aprovadas;
+6. não exigir servidor Node para servir o resultado.
+
+Exemplo de destino:
+
+```text
+dist/hostgator/
+```
+
+O nome real pode mudar, desde que exista um único diretório final identificável para upload ao `public_html`.
+
+## 10. SEO local
+
+Criar validação própria no repositório.
+
+Comando alvo:
+
+```bash
+pnpm seo:check
+```
+
+Verificações mínimas:
+
+- metadata obrigatória;
+- canonical;
+- H1 semântico;
+- index/noindex;
+- sitemap;
+- robots;
+- JSON-LD;
+- links internos;
+- slugs protegidos;
+- regras `www`/non-`www`/`index.html`;
+- contratos `/lp/**`.
+
+Ferramentas como Lighthouse, Lychee, Unlighthouse e SiteOne podem ser utilizadas manualmente, mas não devem virar requisito do build/deploy.
+
+## 11. TypeScript
 
 - strict mode;
 - evitar `any` sem justificativa;
 - schemas compartilhados tipados;
-- tipos gerados do CMS devem ser versionados/gerados conforme estratégia documentada.
+- `schema-dts` permitido para JSON-LD;
+- separar tipos de conteúdo, SEO e tracking.
 
-## 10. Environment variables
+## 12. Environment variables
 
 `.env.example` deve:
-- listar nomes necessários;
+
+- listar nomes necessários apenas para desenvolvimento/build;
 - conter valores fake/placeholder;
 - explicar quais são opcionais;
 - nunca conter segredo real.
 
-## 11. CI inicial
+Nenhum segredo pode ser embutido no bundle client.
 
-Na primeira fundação, configurar GitHub Actions para pelo menos:
+Se um recurso exigir segredo em produção, ele precisa de backend compatível e ADR específico.
+
+## 13. CI
+
+GitHub Actions pode ser usado para conveniência de engenharia, mas não é pré-requisito operacional do site.
+
+Se houver CI, manter pelo menos:
+
 - install com lockfile frozen;
 - lint;
 - typecheck;
-- unit tests quando existirem;
-- production build.
+- testes;
+- `seo:check`;
+- production build;
+- build HostGator quando estiver implementado.
 
-E2E pode entrar na mesma PR ou imediatamente depois, conforme custo de bootstrap.
+Tudo isso também deve ser executável localmente.
 
-## 12. Primeira página técnica
+## 14. Primeira página técnica
 
-Antes da home final, criar apenas uma superfície mínima para validar:
-- App Router;
-- typography/font loading;
+Antes da Home final, validar:
+
+- App Router/arquitetura escolhida;
+- font loading;
 - metadata;
-- server rendering;
-- design tokens iniciais;
+- geração estática;
+- design tokens;
 - acessibilidade básica;
-- pipeline de build.
+- pipeline de build;
+- publicação em diretório estático.
 
-Não investir em animação premium antes de o Brand Kit estar versionado.
+## 15. Conteúdo
 
-## 13. Banco/CMS
+Usar `content/` como fonte editorial versionada.
 
-Se o spike confirmar Payload:
-- PostgreSQL local via Docker Compose ou alternativa documentada;
-- migrations versionadas;
-- seed fake;
-- admin fora do sitemap/indexação;
-- media storage local no desenvolvimento.
+O site deve conseguir ingerir Markdown durante o build, sem banco de dados em produção.
 
-## 14. Validação antes de PR
+Não duplicar copy dentro de componentes quando existir conteúdo editorial correspondente.
 
-Executar e registrar resultados:
+## 16. CMS/banco
+
+Na baseline atual:
+
+- não iniciar Payload como dependência obrigatória;
+- não iniciar PostgreSQL como dependência obrigatória;
+- não exigir Docker para rodar o site público;
+- não criar admin/CMS que bloqueie a evolução do site estático.
+
+CMS pode ser reavaliado futuramente via ADR.
+
+## 17. Recursos dinâmicos
+
+Não usar API Routes/Server Actions como requisito do site publicado sem hosting compatível.
+
+Para formulários futuros em HostGator compartilhado, avaliar endpoint PHP coimplantado em task própria.
+
+Não resolver isso antecipadamente na fundação SEO.
+
+## 18. Validação antes de PR
+
+Executar e registrar:
 
 ```bash
 pnpm lint
 pnpm typecheck
 pnpm test
+pnpm seo:check
 pnpm build
 ```
 
-Se algum script ainda não existir, a PR deve explicar claramente por quê e quando entra.
+Quando disponível:
 
-## 15. O que Codex NÃO deve fazer no primeiro clone
+```bash
+pnpm build:hostgator
+```
 
+Validar o diretório final como arquivos estáticos, sem processo Node.
+
+## 19. O que Codex NÃO deve fazer
+
+- não assumir VPS/Node em produção;
+- não iniciar CMS/runtime server-side sem ADR;
 - não copiar o site atual inteiro;
-- não inventar o Brand Kit;
-- não trocar URLs;
-- não subir produção;
-- não configurar tags reais de Ads com IDs inventados;
-- não criar conteúdo fictício como definitivo;
-- não instalar Three.js antes de existir caso de uso aprovado;
-- não construir dezenas de páginas SEO.
+- não trocar URLs sem processo SEO;
+- não subir produção sem artefato validado;
+- não inserir IDs reais/inventados de Ads;
+- não criar conteúdo fictício definitivo;
+- não instalar serviços SEO residentes;
+- não transformar crawler externo em dependência;
+- não construir páginas SEO em massa.
 
-## 16. Entrega esperada da primeira PR
+## 20. Entrega esperada
 
-Título sugerido:
+Toda PR que altera arquitetura/deploy deve informar:
 
-`feat: bootstrap web platform foundation`
-
-A PR deve fechar ou referenciar a issue de bootstrap criada no repositório e incluir:
-- arquitetura escolhida;
+- impacto no build estático;
+- impacto no HostGator;
 - comandos locais;
 - testes;
-- screenshots da superfície mínima;
-- riscos/dependências pendentes;
-- próximos passos da Fase 1.
+- artefato gerado;
+- dependências novas;
+- riscos;
+- necessidade ou não de ADR.
+
+## 21. Regra final
+
+> O desenvolvedor pode usar ferramentas avançadas localmente, mas o resultado da aplicação deve continuar publicável por upload simples no HostGator, sem dependência operacional externa.

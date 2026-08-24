@@ -1,197 +1,321 @@
 # Open Source Tooling para SEO, Performance e Integridade
 
-**Data da avaliação:** 2026-08-24
+**Data da avaliação:** 2026-08-24  
+**Status:** atualizado pela decisão de deploy portável em HostGator.
 
-Objetivo: selecionar ferramentas maduras que tornem requisitos SEO verificáveis no pipeline. Nenhuma biblioteca deve ser adicionada apenas porque contém `seo` no nome.
+## 1. Objetivo
 
-## 1. ADOPT — Lighthouse CI
+Selecionar apenas ferramentas e bibliotecas que sejam compatíveis com a regra operacional da ATIV:
 
-Repository: https://github.com/GoogleChrome/lighthouse-ci
+> O SEO essencial deve ser código do próprio projeto e o resultado deve subir junto com o site para o HostGator.
 
-Descrição do projeto: automatiza Lighthouse por commit e permite detectar/prevenir regressões de performance/qualidade.
+Nenhuma ferramenta externa de auditoria, crawler, dashboard, container ou CI remoto pode ser requisito para o site funcionar, ser indexado ou publicar metadata correta.
 
-### Uso na ATIV
-- PR quality gate;
-- performance budget;
-- detectar regressão em páginas P0;
-- guardar histórico no CI quando fizer sentido.
+A referência arquitetural obrigatória é:
 
-### Política
-Não usar score 100 como objetivo cosmético. Usar budgets e auditorias que afetam experiência, SEO e conversão.
-
-**Status:** ADOPT.
+`docs/hostgator-deployment-contract.md`
 
 ---
 
-## 2. ADOPT — schema-dts
+## 2. ADOPT — `google/schema-dts`
 
-Repository: https://github.com/google/schema-dts
+Repository: `https://github.com/google/schema-dts`
 
-Descrição: tipos TypeScript para vocabulário Schema.org/JSON-LD.
+Descrição: tipos TypeScript para o vocabulário Schema.org/JSON-LD.
 
 ### Uso na ATIV
-Criar `packages/seo` com builders tipados para:
+
+Criar builders tipados em `packages/seo` para, quando aplicável:
+
 - Organization;
 - WebSite;
+- WebPage;
 - BreadcrumbList;
+- Service;
 - Article/BlogPosting;
-- VideoObject quando aplicável.
+- FAQPage somente quando sustentado pelo conteúdo visível e elegível;
+- VideoObject quando existir vídeo real e metadata suficiente.
 
-Benefício: reduz JSON-LD inválido e cria contrato de código revisável.
+### Por que é compatível com HostGator
 
-Schema ainda precisa respeitar elegibilidade/documentação atual do Google; tipagem não garante rich result.
+`schema-dts` é usado no desenvolvimento/build. O resultado publicado é JSON-LD comum incorporado ao HTML final.
 
-**Status:** ADOPT.
-
----
-
-## 3. ADOPT — Lychee
-
-Repository: https://github.com/lycheeverse/lychee
-
-Descrição: link checker assíncrono capaz de verificar URLs em Markdown, HTML e websites.
-
-### Uso na ATIV
-- CI para documentação;
-- crawl de links internos;
-- detectar links externos quebrados;
-- validar links ATIV/Easywall/VideowallBR;
-- validar redirects depois da migração.
+Não exige Node.js, daemon, serviço externo ou banco em produção.
 
 ### Política
-Configurar allowlist apenas quando necessária e documentada. Não silenciar domínio quebrado apenas para deixar CI verde.
+
+Tipagem reduz erro estrutural, mas não garante rich result nem substitui regras atuais dos mecanismos de busca.
 
 **Status:** ADOPT.
 
 ---
 
-## 4. EVALUATE — Unlighthouse
+## 3. ADOPT — Next.js Metadata API e geração nativa
 
-Repository: https://github.com/harlan-zw/unlighthouse
+Usar quando compatível com a estratégia de exportação estática definida no projeto.
 
-Descrição do projeto: executar Google Lighthouse no site inteiro.
+Responsabilidades:
 
-### Uso possível
-- auditoria completa de staging;
-- comparar clusters inteiros;
-- detectar páginas fora do padrão;
-- relatório pré-release;
-- auditoria recorrente não bloqueante.
+- title;
+- description;
+- canonical;
+- robots;
+- Open Graph;
+- social metadata;
+- icons;
+- sitemap;
+- robots.txt.
 
-### Decisão
-Usar inicialmente como ferramenta de auditoria/staging. Lighthouse CI continua sendo o gate por PR.
+### Regra
 
-**Status:** EVALUATE / provável adoção para site-wide audit.
+O resultado precisa existir como artefato estático/publicável.
 
----
+Se uma API nativa exigir runtime incompatível com o target final, implementar alternativa de build própria.
 
-## 5. EVALUATE — next-sitemap
-
-Repository: https://github.com/iamvishnusankar/next-sitemap
-
-Descrição: geração de sitemap(s) e robots.txt para páginas estáticas, dinâmicas e server-side em Next.js.
-
-### Decisão arquitetural
-Next.js moderno possui Metadata Routes nativas para sitemap/robots. Prioridade:
-
-1. tentar recurso nativo;
-2. medir complexidade do CMS/volume;
-3. adotar `next-sitemap` somente se resolver requisito real melhor do que a implementação nativa.
-
-Não adicionar dependência antecipadamente.
-
-**Status:** EVALUATE / DEFER até arquitetura de conteúdo dinâmica estar definida.
+**Status:** ADOPT como primeira opção.
 
 ---
 
-## 6. DEFER — Partytown
+## 4. ADOPT — testes SEO próprios do repositório
 
-Repository: https://github.com/QwikDev/partytown
+Criar validação local sem depender de serviço externo.
 
-Descrição: move scripts terceiros pesados da main thread para Web Worker.
+Implementação sugerida:
 
-### Potencial
-Pode reduzir impacto de scripts third-party e ajudar performance/Core Web Vitals.
+```text
+scripts/seo-check.ts
+```
 
-### Risco no nosso caso
-Google Tag Manager, Google Ads, GA4, consentimento e Microsoft UET precisam ter comportamento e atribuição absolutamente confiáveis. Mover tags para Web Worker adiciona uma camada de compatibilidade/depuração.
+Comando alvo:
 
-### Decisão
-Não usar no bootstrap. Primeiro:
-- implementar tracking padrão;
-- validar Ads/GA4/UET/consent;
-- medir custo real dos third-party scripts;
-- testar Partytown em branch/experimento;
-- adotar somente se eventos, consent state e atribuição permanecerem corretos.
+```bash
+pnpm seo:check
+```
+
+A suíte deve verificar, no mínimo:
+
+- title ausente;
+- description obrigatória ausente;
+- title duplicado em rotas P0;
+- canonical ausente ou inválido;
+- H1 semântico ausente;
+- H1 destruído por split-text;
+- `noindex` acidental em página orgânica;
+- index acidental em `/lp/**`;
+- sitemap contendo 404, redirect ou noindex;
+- robots incoerente;
+- JSON-LD malformado ou fora do contrato;
+- links internos para rotas inexistentes;
+- URLs protegidas alteradas sem aprovação;
+- inconsistência `www` / non-`www` / `/index.html`;
+- imagem crítica sem alt quando aplicável.
+
+Esses testes devem ser executáveis localmente e podem rodar também em qualquer CI futuro, mas **não dependem do CI para existir**.
+
+**Status:** ADOPT / obrigatório.
+
+---
+
+## 5. ADOPT — gerador de deploy HostGator
+
+O projeto deve oferecer um comando previsível para gerar artefatos finais publicáveis.
+
+Exemplo:
+
+```bash
+pnpm build:hostgator
+```
+
+A saída deve conter o site pronto para upload ao `public_html`, incluindo quando aplicável:
+
+- HTML;
+- CSS;
+- JavaScript;
+- imagens/fontes/assets;
+- `robots.txt`;
+- `sitemap.xml`;
+- `.htaccess`;
+- páginas 404;
+- JSON-LD incorporado;
+- metadata final.
+
+**Status:** ADOPT / obrigatório.
+
+---
+
+## 6. EVALUATE — `iamvishnusankar/next-sitemap`
+
+Repository: `https://github.com/iamvishnusankar/next-sitemap`
+
+Pode ser utilizado somente se:
+
+1. a geração nativa/própria não cobrir o requisito;
+2. gerar arquivos estáticos publicáveis;
+3. não introduzir dependência de runtime em produção;
+4. a adoção for justificada no PR/ADR.
+
+Não adicionar antecipadamente.
+
+**Status:** EVALUATE.
+
+---
+
+## 7. OPTIONAL LOCAL — Playwright
+
+Playwright pode ser usado localmente para testes de renderização e rotas, especialmente para:
+
+- metadata final;
+- H1;
+- navegação;
+- formulários;
+- comportamento de query strings;
+- smoke tests.
+
+Ele não faz parte do runtime de produção e não é requisito para o HostGator.
+
+**Status:** OPTIONAL LOCAL / pode ser ADOPT de desenvolvimento quando útil.
+
+---
+
+## 8. OPTIONAL LOCAL — Lighthouse
+
+Google Lighthouse/Lighthouse CI pode ser executado manualmente ou no ambiente de desenvolvimento para diagnóstico de performance, acessibilidade e SEO.
+
+Não é mais gate obrigatório da arquitetura oficial e não deve criar dependência de serviço externo.
+
+Se usado, preferir execução local e relatórios descartáveis/versionados apenas quando houver valor.
+
+**Status:** OPTIONAL LOCAL.
+
+---
+
+## 9. OPTIONAL LOCAL — Lychee
+
+Repository: `https://github.com/lycheeverse/lychee`
+
+Pode ser usado localmente para localizar links quebrados em Markdown/HTML.
+
+O projeto não deve depender dele para build ou deploy.
+
+A integridade de rotas internas críticas deve também ser coberta por testes próprios do repositório.
+
+**Status:** OPTIONAL LOCAL.
+
+---
+
+## 10. OPTIONAL LOCAL — Unlighthouse
+
+Repository: `https://github.com/harlan-zw/unlighthouse`
+
+Pode ser utilizado manualmente para auditoria site-wide durante QA.
+
+Não faz parte do pipeline obrigatório e não deve ser requisito operacional.
+
+**Status:** OPTIONAL LOCAL.
+
+---
+
+## 11. OPTIONAL LOCAL — SiteOne Crawler
+
+Repository: `https://github.com/janreges/siteone-crawler`
+
+Pode ser útil manualmente para:
+
+- crawl técnico;
+- redirects;
+- headings;
+- 404;
+- auditoria de SEO/performance;
+- export de páginas para Markdown.
+
+Apesar de ser open source e útil, não será dependência oficial de produção nem gate obrigatório.
+
+**Status:** OPTIONAL LOCAL.
+
+---
+
+## 12. NÃO ADOTAR COMO DEPENDÊNCIA DE PRODUÇÃO
+
+Não incluir como requisito operacional do site:
+
+- SEOnaut;
+- crawler residente;
+- dashboard SEO self-hosted;
+- Docker para servir o site;
+- Lighthouse server;
+- banco exclusivo para auditoria SEO;
+- SaaS SEO obrigatório;
+- worker permanente de auditoria;
+- serviço externo necessário para gerar metadata em request time.
+
+---
+
+## 13. Partytown
+
+`QwikDev/partytown` permanece DEFER.
+
+Não mover Google Ads, GA4, GTM ou Microsoft UET para Web Worker antes de:
+
+- tracking padrão existir;
+- consentimento estar definido;
+- eventos terem sido validados;
+- benefício de performance ser medido;
+- compatibilidade estar comprovada.
+
+Além disso, qualquer adoção deve continuar compatível com o build estático.
 
 **Status:** DEFER.
 
 ---
 
-## 7. Ferramentas nativas / sem dependência preferidas
+## 14. Prioridade de implementação SEO
 
-Antes de instalar biblioteca, usar quando suficiente:
-- Next.js Metadata API;
-- Next.js `sitemap.ts` / `robots.ts`;
-- Next.js server rendering/static generation;
-- native redirects/headers;
-- Playwright para testes de rotas/metadata/forms;
-- `fetch`/HTTP tests para status e redirects;
-- GitHub Actions para gates.
+### Foundation
 
----
+- metadata centralizada;
+- canonical centralizado;
+- estrutura inicial `packages/seo`;
+- geração estática compatível;
+- `robots.txt`;
+- sitemap;
+- script de build portável;
+- testes estruturais locais.
 
-## 8. Test suite SEO proposta
+### SEO Foundation
 
-Criar uma suíte que falha se uma URL P0 tiver:
-- status inesperado;
-- title ausente/duplicado em amostra crítica;
-- H1 zero ou múltiplos sem justificativa;
-- canonical inválido;
-- `noindex` acidental em página orgânica;
-- index acidental em `/lp/`;
-- link interno quebrado;
-- redirect chain;
-- sitemap contendo URL noindex/redirect/404;
-- robots bloqueando recurso/página crítica;
-- JSON-LD inválido no contrato;
-- imagem hero sem dimensões/otimização suficiente;
-- página Ads bloqueada a user agents definidos no smoke test.
-
----
-
-## 9. Prioridade de implementação
-
-### Foundation PR
-- sem dependência SEO excessiva;
-- metadata nativa;
-- sitemap/robots simples;
-- teste estrutural.
-
-### SEO Foundation PR
 1. `schema-dts`;
-2. Lychee;
-3. Lighthouse CI;
-4. tests de metadata/robots/routes;
-5. Unlighthouse para staging.
+2. builders de metadata/schema;
+3. `scripts/seo-check.ts` ou equivalente;
+4. testes de rotas/indexação;
+5. contrato `/lp/**`;
+6. geração/validação de `.htaccess` quando necessária;
+7. `pnpm build:hostgator`.
 
-### Depois
-- avaliar `next-sitemap`;
-- medir scripts terceiros;
-- avaliar Partytown.
+### QA opcional
+
+Usar Lighthouse, Lychee, Unlighthouse ou SiteOne manualmente quando trouxerem valor, sem transformar essas ferramentas em requisito do deploy.
 
 ---
 
-## 10. Critério de adoção de qualquer projeto externo
+## 15. Critério de adoção de qualquer projeto externo
 
-Antes de adicionar:
-- atividade recente;
-- licença compatível;
-- comunidade/manutenção;
-- superfície de segurança;
-- benefício mensurável;
-- compatibilidade Next/Node atual;
-- necessidade real no projeto;
-- capacidade de remover/substituir futuramente.
+Antes de adicionar uma dependência:
 
-Toda adoção relevante deve aparecer em ADR ou PR com justificativa.
+- ela é necessária para o artefato final?
+- roda apenas no desenvolvimento/build?
+- o site continua funcionando sem ela em produção?
+- é possível removê-la futuramente?
+- licença é compatível?
+- atividade/manutenção são aceitáveis?
+- não obriga serviço externo?
+- não obriga Node.js em produção?
+- não impede export estático?
+- há benefício mensurável?
+
+Se qualquer dependência alterar o contrato de hosting, abrir ADR antes de implementar.
+
+---
+
+## 16. Regra final
+
+> Preferir código próprio, metadata nativa e artefatos estáticos. Ferramentas externas servem para ajudar o desenvolvimento; nunca para sustentar o SEO em produção.
