@@ -3,9 +3,9 @@
 **Status: READY para o Codex integrar a fatia de tokens** em
 `feat/design-tokens-foundation` (`bee5055`). Pacote: `docs/HANDOFF_CURSOR_TO_CODEX.md`.
 
-Esta branch (`feat/ui-chrome-foundations`) parte de `origin/main` e adiciona o
-chrome visual (topo, nav, rodapé, abertura). Não continua as branches das
-Waves 3–6 e não altera o handoff congelado de tokens.
+Esta branch (`feat/ui-internal-page-foundations`) parte de `origin/main` após a
+PR #20 e adiciona recipes de páginas internas de solução e setor. Não continua
+a branch da Wave 7 e não altera o handoff congelado de tokens.
 
 Este documento descreve o contrato visual entregue nessa branch.
 Ele não conclui a Fase 2 nem a TASK 002. Não há páginas finais, componentes React
@@ -37,9 +37,12 @@ lacuna, sem padrão genérico.
 | `packages/ui/src/styles/editorial.css` | Medida de leitura, hierarquia h2–h4, listas, tabela editorial, citação, figura, nota, chamada neutra e rastreio. |
 | `packages/ui/src/styles/forms.css` | Agrupamento, textarea, select, fieldset, obrigatório, disabled, readonly, erro, sucesso, loading e alerta. |
 | `packages/ui/src/styles/chrome.css` | Topo, navegação, menu condensado, trilha, rodapé, abertura e faixa. |
+| `packages/ui/src/styles/pages.css` | Página interna de solução/setor: abertura, índice, composição, especificação, relacionados e próxima leitura. |
 | `packages/ui/src/styles/index.css` | Bundle local (`@import` relativo, sem CDN). |
 | `packages/ui/src/index.ts` | Export JS/TS do contrato e dos caminhos de CSS. |
-| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies, controles, layout, dado técnico, artigo, formulário, topo/menu/rodapé e slots de mídia vazios. Não é página pública. |
+| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies, controles, layout, dado técnico, artigo, formulário, topo/menu/rodapé, slots de mídia vazios e índices largo/estreito. Não é página pública. |
+| `packages/ui/showcase/pagina-solucao.html` | Espécime de página interna de solução, com um H1 próprio. |
+| `packages/ui/showcase/pagina-setor.html` | Espécime de página interna de setor, com um H1 próprio. |
 | `packages/ui/scripts/` | Sincronização e validação independentes do workspace raiz. |
 
 ## Como importar
@@ -63,6 +66,7 @@ import "@ativ/ui/styles/technical-data.css";
 import "@ativ/ui/styles/editorial.css";
 import "@ativ/ui/styles/forms.css";
 import "@ativ/ui/styles/chrome.css";
+import "@ativ/ui/styles/pages.css";
 import { tokens, logos, contrast, typography } from "@ativ/ui";
 ```
 
@@ -134,6 +138,10 @@ node packages/ui/scripts/sync-tokens.mjs
   (símbolo + `.ativ-menu`), trilha, `.ativ-rodape`, `.ativ-abertura` / `.ativ-faixa`.
   Quadro vazio, foto (`object-fit: cover`), documento A4, sobreposição do logo
   branco e `.ativ-figura` + `.ativ-legenda` para mídia candidata. Sem 16/9 inventado.
+- Páginas internas: `.ativ-pagina--solucao` / `.ativ-pagina--setor`, `.ativ-abertura-pagina`
+  (eyebrow, H1, resumo, CTA), trilha, `.ativ-indice` com âncoras e `:target`,
+  composição problema → arquitetura → escopo → evidência → CTA, `.ativ-especificacao`
+  / `.ativ-integracoes`, `.ativ-relacionados` e `.ativ-proxima`. Sem JS de página.
 - Viewports do chrome: desktop (`min-width: 861px` ou `.ativ-topo--largo`) mantém
   lockup/wordmark e nav inline; tablet/mobile (`max-width: 860px` ou
   `.ativ-topo--estreito`) troca para símbolo e `details.ativ-menu`. O painel aberto
@@ -141,6 +149,10 @@ node packages/ui/scripts/sync-tokens.mjs
   `--ativ-e-8` para `--ativ-e-9` a partir de 900px, como a seção do mestre.
   Teclado: `summary` nativo, anel de foco das foundations em `a` e `summary`,
   `prefers-reduced-motion` herdado (chrome não anima). Overlay modal continua lacuna.
+- Viewports de página interna: desktop (`min-width: 861px` ou `.ativ-pagina--largo`)
+  mantém índice em coluna sticky na solução; tablet/mobile (`max-width: 860px` ou
+  `.ativ-pagina--estreito` / `--setor`) reflowa o índice em linha. `overflow-wrap`
+  e `overflow-x: clip` no `.ativ-pagina` para 320px e zoom 200%. Sem scroll suave.
 
 ## Lacunas preservadas
 
@@ -156,7 +168,7 @@ inventadas famílias visuais para fechá-las.
 | Modal, gaveta, abas de produto, 404/500 | Não extraído. |
 | Direção fotográfica e o que entra nos slots de mídia | Quadro (vazio, cover, A4, logo branco) e `.ativ-figura` + `.ativ-legenda` para candidata entregues. O que fotografar e 16/9 continuam lacuna; `--ativ-quadro-proporcao` segue do consumidor. |
 | Tipografia editorial longa (citação, nota, legenda, artigo) | Entregue como CSS de artigo. Sem loader Markdown, sem conteúdo real e sem depoimento de cliente. |
-| Abertura de página interna | `.ativ-abertura` cobre abertura de topo. Abertura de página interna de setor continua lacuna. |
+| Abertura de página interna | `.ativ-abertura-pagina` e variações solução/setor entregues. Oito heros por setor e copy real continuam lacuna. |
 | Norma de quando usar movimento/fundo | Tokens existem; política de uso ainda é lacuna. |
 | Arquivos SVG de logo | Versionados em `brand/logo/`, idênticos ao kit. Variantes `*-preto.svg` são só documento; UI usa Índigo Profundo. Não há wordmark sobre âmbar. |
 | Padding do cartão `26px 28px` | Extraído como receita do mestre, sem virar token. |
@@ -193,11 +205,12 @@ Cobertura:
 - Editorial sem hex, com medida `--ativ-grade-texto`, print e `user-select: text`.
 - Formulários sem hex, com `aria-invalid`, texto de erro/sucesso e alvo 44px.
 - Chrome sem hex, sem 16/9, com `details` e alvo 44px.
+- Páginas internas sem hex, sem 16/9, com âncoras, `:target` e um H1 por espécime.
 
 ## Gates que dependem do Codex
 
 O workspace em `origin/main` já contém o bootstrap. Esta branch não edita a raiz
-nem `apps/web`. Depois de integrar o chrome, o Codex precisa:
+nem `apps/web`. Depois de integrar chrome e páginas internas, o Codex precisa:
 
 1. reconhecer `@ativ/ui` no workspace `packages/*` (já previsto no ADR 0001);
 2. conectar o pacote à app mínima sem transformar a rota `/` em Home final;
@@ -235,6 +248,7 @@ aqui. O pacote usa `node:test` para permanecer independente.
 - `forms.css` cobre estados de formulário. Não captura leads nem fala com backend.
 - `chrome.css` cobre topo, menu, trilha, rodapé e abertura. Não é Header/Footer da
   app nem Home comercial; o Codex liga o HTML sem inventar URLs.
+- `pages.css` cobre solução e setor. Não cria rotas, metadata nem copy comercial.
 - O export `./tokens.json` é cópia verificada. Editar só um dos JSONs quebra o
   teste; usar o script de sync.
 - Sem os SVGs de logo no caminho `brand/logo`, a app não consegue cumprir as
