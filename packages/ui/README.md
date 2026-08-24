@@ -2,8 +2,8 @@
 
 Contrato visual framework-neutral da ATIV. Esta rodada entrega tokens canônicos,
 foundations CSS, controles extraídos, logos de produção, primitives de layout,
-texto editorial, estados de formulário e um showcase HTML estático. Não contém
-componentes React, Radix, shadcn ou Motion.
+texto editorial, estados de formulário, chrome de navegação e um showcase HTML
+estático. Não contém componentes React, Radix, shadcn ou Motion.
 
 ## Fonte de verdade
 
@@ -19,12 +19,13 @@ quando existir, é consumidor derivado — nunca fonte.
 | `@ativ/ui/tokens.json` | o mesmo contrato em JSON |
 | `@ativ/ui/styles/tokens.css` | custom properties canônicas |
 | `@ativ/ui/styles/foundations.css` | superfícies, tipo, foco, movimento, ícone e logo |
-| `@ativ/ui/styles/layout.css` | seção, container, pilha, agrupamento, grade, lateral, quadro e somente-leitura |
+| `@ativ/ui/styles/layout.css` | seção, container, pilha, agrupamento, grade, lateral, quadro, figura e somente-leitura |
 | `@ativ/ui/styles/controls.css` | cartão, botões, campos, seleção, slider, paginação, chip, status e badge |
 | `@ativ/ui/styles/technical-data.css` | ficha, pares chave/valor, métrica, estado rotulado, legenda, configuração e fluxo textual |
 | `@ativ/ui/styles/editorial.css` | medida de leitura, hierarquia, listas, tabela editorial, citação, nota, chamada neutra e fonte |
 | `@ativ/ui/styles/forms.css` | agrupamento, textarea, select, fieldset, obrigatório, disabled, readonly, erro, sucesso, loading e alerta |
-| `@ativ/ui/styles.css` | bundle local (`tokens` + `foundations` + `layout` + `controls` + `technical-data` + `editorial` + `forms`) |
+| `@ativ/ui/styles/chrome.css` | topo, nav, menu condensado, trilha, rodapé, abertura e faixa |
+| `@ativ/ui/styles.css` | bundle local (`tokens` + `foundations` + `layout` + `controls` + `technical-data` + `editorial` + `forms` + `chrome`) |
 
 ## Como importar
 
@@ -45,6 +46,7 @@ Ou, de forma explícita:
 @import "@ativ/ui/styles/technical-data.css";
 @import "@ativ/ui/styles/editorial.css";
 @import "@ativ/ui/styles/forms.css";
+@import "@ativ/ui/styles/chrome.css";
 ```
 
 ```ts
@@ -66,7 +68,9 @@ Usa o CSS relativo do pacote, skip link, um H1 e as superfícies `.ativ-escuro` 
 lateral, grade auto-fit e quadro. Inclui espécimes fictícios de ficha, pares,
 métrica, estado rotulado, configuração e fluxo. Inclui artigo fictício com
 citação, nota, chamada e rastreio. Inclui formulário estático com erro, sucesso,
-loading e alerta global. Sem JavaScript de página e sem CDN.
+loading e alerta global. Inclui topo, menu condensado, trilha, abertura, quadro
+vazio, figura com legenda de candidata e rodapé de espécime. Sem JavaScript de
+página e sem CDN.
 
 ## Validação local
 
@@ -90,6 +94,6 @@ node packages/ui/scripts/sync-tokens.mjs
 
 ## Fora desta fatia
 
-Navegação global e React/Radix/shadcn não entram neste pacote. A sombra do
-dropdown e `.ativ-pulso` continuam omitidas de propósito. Diagrama de rack/planta
-e direção fotográfica permanecem lacuna. Ver `docs/design-system-implementation.md`.
+React/Radix/shadcn não entram neste pacote. A sombra do dropdown e `.ativ-pulso`
+continuam omitidas. Overlay modal, abas com ARIA e direção fotográfica (o que
+fotografar) permanecem lacuna. Ver `docs/design-system-implementation.md`.

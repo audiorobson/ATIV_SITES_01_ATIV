@@ -1,0 +1,318 @@
+/*
+ * ATIV — chrome de producao: topo, navegacao, rodape, abertura e trilha.
+ * Consumir depois de tokens, foundations, layout e controls
+ * (ou via @ativ/ui/styles.css).
+ *
+ * Header e rodape nao existiam no CSS mestre. As receitas compostam
+ * alvo de 44px, borda, logos por superficie e o breakpoint 860px da grade.
+ * Sem hex, sem sombra, sem overlay modal e sem copy comercial.
+ */
+
+/* =====================================================================
+   TOPO
+   ===================================================================== */
+
+.ativ-topo {
+  background: var(--ativ-fundo);
+  border-block-end: var(--ativ-borda) solid var(--ativ-borda-cor);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.ativ-topo__barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ativ-e-4);
+  min-height: 62px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.ativ-topo__marca {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ativ-alvo-min);
+  text-decoration: none;
+  color: inherit;
+}
+
+.ativ-topo .ativ-logo--simbolo {
+  display: none;
+}
+
+.ativ-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--ativ-e-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ativ-nav a,
+.ativ-nav summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ativ-alvo-min);
+  padding-inline: var(--ativ-e-3);
+  font-family: var(--ativ-font-dados);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.ativ-nav a:hover,
+.ativ-nav summary:hover {
+  color: var(--ativ-texto);
+}
+
+.ativ-nav a[aria-current="page"] {
+  color: var(--ativ-texto);
+  border-block-end: var(--ativ-borda) solid var(--ativ-destaque);
+}
+
+.ativ-nav__ramo {
+  position: relative;
+}
+
+.ativ-nav__ramo > summary {
+  list-style: none;
+}
+
+.ativ-nav__ramo > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ativ-nav__submenu {
+  margin: 0;
+  padding: var(--ativ-e-2);
+  list-style: none;
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-menu);
+  min-inline-size: var(--ativ-min-col, 280px);
+}
+
+@media (min-width: 861px) {
+  .ativ-nav__submenu {
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline-start: 0;
+    z-index: 91;
+  }
+
+  .ativ-nav__ramo:not([open]) .ativ-nav__submenu {
+    display: none;
+  }
+}
+
+.ativ-menu {
+  display: none;
+  margin-inline-start: auto;
+}
+
+.ativ-menu > summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ativ-alvo-min);
+  height: var(--ativ-alvo-min);
+  min-height: var(--ativ-alvo-min);
+  padding: 0;
+  list-style: none;
+  cursor: pointer;
+  color: var(--ativ-texto);
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-controle);
+}
+
+.ativ-menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ativ-menu__tracos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ativ-e-1);
+  width: 18px;
+}
+
+.ativ-menu__traco {
+  display: block;
+  height: var(--ativ-borda);
+  background: currentColor;
+}
+
+.ativ-menu__painel {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--ativ-e-1);
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 100%;
+  z-index: 91;
+  width: auto;
+  padding: var(--ativ-e-3) var(--ativ-e-4);
+  background: var(--ativ-fundo);
+  border-block-start: var(--ativ-borda) solid var(--ativ-borda-cor);
+}
+
+.ativ-menu[open] .ativ-menu__painel,
+.ativ-menu.is-aberto .ativ-menu__painel {
+  display: flex;
+}
+
+.ativ-topo--estreito .ativ-logo--completo,
+.ativ-topo--estreito .ativ-logo--wordmark {
+  display: none;
+}
+
+.ativ-topo--estreito .ativ-logo--simbolo {
+  display: block;
+}
+
+.ativ-topo--estreito .ativ-nav--inline {
+  display: none;
+}
+
+.ativ-topo--estreito .ativ-menu {
+  display: block;
+}
+
+@media (max-width: 860px) {
+  .ativ-topo:not(.ativ-topo--largo) .ativ-logo--completo,
+  .ativ-topo:not(.ativ-topo--largo) .ativ-logo--wordmark {
+    display: none;
+  }
+
+  .ativ-topo:not(.ativ-topo--largo) .ativ-logo--simbolo {
+    display: block;
+  }
+
+  .ativ-topo:not(.ativ-topo--largo) .ativ-nav--inline {
+    display: none;
+  }
+
+  .ativ-topo:not(.ativ-topo--largo) .ativ-menu {
+    display: block;
+  }
+}
+
+/* =====================================================================
+   TRILHA
+   ===================================================================== */
+
+.ativ-trilha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ativ-e-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  color: var(--ativ-texto-suave);
+}
+
+.ativ-trilha a {
+  color: var(--ativ-destaque);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  min-height: var(--ativ-alvo-min);
+  display: inline-flex;
+  align-items: center;
+}
+
+.ativ-trilha [aria-current="page"] {
+  color: var(--ativ-texto);
+  text-decoration: none;
+}
+
+.ativ-trilha li:not(:last-child)::after {
+  content: "/";
+  margin-inline-start: var(--ativ-e-2);
+  color: var(--ativ-texto-suave);
+}
+
+/* =====================================================================
+   RODAPE
+   ===================================================================== */
+
+.ativ-rodape {
+  background: var(--ativ-fundo-fundo);
+  border-block-start: var(--ativ-borda) solid var(--ativ-borda-cor);
+  padding-block: var(--ativ-e-7);
+}
+
+.ativ-rodape__grade {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ativ-grade-calha);
+}
+
+.ativ-rodape__marca {
+  flex: 1 1 var(--ativ-min-col, 280px);
+}
+
+.ativ-rodape nav {
+  flex: 1 1 var(--ativ-min-col, 280px);
+}
+
+.ativ-rodape__lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ativ-e-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ativ-rodape__lista a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ativ-alvo-min);
+  color: var(--ativ-texto-corpo);
+  text-decoration: none;
+}
+
+.ativ-rodape__lista a:hover {
+  color: var(--ativ-texto);
+}
+
+.ativ-rodape__nota {
+  margin: 0;
+  margin-block-start: var(--ativ-e-5);
+}
+
+/* =====================================================================
+   ABERTURA E FAIXAS DA HOME — composicao, nao pagina final
+   ===================================================================== */
+
+.ativ-abertura {
+  padding-block: var(--ativ-e-10);
+  padding-inline: var(--ativ-grade-margem);
+  border-block-end: var(--ativ-borda) solid var(--ativ-borda-cor);
+}
+
+.ativ-faixa {
+  padding-block: var(--ativ-e-8);
+  padding-inline: var(--ativ-grade-margem);
+  border-block-end: var(--ativ-borda) solid var(--ativ-borda-cor);
+}
+
+@media (min-width: 900px) {
+  .ativ-faixa {
+    padding-block: var(--ativ-e-9);
+  }
+}

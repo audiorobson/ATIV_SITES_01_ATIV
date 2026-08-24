@@ -385,6 +385,26 @@ export const recipes = {
     values: ["19px", "dashed"],
     note: "Erro/sucesso usam --ativ-reprovado/--ativ-aprovado na borda e texto visivel. Loading e borda tracejada + aria-busy, sem pulso. Checkbox/radio nativos 19px do mestre, alvo 44px no rotulo.",
   },
+  "chrome.topo": {
+    selectors: [".ativ-topo", ".ativ-topo__barra", ".ativ-nav"],
+    values: ["62px", "12px", ".1em", "90", "91", "860px"],
+    note: "Altura 62px e z-index 90 vêm da barra da biblioteca de marca, extraidos como receita. Alvo 44px no link. Condensacao a 860px troca lockup por simbolo e o nav inline pelo details .ativ-menu.",
+  },
+  "chrome.menu": {
+    selectors: [".ativ-menu", ".ativ-menu__tracos"],
+    values: ["18px"],
+    note: "Summary 44px. Tracos de 18px reusam o minimo do simbolo. Painel absoluto na largura da barra, nao nos 44px do summary. details fornece estado expandido sem JS. Overlay modal permanece lacuna.",
+  },
+  "chrome.rodape-abertura": {
+    selectors: [".ativ-rodape", ".ativ-abertura", ".ativ-faixa", ".ativ-trilha"],
+    values: ["0.2em"],
+    note: "Rodape e abertura compostam e-7/e-10 e a calha da grade. Nao ha seis rodapes nem oito heros por setor neste contrato.",
+  },
+  "media.quadro-tratamento": {
+    selectors: [".ativ-quadro--vazio", ".ativ-quadro--foto", ".ativ-quadro--documento", ".ativ-quadro--sobrepor", ".ativ-figura"],
+    values: ["210 / 297"],
+    note: "Foto nao ganha 16/9. Documento A4 vem dos mockups oficiais do kit. Slot vazio usa min-block-size --ativ-e-10. Sobreposicao posiciona o logo branco da regra de foto. Candidata usa figure + .ativ-legenda; nao e case.",
+  },
 };
 
 export const masterExceptionsNotExtracted = [
@@ -430,6 +450,7 @@ export const cssExports = {
   technicalData: "@ativ/ui/styles/technical-data.css",
   editorial: "@ativ/ui/styles/editorial.css",
   forms: "@ativ/ui/styles/forms.css",
+  chrome: "@ativ/ui/styles/chrome.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",
 };
