@@ -1,0 +1,51 @@
+/* ATIV — tokens para Tailwind v4 (@theme).
+   Gerado a partir de brand/tokens/ativ-ui.css. O CSS é a fonte de verdade. */
+
+@theme {
+  --color-indigo-profundo: #1B1F3B;
+  --color-indigo:          #4B4FA6;
+  --color-indigo-900:      #12152C;
+  --color-indigo-800:      #262B4D;
+  --color-indigo-700:      #2E3358;
+  --color-indigo-600:      #3B4170;
+  --color-indigo-300:      #B6BAD0;
+  --color-ambar:           #F5A623;
+  --color-ambar-400:       #FFB53D;
+  --color-ardosia:         #6E7686;
+  --color-ardosia-400:     #8A90A6;
+  --color-ardosia-800:     #3A3F5C;
+  --color-gelo:            #F1F2F6;
+  --color-gelo-300:        #DCDEE8;
+  --color-gelo-200:        #E7E9F0;
+  --color-aprovado:        #1F8A4C;
+  --color-ativo:           #5DD68A;
+  --color-atencao:         #B0731A;
+  --color-reprovado:       #C0392B;
+
+  --font-display: 'Archivo', sans-serif;
+  --font-corpo:   'IBM Plex Sans', sans-serif;
+  --font-dados:   'IBM Plex Mono', monospace;
+
+  --spacing-e-1: 4px;
+  --spacing-e-2: 8px;
+  --spacing-e-3: 12px;
+  --spacing-e-4: 16px;
+  --spacing-e-5: 24px;
+  --spacing-e-6: 32px;
+  --spacing-e-7: 48px;
+  --spacing-e-8: 72px;
+  --spacing-e-9: 96px;
+  --spacing-e-10: 144px;
+
+  --radius-controle: 6px;
+  --radius-menu:     4px;
+  --radius-cartao:   10px;
+  --radius-pilula:   100px;
+
+  --container-grade: 1180px;
+
+  --ease-entrada: cubic-bezier(0, 0, .2, 1);
+  --ease-saida:   cubic-bezier(.4, 0, 1, 1);
+  --ease-padrao:  cubic-bezier(.2, 0, 0, 1);
+  --ease-firme:   cubic-bezier(.16, 1, .3, 1);
+}

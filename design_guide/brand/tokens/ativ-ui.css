@@ -1,0 +1,919 @@
+/* =====================================================================
+   ATIV — CSS mestre
+   Fonte única de tokens e componentes da identidade ATIV.
+   Paleta oficial: Comando (índigo + âmbar).
+
+   COMO USAR
+   1. Carregue as fontes (Archivo, IBM Plex Sans, IBM Plex Mono).
+   2. Carregue este arquivo.
+   3. Aplique .ativ-escuro (padrão da marca) ou .ativ-claro no contêiner.
+   4. Use o id OU a classe de cada componente — ambos valem, os
+      seletores estão agrupados para permitir reaproveitamento direto.
+
+   REGRA DE COR
+   Um destaque por superfície: âmbar no escuro, índigo no claro.
+   Todo estado inativo carrega borda de 1px — nunca apenas sombra.
+   Nenhum degradê.
+   ===================================================================== */
+
+:root {
+  /* --- núcleo (5) ------------------------------------------------- */
+  --ativ-indigo-profundo: #1B1F3B;
+  --ativ-indigo:          #4B4FA6;
+  --ativ-ambar:           #F5A623;
+  --ativ-ardosia:         #6E7686;
+  --ativ-gelo:            #F1F2F6;
+
+  /* --- apoio (11) ------------------------------------------------- */
+  --ativ-indigo-900:      #12152C;
+  --ativ-indigo-800:      #262B4D;
+  --ativ-indigo-700:      #2E3358;
+  --ativ-indigo-600:      #3B4170;
+  --ativ-indigo-300:      #B6BAD0;
+  --ativ-ardosia-400:     #8A90A6;
+  --ativ-ardosia-800:     #3A3F5C;
+  --ativ-gelo-300:        #DCDEE8;
+  --ativ-gelo-200:        #E7E9F0;
+  --ativ-ambar-400:       #FFB53D;
+  --ativ-branco:          #FFFFFF;
+
+  /* --- semânticas (4) · uso funcional apenas --------------------- */
+  --ativ-aprovado:        #1F8A4C;
+  --ativ-ativo:           #5DD68A;
+  --ativ-atencao:         #B0731A;
+  --ativ-reprovado:       #C0392B;
+
+  /* --- tipografia ------------------------------------------------- */
+  --ativ-font-display: 'Archivo', sans-serif;
+  --ativ-font-corpo:   'IBM Plex Sans', sans-serif;
+  --ativ-font-dados:   'IBM Plex Mono', monospace;
+
+  --ativ-peso-display: 900;
+  --ativ-peso-secao:   800;
+  --ativ-peso-forte:   600;
+
+  /* --- raio ------------------------------------------------------- */
+  --ativ-raio-controle: 6px;
+  --ativ-raio-menu:     4px;
+  --ativ-raio-cartao:   10px;
+  --ativ-raio-pilula:   100px;
+
+  /* --- métricas --------------------------------------------------- */
+  --ativ-alvo-min:      44px;
+  --ativ-borda:         1px;
+  --ativ-transicao:     .18s ease;
+
+  /* --- escala de espaço · base 4px, passo não-linear ---------------- */
+  --ativ-e-0:   0;
+  --ativ-e-1:   4px;    /* colagem: ícone e rótulo               */
+  --ativ-e-2:   8px;    /* interno de controle                   */
+  --ativ-e-3:  12px;    /* entre itens de uma lista              */
+  --ativ-e-4:  16px;    /* padding de cartão compacto            */
+  --ativ-e-5:  24px;    /* padding de cartão padrão              */
+  --ativ-e-6:  32px;    /* entre cartões                         */
+  --ativ-e-7:  48px;    /* entre blocos de uma seção             */
+  --ativ-e-8:  72px;    /* entre seções, mobile                  */
+  --ativ-e-9:  96px;    /* entre seções, desktop                 */
+  --ativ-e-10: 144px;   /* respiro de abertura de página         */
+
+  /* --- grade -------------------------------------------------------- */
+  --ativ-grade-max:     1180px;  /* medida máxima de conteúdo   */
+  --ativ-grade-texto:   68ch;    /* medida de leitura confortável */
+  --ativ-grade-colunas: 12;
+  --ativ-grade-calha:   var(--ativ-e-6);
+  --ativ-grade-margem:  6vw;
+
+  /* --- movimento ---------------------------------------------------- */
+  --ativ-dur-instante: 90ms;   /* realce de estado, hover        */
+  --ativ-dur-rapido:   180ms;  /* controle, foco, chip          */
+  --ativ-dur-padrao:   280ms;  /* cartão, painel, aba           */
+  --ativ-dur-amplo:    460ms;  /* entrada de seção, hero        */
+  --ativ-dur-cena:     900ms;  /* sequência de marca            */
+
+  --ativ-ease-saida:   cubic-bezier(.4, 0, 1, 1);      /* sai de cena */
+  --ativ-ease-entrada: cubic-bezier(0, 0, .2, 1);      /* entra em cena */
+  --ativ-ease-padrao:  cubic-bezier(.2, 0, 0, 1);      /* movimento na tela */
+  --ativ-ease-firme:   cubic-bezier(.16, 1, .3, 1);    /* assentamento técnico */
+
+  --ativ-desloca:      12px;   /* deslocamento de entrada padrão */
+
+  /* --- iconografia · Lucide ---------------------------------------- */
+  --ativ-icone-grade:  24px;  /* grade nativa da Lucide            */
+  --ativ-icone-traco:  2;     /* stroke-width padrão               */
+  --ativ-icone-16:     16px;  /* inline em rótulo                  */
+  --ativ-icone-20:     20px;  /* dentro de controle                */
+  --ativ-icone-24:     24px;  /* padrão de interface               */
+  --ativ-icone-32:     32px;  /* destaque de cartão                */
+  --ativ-icone-48:     48px;  /* abertura de seção                 */
+
+  /* --- foco --------------------------------------------------------- */
+  --ativ-foco-cor:     var(--ativ-ambar);
+  --ativ-foco-anel:    3px;
+  --ativ-foco-folga:   2px;
+
+  /* --- papéis resolvidos por superfície (default: escura) --------- */
+  --ativ-fundo:         var(--ativ-indigo-profundo);
+  --ativ-fundo-fundo:   var(--ativ-indigo-900);
+  --ativ-superficie:    var(--ativ-indigo-800);
+  --ativ-borda-cor:     var(--ativ-indigo-700);
+  --ativ-borda-forte:   var(--ativ-indigo-600);
+  --ativ-texto:         var(--ativ-gelo);
+  --ativ-texto-corpo:   var(--ativ-indigo-300);
+  --ativ-texto-suave:   var(--ativ-ardosia-400);
+  --ativ-destaque:      var(--ativ-ambar);
+  --ativ-destaque-hover: var(--ativ-ambar-400);
+  --ativ-sobre-destaque: var(--ativ-indigo-profundo);
+}
+
+/* =====================================================================
+   SUPERFÍCIES
+   ===================================================================== */
+
+#ativ-superficie-escura, .ativ-escuro {
+  --ativ-fundo:          var(--ativ-indigo-profundo);
+  --ativ-fundo-fundo:    var(--ativ-indigo-900);
+  --ativ-superficie:     var(--ativ-indigo-800);
+  --ativ-borda-cor:      var(--ativ-indigo-700);
+  --ativ-borda-forte:    var(--ativ-indigo-600);
+  --ativ-texto:          var(--ativ-gelo);
+  --ativ-texto-corpo:    var(--ativ-indigo-300);
+  --ativ-texto-suave:    var(--ativ-ardosia-400);
+  --ativ-destaque:       var(--ativ-ambar);
+  --ativ-destaque-hover: var(--ativ-ambar-400);
+  --ativ-sobre-destaque: var(--ativ-indigo-profundo);
+  --ativ-foco-cor:       var(--ativ-ambar);
+  background: var(--ativ-fundo);
+  color: var(--ativ-texto);
+  font-family: var(--ativ-font-corpo);
+}
+
+#ativ-superficie-clara, .ativ-claro {
+  --ativ-fundo:          var(--ativ-gelo);
+  --ativ-fundo-fundo:    var(--ativ-gelo-200);
+  --ativ-superficie:     var(--ativ-branco);
+  --ativ-borda-cor:      var(--ativ-gelo-300);
+  --ativ-borda-forte:    var(--ativ-gelo-300);
+  --ativ-texto:          var(--ativ-indigo-profundo);
+  --ativ-texto-corpo:    var(--ativ-ardosia-800);
+  --ativ-texto-suave:    var(--ativ-ardosia-400);
+  --ativ-destaque:       var(--ativ-indigo);
+  --ativ-destaque-hover: var(--ativ-indigo-profundo);
+  --ativ-sobre-destaque: var(--ativ-branco);
+  --ativ-foco-cor:       var(--ativ-indigo);
+  background: var(--ativ-fundo);
+  color: var(--ativ-texto);
+  font-family: var(--ativ-font-corpo);
+}
+
+#ativ-cartao, .ativ-cartao {
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-cartao);
+  padding: 26px 28px;
+}
+
+/* =====================================================================
+   TIPOGRAFIA
+   ===================================================================== */
+
+#ativ-titulo-pagina, .ativ-titulo-pagina {
+  font-family: var(--ativ-font-display);
+  font-weight: var(--ativ-peso-display);
+  font-size: clamp(38px, 6.4vw, 96px);
+  line-height: .96;
+  letter-spacing: -.03em;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+#ativ-titulo-secao, .ativ-titulo-secao {
+  font-family: var(--ativ-font-display);
+  font-weight: var(--ativ-peso-secao);
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+#ativ-texto, .ativ-texto {
+  font-family: var(--ativ-font-corpo);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ativ-texto-corpo);
+  text-wrap: pretty;
+}
+
+#ativ-rotulo, .ativ-rotulo {
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+}
+
+#ativ-dado, .ativ-dado {
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  color: var(--ativ-texto-corpo);
+}
+
+/* =====================================================================
+   BOTÕES
+   ===================================================================== */
+
+/* o prefixo garante que as variantes por id (#ativ-btn-primario etc.)
+   herdem a base — sem isso o caminho por id perderia até o alvo de 44px */
+#ativ-btn, [id^="ativ-btn"], .ativ-btn {
+  font-family: var(--ativ-font-corpo);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  min-height: var(--ativ-alvo-min);
+  padding: 12px 22px;
+  border-radius: var(--ativ-raio-controle);
+  border: var(--ativ-borda) solid transparent;
+  background: transparent;
+  color: var(--ativ-texto);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+  transition: background var(--ativ-transicao), border-color var(--ativ-transicao), color var(--ativ-transicao);
+}
+
+#ativ-btn-primario, .ativ-btn--primario {
+  background: var(--ativ-destaque);
+  border-color: var(--ativ-destaque);
+  color: var(--ativ-sobre-destaque);
+  font-weight: var(--ativ-peso-forte);
+}
+#ativ-btn-primario:hover, .ativ-btn--primario:hover {
+  background: var(--ativ-destaque-hover);
+  border-color: var(--ativ-destaque-hover);
+}
+
+#ativ-btn-secundario, .ativ-btn--secundario {
+  background: transparent;
+  border-color: var(--ativ-borda-forte);
+  color: var(--ativ-texto);
+}
+#ativ-btn-secundario:hover, .ativ-btn--secundario:hover {
+  border-color: var(--ativ-destaque);
+  background: var(--ativ-superficie);
+}
+
+#ativ-btn-fantasma, .ativ-btn--fantasma {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ativ-texto-corpo);
+  padding: 12px 16px;
+}
+#ativ-btn-fantasma:hover, .ativ-btn--fantasma:hover {
+  color: var(--ativ-texto);
+  background: var(--ativ-superficie);
+}
+
+#ativ-btn-desativado, .ativ-btn--desativado,
+.ativ-btn:disabled {
+  background: var(--ativ-superficie);
+  border-color: var(--ativ-borda-cor);
+  color: var(--ativ-ardosia);
+  cursor: not-allowed;
+}
+
+#ativ-btn-icone, .ativ-btn--icone {
+  width: var(--ativ-alvo-min);
+  height: var(--ativ-alvo-min);
+  min-height: var(--ativ-alvo-min);
+  padding: 0;
+  border-color: var(--ativ-borda-forte);
+}
+#ativ-btn-icone:hover, .ativ-btn--icone:hover { border-color: var(--ativ-destaque); }
+
+/* --- segmentado ------------------------------------------------------ */
+
+#ativ-segmentado, .ativ-segmentado {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-controle);
+}
+.ativ-segmentado__item {
+  font-family: var(--ativ-font-dados);
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ativ-texto-suave);
+  border: none;
+  padding: 9px 16px;
+  border-radius: var(--ativ-raio-menu);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--ativ-transicao), color var(--ativ-transicao);
+}
+.ativ-segmentado__item[aria-selected="true"],
+.ativ-segmentado__item.is-ativo {
+  background: var(--ativ-destaque);
+  color: var(--ativ-sobre-destaque);
+  font-weight: var(--ativ-peso-forte);
+}
+
+/* =====================================================================
+   CAMPOS
+   ===================================================================== */
+
+#ativ-campo, .ativ-campo {
+  width: 100%;
+  font-family: var(--ativ-font-corpo);
+  font-size: 15px;
+  color: var(--ativ-texto);
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-controle);
+  padding: 12px 14px;
+  min-height: var(--ativ-alvo-min);
+  outline: none;
+  transition: border-color var(--ativ-transicao);
+}
+#ativ-campo:focus, .ativ-campo:focus { border-color: var(--ativ-destaque); }
+#ativ-campo::placeholder, .ativ-campo::placeholder { color: var(--ativ-texto-suave); }
+
+#ativ-campo-rotulo, .ativ-campo-rotulo {
+  display: block;
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+  margin-bottom: 8px;
+}
+
+#ativ-busca, .ativ-busca { position: relative; }
+.ativ-busca .ativ-campo { padding-left: 40px; }
+.ativ-busca__icone {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ativ-ardosia);
+  pointer-events: none;
+}
+
+/* --- dropdown -------------------------------------------------------- */
+
+#ativ-dropdown, .ativ-dropdown { position: relative; }
+.ativ-dropdown__gatilho {
+  width: 100%;
+  font-family: var(--ativ-font-corpo);
+  font-size: 15px;
+  color: var(--ativ-texto);
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-controle);
+  padding: 12px 14px;
+  min-height: var(--ativ-alvo-min);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+}
+.ativ-dropdown__gatilho:hover,
+.ativ-dropdown__gatilho[aria-expanded="true"] { border-color: var(--ativ-destaque); }
+.ativ-dropdown__painel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-controle);
+  padding: 6px;
+  z-index: 20;
+  box-shadow: 0 16px 40px rgba(18, 21, 44, .4);
+}
+.ativ-dropdown__painel.is-aberto { display: block; }
+.ativ-dropdown__opcao {
+  width: 100%;
+  text-align: left;
+  font-family: var(--ativ-font-corpo);
+  font-size: 14px;
+  color: var(--ativ-texto);
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  border-radius: var(--ativ-raio-menu);
+  cursor: pointer;
+}
+.ativ-dropdown__opcao:hover { background: var(--ativ-superficie); }
+
+/* =====================================================================
+   SELEÇÃO — todo estado inativo tem borda visível
+   ===================================================================== */
+
+#ativ-toggle, .ativ-toggle {
+  width: 52px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: var(--ativ-raio-pilula);
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--ativ-transicao), border-color var(--ativ-transicao);
+}
+.ativ-toggle__pino {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--ativ-indigo-300);
+  transition: left var(--ativ-transicao), background var(--ativ-transicao);
+}
+.ativ-toggle[aria-checked="true"],
+.ativ-toggle.is-ligado {
+  background: var(--ativ-destaque);
+  border-color: var(--ativ-destaque);
+}
+.ativ-toggle[aria-checked="true"] .ativ-toggle__pino,
+.ativ-toggle.is-ligado .ativ-toggle__pino {
+  left: 26px;
+  background: var(--ativ-sobre-destaque);
+}
+
+#ativ-radio-grupo, .ativ-radio-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#ativ-radio, .ativ-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  min-height: 28px;
+}
+.ativ-radio__marca {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid var(--ativ-borda-forte);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--ativ-transicao);
+}
+.ativ-radio__marca::after {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background var(--ativ-transicao);
+}
+.ativ-radio[aria-checked="true"] .ativ-radio__marca,
+.ativ-radio.is-ativo .ativ-radio__marca { border-color: var(--ativ-destaque); }
+.ativ-radio[aria-checked="true"] .ativ-radio__marca::after,
+.ativ-radio.is-ativo .ativ-radio__marca::after { background: var(--ativ-destaque); }
+
+#ativ-checkbox, .ativ-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  min-height: 28px;
+}
+.ativ-checkbox__caixa {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  border-radius: var(--ativ-raio-menu);
+  background: transparent;
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ativ-sobre-destaque);
+  transition: background var(--ativ-transicao), border-color var(--ativ-transicao);
+}
+.ativ-checkbox[aria-checked="true"] .ativ-checkbox__caixa,
+.ativ-checkbox.is-ativo .ativ-checkbox__caixa {
+  background: var(--ativ-destaque);
+  border-color: var(--ativ-destaque);
+}
+
+/* =====================================================================
+   SLIDER
+   ===================================================================== */
+
+#ativ-slider, .ativ-slider {
+  position: relative;
+  cursor: pointer;
+  padding: 20px 0 4px;
+  touch-action: none;
+}
+.ativ-slider__trilha {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+}
+.ativ-slider__preenchido {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-radius: 3px;
+  background: var(--ativ-destaque);
+}
+.ativ-slider__pino {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--ativ-gelo);
+  border: 2px solid var(--ativ-destaque);
+}
+.ativ-slider__valor {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  transform: translateX(-50%);
+  background: var(--ativ-gelo);
+  color: var(--ativ-indigo-profundo);
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: var(--ativ-peso-forte);
+  padding: 3px 8px;
+  border-radius: var(--ativ-raio-menu);
+  white-space: nowrap;
+}
+
+/* =====================================================================
+   PAGINAÇÃO
+   ===================================================================== */
+
+#ativ-paginacao, .ativ-paginacao { display: flex; align-items: center; gap: 8px; }
+.ativ-paginacao__item {
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  color: var(--ativ-texto-corpo);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-controle);
+  cursor: pointer;
+  transition: border-color var(--ativ-transicao), color var(--ativ-transicao);
+}
+.ativ-paginacao__item:hover {
+  border-color: var(--ativ-borda-forte);
+  color: var(--ativ-texto);
+}
+.ativ-paginacao__item[aria-current="page"],
+.ativ-paginacao__item.is-ativo {
+  background: var(--ativ-destaque);
+  border-color: var(--ativ-destaque);
+  color: var(--ativ-sobre-destaque);
+  font-weight: var(--ativ-peso-forte);
+}
+.ativ-paginacao__seta { color: var(--ativ-texto); border-color: var(--ativ-borda-forte); }
+.ativ-paginacao__seta:hover { border-color: var(--ativ-destaque); }
+
+/* =====================================================================
+   CHIPS E STATUS
+   ===================================================================== */
+
+#ativ-chip, .ativ-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-pilula);
+  padding: 7px 14px;
+  font-family: var(--ativ-font-dados);
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-corpo);
+  white-space: nowrap;
+}
+.ativ-chip--destaque { color: var(--ativ-texto); }
+
+#ativ-status, .ativ-status {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+}
+.ativ-status--operando   { background: var(--ativ-ativo); }
+.ativ-status--manutencao { background: var(--ativ-ambar); }
+.ativ-status--parado     { background: var(--ativ-reprovado); }
+.ativ-status--inativo    { background: var(--ativ-ardosia); }
+
+/* =====================================================================
+   BADGE E DIVISOR
+   ===================================================================== */
+
+#ativ-badge, .ativ-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ativ-destaque);
+  color: var(--ativ-sobre-destaque);
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: var(--ativ-peso-forte);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border-radius: var(--ativ-raio-pilula);
+}
+
+#ativ-divisor, .ativ-divisor {
+  height: var(--ativ-borda);
+  background: var(--ativ-borda-cor);
+  border: none;
+  margin: 0;
+}
+
+/* =====================================================================
+   LINKS
+   ===================================================================== */
+
+#ativ-link, .ativ-link {
+  color: var(--ativ-destaque);
+  text-decoration: none;
+  transition: color var(--ativ-transicao);
+}
+#ativ-link:hover, .ativ-link:hover { color: var(--ativ-destaque-hover); }
+
+/* =====================================================================
+   LOGOTIPO — respiro e mínimos
+   ===================================================================== */
+
+#ativ-logo, .ativ-logo { display: block; height: auto; }
+.ativ-logo--completo  { min-width: 120px; }  /* abaixo disso, use --wordmark */
+.ativ-logo--wordmark  { min-width: 60px; }   /* abaixo disso, use --simbolo  */
+.ativ-logo--simbolo   { min-width: 18px; }
+.ativ-logo-respiro    { padding: calc(var(--respiro, 1em)); } /* = altura do símbolo */
+
+/* =====================================================================
+   FOCO DE TECLADO
+   Um único anel para todo o sistema. Nunca remova o outline sem repor
+   um indicador equivalente: sem isto, o site é inoperável por teclado.
+   ===================================================================== */
+
+#ativ-foco, .ativ-foco,
+.ativ-btn, .ativ-campo, .ativ-select, .ativ-textarea, .ativ-link,
+.ativ-chip, .ativ-radio, .ativ-checkbox, .ativ-toggle, .ativ-aba,
+.ativ-paginacao__item, .ativ-paginacao__seta, .ativ-slider,
+a[href], button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"]) {
+  outline: none;
+}
+
+#ativ-foco:focus-visible, .ativ-foco:focus-visible,
+.ativ-btn:focus-visible, .ativ-campo:focus-visible, .ativ-select:focus-visible,
+.ativ-textarea:focus-visible, .ativ-link:focus-visible, .ativ-chip:focus-visible,
+.ativ-radio:focus-visible, .ativ-checkbox:focus-visible, .ativ-toggle:focus-visible,
+.ativ-aba:focus-visible, .ativ-paginacao__item:focus-visible,
+.ativ-paginacao__seta:focus-visible, .ativ-slider:focus-visible,
+a[href]:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, summary:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: var(--ativ-foco-anel) solid var(--ativ-foco-cor);
+  outline-offset: var(--ativ-foco-folga);
+}
+
+/* Controle dentro de campo composto: o anel envolve o grupo, não a parte */
+.ativ-grupo:focus-within {
+  outline: var(--ativ-foco-anel) solid var(--ativ-foco-cor);
+  outline-offset: var(--ativ-foco-folga);
+}
+.ativ-grupo:focus-within :focus-visible { outline: none; }
+
+/* Foco em superfície âmbar: o anel âmbar desaparece — inverte para índigo */
+.ativ-sobre-ambar :focus-visible,
+.ativ-btn--primario:focus-visible {
+  outline-color: var(--ativ-indigo-profundo);
+}
+
+/* Atalho de salto — primeiro elemento tabulável de toda página */
+#ativ-salto, .ativ-salto {
+  position: absolute;
+  left: var(--ativ-e-4);
+  top: var(--ativ-e-4);
+  transform: translateY(-200%);
+  z-index: 999;
+  background: var(--ativ-destaque);
+  color: var(--ativ-sobre-destaque);
+  font-family: var(--ativ-font-dados);
+  font-size: 12px;
+  font-weight: var(--ativ-peso-forte);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: var(--ativ-raio-controle);
+  transition: transform var(--ativ-dur-rapido) var(--ativ-ease-entrada);
+}
+#ativ-salto:focus, .ativ-salto:focus { transform: translateY(0); }
+
+/* =====================================================================
+   ESPAÇO E GRADE
+   Só múltiplos da escala. Nenhuma margem arbitrária no sistema.
+   ===================================================================== */
+
+#ativ-secao, .ativ-secao {
+  padding: var(--ativ-e-8) var(--ativ-grade-margem);
+}
+@media (min-width: 900px) {
+  #ativ-secao, .ativ-secao { padding: var(--ativ-e-9) var(--ativ-grade-margem); }
+}
+.ativ-secao--abertura { padding-top: var(--ativ-e-10); }
+.ativ-secao--densa    { padding-block: var(--ativ-e-7); }
+
+#ativ-container, .ativ-container {
+  max-width: var(--ativ-grade-max);
+  margin-inline: auto;
+  width: 100%;
+}
+
+#ativ-grade, .ativ-grade {
+  display: grid;
+  grid-template-columns: repeat(var(--ativ-grade-colunas), minmax(0, 1fr));
+  gap: var(--ativ-grade-calha);
+}
+.ativ-grade--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ativ-grade--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ativ-grade--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ativ-grade--auto {
+  grid-template-columns: repeat(auto-fit, minmax(var(--ativ-min-col, 280px), 1fr));
+}
+@media (max-width: 860px) {
+  .ativ-grade--2, .ativ-grade--3, .ativ-grade--4 { grid-template-columns: 1fr; }
+}
+
+/* Fatias canônicas da grade de 12 */
+.ativ-col--3  { grid-column: span 3; }
+.ativ-col--4  { grid-column: span 4; }
+.ativ-col--5  { grid-column: span 5; }
+.ativ-col--6  { grid-column: span 6; }
+.ativ-col--7  { grid-column: span 7; }
+.ativ-col--8  { grid-column: span 8; }
+.ativ-col--12 { grid-column: 1 / -1; }
+@media (max-width: 860px) {
+  [class*="ativ-col--"] { grid-column: 1 / -1; }
+}
+
+/* Pilha vertical de passo único — substitui margens soltas */
+#ativ-pilha, .ativ-pilha { display: flex; flex-direction: column; gap: var(--ativ-e-4); }
+.ativ-pilha--1 { gap: var(--ativ-e-1); }
+.ativ-pilha--2 { gap: var(--ativ-e-2); }
+.ativ-pilha--3 { gap: var(--ativ-e-3); }
+.ativ-pilha--5 { gap: var(--ativ-e-5); }
+.ativ-pilha--6 { gap: var(--ativ-e-6); }
+.ativ-pilha--7 { gap: var(--ativ-e-7); }
+
+#ativ-linha, .ativ-linha {
+  display: flex;
+  align-items: center;
+  gap: var(--ativ-e-3);
+  flex-wrap: wrap;
+}
+
+/* Medida de leitura — todo texto corrido do site passa por aqui */
+#ativ-medida, .ativ-medida { max-width: var(--ativ-grade-texto); }
+.ativ-medida--curta { max-width: 46ch; }
+.ativ-medida--titulo { max-width: 22ch; }
+
+/* =====================================================================
+   MOVIMENTO
+   Duração por distância percorrida, não por importância. Toda transição
+   do sistema usa um dos cinco tempos e uma das quatro curvas.
+   ===================================================================== */
+
+#ativ-mov, .ativ-mov          { transition-duration: var(--ativ-dur-padrao); transition-timing-function: var(--ativ-ease-padrao); }
+.ativ-mov--instante           { transition-duration: var(--ativ-dur-instante); }
+.ativ-mov--rapido             { transition-duration: var(--ativ-dur-rapido); }
+.ativ-mov--amplo              { transition-duration: var(--ativ-dur-amplo); }
+.ativ-mov--entra              { transition-timing-function: var(--ativ-ease-entrada); }
+.ativ-mov--sai                { transition-timing-function: var(--ativ-ease-saida); }
+.ativ-mov--firme              { transition-timing-function: var(--ativ-ease-firme); }
+
+@keyframes ativ-entra {
+  from { opacity: 0; transform: translateY(var(--ativ-desloca)); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes ativ-entra-lateral {
+  from { opacity: 0; transform: translateX(calc(var(--ativ-desloca) * -1)); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes ativ-revela {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes ativ-pulso {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .45; }
+}
+
+#ativ-entra, .ativ-entra {
+  animation: ativ-entra var(--ativ-dur-amplo) var(--ativ-ease-entrada) both;
+}
+.ativ-entra--lateral { animation-name: ativ-entra-lateral; }
+.ativ-entra--revela  { animation-name: ativ-revela; animation-timing-function: var(--ativ-ease-firme); }
+
+/* Escalonamento de entrada — no máximo seis itens, 60ms de passo */
+.ativ-cascata > *          { animation: ativ-entra var(--ativ-dur-amplo) var(--ativ-ease-entrada) both; }
+.ativ-cascata > *:nth-child(1) { animation-delay: 0ms; }
+.ativ-cascata > *:nth-child(2) { animation-delay: 60ms; }
+.ativ-cascata > *:nth-child(3) { animation-delay: 120ms; }
+.ativ-cascata > *:nth-child(4) { animation-delay: 180ms; }
+.ativ-cascata > *:nth-child(5) { animation-delay: 240ms; }
+.ativ-cascata > *:nth-child(6) { animation-delay: 300ms; }
+
+.ativ-pulso { animation: ativ-pulso 1.6s var(--ativ-ease-padrao) infinite; }
+
+/* Respeito à preferência do sistema — obrigatório */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =====================================================================
+   ICONOGRAFIA — Lucide
+   Família oficial: Lucide (lucide.dev), licença ISC. Grade de 24×24,
+   traço de 2, extremidades e junções arredondadas, sem preenchimento.
+   Nenhuma outra biblioteca de ícones entra no sistema, e nenhum emoji.
+   O símbolo power da marca NÃO é ícone: nunca aparece em lista de
+   ícones, nunca recebe tratamento de ícone.
+   ===================================================================== */
+
+#ativ-icone, .ativ-icone {
+  width: var(--ativ-icone-24);
+  height: var(--ativ-icone-24);
+  stroke: currentColor;
+  stroke-width: var(--ativ-icone-traco);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Tamanhos canônicos. O traço compensa a escala para manter peso ótico. */
+.ativ-icone--16 { width: var(--ativ-icone-16); height: var(--ativ-icone-16); stroke-width: 2;    }
+.ativ-icone--20 { width: var(--ativ-icone-20); height: var(--ativ-icone-20); stroke-width: 2;    }
+.ativ-icone--24 { width: var(--ativ-icone-24); height: var(--ativ-icone-24); stroke-width: 2;    }
+.ativ-icone--32 { width: var(--ativ-icone-32); height: var(--ativ-icone-32); stroke-width: 1.75; }
+.ativ-icone--48 { width: var(--ativ-icone-48); height: var(--ativ-icone-48); stroke-width: 1.5;  }
+
+/* Cor: sempre herdada do texto. Só o modificador de destaque desvia. */
+.ativ-icone--destaque { color: var(--ativ-destaque); }
+.ativ-icone--suave    { color: var(--ativ-texto-suave); }
+
+/* Ícone dentro de controle: espaço colado ao rótulo, nunca centralizado à parte */
+.ativ-btn .ativ-icone,
+.ativ-chip .ativ-icone { margin-right: var(--ativ-e-2); }
+.ativ-btn--icone .ativ-icone { margin: 0; }
+
+/* Selo de ícone — único caso de fundo atrás de ícone */
+#ativ-icone-selo, .ativ-icone-selo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-controle);
+  background: var(--ativ-superficie);
+  color: var(--ativ-destaque);
+}

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #1B1F3B; }
+  a { color: #F5A623; text-decoration: none; }
+  a:hover { color: #FFB53D; }
+  ::selection { background: #F5A623; color: #1B1F3B; }
+  @media (max-width: 900px) {
+    #ativ-impl .impl-2col { grid-template-columns: 1fr !important; }
+    #ativ-impl .impl-3col { grid-template-columns: 1fr !important; }
+    #ativ-impl .impl-linha { grid-template-columns: 1fr !important; }
+  }
+</style>
+</helmet>
+
+<div id="ativ-impl" style="background:#1B1F3B;font-family:'IBM Plex Sans',sans-serif;color:#F1F2F6;overflow-x:hidden">
+
+  <nav style="position:sticky;top:0;z-index:90;background:#1B1F3B;border-bottom:1px solid #2E3358;padding:0 6vw">
+    <div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:62px;flex-wrap:wrap">
+      <a href="kit-de-marca.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;padding:10px 0">
+        <img src="logo/wordmark-2t-claro.svg" alt="ATIV" style="height:36px;display:block"/>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6E7686;border-left:1px solid #2E3358;padding-left:12px">Implementação</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:4px;flex-wrap:wrap">
+        <a href="implementacao.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1B1F3B;background:#F5A623;text-decoration:none;padding:9px 14px;border-radius:5px">Implementação</a>
+        <a href="kit-de-marca.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Kit de Marca</a>
+        <a href="componentes.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Componentes</a>
+        <a href="documentos.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Documentos</a>
+        <a href="cobertura.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Diagnóstico</a>
+      </div>
+    </div>
+  </nav>
+
+  <header style="padding:88px 6vw 72px;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#F5A623;margin-bottom:32px">
+        <span style="width:30px;height:1px;background:#F5A623;display:inline-block"></span>Guia de implementação · para agente e desenvolvedor
+      </div>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(36px,6vw,84px);line-height:0.96;letter-spacing:-0.03em;margin:0;max-width:18ch;text-wrap:pretty">Como usar este sistema.</h1>
+      <p style="max-width:700px;margin:28px 0 0;font-size:18px;line-height:1.62;color:#B6BAD0;text-wrap:pretty">O sistema visual da ATIV está fechado: cor, tipografia, espaço, foco, grade, movimento e iconografia já foram decididos, medidos e codificados. Esta página diz o que instalar, o que copiar e quais regras não se negociam. Se você está escolhendo um valor visual, pare — ele já existe.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:#2E3358;border:1px solid #2E3358;border-radius:10px;overflow:hidden;margin-top:48px">
+        <div style="background:#12152C;padding:22px 24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8A90A6">Fonte de verdade</div><div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:#F5A623;margin-top:9px">ativ-ui.css</div></div>
+        <div style="background:#12152C;padding:22px 24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8A90A6">Tipografia</div><div style="font-size:15px;color:#F1F2F6;margin-top:9px">Archivo · IBM Plex</div></div>
+        <div style="background:#12152C;padding:22px 24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8A90A6">Ícones</div><div style="font-size:15px;color:#F1F2F6;margin-top:9px">Lucide · ISC</div></div>
+        <div style="background:#12152C;padding:22px 24px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8A90A6">Meta</div><div style="font-size:15px;color:#F1F2F6;margin-top:9px">WCAG 2.2 AA</div></div>
+      </div>
+      <div style="margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E7686">Clique em qualquer comando ou bloco de código para copiar.</div>
+    </div>
+  </header>
+
+  <section style="padding:78px 6vw;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">01 — Precedência</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,4vw,42px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;max-width:24ch">Quem manda, em ordem.</h2>
+      <p style="max-width:680px;margin:0 0 40px;font-size:16px;line-height:1.6;color:#B6BAD0;text-wrap:pretty">Sem essa hierarquia, em três meses existem dois valores de âmbar no código e ninguém sabe qual é o certo.</p>
+      <div class="impl-3col" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#2E3358;border:1px solid #2E3358;border-radius:10px;overflow:hidden">
+        <div style="background:#12152C;padding:28px 30px">
+          <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:34px;line-height:1;color:#F5A623">1</div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:18px;margin:14px 0 10px;letter-spacing:-0.01em">O CSS mestre vence</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B6BAD0"><code style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#F5A623">brand/tokens/ativ-ui.css</code> é a fonte de verdade. Cor, tipo, espaço, raio, foco, grade, movimento e ícone saem de lá.</p>
+        </div>
+        <div style="background:#12152C;padding:28px 30px">
+          <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:34px;line-height:1;color:#F5A623">2</div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:18px;margin:14px 0 10px;letter-spacing:-0.01em">Tailwind é derivado</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B6BAD0"><code style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#F5A623">tailwind.ativ.js</code> e <code style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#F5A623">theme.ativ.css</code> nascem do CSS. Divergiu? Regenere o derivado — nunca o contrário.</p>
+        </div>
+        <div style="background:#12152C;padding:28px 30px">
+          <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:34px;line-height:1;color:#F5A623">3</div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:18px;margin:14px 0 10px;letter-spacing:-0.01em">Fora do CSS não existe</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B6BAD0">Cor nova, espaçamento novo ou duração nova entram primeiro no CSS mestre, com justificativa escrita, e só então no código.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:78px 6vw;background:#12152C;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">02 — Bibliotecas</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,4vw,42px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;max-width:24ch">O que instalar.</h2>
+      <p style="max-width:700px;margin:0 0 40px;font-size:16px;line-height:1.6;color:#B6BAD0;text-wrap:pretty">Fixe as versões no bootstrap do projeto. Não copie número de versão desta página nem de documentação: instale e registre o que foi instalado.</p>
+
+      <div style="border:1px solid #2E3358;border-radius:10px;overflow:hidden;background:#1B1F3B">
+        <div class="impl-linha" style="display:grid;grid-template-columns:1.1fr 1.3fr 1.6fr;background:#12152C;border-bottom:1px solid #2E3358;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">
+          <div style="padding:14px 22px">Pacote</div><div style="padding:14px 22px">Para quê</div><div style="padding:14px 22px">Regra de uso</div>
+        </div>
+        <sc-for list="{{ libs }}" as="l" hint-placeholder-count="9">
+          <div class="impl-linha" style="display:grid;grid-template-columns:1.1fr 1.3fr 1.6fr;border-bottom:1px solid #262B4D;align-items:start">
+            <div data-copy="{{ l.pkg }}" style="cursor:pointer;padding:15px 22px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#F5A623;line-height:1.5">{{ l.pkg }}</div>
+            <div style="padding:15px 22px;font-size:14px;color:#F1F2F6;line-height:1.5">{{ l.para }}</div>
+            <div style="padding:15px 22px;font-size:13.5px;color:#B6BAD0;line-height:1.55">{{ l.regra }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div class="impl-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px">
+        <div style="background:#1B1F3B;border:1px solid #2E3358;border-radius:10px;padding:26px 28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8A90A6;margin-bottom:16px">Instalação · pnpm</div>
+          <div data-copy="pnpm add lucide-react next-themes clsx tailwind-merge" style="cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.95;color:#B6BAD0;overflow-x:auto">
+            <div style="color:#6E7686"># runtime</div>
+            <div><span style="color:#F5A623">pnpm add</span> lucide-react clsx tailwind-merge</div>
+            <div style="height:12px"></div>
+            <div style="color:#6E7686"># fontes locais, sem chamada externa</div>
+            <div><span style="color:#F5A623">pnpm add</span> @fontsource/archivo</div>
+            <div><span style="color:#F5A623">pnpm add</span> @fontsource/ibm-plex-sans</div>
+            <div><span style="color:#F5A623">pnpm add</span> @fontsource/ibm-plex-mono</div>
+            <div style="height:12px"></div>
+            <div style="color:#6E7686"># qualidade</div>
+            <div><span style="color:#F5A623">pnpm add -D</span> @axe-core/playwright</div>
+          </div>
+        </div>
+        <div style="background:#1B1F3B;border:1px solid #2E3358;border-radius:10px;padding:26px 28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8A90A6;margin-bottom:16px">Não instalar</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;color:#B6BAD0;line-height:1.5">
+            <div style="display:flex;gap:10px"><span style="color:#C0392B;flex-shrink:0">✕</span><span>Outra biblioteca de ícones — <strong style="color:#F1F2F6">Lucide é a única</strong>. Heroicons, Feather, Font Awesome, Material Icons: nenhuma.</span></div>
+            <div style="display:flex;gap:10px"><span style="color:#C0392B;flex-shrink:0">✕</span><span>Biblioteca de componentes como identidade visual. shadcn/ui só como <em>primitive layer</em>, restilizado pelos tokens.</span></div>
+            <div style="display:flex;gap:10px"><span style="color:#C0392B;flex-shrink:0">✕</span><span>Pacote de gradiente, blob, partícula ou fundo animado genérico.</span></div>
+            <div style="display:flex;gap:10px"><span style="color:#C0392B;flex-shrink:0">✕</span><span>Fonte via CDN do Google em produção. Use <code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#F5A623">@fontsource</code> ou <code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#F5A623">next/font/local</code>.</span></div>
+            <div style="display:flex;gap:10px"><span style="color:#C0392B;flex-shrink:0">✕</span><span>Three.js sem valor real declarado. O README raiz exige justificativa.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:78px 6vw;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">03 — Bootstrap</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,4vw,42px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;max-width:26ch">Do zero à primeira página na norma.</h2>
+      <p style="max-width:680px;margin:0 0 40px;font-size:16px;line-height:1.6;color:#B6BAD0">Seis passos. Nenhum deles é opcional.</p>
+
+      <div style="display:flex;flex-direction:column;gap:1px;background:#2E3358;border:1px solid #2E3358;border-radius:10px;overflow:hidden">
+        <sc-for list="{{ passos }}" as="p" hint-placeholder-count="6">
+          <div style="background:#12152C;padding:26px 30px;display:flex;gap:24px;align-items:flex-start">
+            <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;line-height:1;color:#F5A623;flex-shrink:0;min-width:28px">{{ p.n }}</div>
+            <div style="min-width:0;flex:1">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:18px;margin:0 0 8px;letter-spacing:-0.01em">{{ p.titulo }}</h3>
+              <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B6BAD0;max-width:76ch">{{ p.texto }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="margin-top:20px;background:#12152C;border:1px solid #2E3358;border-radius:10px;padding:26px 30px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8A90A6;margin-bottom:16px">Estrutura resultante</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.95;color:#B6BAD0;overflow-x:auto">
+          <div>brand/</div>
+          <div>├── tokens/<span style="color:#F5A623">ativ-ui.css</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fonte de verdade</div>
+          <div>├── tokens/tailwind.ativ.js &nbsp;derivado · Tailwind v3</div>
+          <div>├── tokens/theme.ativ.css &nbsp;&nbsp;&nbsp;derivado · Tailwind v4</div>
+          <div>├── logo/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28 SVGs</div>
+          <div>├── kit-de-marca.dc.html &nbsp;&nbsp;&nbsp;&nbsp;norma visual</div>
+          <div>├── componentes.dc.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;biblioteca de UI</div>
+          <div>├── documentos.dc.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;documento oficial</div>
+          <div>└── cobertura.dc.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o que falta</div>
+          <div style="height:12px"></div>
+          <div>docs/<span style="color:#F5A623">brand-system.md</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resumo para leitura rápida</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:78px 6vw;background:#12152C;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">04 — Tokens em código</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,4vw,42px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;max-width:24ch">Como consumir os valores.</h2>
+      <p style="max-width:700px;margin:0 0 40px;font-size:16px;line-height:1.6;color:#B6BAD0;text-wrap:pretty">Um componente nunca declara hex. Ele lê o papel, e a superfície resolve. Trocar <code style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#F5A623">.ativ-escuro</code> por <code style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#F5A623">.ativ-claro</code> troca o componente inteiro, inclusive o destaque e a cor do anel de foco.</p>
+
+      <div class="impl-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div style="background:#1B1F3B;border:1px solid #2E3358;border-radius:10px;padding:26px 28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#5DD68A;margin-bottom:16px">Certo</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.95;color:#B6BAD0;overflow-x:auto">
+            <div style="color:#6E7686">// CSS puro</div>
+            <div>background: <span style="color:#F5A623">var(--ativ-superficie)</span>;</div>
+            <div>color: <span style="color:#F5A623">var(--ativ-texto-corpo)</span>;</div>
+            <div>padding: <span style="color:#F5A623">var(--ativ-e-5)</span>;</div>
+            <div>border-radius: <span style="color:#F5A623">var(--ativ-raio-cartao)</span>;</div>
+            <div style="height:12px"></div>
+            <div style="color:#6E7686">// Tailwind</div>
+            <div>class="bg-indigo-800 text-indigo-300</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p-e-5 rounded-cartao"</div>
+          </div>
+        </div>
+        <div style="background:#1B1F3B;border:1px solid #2E3358;border-radius:10px;padding:26px 28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#C0392B;margin-bottom:16px">Errado</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.95;color:#8A90A6;overflow-x:auto">
+            <div>background: <span style="color:#C0392B">#262B4D</span>;</div>
+            <div>color: <span style="color:#C0392B">#B6BAD0</span>;</div>
+            <div>padding: <span style="color:#C0392B">22px</span>;</div>
+            <div>border-radius: <span style="color:#C0392B">12px</span>;</div>
+            <div style="height:12px"></div>
+            <div>class="bg-[<span style="color:#C0392B">#262B4D</span>] p-[<span style="color:#C0392B">22px</span>]"</div>
+            <div style="height:12px"></div>
+            <div style="color:#6E7686">hex literal, valor fora da escala,</div>
+            <div style="color:#6E7686">e o componente não segue a superfície.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;background:#1B1F3B;border:1px solid #2E3358;border-radius:10px;overflow:hidden">
+        <div style="padding:16px 24px;border-bottom:1px solid #2E3358;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">Papéis de cor · o que usar em vez de hex</div>
+        <sc-for list="{{ papeis }}" as="pp" hint-placeholder-count="8">
+          <div class="impl-linha" style="display:grid;grid-template-columns:1.2fr 1fr 1.4fr;border-bottom:1px solid #262B4D;align-items:center">
+            <div data-copy="{{ pp.token }}" style="cursor:pointer;padding:13px 24px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#F5A623">{{ pp.token }}</div>
+            <div style="padding:13px 24px;font-size:13.5px;color:#F1F2F6">{{ pp.papel }}</div>
+            <div style="padding:13px 24px;font-size:13px;color:#B6BAD0;line-height:1.5">{{ pp.nota }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:78px 6vw;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">05 — Iconografia</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,4vw,42px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;max-width:22ch">Lucide, e só Lucide.</h2>
+      <p style="max-width:700px;margin:0 0 40px;font-size:16px;line-height:1.6;color:#B6BAD0;text-wrap:pretty">Família oficial: <a href="https://lucide.dev" target="_blank" rel="noopener">lucide.dev</a>, licença ISC, uso comercial livre. Grade 24×24, traço 2, extremidades arredondadas, sem preenchimento, cor herdada do texto.</p>
+
+      <div class="impl-2col" style="display:grid;grid-template-columns:1.1fr 1fr;gap:20px">
+        <div style="background:#12152C;border:1px solid #2E3358;border-radius:10px;padding:26px 28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8A90A6;margin-bottom:18px">Uso em React</div>
+          <div data-copy="import { Network, Radio, ShieldCheck } from 'lucide-react';" style="cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.95;color:#B6BAD0;overflow-x:auto">
+            <div style="color:#6E7686">// importação nomeada — nunca o pacote inteiro</div>
+            <div>import { <span style="color:#F5A623">Network, Radio, ShieldCheck</span> }</div>
+            <div>&nbsp;&nbsp;from 'lucide-react';</div>
+            <div style="height:12px"></div>
+            <div style="color:#6E7686">// decorativo</div>
+            <div>&lt;Network className="ativ-icone" <span style="color:#F5A623">aria-hidden</span> /&gt;</div>
+            <div style="height:12px"></div>
+            <div style="color:#6E7686">// única etiqueta do controle</div>
+            <div>&lt;button <span style="color:#F5A623">aria-label</span>="Fechar"&gt;</div>
+            <div>&nbsp;&nbsp;&lt;X className="ativ-icone" aria-hidden /&gt;</div>
+            <div>&lt;/button&gt;</div>
+          </div>
+          <div style="margin-top:20px;padding-top:18px;border-top:1px solid #2E3358;font-size:13.5px;color:#B6BAD0;line-height:1.6">Classes de tamanho no CSS mestre: <code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#F5A623">.ativ-icone--16 · 20 · 24 · 32 · 48</code>. Acima de 24 o traço afina para manter o peso ótico.</div>
+        </div>
+        <div style="background:#12152C;border:1px solid #2E3358;border-radius:10px;padding:26px 28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8A90A6;margin-bottom:18px">Regras</div>
+          <div style="display:flex;flex-direction:column;gap:13px;font-size:14px;color:#B6BAD0;line-height:1.5">
+            <div style="display:flex;gap:10px"><span style="color:#5DD68A;flex-shrink:0">→</span><span>Cor sempre herdada do texto ao lado. Só <code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#F5A623">--destaque</code> desvia.</span></div>
+            <div style="display:flex;gap:10px"><span style="color:#5DD68A;flex-shrink:0">→</span><span>Um ícone por elemento, à esquerda do rótulo, colado por 8 px.</span></div>
+            <div style="display:flex;gap:10px"><span style="color:#5DD68A;flex-shrink:0">→</span><span>Se o ícone não carrega informação que o texto não carrega, remova.</span></div>
+            <div style="display:flex;gap:10px"><span style="color:#C0392B;flex-shrink:0">✕</span><span>Ícone preenchido, emoji ou outra família.</span></div>
+            <div style="display:flex;gap:10px"><span style="color:#C0392B;flex-shrink:0">✕</span><span>Abaixo de 16 px — nesse tamanho, use texto.</span></div>
+            <div style="display:flex;gap:10px"><span style="color:#C0392B;flex-shrink:0">✕</span><span><strong style="color:#F1F2F6">O símbolo power da marca como ícone.</strong> Ele é identidade, vive em <code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#F5A623">brand/logo/</code> e nunca entra em grade de ícones. Para "energia" ou "operação", use a Lucide.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:78px 6vw;background:#12152C;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">06 — Regras que não se negociam</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,4vw,42px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 40px;max-width:24ch">O que reprova em revisão.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:#2E3358;border:1px solid #2E3358;border-radius:10px;overflow:hidden">
+        <sc-for list="{{ regras }}" as="r" hint-placeholder-count="9">
+          <div style="background:#1B1F3B;padding:24px 26px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#F5A623;margin-bottom:10px">{{ r.area }}</div>
+            <div style="font-weight:600;font-size:15px;margin-bottom:7px;color:#F1F2F6">{{ r.titulo }}</div>
+            <p style="margin:0;font-size:14px;color:#B6BAD0;line-height:1.6">{{ r.texto }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:78px 6vw 96px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">07 — Quando o sistema não cobre</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,4vw,42px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;max-width:24ch">Não improvise. Declare.</h2>
+      <p style="max-width:720px;margin:0 0 40px;font-size:16px;line-height:1.6;color:#B6BAD0;text-wrap:pretty">Duas famílias ainda não existem, e ambas dependem de material real da ATIV: <strong style="color:#F1F2F6">vocabulário de dado técnico</strong> — tabela de especificação, bloco de spec, medidor, diagrama de sinal — e <strong style="color:#F1F2F6">direção de fotografia</strong>. Preencher essas lacunas com tabela genérica, ícone de biblioteca ou imagem de banco é exatamente o que o README raiz proíbe, e é o que faz o resultado parecer template.</p>
+      <div class="impl-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div style="background:#12152C;border:1px solid #2E3358;border-left:3px solid #5DD68A;border-radius:10px;padding:26px 28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#5DD68A;margin-bottom:14px">Faça</div>
+          <p style="margin:0 0 14px;font-size:14.5px;color:#B6BAD0;line-height:1.6">Marque a lacuna, liste a pendência e siga. Slot vazio declarado é melhor que preenchimento genérico.</p>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#F5A623;background:#1B1F3B;border:1px solid #2E3358;border-radius:6px;padding:12px 14px">[A CONFIRMAR]</div>
+        </div>
+        <div style="background:#12152C;border:1px solid #2E3358;border-left:3px solid #C0392B;border-radius:10px;padding:26px 28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#C0392B;margin-bottom:14px">Nunca</div>
+          <p style="margin:0;font-size:14.5px;color:#B6BAD0;line-height:1.6">Inventar número, marca, modelo, prazo, preço, certificação, cliente ou case. Claim sem evidência no Claim Registry não entra. Estatística plausível inventada é o defeito mais caro de reverter — depois de publicada, virou compromisso comercial.</p>
+        </div>
+      </div>
+      <div style="margin-top:20px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8A90A6">
+        <span>Guia de implementação · padrão adotado</span>
+        <span>Fonte de verdade: brand/tokens/ativ-ui.css</span>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast" style="position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#F5A623;color:#1B1F3B;padding:12px 22px;border-radius:100px;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:all .25s;z-index:99">Copiado</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      libs: [
+        { pkg: 'next', para: 'App Router, Server Components, SEO', regra: 'Conteúdo crítico existe no HTML renderizado. Nada de H1 montado no cliente.' },
+        { pkg: 'typescript', para: 'Tipagem em todo o código', regra: 'Sem `any` em código de produto. Tokens tipados quando expostos como objeto.' },
+        { pkg: 'tailwindcss', para: 'Utilitários de estilo', regra: 'Tema vem de brand/tokens. Zero valor arbitrário entre colchetes.' },
+        { pkg: 'lucide-react', para: 'Ícones — família oficial', regra: 'Importação nomeada. Nenhuma outra biblioteca de ícones no projeto.' },
+        { pkg: '@fontsource/archivo', para: 'Archivo local · títulos', regra: 'Pesos 800 e 900 apenas. Sem CDN externo em produção.' },
+        { pkg: '@fontsource/ibm-plex-sans', para: 'Corpo de texto', regra: 'Pesos 400 a 600.' },
+        { pkg: '@fontsource/ibm-plex-mono', para: 'Dados, códigos, rótulos', regra: 'Pesos 400 e 500.' },
+        { pkg: 'motion', para: 'Motion design', regra: 'Durações e curvas dos tokens. Nunca esconde conteúdo sem fallback.' },
+        { pkg: '@axe-core/playwright', para: 'Acessibilidade automatizada', regra: 'Roda no CI. Violação de foco ou contraste quebra o build.' }
+      ],
+      passos: [
+        { n: '1', titulo: 'Copie brand/ para a raiz do repositório', texto: 'O diretório inteiro, sem renomear nada. Ele passa a ser a fonte de verdade citada nos princípios não negociáveis do README.' },
+        { n: '2', titulo: 'Importe o CSS mestre no layout raiz', texto: 'import "@/brand/tokens/ativ-ui.css" antes de qualquer estilo de aplicação. Ele define os tokens que todo o resto lê.' },
+        { n: '3', titulo: 'Ligue os tokens ao Tailwind', texto: 'Tailwind v3: espalhe tailwind.ativ.js no theme.extend. Tailwind v4: importe theme.ativ.css. Não redigite valores à mão.' },
+        { n: '4', titulo: 'Carregue as três fontes localmente', texto: 'Archivo 800/900, IBM Plex Sans 400–600, IBM Plex Mono 400/500. Via @fontsource ou next/font/local, com display swap e preload no peso do título.' },
+        { n: '5', titulo: 'Declare a superfície no elemento raiz', texto: 'Toda página abre com .ativ-escuro ou .ativ-claro. Sem isso, os componentes não têm papéis de cor para ler e caem no default.' },
+        { n: '6', titulo: 'Inclua o atalho de salto', texto: 'Um link .ativ-salto como primeiro elemento tabulável de toda página, apontando para o id do conteúdo principal. Requisito de WCAG 2.2 AA, não enfeite.' }
+      ],
+      papeis: [
+        { token: '--ativ-fundo', papel: 'Fundo da página', nota: 'Índigo Profundo no escuro, Gelo no claro' },
+        { token: '--ativ-superficie', papel: 'Cartão e painel', nota: 'Índigo 800 no escuro, Branco no claro' },
+        { token: '--ativ-borda-cor', papel: 'Borda e divisor', nota: 'Todo estado inativo tem borda de 1px — nunca só sombra' },
+        { token: '--ativ-texto', papel: 'Título e texto forte', nota: 'Máximo contraste disponível na superfície' },
+        { token: '--ativ-texto-corpo', papel: 'Texto corrido', nota: 'Índigo 300 no escuro, Ardósia 800 no claro' },
+        { token: '--ativ-texto-suave', papel: 'Rótulo e legenda', nota: 'Ardósia 400 nas duas superfícies' },
+        { token: '--ativ-destaque', papel: 'Ação e ênfase', nota: 'Âmbar no escuro, Índigo no claro — um por superfície' },
+        { token: '--ativ-foco-cor', papel: 'Anel de foco', nota: 'Acompanha o destaque; inverte para Índigo Profundo sobre âmbar' }
+      ],
+      regras: [
+        { area: 'Cor', titulo: 'Um destaque por superfície', texto: 'Âmbar no escuro, Índigo no claro. Nunca os dois competindo na mesma superfície.' },
+        { area: 'Cor', titulo: 'Âmbar é acento', texto: 'No máximo ~5% da área, sempre sobre índigo. Âmbar em texto sobre branco reprova em contraste: 2,0:1.' },
+        { area: 'Cor', titulo: 'Sem preto puro', texto: 'Índigo Profundo substitui o preto em qualquer contexto: mesma força, com temperatura de marca.' },
+        { area: 'Acessibilidade', titulo: 'Foco visível sempre', texto: 'Todo elemento interativo é alcançável por Tab e mostra o anel. Remover o outline sem repor indicador equivalente reprova.' },
+        { area: 'Acessibilidade', titulo: 'Alvo de 44 px', texto: 'Nenhum controle clicável abaixo disso, em nenhum breakpoint.' },
+        { area: 'Movimento', titulo: 'Cinco tempos, quatro curvas', texto: 'A duração vem da distância percorrida, não da importância do elemento. Nada fora da tabela.' },
+        { area: 'Movimento', titulo: 'Motion não esconde conteúdo', texto: 'Sem fragmentar H1/H2 nem montar texto em pedaços. As animações animam elementos já presentes no HTML.' },
+        { area: 'Layout', titulo: 'Espaço só da escala', texto: 'Dez degraus de base 4 px. Valor entre degraus é erro de revisão, não questão de gosto.' },
+        { area: 'Forma', titulo: 'Sem gradiente decorativo', texto: 'Sem sombra sem borda, sem canto arredondado em tabela, sem cartão com borda-accent à esquerda como enfeite.' }
+      ]
+    };
+  }
+  componentDidMount() {
+    const root = document.getElementById('ativ-impl');
+    if (!root) return;
+    root.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-copy]');
+      if (!el || !root.contains(el)) return;
+      const val = el.getAttribute('data-copy');
+      if (navigator.clipboard) navigator.clipboard.writeText(val);
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = 'Copiado';
+      t.style.opacity = '1';
+      t.style.transform = 'translateX(-50%) translateY(0)';
+      clearTimeout(this._t);
+      this._t = setTimeout(() => {
+        t.style.opacity = '0';
+        t.style.transform = 'translateX(-50%) translateY(20px)';
+      }, 1400);
+    });
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #1B1F3B; }
+  a { color: #F5A623; text-decoration: none; }
+  a:hover { color: #FFB53D; }
+  ::selection { background: #F5A623; color: #1B1F3B; }
+  @media (max-width: 860px) {
+    #ativ-diag .diag-2col { grid-template-columns: 1fr !important; }
+    #ativ-diag .diag-2col > div + div { border-left: none !important; padding-left: 0 !important; border-top: 1px solid #2E3358; padding-top: 22px !important; }
+    #ativ-diag .diag-linha { grid-template-columns: 1fr !important; }
+  }
+</style>
+</helmet>
+
+<div id="ativ-diag" style="background:#1B1F3B;font-family:'IBM Plex Sans',sans-serif;color:#F1F2F6;overflow-x:hidden">
+
+  <nav style="position:sticky;top:0;z-index:90;background:#1B1F3B;border-bottom:1px solid #2E3358;padding:0 6vw">
+    <div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:62px;flex-wrap:wrap">
+      <a href="kit-de-marca.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;padding:10px 0">
+        <img src="logo/wordmark-2t-claro.svg" alt="ATIV" style="height:36px;display:block"/>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6;border-left:1px solid #2E3358;padding-left:12px">Diagnóstico</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:4px;flex-wrap:wrap">
+        <a href="kit-de-marca.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Kit de Marca</a>
+        <a href="implementacao.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Implementação</a>
+        <a href="componentes.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Componentes</a>
+        <a href="documentos.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Documentos</a>
+        <a href="cobertura.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#1B1F3B;background:#F5A623;font-weight:600;text-decoration:none;padding:9px 14px;border-radius:5px">Diagnóstico</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== CAPA ===================== -->
+  <header style="padding:96px 6vw 78px;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#F5A623;margin-bottom:34px">
+        <span style="width:30px;height:1px;background:#F5A623;display:inline-block"></span>Estado do vocabulário · fundação concluída
+      </div>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(38px,6.4vw,92px);line-height:0.96;letter-spacing:-0.03em;margin:0;max-width:16ch">A fundação está de pé.</h1>
+      <p style="max-width:660px;margin:30px 0 0;font-size:18px;line-height:1.62;color:#B6BAD0;text-wrap:pretty">Este projeto não constrói o site — define a linguagem que o site vai adotar. A onda de fundação está concluída: foco de teclado, escala de espaço, grade e tokens de movimento entraram no CSS mestre, e tudo o que vier depois já nasce dentro da norma. O que falta é a camada que carrega informação técnica, e é justamente ela que decide se o resultado terá cara de engenharia ou de template.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;background:#2E3358;border:1px solid #2E3358;border-radius:10px;overflow:hidden;margin-top:52px">
+        <div style="background:#1B1F3B;padding:24px 22px"><div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:38px;line-height:1;color:#F1F2F6">10</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8A90A6;margin-top:8px">Páginas de vocabulário</div></div>
+        <div style="background:#1B1F3B;padding:24px 22px"><div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:38px;line-height:1;color:#F1F2F6">20</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8A90A6;margin-top:8px">Tokens de cor</div></div>
+        <div style="background:#1B1F3B;padding:24px 22px"><div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:38px;line-height:1;color:#F1F2F6">6</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8A90A6;margin-top:8px">Famílias definidas</div></div>
+        <div style="background:#1B1F3B;padding:24px 22px"><div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:38px;line-height:1;color:#F5A623">8</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8A90A6;margin-top:8px">Famílias em falta</div></div>
+        <div style="background:#1B1F3B;padding:24px 22px"><div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;line-height:1.3;color:#F1F2F6">Lucide</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8A90A6;margin-top:8px">Família de ícones</div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== 01 INVENTÁRIO ===================== -->
+  <section style="padding:82px 6vw;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">01 — Inventário</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;max-width:20ch">O que a linguagem já resolve.</h2>
+      <p style="max-width:640px;margin:0 0 42px;font-size:16px;line-height:1.6;color:#B6BAD0">Cobertura medida contra o vocabulário completo que um site institucional de engenharia AV exige — não contra o que a biblioteca se propôs a fazer.</p>
+
+      <div style="border:1px solid #2E3358;border-radius:10px;overflow:hidden">
+        <div class="diag-linha" style="display:grid;grid-template-columns:1.05fr 2fr 0.85fr;background:#12152C;border-bottom:1px solid #2E3358;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">
+          <div style="padding:14px 22px">Família</div>
+          <div style="padding:14px 22px">Estado</div>
+          <div style="padding:14px 22px">Cobertura</div>
+        </div>
+
+        <div class="diag-linha" style="display:grid;grid-template-columns:1.05fr 2fr 0.85fr;background:#262B4D;border-bottom:1px solid #2E3358;align-items:center">
+          <div style="padding:18px 22px;font-weight:600;font-size:15px">Marca e cor</div>
+          <div style="padding:18px 22px;font-size:14.5px;color:#B6BAD0;line-height:1.5">Logo, paleta, contraste, proporção, tipografia, escala de espaço e grade. <span style="color:#8A90A6">Completa.</span></div>
+          <div style="padding:18px 22px"><div style="height:5px;background:#12152C;border-radius:3px;overflow:hidden"><div style="width:100%;height:100%;background:#5DD68A"></div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:7px">100% · completa</div></div>
+        </div>
+
+        <div class="diag-linha" style="display:grid;grid-template-columns:1.05fr 2fr 0.85fr;background:#1B1F3B;border-bottom:1px solid #2E3358;align-items:center">
+          <div style="padding:18px 22px;font-weight:600;font-size:15px">Controles</div>
+          <div style="padding:18px 22px;font-size:14.5px;color:#B6BAD0;line-height:1.5">Botão, campo, seleção, slider, paginação, chip, badge, foco de teclado. <span style="color:#8A90A6">Falta estado de erro.</span></div>
+          <div style="padding:18px 22px"><div style="height:5px;background:#12152C;border-radius:3px;overflow:hidden"><div style="width:80%;height:100%;background:#5DD68A"></div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:7px">80% · sólida</div></div>
+        </div>
+
+        <div class="diag-linha" style="display:grid;grid-template-columns:1.05fr 2fr 0.85fr;background:#262B4D;border-bottom:1px solid #2E3358;align-items:center">
+          <div style="padding:18px 22px;font-weight:600;font-size:15px">Cards e blocos</div>
+          <div style="padding:18px 22px;font-size:14.5px;color:#B6BAD0;line-height:1.5">Cinco famílias: anatomia, grid, slider, duas faces, flutuante. <span style="color:#8A90A6">Nenhuma variante carrega dado técnico.</span></div>
+          <div style="padding:18px 22px"><div style="height:5px;background:#12152C;border-radius:3px;overflow:hidden"><div style="width:75%;height:100%;background:#5DD68A"></div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:7px">75% · sólida</div></div>
+        </div>
+
+        <div class="diag-linha" style="display:grid;grid-template-columns:1.05fr 2fr 0.85fr;background:#1B1F3B;border-bottom:1px solid #2E3358;align-items:center">
+          <div style="padding:18px 22px;font-weight:600;font-size:15px">Aberturas e rodapés</div>
+          <div style="padding:18px 22px;font-size:14.5px;color:#B6BAD0;line-height:1.5">Oito heros por setor, seis rodapés, carrosséis. <span style="color:#8A90A6">Só abertura de topo — falta abertura de página interna.</span></div>
+          <div style="padding:18px 22px"><div style="height:5px;background:#12152C;border-radius:3px;overflow:hidden"><div style="width:75%;height:100%;background:#5DD68A"></div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:7px">75% · sólida</div></div>
+        </div>
+
+        <div class="diag-linha" style="display:grid;grid-template-columns:1.05fr 2fr 0.85fr;background:#262B4D;border-bottom:1px solid #2E3358;align-items:center">
+          <div style="padding:18px 22px;font-weight:600;font-size:15px">Movimento e fundo</div>
+          <div style="padding:18px 22px;font-size:14.5px;color:#B6BAD0;line-height:1.5">Oito fundos, dez estudos de logo, movimento de texto, tokens de tempo e curva. <span style="color:#8A90A6">Excede a necessidade — falta norma de quando usar.</span></div>
+          <div style="padding:18px 22px"><div style="height:5px;background:#12152C;border-radius:3px;overflow:hidden"><div style="width:100%;height:100%;background:#4B4FA6"></div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:7px">100% · excedente</div></div>
+        </div>
+
+        <div class="diag-linha" style="display:grid;grid-template-columns:1.05fr 2fr 0.85fr;background:#1B1F3B;border-bottom:1px solid #2E3358;align-items:center">
+          <div style="padding:18px 22px;font-weight:600;font-size:15px">Mídia</div>
+          <div style="padding:18px 22px;font-size:14.5px;color:#B6BAD0;line-height:1.5">Sete formatos e composições com slot. <span style="color:#8A90A6">Falta a direção de arte que diz o que entra no slot.</span></div>
+          <div style="padding:18px 22px"><div style="height:5px;background:#12152C;border-radius:3px;overflow:hidden"><div style="width:45%;height:100%;background:#F5A623"></div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:7px">45% · parcial</div></div>
+        </div>
+
+        <div class="diag-linha" style="display:grid;grid-template-columns:1.05fr 2fr 0.85fr;background:#262B4D;border-bottom:1px solid #2E3358;align-items:center">
+          <div style="padding:18px 22px;font-weight:600;font-size:15px">Dado técnico</div>
+          <div style="padding:18px 22px;font-size:14.5px;color:#B6BAD0;line-height:1.5">Tabela, especificação, diagrama, medidor. <span style="color:#8A90A6">Nada definido. É a maior lacuna do sistema.</span></div>
+          <div style="padding:18px 22px"><div style="height:5px;background:#12152C;border-radius:3px;overflow:hidden"><div style="width:4%;height:100%;background:#C0392B"></div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:7px">0% · ausente</div></div>
+        </div>
+
+        <div class="diag-linha" style="display:grid;grid-template-columns:1.05fr 2fr 0.85fr;background:#1B1F3B;border-bottom:1px solid #2E3358;align-items:center">
+          <div style="padding:18px 22px;font-weight:600;font-size:15px">Iconografia</div>
+          <div style="padding:18px 22px;font-size:14.5px;color:#B6BAD0;line-height:1.5">Lucide adotada como família oficial: grade 24×24, traço 2, cinco tamanhos. <span style="color:#8A90A6">Falta o repertório fixo por setor.</span></div>
+          <div style="padding:18px 22px"><div style="height:5px;background:#12152C;border-radius:3px;overflow:hidden"><div style="width:70%;height:100%;background:#5DD68A"></div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:7px">0% · ausente</div></div>
+        </div>
+
+        <div class="diag-linha" style="display:grid;grid-template-columns:1.05fr 2fr 0.85fr;background:#262B4D;align-items:center">
+          <div style="padding:18px 22px;font-weight:600;font-size:15px">Navegação e estados</div>
+          <div style="padding:18px 22px;font-size:14.5px;color:#B6BAD0;line-height:1.5">Menu, abas, modal, vazio, carregando, erro. <span style="color:#8A90A6">Nada definido além do menu da própria biblioteca.</span></div>
+          <div style="padding:18px 22px"><div style="height:5px;background:#12152C;border-radius:3px;overflow:hidden"><div style="width:10%;height:100%;background:#C0392B"></div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:7px">10% · ausente</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 02 O QUE FALTA ===================== -->
+  <section style="padding:82px 6vw;background:#12152C;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">02 — Elementos em falta</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;max-width:22ch">Oito famílias para fechar o vocabulário.</h2>
+      <p style="max-width:640px;margin:0 0 44px;font-size:16px;line-height:1.6;color:#B6BAD0">Em ordem de impacto sobre a identidade. As duas primeiras são as que mais afastam o resultado da estética genérica.</p>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <div style="border:1px solid #2E3358;border-left:3px solid #F5A623;border-radius:10px;background:#1B1F3B;padding:28px 30px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:16px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#1B1F3B;background:#F5A623;font-weight:600;padding:4px 10px;border-radius:100px">P1</span>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:23px;margin:0;letter-spacing:-0.01em">Dado técnico</h3>
+            <span style="font-size:14px;color:#8A90A6">o que nenhum template tem</span>
+          </div>
+          <p style="margin:0 0 18px;font-size:15.5px;line-height:1.6;color:#B6BAD0;max-width:78ch">A família mais importante e a única totalmente ausente. É aqui que a linguagem da ATIV se separa de qualquer site de tecnologia: uma tabela de especificação bem composta comunica competência melhor do que qualquer ilustração. Define como número, unidade, norma e tolerância se apresentam.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Tabela de especificação</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Lista de definição</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Ficha de projeto</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Comparativo de equipamentos</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Medidor e indicador</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Número de destaque com unidade</span>
+          </div>
+        </div>
+
+        <div style="border:1px solid #2E3358;border-left:3px solid #F5A623;border-radius:10px;background:#1B1F3B;padding:28px 30px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:16px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#1B1F3B;background:#F5A623;font-weight:600;padding:4px 10px;border-radius:100px">P1</span>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:23px;margin:0;letter-spacing:-0.01em">Iconografia própria</h3>
+            <span style="font-size:14px;color:#8A90A6">maior risco de aparência genérica</span>
+          </div>
+          <p style="margin:0 0 18px;font-size:15.5px;line-height:1.6;color:#B6BAD0;max-width:78ch">Adotar um pacote pronto de mercado é o caminho mais rápido para o site parecer todos os outros — são os mesmos desenhos repetidos em milhares de páginas, e o olho reconhece na hora. A saída é um conjunto pequeno e próprio, com traço derivado do símbolo power, cobrindo o vocabulário real da ATIV em vez do genérico de negócios.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Grade e espessura de traço</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Videowall · projeção · display</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Rack · matriz · rede</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Áudio · microfone · DSP</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Câmera · automação · sala</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Norma de uso e tamanho mínimo</span>
+          </div>
+        </div>
+
+        <div style="border:1px solid #2E3358;border-left:3px solid #F5A623;border-radius:10px;background:#1B1F3B;padding:28px 30px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:16px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#1B1F3B;background:#F5A623;font-weight:600;padding:4px 10px;border-radius:100px">P1</span>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:23px;margin:0;letter-spacing:-0.01em">Grade e escala de espaço</h3>
+            <span style="font-size:14px;color:#8A90A6">a norma invisível</span>
+          </div>
+          <p style="margin:0 0 18px;font-size:15.5px;line-height:1.6;color:#B6BAD0;max-width:78ch">Cada página inventou seu próprio respiro — larguras e paddings foram decididos caso a caso, sem token que os governe. Enquanto não houver grade e escala declaradas, quem for construir o site vai reproduzir a inconsistência. É também o que destrava a assimetria descrita na seção seguinte.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Grade de 12 colunas</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Escala de espaço em tokens</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Larguras de contêiner</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Ritmo vertical de seção</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Pontos de quebra</span>
+          </div>
+        </div>
+
+        <div style="border:1px solid #2E3358;border-left:3px solid #4B4FA6;border-radius:10px;background:#1B1F3B;padding:28px 30px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:16px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#F1F2F6;background:#4B4FA6;font-weight:600;padding:4px 10px;border-radius:100px">P2</span>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:23px;margin:0;letter-spacing:-0.01em">Diagrama técnico</h3>
+            <span style="font-size:14px;color:#8A90A6">a ilustração própria da ATIV</span>
+          </div>
+          <p style="margin:0 0 18px;font-size:15.5px;line-height:1.6;color:#B6BAD0;max-width:78ch">A alternativa à ilustração decorativa. Fluxo de sinal, elevação de rack e topologia de rede são o repertório visual nativo da empresa — desenhos que só quem projeta consegue fazer. Precisam de estilo definido: espessura, cor de linha, tipo de rótulo, como indicar sinal ativo.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Fluxo de sinal</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Elevação de rack</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Topologia de rede</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Planta de sala com cotas</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Linha do tempo de obra</span>
+          </div>
+        </div>
+
+        <div style="border:1px solid #2E3358;border-left:3px solid #4B4FA6;border-radius:10px;background:#1B1F3B;padding:28px 30px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:16px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#F1F2F6;background:#4B4FA6;font-weight:600;padding:4px 10px;border-radius:100px">P2</span>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:23px;margin:0;letter-spacing:-0.01em">Navegação</h3>
+          </div>
+          <p style="margin:0 0 18px;font-size:15.5px;line-height:1.6;color:#B6BAD0;max-width:78ch">O único menu existente é o da própria biblioteca, feito para navegar entre estas páginas. Como elemento de linguagem, falta definir o comportamento e a estética de header, submenu e orientação — inclusive no celular, onde a marca aparece reduzida ao símbolo.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Header e sua condensação</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Submenu de soluções</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Gaveta mobile</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Abas</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Trilha de navegação</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Índice lateral</span>
+          </div>
+        </div>
+
+        <div style="border:1px solid #2E3358;border-left:3px solid #4B4FA6;border-radius:10px;background:#1B1F3B;padding:28px 30px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:16px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#F1F2F6;background:#4B4FA6;font-weight:600;padding:4px 10px;border-radius:100px">P2</span>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:23px;margin:0;letter-spacing:-0.01em">Estados e feedback</h3>
+          </div>
+          <p style="margin:0 0 18px;font-size:15.5px;line-height:1.6;color:#B6BAD0;max-width:78ch">A biblioteca só mostra o caminho feliz. Falta definir como a marca se comporta quando algo falha, carrega ou está vazio — e um formulário completo, com validação e confirmação, não apenas campos soltos. Coerência no erro é o que distingue sistema de coleção de telas.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Formulário com validação</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Erro por campo</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Vazio e carregando</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Modal e gaveta</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Aviso e confirmação</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">404 e 500</span>
+          </div>
+        </div>
+
+        <div style="border:1px solid #2E3358;border-left:3px solid #6E7686;border-radius:10px;background:#1B1F3B;padding:28px 30px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:16px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#F1F2F6;background:#6E7686;font-weight:600;padding:4px 10px;border-radius:100px">P3</span>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:23px;margin:0;letter-spacing:-0.01em">Tipografia editorial</h3>
+          </div>
+          <p style="margin:0 0 18px;font-size:15.5px;line-height:1.6;color:#B6BAD0;max-width:78ch">O sistema define título e rótulo, mas não texto longo. Memorial, artigo técnico e descrição de projeto precisam de medida de linha, hierarquia interna e tratamento de citação, legenda e nota.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Corpo de artigo</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Citação e depoimento</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Legenda de imagem</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Lista técnica e nota</span>
+          </div>
+        </div>
+
+        <div style="border:1px solid #2E3358;border-left:3px solid #6E7686;border-radius:10px;background:#1B1F3B;padding:28px 30px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:16px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#F1F2F6;background:#6E7686;font-weight:600;padding:4px 10px;border-radius:100px">P3</span>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:23px;margin:0;letter-spacing:-0.01em">Direção de arte e tom de voz</h3>
+          </div>
+          <p style="margin:0 0 18px;font-size:15.5px;line-height:1.6;color:#B6BAD0;max-width:78ch">As duas normas que não são componentes, mas governam tudo. Sem elas, os 26 slots de mídia serão preenchidos com banco de imagem e os títulos com frase de efeito — e todo o rigor construído se perde na primeira publicação.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">O que fotografar</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Tratamento e enquadramento</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">O que nunca usar</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Regras de escrita</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:#B6BAD0;border:1px solid #2E3358;border-radius:100px;padding:6px 13px">Vocabulário técnico aprovado</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 03 OLHAR CRÍTICO ===================== -->
+  <section style="padding:82px 6vw;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">03 — Olhar crítico</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;max-width:22ch">Onde a própria biblioteca já corre risco de parecer template.</h2>
+      <p style="max-width:680px;margin:0 0 44px;font-size:16px;line-height:1.6;color:#B6BAD0;text-wrap:pretty">Autocrítica do que foi produzido até aqui. O denominador comum de tudo que parece genérico é o mesmo: <strong style="color:#F1F2F6">forma sem informação</strong>. Cada antídoto abaixo aponta para um ativo que a ATIV tem e a concorrência não.</p>
+
+      <div style="display:flex;flex-direction:column;gap:1px;background:#2E3358;border:1px solid #2E3358;border-radius:10px;overflow:hidden">
+
+        <div class="diag-2col" style="background:#1B1F3B;padding:28px 30px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:30px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#C0392B;margin-bottom:10px">Sintoma</div>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;margin:0 0 10px;letter-spacing:-0.01em">Três colunas de ícone, título e parágrafo</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.58;color:#8A90A6">O arranjo mais repetido da web corporativa, presente em vários pontos da nossa biblioteca de cards. Preenche a tela sem informar — o leitor técnico passa direto.</p>
+          </div>
+          <div style="border-left:1px solid #2E3358;padding-left:30px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#5DD68A;margin-bottom:10px">Antídoto</div>
+            <p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#B6BAD0">Trocar o parágrafo por <strong style="color:#F1F2F6">especificação</strong>. O mesmo bloco, carregando protocolo, norma e tolerância, deixa de ser decoração e vira consulta.</p>
+            <div style="background:#12152C;border:1px solid #2E3358;border-radius:8px;padding:16px 18px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:2;color:#B6BAD0;overflow-x:auto">
+              <div style="color:#8A90A6">— em vez de "soluções robustas e confiáveis"</div>
+              <div>Latência ....... &lt; 1 quadro</div>
+              <div>Protocolo ...... Dante · AES67</div>
+              <div>Norma .......... ABNT NBR 5410</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="diag-2col" style="background:#1B1F3B;padding:28px 30px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:30px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#C0392B;margin-bottom:10px">Sintoma</div>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;margin:0 0 10px;letter-spacing:-0.01em">Numeração 01 / 02 / 03 em toda seção</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.58;color:#8A90A6">Adotamos isso em dez páginas seguidas — inclusive nesta. Funciona como sinal de rigor uma vez; repetido em tudo vira maneirismo, e maneirismo é o que denuncia layout automático.</p>
+          </div>
+          <div style="border-left:1px solid #2E3358;padding-left:30px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#5DD68A;margin-bottom:10px">Antídoto</div>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#B6BAD0">Reservar a numeração para o que é <strong style="color:#F1F2F6">de fato sequencial</strong>: etapas de projeto, fases de comissionamento, itens de memorial. Em conteúdo não sequencial, rótulo em texto puro. A regra entra no CSS mestre como norma, não como hábito.</p>
+          </div>
+        </div>
+
+        <div class="diag-2col" style="background:#1B1F3B;padding:28px 30px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:30px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#C0392B;margin-bottom:10px">Sintoma</div>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;margin:0 0 10px;letter-spacing:-0.01em">Fundo animado como enfeite</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.58;color:#8A90A6">Oito fundos animados é mais do que qualquer site precisa. Elemento que flutua sem representar nada é o clichê visual mais reconhecível de página gerada automaticamente.</p>
+          </div>
+          <div style="border-left:1px solid #2E3358;padding-left:30px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#5DD68A;margin-bottom:10px">Antídoto</div>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#B6BAD0">Promover a uso oficial apenas os fundos que <strong style="color:#F1F2F6">representam sinal real</strong> — espectro de áudio, forma de onda, matriz de vídeo. Norma: no máximo um fundo animado por página, e ele precisa dizer o que a ATIV faz. Os demais ficam como estudo, não como biblioteca.</p>
+          </div>
+        </div>
+
+        <div class="diag-2col" style="background:#1B1F3B;padding:28px 30px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:30px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#C0392B;margin-bottom:10px">Sintoma</div>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;margin:0 0 10px;letter-spacing:-0.01em">Tudo centralizado, tudo simétrico</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.58;color:#8A90A6">Colunas iguais, cards do mesmo tamanho, títulos ao centro. Layout automático sempre resolve pelo meio, porque é a saída que nunca erra — e que nunca marca.</p>
+          </div>
+          <div style="border-left:1px solid #2E3358;padding-left:30px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#5DD68A;margin-bottom:10px">Antídoto</div>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#B6BAD0">Declarar uma grade de <strong style="color:#F1F2F6">12 colunas usada de forma assimétrica</strong>: texto em cinco colunas, imagem sangrando até a borda, tabela ocupando a largura toda. Hierarquia por tamanho desigual, não por repetição. Depende dos tokens de grade da seção anterior.</p>
+          </div>
+        </div>
+
+        <div class="diag-2col" style="background:#1B1F3B;padding:28px 30px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:30px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#C0392B;margin-bottom:10px">Sintoma</div>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;margin:0 0 10px;letter-spacing:-0.01em">Foto de banco de imagem</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.58;color:#8A90A6">Os 26 slots de mídia estão vazios. Preenchidos com sala de reunião de catálogo, todo o rigor construído se perde no primeiro rolar de tela.</p>
+          </div>
+          <div style="border-left:1px solid #2E3358;padding-left:30px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#5DD68A;margin-bottom:10px">Antídoto</div>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#B6BAD0">Norma de fotografia sobre <strong style="color:#F1F2F6">obra real da ATIV</strong>: rack aberto com cabo identificado, videowall em operação, equipe em campo, tela de comissionamento. Imagem imperfeita de projeto real vence foto perfeita de catálogo — e é o único item deste sistema que ninguém consegue reproduzir.</p>
+          </div>
+        </div>
+
+        <div class="diag-2col" style="background:#1B1F3B;padding:28px 30px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:30px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#C0392B;margin-bottom:10px">Sintoma</div>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;margin:0 0 10px;letter-spacing:-0.01em">Texto que promete sem afirmar</h3>
+            <p style="margin:0;font-size:14.5px;line-height:1.58;color:#8A90A6">"Soluções sob medida", "tecnologia de ponta", "parceiro estratégico". Nenhuma dessas frases sobrevive à pergunta seguinte de um engenheiro.</p>
+          </div>
+          <div style="border-left:1px solid #2E3358;padding-left:30px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#5DD68A;margin-bottom:10px">Antídoto</div>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#B6BAD0">Regra de escrita: toda afirmação carrega <strong style="color:#F1F2F6">número, norma ou nome próprio</strong>. Em vez de "ampla experiência", o total de salas entregues. Em vez de "alta disponibilidade", o SLA contratado.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 04 DÍVIDAS DO CSS ===================== -->
+  <section style="padding:82px 6vw;background:#12152C;border-bottom:1px solid #2E3358">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">04 — Dívidas do CSS mestre · quitadas</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 14px;max-width:24ch">As três ausências do arquivo que governa tudo, fechadas.</h2>
+      <p style="max-width:640px;margin:0 0 42px;font-size:16px;line-height:1.6;color:#B6BAD0">O <a href="componentes.dc.html">CSS mestre</a> ganhou 228 linhas: foco de teclado, escala de espaço e tokens de movimento entraram no arquivo. A onda de fundação está concluída — tudo o que vier depois já nasce dentro da norma.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px">
+
+        <div style="background:#1B1F3B;border:1px solid #2E3358;border-radius:10px;padding:26px 28px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+            <span style="width:7px;height:7px;border-radius:50%;background:#5DD68A;flex-shrink:0"></span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#8A90A6">Acessibilidade · resolvido</span>
+          </div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;margin:0 0 10px;letter-spacing:-0.01em">Anel de foco único</h3>
+          <p style="margin:0 0 14px;font-size:14.5px;line-height:1.58;color:#B6BAD0">Um único anel <code style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#F5A623">:focus-visible</code> cobre botão, campo, link, chip, aba e paginação. A cor resolve por superfície — âmbar no escuro, índigo no claro — e inverte para índigo profundo sobre âmbar. Inclui atalho de salto para o conteúdo.</p>
+          <div style="background:#12152C;border:1px solid #2E3358;border-radius:6px;padding:13px 15px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.8;color:#B6BAD0;overflow-x:auto">--ativ-foco-cor · anel 3px<br>--ativ-foco-folga 2px<br>.ativ-grupo · .ativ-salto</div>
+        </div>
+
+        <div style="background:#1B1F3B;border:1px solid #2E3358;border-radius:10px;padding:26px 28px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+            <span style="width:7px;height:7px;border-radius:50%;background:#5DD68A;flex-shrink:0"></span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#8A90A6">Estrutura · resolvido</span>
+          </div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;margin:0 0 10px;letter-spacing:-0.01em">Escala de espaço e grade</h3>
+          <p style="margin:0 0 14px;font-size:14.5px;line-height:1.58;color:#B6BAD0">Onze degraus de base 4 px, mais grade de 12 colunas, calha, margem e medida de leitura. O respiro deixou de ser decisão de página: seção, container, pilha e coluna vêm do arquivo.</p>
+          <div style="background:#12152C;border:1px solid #2E3358;border-radius:6px;padding:13px 15px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.8;color:#B6BAD0;overflow-x:auto">--ativ-e-1 … e-10<br>--ativ-grade-max / texto / calha<br>.ativ-secao · .ativ-grade · .ativ-pilha</div>
+        </div>
+
+        <div style="background:#1B1F3B;border:1px solid #2E3358;border-radius:10px;padding:26px 28px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+            <span style="width:7px;height:7px;border-radius:50%;background:#5DD68A;flex-shrink:0"></span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#8A90A6">Movimento · resolvido</span>
+          </div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;margin:0 0 10px;letter-spacing:-0.01em">Cinco tempos, quatro curvas</h3>
+          <p style="margin:0 0 14px;font-size:14.5px;line-height:1.58;color:#B6BAD0">A duração passou a vir da distância percorrida: cinco tempos de 90 a 900 ms e quatro curvas nomeadas por função. Entrada, cascata e pulso viraram animação do sistema, e a preferência por movimento reduzido é respeitada uma vez, no arquivo.</p>
+          <div style="background:#12152C;border:1px solid #2E3358;border-radius:6px;padding:13px 15px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.8;color:#B6BAD0;overflow-x:auto">--ativ-dur-instante … cena<br>--ativ-ease-entrada / saida / padrao / firme<br>.ativ-entra · .ativ-cascata</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 05 ORDEM ===================== -->
+  <section style="padding:82px 6vw 96px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">05 — Ordem sugerida</div>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 44px;max-width:22ch">Três ondas até o vocabulário fechar.</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:#2E3358;border:1px solid #2E3358;border-radius:10px;overflow:hidden">
+
+        <div style="background:#1B1F3B;padding:32px 30px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">Onda 1 · fundação</div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:21px;margin:0 0 14px;letter-spacing:-0.01em">Corrigir o que governa</h3>
+          <p style="margin:0 0 18px;font-size:14.5px;line-height:1.58;color:#B6BAD0">Antes de desenhar qualquer elemento novo: fechar as dívidas do CSS mestre, para que tudo o que vier depois já nasça sobre a mesma norma.</p>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#B6BAD0">
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Foco de teclado</div>
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Grade e escala de espaço</div>
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Tokens de movimento</div>
+          </div>
+        </div>
+
+        <div style="background:#1B1F3B;padding:32px 30px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">Onda 2 · diferenciação</div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:21px;margin:0 0 14px;letter-spacing:-0.01em">Construir o que é só da ATIV</h3>
+          <p style="margin:0 0 18px;font-size:14.5px;line-height:1.58;color:#B6BAD0">As famílias que carregam informação técnica. É esta onda que tira o sistema do território genérico — e a que mais depende de material real da empresa.</p>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#B6BAD0">
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Dado técnico e tabelas</div>
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Iconografia própria</div>
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Diagrama técnico</div>
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Direção de fotografia</div>
+          </div>
+        </div>
+
+        <div style="background:#1B1F3B;padding:32px 30px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#F5A623;margin-bottom:16px">Onda 3 · completude</div>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:21px;margin:0 0 14px;letter-spacing:-0.01em">Fechar as bordas</h3>
+          <p style="margin:0 0 18px;font-size:14.5px;line-height:1.58;color:#B6BAD0">O que falta para o sistema ser entregável a quem for construir o site sem precisar improvisar nada.</p>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#B6BAD0">
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Navegação</div>
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Estados e feedback</div>
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Tipografia editorial</div>
+            <div style="display:flex;gap:10px"><span style="color:#F5A623">→</span>Tom de voz</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:52px;padding-top:28px;border-top:1px solid #2E3358;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8A90A6">
+        <span>Diagnóstico do sistema · ATIV</span>
+        <span>Paleta Comando · agosto 2026</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+</body>
+</html>

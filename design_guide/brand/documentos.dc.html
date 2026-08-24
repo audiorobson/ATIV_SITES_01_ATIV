@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F1F2F6; }
+  a { color: #4B4FA6; text-decoration: none; }
+  a:hover { color: #2E3358; }
+  ::selection { background: #F5A623; color: #1B1F3B; }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1B1F3B"></rect><rect x="30" y="22" width="40" height="56" fill="#F1F2F6"></rect><rect x="36" y="30" width="18" height="4" fill="#F5A623"></rect><rect x="36" y="42" width="28" height="2.5" fill="#8A90A6"></rect><rect x="36" y="49" width="28" height="2.5" fill="#8A90A6"></rect><rect x="36" y="56" width="20" height="2.5" fill="#8A90A6"></rect></svg></template>
+
+<div id="ativ-docs" style="background:#F1F2F6;font-family:'IBM Plex Sans',sans-serif;color:#1B1F3B;overflow-x:hidden">
+
+  <nav style="position:sticky;top:0;z-index:80;background:#1B1F3B;border-bottom:1px solid #2E3358;padding:0 6vw">
+    <div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:62px;flex-wrap:wrap">
+      <a href="kit-de-marca.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;padding:10px 0">
+        <img src="logo/wordmark-2t-claro.svg" alt="ATIV" style="height:36px;display:block"/>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6E7686;border-left:1px solid #2E3358;padding-left:12px">Documentos</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:4px;flex-wrap:wrap">
+        <a href="documentos.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1B1F3B;background:#F5A623;text-decoration:none;padding:9px 14px;border-radius:5px">Documentos</a>
+        <a href="kit-de-marca.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Kit de Marca</a>
+        <a href="implementacao.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Implementação</a>
+        <a href="componentes.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Componentes</a>
+        <a href="cobertura.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8A90A6;text-decoration:none;padding:9px 14px;border-radius:5px" style-hover="color:#F1F2F6;background:#262B4D">Diagnóstico</a>
+      </div>
+    </div>
+  </nav>
+
+  <section style="background:#1B1F3B;color:#F1F2F6;padding:72px 7vw 56px">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <span style="display:inline-flex;align-items:center;gap:8px;background:#F5A623;color:#1B1F3B;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:7px 14px;border-radius:100px">Adotado</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:#8A90A6">Norma de produção documental</span>
+      </div>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(36px,6vw,68px);line-height:0.97;letter-spacing:-0.03em;margin:28px 0 0;text-wrap:pretty">Manual de Documentos<br>Oficiais ATIV</h1>
+      <p style="max-width:700px;margin:22px 0 0;font-size:18px;line-height:1.6;color:#B6BAD0;text-wrap:pretty">Instruções gráficas de execução para quem produz material técnico, comercial e jurídico da ATIV — humano ou agente. Toda medida aqui é normativa: é a medida a aplicar, não uma sugestão.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:#2E3358;border:1px solid #2E3358;border-radius:8px;margin-top:44px;overflow:hidden">
+        <div style="background:#12152C;padding:20px 22px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">Formato base</div><div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;margin-top:8px">A4 retrato</div><div style="font-size:13px;color:#8A90A6;margin-top:2px">210 × 297 mm</div></div>
+        <div style="background:#12152C;padding:20px 22px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">Classes</div><div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;margin-top:8px">Três</div><div style="font-size:13px;color:#8A90A6;margin-top:2px">Técnico · Comercial · Jurídico</div></div>
+        <div style="background:#12152C;padding:20px 22px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">Corpo de texto</div><div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;margin-top:8px">10,5 pt</div><div style="font-size:13px;color:#8A90A6;margin-top:2px">IBM Plex Sans · 1,45</div></div>
+        <div style="background:#12152C;padding:20px 22px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">Logo no cabeçalho</div><div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;margin-top:8px">32 mm</div><div style="font-size:13px;color:#8A90A6;margin-top:2px">Largura fixa, canto superior</div></div>
+      </div>
+      <div style="margin-top:30px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E7686">Clique em qualquer código HEX ou nome de arquivo deste documento para copiar.</div>
+    </div>
+  </section>
+
+  <section style="padding:64px 7vw 20px">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4B4FA6">01</span><h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.01em;margin:0">Qual arquivo de logo usar</h2></div>
+      <p style="font-size:15px;color:#3A3F5C;margin:0 0 26px;max-width:720px;text-wrap:pretty">Não existe escolha estética: o suporte e o processo de impressão determinam o arquivo. Sempre SVG ou PDF vetorial — nunca PNG em documento, nunca imagem recortada de outro material.</p>
+
+      <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+        <div style="display:grid;grid-template-columns:1.25fr 1fr 1.5fr;gap:0;background:#1B1F3B;color:#F1F2F6;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">
+          <div style="padding:14px 18px">Situação</div>
+          <div style="padding:14px 18px">Arquivo</div>
+          <div style="padding:14px 18px">Aplicação e medida</div>
+        </div>
+        <sc-for list="{{ logoRows }}" as="r" hint-placeholder-count="7">
+          <div style="display:grid;grid-template-columns:1.25fr 1fr 1.5fr;border-bottom:1px solid #E7E9F0;align-items:start">
+            <div style="padding:15px 18px;font-size:14px;font-weight:600;line-height:1.4">{{ r.caso }}</div>
+            <div data-copy="{{ r.file }}" style="cursor:pointer;padding:15px 18px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4B4FA6;line-height:1.5">{{ r.file }}</div>
+            <div style="padding:15px 18px;font-size:13.5px;color:#3A3F5C;line-height:1.5">{{ r.uso }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px">
+        <div style="border:1px solid #DCDEE8;border-radius:8px;overflow:hidden;background:#fff">
+          <div style="background:#FFFFFF;border-bottom:1px solid #DCDEE8;padding:26px 18px;display:flex;align-items:center;justify-content:center"><img src="logo/logo-2t-indigo.svg" alt="" style="width:100%;display:block"/></div>
+          <div style="padding:12px 14px"><div style="font-weight:600;font-size:13px">Padrão do documento</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A90A6;margin-top:3px">logo-2t-indigo</div></div>
+        </div>
+        <div style="border:1px solid #DCDEE8;border-radius:8px;overflow:hidden;background:#fff">
+          <div style="background:#FFFFFF;border-bottom:1px solid #DCDEE8;padding:26px 18px;display:flex;align-items:center;justify-content:center"><img src="logo/logo-mono-indigo.svg" alt="" style="width:100%;display:block"/></div>
+          <div style="padding:12px 14px"><div style="font-weight:600;font-size:13px">Jurídico · 1 cor</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A90A6;margin-top:3px">logo-mono-indigo</div></div>
+        </div>
+        <div style="border:1px solid #DCDEE8;border-radius:8px;overflow:hidden;background:#fff">
+          <div style="background:#1B1F3B;padding:26px 18px;display:flex;align-items:center;justify-content:center"><img src="logo/logo-2t-claro.svg" alt="" style="width:100%;display:block"/></div>
+          <div style="padding:12px 14px"><div style="font-weight:600;font-size:13px">Capa escura</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A90A6;margin-top:3px">logo-2t-claro</div></div>
+        </div>
+        <div style="border:1px solid #DCDEE8;border-radius:8px;overflow:hidden;background:#fff">
+          <div style="background:#FFFFFF;border-bottom:1px solid #DCDEE8;padding:26px 18px;display:flex;align-items:center;justify-content:center"><img src="logo/icon-indigo.svg" alt="" style="height:44px;display:block"/></div>
+          <div style="padding:12px 14px"><div style="font-weight:600;font-size:13px">Marcador de seção</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A90A6;margin-top:3px">icon-indigo</div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;background:#E7E9F0;border:1px dashed #DCDEE8;border-radius:8px;padding:18px 22px;font-size:13.5px;color:#3A3F5C;line-height:1.65">
+        <strong>Respiro e mínimos em documento:</strong> margem livre em todos os lados igual à altura do símbolo <em>power</em>. Largura mínima do lockup em papel: <strong>28 mm</strong>. Abaixo disso, use <span style="font-family:'IBM Plex Mono',monospace">wordmark-2t-indigo.svg</span>; abaixo de 14 mm, apenas o símbolo. O logo nunca aparece dentro de caixa, sombra, moldura ou marca d'água.
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:52px 7vw 20px">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4B4FA6">02</span><h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.01em;margin:0">Grade da página A4</h2></div>
+      <p style="font-size:15px;color:#3A3F5C;margin:0 0 26px;max-width:720px;text-wrap:pretty">Uma única grade serve às três classes de documento. O que muda entre elas é a densidade do conteúdo, não a geometria da página.</p>
+      <div style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:20px;align-items:start">
+        <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;padding:22px">
+          <div style="aspect-ratio:210/297;background:#fff;border:1px solid #DCDEE8;position:relative">
+            <div style="position:absolute;left:11.9%;right:9.5%;top:8.4%;bottom:7.4%;border:1px dashed #4B4FA6"></div>
+            <div style="position:absolute;left:11.9%;right:9.5%;top:4%;height:3.4%;display:flex;align-items:center"><img src="logo/wordmark-2t-indigo.svg" alt="" style="height:100%;display:block"/></div>
+            <div style="position:absolute;left:11.9%;right:9.5%;top:8.4%;height:0;border-top:2px solid #F5A623"></div>
+            <div style="position:absolute;left:11.9%;right:9.5%;bottom:4.2%;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:6px;color:#8A90A6"><span>ATIV · doc</span><span>pág. 1 de 8</span></div>
+            <div style="position:absolute;left:11.9%;width:46.8%;top:14%;display:flex;flex-direction:column;gap:4px">
+              <div style="height:5px;background:#DCDEE8"></div><div style="height:5px;background:#DCDEE8"></div><div style="height:5px;background:#DCDEE8;width:70%"></div>
+            </div>
+            <div style="position:absolute;right:9.5%;width:29.7%;top:14%;display:flex;flex-direction:column;gap:4px">
+              <div style="height:5px;background:#E7E9F0"></div><div style="height:5px;background:#E7E9F0;width:60%"></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+          <div style="padding:16px 22px;border-bottom:1px solid #E7E9F0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8A90A6">Medidas normativas</div>
+          <sc-for list="{{ gridRows }}" as="g" hint-placeholder-count="9">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 22px;border-bottom:1px solid #E7E9F0">
+              <span style="font-size:14px;color:#1B1F3B">{{ g.k }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4B4FA6;text-align:right;flex-shrink:0">{{ g.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:52px 7vw 20px">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4B4FA6">03</span><h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.01em;margin:0">Tipografia em pontos</h2></div>
+      <p style="font-size:15px;color:#3A3F5C;margin:0 0 26px;max-width:720px;text-wrap:pretty">Documento se mede em pontos, não em pixels. Nada abaixo de 8 pt é impresso. Texto corrido sempre alinhado à esquerda: justificar abre rios em medida estreita e é proibido.</p>
+      <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+        <div style="display:grid;grid-template-columns:1fr 1.1fr 1fr;background:#1B1F3B;color:#F1F2F6;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">
+          <div style="padding:14px 18px">Elemento</div><div style="padding:14px 18px">Especificação</div><div style="padding:14px 18px">Onde aparece</div>
+        </div>
+        <sc-for list="{{ typeRows }}" as="t" hint-placeholder-count="8">
+          <div style="display:grid;grid-template-columns:1fr 1.1fr 1fr;border-bottom:1px solid #E7E9F0;align-items:start">
+            <div style="padding:14px 18px;font-size:14px;font-weight:600">{{ t.el }}</div>
+            <div style="padding:14px 18px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#3A3F5C;line-height:1.5">{{ t.spec }}</div>
+            <div style="padding:14px 18px;font-size:13.5px;color:#6E7686;line-height:1.5">{{ t.onde }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:14px;background:#E7E9F0;border:1px dashed #DCDEE8;border-radius:8px;padding:18px 22px;font-size:13.5px;color:#3A3F5C;line-height:1.65">
+        <strong>Substituição em Word e Google Docs:</strong> quando Archivo não estiver instalada, use <strong>Archivo Black</strong> baixada do Google Fonts. Só em caso de bloqueio de instalação: títulos em <strong>Barlow SemiBold</strong>, corpo em <strong>IBM Plex Sans</strong>. Nunca Arial, Calibri, Helvetica ou Times em documento de marca.
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:52px 7vw 20px">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4B4FA6">04</span><h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.01em;margin:0">Cor no impresso</h2></div>
+      <p style="font-size:15px;color:#3A3F5C;margin:0 0 26px;max-width:720px;text-wrap:pretty">Documento é predominantemente branco. A cor entra em três lugares e em nenhum outro: filete do cabeçalho, cabeçalho de tabela e capa. Texto corrido é sempre Índigo Profundo.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+        <div data-copy="#1B1F3B" style="cursor:pointer;background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+          <div style="height:64px;background:#1B1F3B"></div>
+          <div style="padding:13px 15px">
+            <div style="font-weight:600;font-size:13.5px">Índigo Profundo</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#3A3F5C;margin-top:2px">#1B1F3B</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:5px">CMYK 92 87 46 52</div>
+            <div style="font-size:12px;color:#6E7686;margin-top:7px;line-height:1.45">Texto, cabeçalho de tabela, capa</div>
+          </div>
+        </div>
+        <div data-copy="#4B4FA6" style="cursor:pointer;background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+          <div style="height:64px;background:#4B4FA6"></div>
+          <div style="padding:13px 15px">
+            <div style="font-weight:600;font-size:13.5px">Índigo</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#3A3F5C;margin-top:2px">#4B4FA6</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:5px">CMYK 78 72 0 0</div>
+            <div style="font-size:12px;color:#6E7686;margin-top:7px;line-height:1.45">Números de seção, links, ênfase</div>
+          </div>
+        </div>
+        <div data-copy="#F5A623" style="cursor:pointer;background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+          <div style="height:64px;background:#F5A623"></div>
+          <div style="padding:13px 15px">
+            <div style="font-weight:600;font-size:13.5px">Âmbar</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#3A3F5C;margin-top:2px">#F5A623</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:5px">CMYK 0 38 92 0</div>
+            <div style="font-size:12px;color:#6E7686;margin-top:7px;line-height:1.45">Filete, marcador, símbolo</div>
+          </div>
+        </div>
+        <div data-copy="#6E7686" style="cursor:pointer;background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+          <div style="height:64px;background:#6E7686"></div>
+          <div style="padding:13px 15px">
+            <div style="font-weight:600;font-size:13.5px">Ardósia</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#3A3F5C;margin-top:2px">#6E7686</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:5px">CMYK 58 45 34 6</div>
+            <div style="font-size:12px;color:#6E7686;margin-top:7px;line-height:1.45">Texto secundário, legenda</div>
+          </div>
+        </div>
+        <div data-copy="#E7E9F0" style="cursor:pointer;background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+          <div style="height:64px;background:#E7E9F0;border-bottom:1px solid #DCDEE8"></div>
+          <div style="padding:13px 15px">
+            <div style="font-weight:600;font-size:13.5px">Gelo 200</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#3A3F5C;margin-top:2px">#E7E9F0</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A90A6;margin-top:5px">CMYK 8 5 2 0</div>
+            <div style="font-size:12px;color:#6E7686;margin-top:7px;line-height:1.45">Fundo de nota e zebra de tabela</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+        <div style="background:#12152C;border-radius:8px;padding:26px 28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#8A90A6;margin-bottom:14px">Proibido em documento</div>
+          <ul style="margin:0;padding-left:20px;color:#B6BAD0;font-size:14px;line-height:1.75">
+            <li>Âmbar em texto de qualquer corpo</li>
+            <li>Fundo colorido em página de conteúdo</li>
+            <li>Gradiente, sombra e cantos arredondados em tabela</li>
+            <li>Marca d'água com o logo</li>
+            <li>Cor semântica como decoração</li>
+          </ul>
+        </div>
+        <div style="background:#12152C;border-radius:8px;padding:26px 28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5DD68A;margin-bottom:14px">Onde o âmbar entra</div>
+          <ul style="margin:0;padding-left:20px;color:#B6BAD0;font-size:14px;line-height:1.75">
+            <li>Filete de 2 mm sob o cabeçalho</li>
+            <li>Símbolo <em>power</em> do logo</li>
+            <li>Marcador de lista de nível 1</li>
+            <li>Um único número-chave por página de capa</li>
+            <li>Fundo de selo de status em capa escura</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:52px 7vw 20px">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4B4FA6">05</span><h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.01em;margin:0">As três classes de documento</h2></div>
+      <p style="font-size:15px;color:#3A3F5C;margin:0 0 26px;max-width:720px;text-wrap:pretty">Cada classe tem uma capa, uma densidade e um repertório de elementos próprios. Identifique a classe antes de escrever a primeira linha.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+
+        <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="padding:16px 20px;border-bottom:1px solid #E7E9F0;display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:17px">Técnico</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#4B4FA6;border:1px solid #DCDEE8;padding:4px 8px;border-radius:4px">TEC</span>
+          </div>
+          <div style="padding:20px">
+            <div style="aspect-ratio:210/297;background:#1B1F3B;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:9%">
+              <img src="logo/logo-2t-claro.svg" alt="" style="width:46%;display:block"/>
+              <div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:6.5px;letter-spacing:0.22em;text-transform:uppercase;color:#F5A623;margin-bottom:7px">Memorial descritivo</div>
+                <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;line-height:1.05;color:#F1F2F6;letter-spacing:-0.01em">Sistema de<br>videowall<br>NOC-02</div>
+                <div style="height:1px;background:#2E3358;margin:10px 0"></div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:6px;color:#8A90A6;line-height:1.8">DOC ATIV-TEC-0142<br>REV 03 · 12/2026</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:0 20px 20px;flex:1">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6;margin-bottom:10px">Regras</div>
+            <ul style="margin:0;padding-left:18px;font-size:13.5px;color:#3A3F5C;line-height:1.65">
+              <li>Capa Índigo Profundo, logo negativo</li>
+              <li>Bloco de revisão obrigatório na capa e no rodapé</li>
+              <li>Specs em Plex Mono, unidade sempre explícita</li>
+              <li>Numeração hierárquica 1 / 1.1 / 1.1.1</li>
+              <li>Tabela densa: linha de 7 mm, sem zebra</li>
+              <li>Toda norma citada com código e ano</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="padding:16px 20px;border-bottom:1px solid #E7E9F0;display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:17px">Comercial</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#4B4FA6;border:1px solid #DCDEE8;padding:4px 8px;border-radius:4px">COM</span>
+          </div>
+          <div style="padding:20px">
+            <div style="aspect-ratio:210/297;background:#12152C;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:9%">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                <img src="logo/logo-2t-claro.svg" alt="" style="width:44%;display:block"/>
+                <span style="background:#F5A623;color:#1B1F3B;font-family:'IBM Plex Mono',monospace;font-size:5.5px;font-weight:600;letter-spacing:0.16em;padding:3px 7px;border-radius:100px">PROPOSTA</span>
+              </div>
+              <div>
+                <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;line-height:0.9;color:#F5A623;letter-spacing:-0.03em">R$ 1,4 M</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:6px;letter-spacing:0.2em;text-transform:uppercase;color:#8A90A6;margin-top:6px">Investimento total · 3 fases</div>
+                <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;line-height:1.1;color:#F1F2F6;margin-top:14px">Modernização<br>do parque AV</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:6px;color:#8A90A6;margin-top:10px">ATIV-COM-0088 · ago 2026</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:0 20px 20px;flex:1">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6;margin-bottom:10px">Regras</div>
+            <ul style="margin:0;padding-left:18px;font-size:13.5px;color:#3A3F5C;line-height:1.65">
+              <li>Resumo executivo em uma página, sempre a primeira</li>
+              <li>Um número dominante por página, Archivo 900</li>
+              <li>Respiro maior: entrelinha 1,55 e mais espaço em branco</li>
+              <li>Escopo e exclusões em colunas pareadas</li>
+              <li>Preço em tabela, nunca em texto corrido</li>
+              <li>Validade, prazo e condições em bloco fechado</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="padding:16px 20px;border-bottom:1px solid #E7E9F0;display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:17px">Jurídico</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#4B4FA6;border:1px solid #DCDEE8;padding:4px 8px;border-radius:4px">JUR</span>
+          </div>
+          <div style="padding:20px">
+            <div style="aspect-ratio:210/297;background:#fff;border:1px solid #DCDEE8;position:relative;overflow:hidden;padding:9%;display:flex;flex-direction:column">
+              <img src="logo/logo-mono-indigo.svg" alt="" style="width:38%;display:block"/>
+              <div style="height:1px;background:#DCDEE8;margin:9px 0 12px"></div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:5.5px;letter-spacing:0.2em;text-transform:uppercase;color:#6E7686;text-align:center">Contrato de prestação de serviços</div>
+              <div style="display:flex;flex-direction:column;gap:3.5px;margin-top:12px">
+                <div style="height:3px;background:#E7E9F0"></div><div style="height:3px;background:#E7E9F0"></div><div style="height:3px;background:#E7E9F0;width:82%"></div>
+                <div style="height:6px"></div>
+                <div style="height:3px;background:#E7E9F0"></div><div style="height:3px;background:#E7E9F0"></div><div style="height:3px;background:#E7E9F0"></div><div style="height:3px;background:#E7E9F0;width:64%"></div>
+              </div>
+              <div style="margin-top:auto;display:flex;gap:8px">
+                <div style="flex:1"><div style="height:1px;background:#1B1F3B"></div><div style="font-family:'IBM Plex Mono',monospace;font-size:4.5px;color:#6E7686;margin-top:3px">CONTRATANTE</div></div>
+                <div style="flex:1"><div style="height:1px;background:#1B1F3B"></div><div style="font-family:'IBM Plex Mono',monospace;font-size:4.5px;color:#6E7686;margin-top:3px">ATIV</div></div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:0 20px 20px;flex:1">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6;margin-bottom:10px">Regras</div>
+            <ul style="margin:0;padding-left:18px;font-size:13.5px;color:#3A3F5C;line-height:1.65">
+              <li>Sem âmbar, sem capa colorida, logo em uma cor</li>
+              <li>Coluna única de 105 mm, corpo 11 pt, entrelinha 1,5</li>
+              <li>Cláusulas numeradas, parágrafos com recuo zero</li>
+              <li>Zero elemento gráfico, ícone ou caixa colorida</li>
+              <li>Bloco de assinatura fixo ao pé da última página</li>
+              <li>Rodapé com rubrica em toda página</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:52px 7vw 20px">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4B4FA6">06</span><h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.01em;margin:0">Elementos padronizados</h2></div>
+      <p style="font-size:15px;color:#3A3F5C;margin:0 0 26px;max-width:720px;text-wrap:pretty">Sete peças resolvem quase todo documento da ATIV. Reproduza-as como estão, no lugar de inventar variações.</p>
+
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:14px">
+        <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+          <div style="padding:14px 20px;border-bottom:1px solid #E7E9F0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">Tabela técnica</div>
+          <div style="padding:20px">
+            <div style="border:1px solid #DCDEE8">
+              <div style="display:grid;grid-template-columns:0.5fr 1.4fr 0.8fr 0.5fr;background:#1B1F3B;color:#F1F2F6;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase">
+                <div style="padding:9px 11px">Item</div><div style="padding:9px 11px">Descrição</div><div style="padding:9px 11px">Modelo</div><div style="padding:9px 11px;text-align:right">Qtd</div>
+              </div>
+              <div style="display:grid;grid-template-columns:0.5fr 1.4fr 0.8fr 0.5fr;border-bottom:1px solid #E7E9F0;font-size:12.5px"><div style="padding:9px 11px;font-family:'IBM Plex Mono',monospace;color:#6E7686">1.1</div><div style="padding:9px 11px">Processador de videowall 4×3</div><div style="padding:9px 11px;font-family:'IBM Plex Mono',monospace">Q-SYS Core 110f</div><div style="padding:9px 11px;text-align:right;font-family:'IBM Plex Mono',monospace">1</div></div>
+              <div style="display:grid;grid-template-columns:0.5fr 1.4fr 0.8fr 0.5fr;border-bottom:1px solid #E7E9F0;font-size:12.5px"><div style="padding:9px 11px;font-family:'IBM Plex Mono',monospace;color:#6E7686">1.2</div><div style="padding:9px 11px">Display LCD 55″ moldura 1,7 mm</div><div style="padding:9px 11px;font-family:'IBM Plex Mono',monospace">VH55R-R</div><div style="padding:9px 11px;text-align:right;font-family:'IBM Plex Mono',monospace">12</div></div>
+              <div style="display:grid;grid-template-columns:0.5fr 1.4fr 0.8fr 0.5fr;font-size:12.5px"><div style="padding:9px 11px;font-family:'IBM Plex Mono',monospace;color:#6E7686">1.3</div><div style="padding:9px 11px">Switch PoE+ 24 p · QoS/IGMP</div><div style="padding:9px 11px;font-family:'IBM Plex Mono',monospace">CBS350-24FP</div><div style="padding:9px 11px;text-align:right;font-family:'IBM Plex Mono',monospace">2</div></div>
+            </div>
+            <div style="margin-top:12px;font-size:13px;color:#3A3F5C;line-height:1.6">Cabeçalho Índigo Profundo, texto Gelo, Plex Mono 8 pt caixa alta. Sem bordas verticais internas. Números e códigos em Plex Mono, alinhados à direita. Altura de linha 7 mm no técnico, 9 mm no comercial.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+            <div style="padding:14px 20px;border-bottom:1px solid #E7E9F0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">Controle de revisão</div>
+            <div style="padding:20px">
+              <div style="border:1px solid #DCDEE8;font-family:'IBM Plex Mono',monospace;font-size:11px">
+                <div style="display:grid;grid-template-columns:0.5fr 0.9fr 1.1fr;background:#E7E9F0;color:#3A3F5C;letter-spacing:0.1em;text-transform:uppercase;font-size:9.5px"><div style="padding:7px 9px">Rev</div><div style="padding:7px 9px">Data</div><div style="padding:7px 9px">Alteração</div></div>
+                <div style="display:grid;grid-template-columns:0.5fr 0.9fr 1.1fr;border-bottom:1px solid #E7E9F0"><div style="padding:7px 9px">03</div><div style="padding:7px 9px">12.08.26</div><div style="padding:7px 9px">Revisão de BOM</div></div>
+                <div style="display:grid;grid-template-columns:0.5fr 0.9fr 1.1fr"><div style="padding:7px 9px">02</div><div style="padding:7px 9px">28.07.26</div><div style="padding:7px 9px">Ajuste de layout</div></div>
+              </div>
+              <div style="margin-top:12px;font-size:13px;color:#3A3F5C;line-height:1.6">Obrigatório em todo documento técnico. Revisão em dois dígitos, data curta, alteração em uma linha.</div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+            <div style="padding:14px 20px;border-bottom:1px solid #E7E9F0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">Nota de atenção</div>
+            <div style="padding:20px">
+              <div style="border-left:3px solid #F5A623;background:#F1F2F6;padding:12px 16px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#B0731A;margin-bottom:5px">Atenção</div>
+                <div style="font-size:13px;color:#3A3F5C;line-height:1.55">Premissa de infraestrutura elétrica sob responsabilidade do contratante.</div>
+              </div>
+              <div style="margin-top:12px;font-size:13px;color:#3A3F5C;line-height:1.6">Filete de 3 pt à esquerda, fundo Gelo, sem ícone. Máximo duas por página.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:14px">
+        <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;padding:20px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6;margin-bottom:14px">Cabeçalho</div>
+          <div style="border:1px solid #E7E9F0;padding:12px 14px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><img src="logo/wordmark-2t-indigo.svg" alt="" style="height:15px;display:block"/><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:#6E7686">ATIV-TEC-0142 · REV 03</span></div>
+            <div style="height:2px;background:#F5A623;margin-top:10px"></div>
+          </div>
+          <div style="margin-top:12px;font-size:13px;color:#3A3F5C;line-height:1.6">Logo à esquerda com 32 mm, código à direita, filete âmbar de 2 mm fechando o bloco.</div>
+        </div>
+        <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;padding:20px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6;margin-bottom:14px">Rodapé</div>
+          <div style="border:1px solid #E7E9F0;padding:12px 14px">
+            <div style="height:1px;background:#DCDEE8;margin-bottom:10px"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:8px;color:#6E7686"><span>ativpro.com</span><span>Confidencial</span><span>3 / 18</span></div>
+          </div>
+          <div style="margin-top:12px;font-size:13px;color:#3A3F5C;line-height:1.6">Filete Gelo 300, três campos em Plex Mono 8 pt: origem, classificação, página.</div>
+        </div>
+        <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;padding:20px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6;margin-bottom:14px">Assinatura</div>
+          <div style="border:1px solid #E7E9F0;padding:16px 14px 12px">
+            <div style="height:1px;background:#1B1F3B"></div>
+            <div style="font-size:11px;font-weight:600;margin-top:6px">Nome Sobrenome</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;color:#6E7686;margin-top:2px;line-height:1.5">Diretoria Técnica<br>CREA 0000000000</div>
+          </div>
+          <div style="margin-top:12px;font-size:13px;color:#3A3F5C;line-height:1.6">Linha de 60 mm, nome em 9 pt, cargo e registro em Plex Mono 8 pt.</div>
+        </div>
+        <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;padding:20px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6;margin-bottom:14px">Abertura de seção</div>
+          <div style="border:1px solid #E7E9F0;padding:14px">
+            <div style="display:flex;align-items:center;gap:7px"><img src="logo/icon-indigo.svg" alt="" style="height:13px;display:block"/><span style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:0.16em;color:#4B4FA6">04</span></div>
+            <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin-top:7px;letter-spacing:-0.01em">Comissionamento</div>
+          </div>
+          <div style="margin-top:12px;font-size:13px;color:#3A3F5C;line-height:1.6">Símbolo em 5 mm, número da seção em Plex Mono, título em Archivo 800.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:52px 7vw 20px">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4B4FA6">07</span><h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.01em;margin:0">Nomenclatura e metadados</h2></div>
+      <p style="font-size:15px;color:#3A3F5C;margin:0 0 26px;max-width:720px;text-wrap:pretty">Todo documento oficial nasce com código. Sem código, o arquivo não circula.</p>
+      <div style="background:#12152C;color:#F1F2F6;border-radius:8px;padding:28px 32px;font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:2;overflow-x:auto">
+        <div style="color:#8A90A6"># PADRÃO DE CÓDIGO</div>
+        <div>ATIV-<span style="color:#F5A623">CLASSE</span>-<span style="color:#F5A623">NNNN</span>_<span style="color:#F5A623">slug-do-assunto</span>_rev<span style="color:#F5A623">NN</span></div>
+        <div style="height:12px"></div>
+        <div style="color:#8A90A6"># CLASSES</div>
+        <div>TEC .... memorial, escopo, BOM, comissionamento, parecer</div>
+        <div>COM .... proposta, orçamento, apresentação, carta comercial</div>
+        <div>JUR .... contrato, termo, procuração, declaração, aditivo</div>
+        <div style="height:12px"></div>
+        <div style="color:#8A90A6"># EXEMPLOS</div>
+        <div>ATIV-TEC-0142_videowall-noc02_rev03.pdf</div>
+        <div>ATIV-COM-0088_modernizacao-parque-av_rev01.pdf</div>
+        <div>ATIV-JUR-0031_contrato-manutencao-anual_rev02.pdf</div>
+        <div style="height:12px"></div>
+        <div style="color:#8A90A6"># METADADOS DO PDF (obrigatórios)</div>
+        <div>Título ....... código + assunto</div>
+        <div>Autor ........ ATIV Tecnologia AV</div>
+        <div>Assunto ...... classe + cliente</div>
+        <div>Palavras‑chave  cliente, projeto, revisão</div>
+        <div style="height:12px"></div>
+        <div style="color:#8A90A6"># EXPORTAÇÃO</div>
+        <div>PDF/A‑2b · fontes incorporadas · 300 dpi em imagem</div>
+        <div>Sem marcas de corte · sem sangria em A4 de conteúdo</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:52px 7vw 20px">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4B4FA6">08</span><h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.01em;margin:0">Instrução para agentes</h2></div>
+      <p style="font-size:15px;color:#3A3F5C;margin:0 0 20px;max-width:720px;text-wrap:pretty">Bloco pronto para colar como instrução de sistema em qualquer agente que produza documento da ATIV. Contém apenas o que é decidível sem consultar humano.</p>
+      <div style="background:#fff;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 22px;border-bottom:1px solid #E7E9F0">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A90A6">Instrução de sistema · pt-BR</span>
+          <button type="button" onClick="{{ copyBrief }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1B1F3B;background:#F5A623;border:0;border-radius:5px;padding:9px 14px;cursor:pointer" style-hover="background:#FFB53D">Copiar bloco</button>
+        </div>
+        <pre id="ativ-brief" style="margin:0;padding:26px 28px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.85;color:#1B1F3B;white-space:pre-wrap;background:#F1F2F6">Você produz documentos oficiais da ATIV (integração audiovisual, São Paulo). Siga estas regras sem exceção.
+
+IDENTIFIQUE A CLASSE antes de escrever: TEC (memorial, escopo, BOM, parecer), COM (proposta, orçamento) ou JUR (contrato, termo, declaração). A classe define capa, densidade e elementos permitidos.
+
+PÁGINA. A4 retrato, 210×297 mm. Margens: superior 25, inferior 22, externa 20, interna 25 mm. Coluna de texto de 105 mm em JUR; 165 mm em TEC e COM. Cabeçalho a 12 mm do topo, rodapé a 12 mm da base.
+
+LOGO. Sempre vetorial. Cabeçalho: logo-2t-indigo.svg com 32 mm de largura. JUR: logo-mono-indigo.svg. Capa escura: logo-2t-claro.svg. Respiro livre em todos os lados igual à altura do símbolo power. Nunca em caixa, sombra, moldura ou marca d'água. Nunca redesenhar, redigitar ou distorcer.
+
+TIPOGRAFIA. Títulos Archivo 800/900. Corpo IBM Plex Sans 10,5 pt com entrelinha 1,45 (JUR: 11 pt / 1,5). Dados, códigos, unidades e rótulos em IBM Plex Mono. Nada abaixo de 8 pt. Texto alinhado à esquerda; nunca justificado. Nunca Arial, Calibri, Helvetica ou Times.
+
+COR. Texto em #1B1F3B. Texto secundário #6E7686. Fundo branco em página de conteúdo. Âmbar #F5A623 apenas em: filete de 2 mm sob o cabeçalho, símbolo do logo, marcador de lista nível 1, um número-chave na capa. Âmbar nunca em texto. Índigo #4B4FA6 é o destaque em fundo claro. Sem gradiente, sem sombra, sem fundo colorido em conteúdo. Nenhuma cor fora do kit.
+
+TABELA. Cabeçalho #1B1F3B com texto #F1F2F6, Plex Mono 8 pt caixa alta. Sem bordas verticais internas. Divisor horizontal #E7E9F0. Números e códigos em Plex Mono alinhados à direita. Unidade sempre explícita.
+
+CONTEÚDO. Frases diretas, voz ativa, sem adjetivo de venda em documento técnico. Toda norma citada com código e ano (ABNT NBR 5410:2004, AVIXA A102.01:2017). Toda premissa e exclusão declarada por escrito. Nunca inventar modelo, marca, prazo, preço ou número: se o dado não foi fornecido, marque [A CONFIRMAR] e liste as pendências no fim.
+
+OBRIGATÓRIO. Código ATIV-CLASSE-NNNN, revisão em dois dígitos, data, rodapé com página X de Y. TEC leva tabela de controle de revisão. COM leva resumo executivo de uma página, mais validade, prazo e condições. JUR leva cláusulas numeradas e bloco de assinatura ao pé.
+
+PROIBIDO. Emoji, ícone decorativo, banco de imagens genérico, caixa arredondada com borda colorida, marca d'água, texto em caixa alta acima de uma linha, promessa não contratada.</pre>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:52px 7vw 88px">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:22px"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#4B4FA6">09</span><h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.01em;margin:0">Checagem antes de enviar</h2></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:#DCDEE8;border:1px solid #DCDEE8;border-radius:8px;overflow:hidden">
+        <sc-for list="{{ checks }}" as="c" hint-placeholder-count="10">
+          <div style="background:#fff;padding:18px 22px;display:flex;gap:14px;align-items:flex-start">
+            <span style="flex-shrink:0;width:18px;height:18px;border:1.5px solid #4B4FA6;border-radius:3px;margin-top:2px"></span>
+            <span style="font-size:14px;color:#1B1F3B;line-height:1.5">{{ c }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:20px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8A90A6">
+        <span>Manual de Documentos ATIV · padrão adotado</span>
+        <span>Complementa o Kit de Marca — não o substitui</span>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast" style="position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#1B1F3B;color:#F1F2F6;padding:12px 22px;border-radius:100px;font-family:'IBM Plex Mono',monospace;font-size:13px;opacity:0;pointer-events:none;transition:all .25s;box-shadow:0 8px 30px rgba(27,31,59,.3);z-index:90">Copiado</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      copyBrief: () => {
+        const pre = document.getElementById('ativ-brief');
+        if (pre && navigator.clipboard) navigator.clipboard.writeText(pre.textContent);
+        this._toast('Instrução copiada');
+      },
+      logoRows: [
+        { caso: 'Cabeçalho de documento colorido', file: 'logo-2t-indigo.svg', uso: 'Padrão de TEC e COM. 32 mm de largura, alinhado à margem esquerda.' },
+        { caso: 'Documento jurídico', file: 'logo-mono-indigo.svg', uso: 'Uma cor, sem âmbar. 30 mm. Vale também para papel timbrado de ofício.' },
+        { caso: 'Capa escura', file: 'logo-2t-claro.svg', uso: 'Sobre #1B1F3B ou #12152C. Largura de 40 a 60 mm conforme a capa.' },
+        { caso: 'Impressão em uma cor ou fax', file: 'logo-mono-preto.svg', uso: 'Cópia em preto e branco, carimbo, autenticação. Único caso sem âmbar por processo.' },
+        { caso: 'Espaço estreito no cabeçalho', file: 'wordmark-2t-indigo.svg', uso: 'Sem descritor. Use abaixo de 28 mm de largura disponível.' },
+        { caso: 'Marcador de abertura de seção', file: 'icon-indigo.svg', uso: 'Símbolo isolado, 5 mm de altura, ao lado do número da seção.' },
+        { caso: 'Selo em capa escura', file: 'icon-ambar.svg', uso: 'Somente sobre índigo. Nunca sobre branco em documento.' }
+      ],
+      gridRows: [
+        { k: 'Formato', v: 'A4 · 210 × 297 mm' },
+        { k: 'Margem superior', v: '25 mm' },
+        { k: 'Margem inferior', v: '22 mm' },
+        { k: 'Margem externa', v: '20 mm' },
+        { k: 'Margem interna (encadernação)', v: '25 mm' },
+        { k: 'Coluna de texto · TEC e COM', v: '165 mm' },
+        { k: 'Coluna de texto · JUR', v: '105 mm' },
+        { k: 'Coluna lateral de apoio', v: '52 mm · calha 8 mm' },
+        { k: 'Cabeçalho / rodapé', v: '12 mm da borda' },
+        { k: 'Módulo de espaçamento', v: 'múltiplos de 4 mm' }
+      ],
+      typeRows: [
+        { el: 'Título de capa', spec: 'Archivo 900 · 34–44 pt · −3% · 1,0', onde: 'Somente na capa' },
+        { el: 'Título de seção', spec: 'Archivo 800 · 16 pt · −1%', onde: 'Abertura de seção' },
+        { el: 'Subtítulo', spec: 'Archivo 700 · 12 pt', onde: 'Subdivisão de seção' },
+        { el: 'Corpo de texto', spec: 'Plex Sans 400 · 10,5 pt · 1,45', onde: 'TEC e COM' },
+        { el: 'Corpo jurídico', spec: 'Plex Sans 400 · 11 pt · 1,5', onde: 'JUR' },
+        { el: 'Rótulo e legenda', spec: 'Plex Mono 500 · 8,5 pt · +14% · caixa alta', onde: 'Tabelas, campos, eixos' },
+        { el: 'Dado e código', spec: 'Plex Mono 400 · 9,5 pt', onde: 'Specs, modelos, valores' },
+        { el: 'Número em destaque', spec: 'Archivo 900 · 28–60 pt', onde: 'Capa e resumo comercial' },
+        { el: 'Cabeçalho e rodapé', spec: 'Plex Mono 400 · 8 pt', onde: 'Todas as páginas' }
+      ],
+      checks: [
+        'Código ATIV-CLASSE-NNNN e revisão presentes na capa e no rodapé',
+        'Logo vetorial correto para a classe, com respiro preservado',
+        'Nenhuma fonte fora de Archivo, IBM Plex Sans e IBM Plex Mono',
+        'Nenhuma cor fora do kit de marca',
+        'Âmbar ausente de qualquer texto',
+        'Toda tabela com unidade explícita e alinhamento à direita nos números',
+        'Nenhum campo [A CONFIRMAR] esquecido no corpo do documento',
+        'Premissas, exclusões e responsabilidades declaradas',
+        'Numeração de página no formato X de Y em todas as páginas',
+        'Exportado em PDF/A-2b com fontes incorporadas e metadados preenchidos'
+      ]
+    };
+  }
+  _toast(msg) {
+    const t = document.getElementById('toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.style.opacity = '1';
+    t.style.transform = 'translateX(-50%) translateY(0)';
+    clearTimeout(this._t);
+    this._t = setTimeout(() => {
+      t.style.opacity = '0';
+      t.style.transform = 'translateX(-50%) translateY(20px)';
+    }, 1500);
+  }
+  componentDidMount() {
+    const root = document.getElementById('ativ-docs');
+    if (!root) return;
+    root.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-copy]');
+      if (!el || !root.contains(el)) return;
+      const val = el.getAttribute('data-copy');
+      if (navigator.clipboard) navigator.clipboard.writeText(val);
+      this._toast('Copiado ' + val);
+    });
+  }
+}
+</script>
+</body>
+</html>
