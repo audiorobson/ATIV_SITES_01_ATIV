@@ -217,6 +217,36 @@
   object-fit: cover;
 }
 
+.ativ-quadro--foto > img,
+.ativ-quadro--foto > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ativ-quadro--vazio {
+  min-block-size: var(--ativ-e-10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ativ-e-4);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+}
+
+.ativ-quadro--documento {
+  aspect-ratio: 210 / 297;
+}
+
+.ativ-quadro--sobrepor {
+  position: relative;
+}
+
+.ativ-quadro--sobrepor .ativ-logo {
+  position: absolute;
+  inset-block-start: var(--ativ-e-4);
+  inset-inline-start: var(--ativ-e-4);
+}
+
 /* =====================================================================
    SOMENTE LEITURA (visually hidden) E ALVO DE SALTO
    ===================================================================== */

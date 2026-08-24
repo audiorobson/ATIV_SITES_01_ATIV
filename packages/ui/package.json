@@ -14,7 +14,8 @@
     "./styles/controls.css": "./src/styles/controls.css",
     "./styles/technical-data.css": "./src/styles/technical-data.css",
     "./styles/editorial.css": "./src/styles/editorial.css",
-    "./styles/forms.css": "./src/styles/forms.css"
+    "./styles/forms.css": "./src/styles/forms.css",
+    "./styles/chrome.css": "./src/styles/chrome.css"
   },
   "files": [
     "src",
