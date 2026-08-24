@@ -13,6 +13,7 @@ export const cssExports = {
   layout: "@ativ/ui/styles/layout.css",
   controls: "@ativ/ui/styles/controls.css",
   technicalData: "@ativ/ui/styles/technical-data.css",
+  editorial: "@ativ/ui/styles/editorial.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",
 } as const;

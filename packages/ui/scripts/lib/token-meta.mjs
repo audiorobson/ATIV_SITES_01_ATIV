@@ -360,6 +360,21 @@ export const recipes = {
     values: ["13px", "6px"],
     note: "Status com texto visivel. O ponto colorido de .ativ-status permanece, mas nao e o unico sinal.",
   },
+  "editorial.medida": {
+    selectors: [".ativ-editorial"],
+    values: ["17px", "1.6"],
+    note: "Corpo longo usa a medida --ativ-grade-texto e a receita de .ativ-texto. Sem ch inventado.",
+  },
+  "editorial.hierarquia": {
+    selectors: [".ativ-editorial h2", ".ativ-editorial h3", ".ativ-editorial h4"],
+    values: ["clamp(28px, 4vw, 44px)", "1.35em", "1em", "-.02em"],
+    note: "h2 reusa titulo de secao. h3/h4 sao em relativos sobre o corpo 17px; nao ha tamanho de h3 no CSS mestre.",
+  },
+  "editorial.citacao-nota": {
+    selectors: [".ativ-citacao", ".ativ-nota", ".ativ-chamada", ".ativ-fonte"],
+    values: ["0.2em", "15px", "11px"],
+    note: "Barra da citacao reusa --ativ-foco-anel. Callout e neutro: borda forte, sem cor semantica de alerta.",
+  },
 };
 
 export const masterExceptionsNotExtracted = [
@@ -403,6 +418,7 @@ export const cssExports = {
   layout: "@ativ/ui/styles/layout.css",
   controls: "@ativ/ui/styles/controls.css",
   technicalData: "@ativ/ui/styles/technical-data.css",
+  editorial: "@ativ/ui/styles/editorial.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",
 };
