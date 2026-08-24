@@ -1,8 +1,11 @@
 # Implementação do design system ATIV
 
-Este documento descreve o contrato visual entregue na branch
-`feat/design-tokens-foundation`. Ele não conclui a Fase 2 nem a TASK 002. Não há
-páginas finais, componentes React ou Home comercial.
+**Status: READY para o Codex integrar.** Branch congelada: `feat/design-tokens-foundation`
+(`1def7cf`). Pacote de integração: `docs/HANDOFF_CURSOR_TO_CODEX.md`.
+
+Este documento descreve o contrato visual entregue nessa branch.
+Ele não conclui a Fase 2 nem a TASK 002. Não há páginas finais, componentes React
+ou Home comercial.
 
 ## Precedência
 
