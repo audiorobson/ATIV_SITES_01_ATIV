@@ -1,0 +1,23 @@
+{
+  "name": "@ativ/ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Contrato visual framework-neutral da ATIV: tokens canonicos e foundations CSS. Sem componentes React nesta rodada.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.json": "./src/data/tokens.json",
+    "./styles.css": "./src/styles/index.css",
+    "./styles/tokens.css": "./src/styles/tokens.css",
+    "./styles/foundations.css": "./src/styles/foundations.css"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "sync": "node ./scripts/sync-tokens.mjs",
+    "test": "node --test ./scripts/validate-tokens.test.mjs",
+    "validate": "node --test ./scripts/validate-tokens.test.mjs"
+  }
+}

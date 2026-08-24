@@ -1,0 +1,89 @@
+/*
+ * ATIV — tokens de producao.
+ * Fonte de verdade: design_guide/brand/tokens/ativ-ui.css
+ * Contrato serializavel: brand/tokens.json
+ * Nao invente valores. Tailwind e consumidor derivado.
+ */
+
+:root {
+  --ativ-indigo-profundo: #1B1F3B;
+  --ativ-indigo: #4B4FA6;
+  --ativ-ambar: #F5A623;
+  --ativ-ardosia: #6E7686;
+  --ativ-gelo: #F1F2F6;
+  --ativ-indigo-900: #12152C;
+  --ativ-indigo-800: #262B4D;
+  --ativ-indigo-700: #2E3358;
+  --ativ-indigo-600: #3B4170;
+  --ativ-indigo-300: #B6BAD0;
+  --ativ-ardosia-400: #8A90A6;
+  --ativ-ardosia-800: #3A3F5C;
+  --ativ-gelo-300: #DCDEE8;
+  --ativ-gelo-200: #E7E9F0;
+  --ativ-ambar-400: #FFB53D;
+  --ativ-branco: #FFFFFF;
+  --ativ-aprovado: #1F8A4C;
+  --ativ-ativo: #5DD68A;
+  --ativ-atencao: #B0731A;
+  --ativ-reprovado: #C0392B;
+  --ativ-font-display: 'Archivo', sans-serif;
+  --ativ-font-corpo: 'IBM Plex Sans', sans-serif;
+  --ativ-font-dados: 'IBM Plex Mono', monospace;
+  --ativ-peso-display: 900;
+  --ativ-peso-secao: 800;
+  --ativ-peso-forte: 600;
+  --ativ-raio-controle: 6px;
+  --ativ-raio-menu: 4px;
+  --ativ-raio-cartao: 10px;
+  --ativ-raio-pilula: 100px;
+  --ativ-alvo-min: 44px;
+  --ativ-borda: 1px;
+  --ativ-transicao: .18s ease;
+  --ativ-e-0: 0;
+  --ativ-e-1: 4px;
+  --ativ-e-2: 8px;
+  --ativ-e-3: 12px;
+  --ativ-e-4: 16px;
+  --ativ-e-5: 24px;
+  --ativ-e-6: 32px;
+  --ativ-e-7: 48px;
+  --ativ-e-8: 72px;
+  --ativ-e-9: 96px;
+  --ativ-e-10: 144px;
+  --ativ-grade-max: 1180px;
+  --ativ-grade-texto: 68ch;
+  --ativ-grade-colunas: 12;
+  --ativ-grade-calha: var(--ativ-e-6);
+  --ativ-grade-margem: 6vw;
+  --ativ-dur-instante: 90ms;
+  --ativ-dur-rapido: 180ms;
+  --ativ-dur-padrao: 280ms;
+  --ativ-dur-amplo: 460ms;
+  --ativ-dur-cena: 900ms;
+  --ativ-ease-saida: cubic-bezier(.4, 0, 1, 1);
+  --ativ-ease-entrada: cubic-bezier(0, 0, .2, 1);
+  --ativ-ease-padrao: cubic-bezier(.2, 0, 0, 1);
+  --ativ-ease-firme: cubic-bezier(.16, 1, .3, 1);
+  --ativ-desloca: 12px;
+  --ativ-icone-grade: 24px;
+  --ativ-icone-traco: 2;
+  --ativ-icone-16: 16px;
+  --ativ-icone-20: 20px;
+  --ativ-icone-24: 24px;
+  --ativ-icone-32: 32px;
+  --ativ-icone-48: 48px;
+  --ativ-foco-cor: var(--ativ-ambar);
+  --ativ-foco-anel: 3px;
+  --ativ-foco-folga: 2px;
+  --ativ-fundo: var(--ativ-indigo-profundo);
+  --ativ-fundo-fundo: var(--ativ-indigo-900);
+  --ativ-superficie: var(--ativ-indigo-800);
+  --ativ-borda-cor: var(--ativ-indigo-700);
+  --ativ-borda-forte: var(--ativ-indigo-600);
+  --ativ-texto: var(--ativ-gelo);
+  --ativ-texto-corpo: var(--ativ-indigo-300);
+  --ativ-texto-suave: var(--ativ-ardosia-400);
+  --ativ-destaque: var(--ativ-ambar);
+  --ativ-destaque-hover: var(--ativ-ambar-400);
+  --ativ-sobre-destaque: var(--ativ-indigo-profundo);
+}
