@@ -121,3 +121,8 @@ main {
     flex-direction: column;
   }
 }
+
+.ativ-topo__barra,
+.ativ-rodape > .ativ-container {
+  padding-inline: var(--ativ-grade-margem);
+}

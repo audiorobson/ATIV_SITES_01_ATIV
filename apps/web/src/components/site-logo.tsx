@@ -2,19 +2,26 @@ import Image from "next/image";
 
 type SiteLogoProps = Readonly<{
   className?: string;
+  variant?: "lockup" | "symbol";
 }>;
 
-export function SiteLogo({ className }: SiteLogoProps) {
+export function SiteLogo({ className, variant = "lockup" }: SiteLogoProps) {
+  const symbol = variant === "symbol";
+
   return (
     <Image
-      alt="ATIV Tecnologia"
-      className={["ativ-logo", "ativ-logo--completo", className]
+      alt={symbol ? "ATIV" : "ATIV Tecnologia"}
+      className={[
+        "ativ-logo",
+        symbol ? "ativ-logo--simbolo" : "ativ-logo--completo",
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
       decoding="async"
-      height="78"
-      src="/brand/logo-2t-claro.svg"
-      width="153"
+      height={symbol ? 36 : 78}
+      src={symbol ? "/brand/icon-claro.svg" : "/brand/logo-2t-claro.svg"}
+      width={symbol ? 36 : 153}
     />
   );
 }
