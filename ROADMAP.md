@@ -74,6 +74,7 @@ Fresh clone consegue instalar, testar e fazer build com comandos documentados.
 - clusters prioritários;
 - plano de internal linking;
 - templates de Solution, Sector, Case, Insight e Landing Page;
+- intake editorial versionado em `content/inbox/` para receber textos-fonte em Markdown antes da revisão e modelagem no CMS;
 - Claim Registry;
 - schema strategy;
 - canonical strategy;
