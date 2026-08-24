@@ -1,0 +1,7 @@
+cache = false
+max_concurrency = 8
+max_retries = 2
+timeout = 20
+accept = [200, 204, 206, 301, 302, 307, 308]
+exclude = ["^http://localhost", "^http://127\\.0\\.0\\.1"]
+exclude_path = ["node_modules", ".next", ".lighthouseci"]

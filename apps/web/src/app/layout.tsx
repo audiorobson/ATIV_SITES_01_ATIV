@@ -1,17 +1,15 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@ativ/seo";
 import type { ReactNode } from "react";
 
 import "./globals.css";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Fundação técnica | ATIV",
   description:
     "Superfície técnica temporária para validar a fundação da plataforma ATIV.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+  pathname: "/",
+  index: false,
+});
 
 type RootLayoutProps = Readonly<{
   children: ReactNode;

@@ -9,6 +9,8 @@ out/
 coverage/
 test-results/
 playwright-report/
+.lighthouseci/
+.tmp/
 
 # environment files: examples remain versioned
 .env

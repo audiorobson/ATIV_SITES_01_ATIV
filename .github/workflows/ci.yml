@@ -48,3 +48,15 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: Verify built routes
+        run: pnpm test:routes
+
+      - name: Check local Markdown links
+        uses: lycheeverse/lychee-action@v2.9.0
+        with:
+          args: --offline --no-progress './**/*.md'
+          fail: true
+
+      - name: Lighthouse budgets
+        run: pnpm lighthouse
