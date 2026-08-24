@@ -1,5 +1,8 @@
+import { readFile } from "node:fs/promises";
+
 import { describe, expect, it } from "vitest";
 
+import { loadPublishableContent } from "./load";
 import { isPublishable, parseContentDocument } from "./parse";
 
 const valid = `---
@@ -46,5 +49,14 @@ describe("content contract", () => {
       "pages/draft.md",
     );
     expect(isPublishable(document)).toBe(false);
+  });
+
+  it("accepts the Home brief without publishing inbox drafts", async () => {
+    const source = await readFile("content/pages/home.md", "utf8");
+    const home = parseContentDocument(source, "pages/home.md");
+
+    expect(home.frontmatter.route).toBe("/");
+    expect(home.frontmatter.status).toBe("brief");
+    await expect(loadPublishableContent("content")).resolves.toEqual([]);
   });
 });
