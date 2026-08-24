@@ -1,0 +1,30 @@
+{
+  "name": "ativ-platform",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=24.0.0 <25",
+    "pnpm": ">=11.19.0 <12"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @ativ/web dev",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "pnpm --filter @ativ/web typecheck",
+    "test": "vitest run",
+    "build": "pnpm --filter @ativ/web build",
+    "format": "prettier --write apps packages docs/adr docs/agents PARALLEL_DEV_START_HERE.md design_guide/INSTRUCAO_AGENTE_PAGINAS_E_DESIGN.md package.json pnpm-workspace.yaml eslint.config.mjs vitest.config.ts .github/workflows/ci.yml",
+    "format:check": "prettier --check apps packages docs/adr docs/agents PARALLEL_DEV_START_HERE.md design_guide/INSTRUCAO_AGENTE_PAGINAS_E_DESIGN.md package.json pnpm-workspace.yaml eslint.config.mjs vitest.config.ts .github/workflows/ci.yml"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@types/node": "24.13.3",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.2",
+    "eslint-config-prettier": "10.1.8",
+    "prettier": "3.9.6",
+    "typescript": "6.0.3",
+    "vitest": "4.1.11"
+  },
+  "type": "module"
+}
