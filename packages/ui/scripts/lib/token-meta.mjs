@@ -330,6 +330,36 @@ export const recipes = {
     values: ["7px", "14px", "11.5px", ".08em", "6px"],
     note: "Receita do CSS mestre.",
   },
+  "technical.ficha": {
+    selectors: [".ativ-ficha"],
+    values: ["13px", "11px", "500", ".18em", "860px"],
+    note: "Tabela de spec ausente no CSS mestre. Compoe tipografia de dado/rotulo, borda de 1px e o breakpoint de colapso da grade. Em 860px vira blocos rotulados via data-rotulo; cobre reflow a 320px.",
+  },
+  "technical.par": {
+    selectors: [".ativ-pares", ".ativ-par"],
+    values: ["13px", "dotted"],
+    note: "Pares chave/valor. Guia pontilhada usa a borda canonica, nao um token novo. Em 860px empilha sem guia, para reflow a 320px.",
+  },
+  "technical.metrica": {
+    selectors: [".ativ-metrica__valor", ".ativ-indicador"],
+    values: ["38px", "-.02em", "6px", "3px"],
+    note: "Numero de destaque reusa 38px ja documentado. Trilha do indicador reusa a geometria de 6px do slider. --ativ-indicador-valor e do consumidor.",
+  },
+  "technical.config": {
+    selectors: [".ativ-config"],
+    values: ["13px", "1.6", "2"],
+    note: "Bloco de configuracao em IBM Plex Mono. tab-size 2 nao e token. Overflow-x e excecao de reflow para codigo.",
+  },
+  "technical.fluxo": {
+    selectors: [".ativ-fluxo"],
+    values: ["→", "↓"],
+    note: "Diagrama textual. Sem CSS permanece ol. Setas sao reforco visual; a ordem vem da lista.",
+  },
+  "technical.estado": {
+    selectors: [".ativ-estado"],
+    values: ["13px", "6px"],
+    note: "Status com texto visivel. O ponto colorido de .ativ-status permanece, mas nao e o unico sinal.",
+  },
 };
 
 export const masterExceptionsNotExtracted = [
@@ -372,6 +402,7 @@ export const cssExports = {
   foundations: "@ativ/ui/styles/foundations.css",
   layout: "@ativ/ui/styles/layout.css",
   controls: "@ativ/ui/styles/controls.css",
+  technicalData: "@ativ/ui/styles/technical-data.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",
 };

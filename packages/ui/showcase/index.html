@@ -235,6 +235,112 @@
           </div>
         </div>
       </section>
+
+      <section class="ativ-secao" aria-labelledby="dado-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Dado técnico</p>
+          <h2 id="dado-titulo" class="ativ-titulo-secao">Primitives de especificação</h2>
+          <p class="ativ-texto ativ-medida">
+            Espécime. Não é spec de produto, contrato nem medição da ATIV. Valores
+            fictícios só para validar tabela, par, métrica, estado, código e fluxo.
+          </p>
+
+          <figure class="ativ-pilha ativ-pilha--3">
+            <table class="ativ-ficha">
+              <caption>Espécime de ficha — reflow abaixo de 860 px</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Parâmetro</th>
+                  <th scope="col">Valor</th>
+                  <th scope="col">Unidade</th>
+                  <th scope="col">Nota</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Parâmetro A</th>
+                  <td data-rotulo="Valor">12,5</td>
+                  <td data-rotulo="Unidade">exemplo</td>
+                  <td data-rotulo="Nota">n.d.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Parâmetro B</th>
+                  <td data-rotulo="Valor">&lt; 1</td>
+                  <td data-rotulo="Unidade">passo</td>
+                  <td data-rotulo="Nota">tolerância fictícia</td>
+                </tr>
+                <tr>
+                  <th scope="row">Parâmetro C</th>
+                  <td data-rotulo="Valor">aberto</td>
+                  <td data-rotulo="Unidade">—</td>
+                  <td data-rotulo="Nota">não é claim</td>
+                </tr>
+              </tbody>
+            </table>
+            <figcaption class="ativ-legenda">Legenda do espécime. Sem fotografia.</figcaption>
+          </figure>
+
+          <div class="ativ-grade ativ-grade--2">
+            <div class="ativ-pilha ativ-pilha--3">
+              <p class="ativ-rotulo">Pares chave / valor</p>
+              <dl class="ativ-pares">
+                <div class="ativ-par">
+                  <dt>Chave um</dt>
+                  <dd>valor de exemplo</dd>
+                </div>
+                <div class="ativ-par">
+                  <dt>Chave dois</dt>
+                  <dd>n.d.</dd>
+                </div>
+                <div class="ativ-par">
+                  <dt>Chave três</dt>
+                  <dd>texto longo que quebra a 320 px</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="ativ-pilha ativ-pilha--3">
+              <p class="ativ-rotulo">Métrica</p>
+              <div class="ativ-metrica">
+                <p class="ativ-metrica__leitura">
+                  <span class="ativ-metrica__valor">1920</span>
+                  <abbr class="ativ-metrica__unidade" title="unidade de espécime">un</abbr>
+                </p>
+                <div
+                  class="ativ-indicador"
+                  role="meter"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="62"
+                  aria-valuetext="62 por cento — espécime"
+                  style="--ativ-indicador-valor: 62%"
+                >
+                  <span class="ativ-indicador__preenchido"></span>
+                </div>
+              </div>
+              <p class="ativ-estado">
+                <span class="ativ-status ativ-status--operando" aria-hidden="true"></span>
+                <span>Operando — texto visível, não só a cor</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="ativ-pilha ativ-pilha--3">
+            <p class="ativ-rotulo">Configuração</p>
+            <pre class="ativ-config"><code>modo: especime
+porta: n.d.
+edid: desligado</code></pre>
+          </div>
+
+          <div class="ativ-pilha ativ-pilha--3">
+            <p class="ativ-rotulo">Fluxo de sinal</p>
+            <ol class="ativ-fluxo">
+              <li>Origem (espécime)</li>
+              <li>Processamento</li>
+              <li>Destino</li>
+            </ol>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>

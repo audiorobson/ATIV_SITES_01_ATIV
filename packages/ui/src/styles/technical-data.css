@@ -1,0 +1,322 @@
+/*
+ * ATIV — primitives de dado tecnico de producao.
+ * Consumir depois de tokens.css, foundations.css, layout.css e controls.css
+ * (ou via @ativ/ui/styles.css).
+ *
+ * Esta familia nao existia no CSS mestre. As receitas compostam tokens
+ * oficiais, tipografia de dado e geometria ja extraida (borda, raio,
+ * trilha de 6px). Nao ha hex, sombra, razao fotografica nem ilustracao de rack.
+ * Diagramas sao listas HTML; medidores expoe valor em texto.
+ */
+
+/* =====================================================================
+   FICHA — tabela de especificacao
+   ===================================================================== */
+
+.ativ-ficha {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  color: var(--ativ-texto-corpo);
+  background: var(--ativ-fundo-fundo);
+}
+
+.ativ-ficha caption,
+.ativ-legenda {
+  caption-side: top;
+  text-align: start;
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+  margin-block-end: var(--ativ-e-3);
+}
+
+.ativ-ficha th,
+.ativ-ficha td {
+  border-block-end: var(--ativ-borda) solid var(--ativ-borda-cor);
+  padding: var(--ativ-e-3) var(--ativ-e-4);
+  text-align: start;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.ativ-ficha thead th {
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--ativ-texto-suave);
+  background: var(--ativ-superficie);
+}
+
+.ativ-ficha tbody th {
+  font-weight: 500;
+  color: var(--ativ-texto);
+  white-space: nowrap;
+}
+
+.ativ-ficha tbody tr:nth-child(even) {
+  background: var(--ativ-superficie);
+}
+
+@media (max-width: 860px) {
+  .ativ-ficha,
+  .ativ-ficha tbody,
+  .ativ-ficha tr,
+  .ativ-ficha th,
+  .ativ-ficha td {
+    display: block;
+    width: 100%;
+  }
+
+  .ativ-ficha thead {
+    position: absolute;
+    clip-path: inset(50%);
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    white-space: nowrap;
+  }
+
+  .ativ-ficha tbody th {
+    white-space: normal;
+    border-block-end: none;
+    padding-block-end: var(--ativ-e-1);
+  }
+
+  .ativ-ficha tbody td {
+    border-block-end: none;
+    padding-block: var(--ativ-e-1) var(--ativ-e-2);
+  }
+
+  .ativ-ficha tbody td::before {
+    content: attr(data-rotulo);
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ativ-texto-suave);
+    margin-block-end: var(--ativ-e-1);
+  }
+
+  .ativ-ficha tbody tr {
+    border: var(--ativ-borda) solid var(--ativ-borda-cor);
+    margin-block-end: var(--ativ-e-3);
+    padding: var(--ativ-e-3);
+    background: var(--ativ-fundo-fundo);
+  }
+
+  .ativ-ficha tbody tr:nth-child(even) {
+    background: var(--ativ-fundo-fundo);
+  }
+}
+
+/* =====================================================================
+   PARES CHAVE / VALOR
+   ===================================================================== */
+
+.ativ-pares {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ativ-e-2);
+  margin: 0;
+}
+
+.ativ-par {
+  display: grid;
+  grid-template-columns: max-content minmax(var(--ativ-e-4), 1fr) minmax(0, max-content);
+  align-items: baseline;
+  column-gap: var(--ativ-e-2);
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+}
+
+.ativ-par dt {
+  grid-column: 1;
+  margin: 0;
+  color: var(--ativ-texto-suave);
+}
+
+.ativ-par::after {
+  content: "";
+  grid-column: 2;
+  border-block-end: var(--ativ-borda) dotted var(--ativ-borda-cor);
+  min-block-size: var(--ativ-borda);
+  align-self: end;
+  margin-block-end: var(--ativ-e-1);
+}
+
+.ativ-par dd {
+  grid-column: 3;
+  margin: 0;
+  color: var(--ativ-texto);
+  text-align: end;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 860px) {
+  .ativ-par {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--ativ-e-1);
+  }
+
+  .ativ-par dt,
+  .ativ-par dd,
+  .ativ-par::after {
+    grid-column: 1;
+  }
+
+  .ativ-par::after {
+    display: none;
+  }
+
+  .ativ-par dd {
+    text-align: start;
+  }
+}
+
+/* =====================================================================
+   METRICA COM UNIDADE E INDICADOR
+   ===================================================================== */
+
+.ativ-metrica {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ativ-e-3);
+}
+
+.ativ-metrica__leitura {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--ativ-e-2);
+  margin: 0;
+}
+
+.ativ-metrica__valor {
+  font-family: var(--ativ-font-display);
+  font-weight: var(--ativ-peso-secao);
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--ativ-texto);
+}
+
+.ativ-metrica__unidade {
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+  text-decoration: none;
+}
+
+.ativ-indicador {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  overflow: hidden;
+}
+
+.ativ-indicador__preenchido {
+  display: block;
+  height: 100%;
+  width: var(--ativ-indicador-valor, 0%);
+  background: var(--ativ-destaque);
+}
+
+/* =====================================================================
+   ESTADO ROTULADO — cor nao e o unico sinal
+   ===================================================================== */
+
+.ativ-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ativ-e-2);
+  margin: 0;
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  color: var(--ativ-texto);
+}
+
+.ativ-estado .ativ-status {
+  width: 6px;
+  height: 6px;
+}
+
+/* =====================================================================
+   BLOCO DE CONFIGURACAO
+   ===================================================================== */
+
+.ativ-config {
+  margin: 0;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  padding: var(--ativ-e-4);
+  overflow-x: auto;
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ativ-texto-corpo);
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-controle);
+  tab-size: 2;
+}
+
+.ativ-config code {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* =====================================================================
+   FLUXO / SINAL — lista textual, sem desenho
+   ===================================================================== */
+
+.ativ-fluxo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ativ-e-3);
+  margin: 0;
+  padding-inline-start: var(--ativ-e-6);
+}
+
+.ativ-fluxo > li {
+  color: var(--ativ-texto);
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+}
+
+.ativ-fluxo > li:not(:last-child)::after {
+  content: "→";
+  color: var(--ativ-destaque);
+  margin-inline-start: var(--ativ-e-3);
+  font-weight: 500;
+}
+
+@media (max-width: 860px) {
+  .ativ-fluxo {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-inline-start: var(--ativ-e-5);
+  }
+
+  .ativ-fluxo > li:not(:last-child)::after {
+    content: "↓";
+    margin-inline-start: var(--ativ-e-2);
+  }
+}
