@@ -6,6 +6,12 @@ export const foundationChecks = [
   "Build de produção reproduzível",
 ] as const;
 
+export const foundationPageContract = {
+  pageClass: "ativ-pagina--solucao",
+  skipTarget: "conteudo-principal",
+  sectionIds: ["contexto", "validacoes", "limites"],
+} as const;
+
 export function hasUniqueFoundationChecks(checks: readonly string[]): boolean {
   return new Set(checks).size === checks.length;
 }
