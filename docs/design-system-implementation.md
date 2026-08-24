@@ -3,9 +3,9 @@
 **Status: READY para o Codex integrar a fatia de tokens** em
 `feat/design-tokens-foundation` (`bee5055`). Pacote: `docs/HANDOFF_CURSOR_TO_CODEX.md`.
 
-Esta branch (`feat/ui-layout-foundations`) continua a Fase 2 com primitives CSS
-de layout, a partir de `feat/ui-control-foundations` (`ed6a2fb`).
-Não bloqueia e não altera o handoff congelado de tokens.
+Esta branch (`feat/ui-technical-data-foundations`) continua a Fase 2 com
+primitives CSS de dado técnico, a partir de `feat/ui-layout-foundations`
+(`8865925`). Não bloqueia e não altera o handoff congelado de tokens.
 
 Este documento descreve o contrato visual entregue nessa branch.
 Ele não conclui a Fase 2 nem a TASK 002. Não há páginas finais, componentes React
@@ -19,8 +19,9 @@ ou Home comercial.
 4. `design_guide/brand/tokens/tailwind.ativ.js` e `theme.ativ.css` — derivados.
    Tailwind não é fonte de verdade e não foi promovido a dependência.
 
-Um valor visual ausente no CSS mestre não existe. Lacunas são registradas aqui;
-não foram preenchidas com padrões genéricos.
+Um valor visual ausente no CSS mestre não vira token. Famílias autorizadas
+(WAVE 4+) compostam tokens oficiais e ficam em `recipes`; o restante permanece
+lacuna, sem padrão genérico.
 
 ## O que foi entregue
 
@@ -32,9 +33,10 @@ não foram preenchidas com padrões genéricos.
 | `packages/ui/src/styles/foundations.css` | Superfícies, tipografia, raio aplicado, foco, salto, movimento, iconografia e mínimos de logo. |
 | `packages/ui/src/styles/layout.css` | Seção, container, pilha, agrupamento, grade 12/auto-fit, lateral, quadro e somente-leitura. |
 | `packages/ui/src/styles/controls.css` | Cartão, botões, campos, seleção, slider, paginação, chip, status e badge extraídos do CSS mestre. |
+| `packages/ui/src/styles/technical-data.css` | Ficha, pares chave/valor, métrica com unidade, estado rotulado, legenda, configuração e fluxo textual. |
 | `packages/ui/src/styles/index.css` | Bundle local (`@import` relativo, sem CDN). |
 | `packages/ui/src/index.ts` | Export JS/TS do contrato e dos caminhos de CSS. |
-| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies escura e clara, e espécimes dos controles extraídos (incluindo dropdown aberto sem sombra). Não é página pública. |
+| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies escura e clara, controles, layout e espécimes fictícios de dado técnico. Não é página pública. |
 | `packages/ui/scripts/` | Sincronização e validação independentes do workspace raiz. |
 
 ## Como importar
@@ -54,6 +56,7 @@ import "@ativ/ui/styles/tokens.css";
 import "@ativ/ui/styles/foundations.css";
 import "@ativ/ui/styles/layout.css";
 import "@ativ/ui/styles/controls.css";
+import "@ativ/ui/styles/technical-data.css";
 import { tokens, logos, contrast, typography } from "@ativ/ui";
 ```
 
@@ -110,6 +113,10 @@ node packages/ui/scripts/sync-tokens.mjs
 - Showcase HTML interno em `packages/ui/showcase/` — não indexável, sem JS de página.
 - Layout: seção, container, pilha, agrupamento, grade auto-fit, lateral por
   `min-inline-size`, quadro sem razão fotográfica inventada, somente-leitura.
+- Dado técnico: ficha responsiva (`.ativ-ficha`), pares chave/valor (`.ativ-pares`),
+  métrica com unidade e indicador (`.ativ-metrica`, `--ativ-indicador-valor` do
+  consumidor), estado com texto (`.ativ-estado`), legenda, bloco `.ativ-config` e
+  fluxo textual (`.ativ-fluxo`). Sem hex, sem 16/9 e sem desenho de rack.
 
 ## Lacunas preservadas
 
@@ -118,7 +125,7 @@ inventadas famílias visuais para fechá-las.
 
 | Lacuna | Estado |
 | --- | --- |
-| Dado técnico (tabela de spec, medidor, unidade, diagrama de sinal) | Ausente. Maior lacuna de identidade. |
+| Dado técnico (tabela de spec, medidor, unidade, diagrama de sinal) | Ficha, par, métrica, estado rotulado, config e fluxo textual entregues. Diagrama de rack, planta com cotas e elevação permanecem lacuna — exigiriam desenho, não CSS. |
 | Iconografia proprietária e repertório por setor | Lucide permanece a família vigente; conjunto próprio não aprovado. |
 | Navegação global, submenu, condensação mobile, breadcrumb | Não definida como linguagem de produto. |
 | Formulário completo, validação, vazio, loading, erro, sucesso | Controles soltos existem no CSS mestre; estados não. |
@@ -158,6 +165,7 @@ Cobertura:
   sem import remoto;
 - Showcase interno sem CDN, com skip link, um H1 e ambas as superfícies.
 - Primitives de layout sem hex, sem 16/9 e sem import remoto.
+- Dado técnico sem hex, sem 16/9, sem sombra e com estado rotulado (texto + ponto).
 
 ## Gates que dependem do Codex
 
@@ -194,7 +202,8 @@ aqui. O pacote usa `node:test` para permanecer independente.
   referência.
 - `foundations.css` cobre o contrato de superfície. `layout.css` cobre disposição.
   `controls.css` cobre os controles do mestre, sem sombra de dropdown e sem
-  `.ativ-pulso`. Usá-los não substitui navegação, formulário completo ou dado técnico.
+  `.ativ-pulso`. `technical-data.css` cobre ficha, par, métrica, estado, config e
+  fluxo textual; não substitui diagrama de rack nem formulário.
 - O export `./tokens.json` é cópia verificada. Editar só um dos JSONs quebra o
   teste; usar o script de sync.
 - Sem os SVGs de logo no caminho `brand/logo`, a app não consegue cumprir as
