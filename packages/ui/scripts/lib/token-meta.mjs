@@ -265,36 +265,79 @@ export const recipes = {
     values: ["12px", "18px", "999"],
     note: "Padding 18px do atalho de salto esta no CSS mestre e fora da escala; nao foi promovido a token.",
   },
+  "control.cartao": {
+    selectors: [".ativ-cartao", "#ativ-cartao"],
+    values: ["26px", "28px"],
+    note: "Padding do cartao no CSS mestre, fora da escala. Extraido como receita, nao como token.",
+  },
+  "control.botao": {
+    selectors: [".ativ-btn", "#ativ-btn"],
+    values: ["14px", "22px", "10px", "500"],
+    note: "Medidas soltas do botao no CSS mestre. Nao promovidas a token.",
+  },
+  "control.segmentado": {
+    selectors: [".ativ-segmentado"],
+    values: ["3px", "9px", "12px", ".06em"],
+    note: "Receita do CSS mestre.",
+  },
+  "control.campo": {
+    selectors: [".ativ-campo", ".ativ-busca"],
+    values: ["15px", "14px", "40px", ".14em"],
+    note: "Receita do CSS mestre.",
+  },
+  "control.dropdown": {
+    selectors: [".ativ-dropdown"],
+    values: ["6px", "10px", "20"],
+    note: "Offset e padding do painel. Sombra decorativa permanece omitida.",
+  },
+  "control.toggle": {
+    selectors: [".ativ-toggle"],
+    values: ["52px", "28px", "20px", "26px", "3px", "50%"],
+    note: "Geometria do toggle no CSS mestre. Nao promovida a token.",
+  },
+  "control.selecao": {
+    selectors: [".ativ-radio", ".ativ-checkbox"],
+    values: ["19px", "9px", "2px", "700"],
+    note: "Marca de radio/checkbox no CSS mestre. Nao promovida a token.",
+  },
+  "control.slider": {
+    selectors: [".ativ-slider"],
+    values: ["20px", "4px", "6px", "3px", "10px"],
+    note: "Receita do CSS mestre. touch-action: none preservado como no mestre.",
+  },
+  "control.paginacao": {
+    selectors: [".ativ-paginacao__item"],
+    values: ["38px"],
+    note: "Alvo 38px no CSS mestre, abaixo dos 44px. Nao corrigido nesta extracao.",
+  },
+  "control.chip-badge": {
+    selectors: [".ativ-chip", ".ativ-badge", ".ativ-status"],
+    values: ["7px", "14px", "11.5px", ".08em", "6px"],
+    note: "Receita do CSS mestre.",
+  },
 };
 
 export const masterExceptionsNotExtracted = [
-  {
-    id: "cartao-padding-fora-da-escala",
-    selectors: [".ativ-cartao", "#ativ-cartao"],
-    values: ["26px", "28px"],
-    reason:
-      "Padding do cartao no CSS mestre nao pertence a escala e-1..e-10. Nao extraido para foundations de producao e nao virou token.",
-  },
-  {
-    id: "controles-medidas-soltas",
-    selectors: [".ativ-btn", ".ativ-campo", ".ativ-segmentado", ".ativ-dropdown", ".ativ-toggle"],
-    values: ["10px", "14px", "22px", "3px", "9px", "40px", "52px", "28px", "19px"],
-    reason:
-      "Componentes de controle permanecem no CSS mestre. Medidas soltas nao foram promovidas a tokens nem copiadas para foundations.",
-  },
   {
     id: "dropdown-sombra-decorativa",
     selectors: [".ativ-dropdown__painel"],
     values: ["box-shadow: 0 16px 40px rgba(18, 21, 44, .4)"],
     reason:
-      "Sombra decorativa do CSS mestre nao entra no contrato de producao desta rodada.",
+      "Sombra decorativa do CSS mestre nao entra no contrato de producao. O painel foi extraido sem box-shadow.",
   },
   {
     id: "pulso-duracao-fora-do-sistema",
     selectors: [".ativ-pulso"],
     values: ["1.6s"],
     reason:
-      "Duracao 1.6s nao pertence aos cinco tempos canonicos. A classe nao foi extraida para foundations.",
+      "Duracao 1.6s nao pertence aos cinco tempos canonicos. A classe nao foi extraida.",
+  },
+  {
+    id: "paginacao-abaixo-do-alvo-minimo",
+    selectors: [".ativ-paginacao__item"],
+    values: ["38px"],
+    reason:
+      "O CSS mestre usa 38px, abaixo do alvo de 44px. Extraido sem correcao; permanece lacuna de acessibilidade.",
   },
 ];
 
@@ -312,6 +355,7 @@ export const prohibited = {
 export const cssExports = {
   tokens: "@ativ/ui/styles/tokens.css",
   foundations: "@ativ/ui/styles/foundations.css",
+  controls: "@ativ/ui/styles/controls.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",
 };

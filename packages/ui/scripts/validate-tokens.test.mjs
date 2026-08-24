@@ -88,9 +88,11 @@ test("CSS de producao reproduz o :root canonico e nao importa remoto", () => {
   assert.equal(actual, renderTokensCss(masterTokens));
   assert.equal(hasRemoteImport(actual), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/foundations.css")), false);
+  assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/controls.css")), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/index.css")), false);
   assert.equal(bracesBalanced(actual), true);
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/foundations.css")), true);
+  assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/controls.css")), true);
   assert.deepEqual(parseRootCustomProperties(actual), masterTokens);
 });
 
@@ -103,6 +105,7 @@ test("ausencia de hex nao aprovado e de preto puro", () => {
   );
   const productionHex = extractHex(readRepo(productionTokensCssPath));
   const foundationHex = extractHex(readRepo("packages/ui/src/styles/foundations.css"));
+  const controlHex = extractHex(readRepo("packages/ui/src/styles/controls.css"));
 
   for (const hex of productionHex) {
     assert.equal(approved.has(hex), true, hex);
@@ -110,6 +113,7 @@ test("ausencia de hex nao aprovado e de preto puro", () => {
   }
 
   assert.deepEqual(foundationHex, []);
+  assert.deepEqual(controlHex, []);
   assert.equal(approved.has("#000000"), false);
   assert.equal(approved.has("#000"), false);
 });
@@ -133,7 +137,8 @@ test("tokens de espaco, raio, duracao e curva ficam no sistema", () => {
   }
 
   const foundationCss = readRepo("packages/ui/src/styles/foundations.css");
-  const rawCubics = foundationCss.match(/cubic-bezier\([^)]+\)/g) ?? [];
+  const controlCss = readRepo("packages/ui/src/styles/controls.css");
+  const rawCubics = [...(foundationCss.match(/cubic-bezier\([^)]+\)/g) ?? []), ...(controlCss.match(/cubic-bezier\([^)]+\)/g) ?? [])];
   assert.deepEqual(rawCubics, []);
 
   const rawDurations = foundationCss.match(/\d+ms|\.\d+ms/g) ?? [];
@@ -151,6 +156,7 @@ test("exports do pacote apontam somente para arquivos existentes", () => {
     pkg.exports["./styles.css"],
     pkg.exports["./styles/tokens.css"],
     pkg.exports["./styles/foundations.css"],
+    pkg.exports["./styles/controls.css"],
   ];
 
   for (const target of exportTargets) {
@@ -160,4 +166,15 @@ test("exports do pacote apontam somente para arquivos existentes", () => {
   assert.equal(pkg.name, "@ativ/ui");
   assert.equal(pkg.dependencies, undefined);
   assert.equal(pkg.devDependencies, undefined);
+});
+
+test("controles extraidos do mestre sem sombra decorativa nem pulso", () => {
+  const css = readRepo("packages/ui/src/styles/controls.css");
+  assert.match(css, /\.ativ-btn\b/);
+  assert.match(css, /\.ativ-cartao\b/);
+  assert.match(css, /\.ativ-campo\b/);
+  assert.equal(/box-shadow/i.test(css), false);
+  assert.equal(/rgba\(/i.test(css), false);
+  assert.equal(/1\.6s/.test(css), false);
+  assert.equal(/\.ativ-pulso/.test(css), false);
 });

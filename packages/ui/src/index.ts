@@ -6,6 +6,7 @@ export type AtivTokens = typeof contract;
 export const cssExports = {
   tokens: "@ativ/ui/styles/tokens.css",
   foundations: "@ativ/ui/styles/foundations.css",
+  controls: "@ativ/ui/styles/controls.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",
 } as const;
