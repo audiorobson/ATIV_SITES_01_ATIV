@@ -12,6 +12,8 @@ export default defineConfig([
   },
   globalIgnores([
     "**/.next/**",
+    "**/out/**",
+    "dist/**",
     "**/coverage/**",
     "**/node_modules/**",
     "design_guide/brand/**",

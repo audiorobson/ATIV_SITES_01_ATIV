@@ -1,0 +1,554 @@
+/*
+ * ATIV — foundations visuais de producao.
+ * Fonte de verdade: design_guide/brand/tokens/ativ-ui.css
+ * Consumir depois de @ativ/ui/styles/tokens.css (ou via @ativ/ui/styles.css).
+ *
+ * Escopo desta rodada: superficies, tipografia, espaco, grade, raio, foco,
+ * movimento, iconografia e logo. Componentes de controle permanecem no CSS mestre.
+ */
+
+/* =====================================================================
+   SUPERFICIES
+   ===================================================================== */
+
+#ativ-superficie-escura,
+.ativ-escuro {
+  --ativ-fundo: var(--ativ-indigo-profundo);
+  --ativ-fundo-fundo: var(--ativ-indigo-900);
+  --ativ-superficie: var(--ativ-indigo-800);
+  --ativ-borda-cor: var(--ativ-indigo-700);
+  --ativ-borda-forte: var(--ativ-indigo-600);
+  --ativ-texto: var(--ativ-gelo);
+  --ativ-texto-corpo: var(--ativ-indigo-300);
+  --ativ-texto-suave: var(--ativ-ardosia-400);
+  --ativ-destaque: var(--ativ-ambar);
+  --ativ-destaque-hover: var(--ativ-ambar-400);
+  --ativ-sobre-destaque: var(--ativ-indigo-profundo);
+  --ativ-foco-cor: var(--ativ-ambar);
+  background: var(--ativ-fundo);
+  color: var(--ativ-texto);
+  font-family: var(--ativ-font-corpo);
+}
+
+#ativ-superficie-clara,
+.ativ-claro {
+  --ativ-fundo: var(--ativ-gelo);
+  --ativ-fundo-fundo: var(--ativ-gelo-200);
+  --ativ-superficie: var(--ativ-branco);
+  --ativ-borda-cor: var(--ativ-gelo-300);
+  --ativ-borda-forte: var(--ativ-gelo-300);
+  --ativ-texto: var(--ativ-indigo-profundo);
+  --ativ-texto-corpo: var(--ativ-ardosia-800);
+  --ativ-texto-suave: var(--ativ-ardosia-400);
+  --ativ-destaque: var(--ativ-indigo);
+  --ativ-destaque-hover: var(--ativ-indigo-profundo);
+  --ativ-sobre-destaque: var(--ativ-branco);
+  --ativ-foco-cor: var(--ativ-indigo);
+  background: var(--ativ-fundo);
+  color: var(--ativ-texto);
+  font-family: var(--ativ-font-corpo);
+}
+
+/* =====================================================================
+   TIPOGRAFIA
+   ===================================================================== */
+
+#ativ-titulo-pagina,
+.ativ-titulo-pagina {
+  font-family: var(--ativ-font-display);
+  font-weight: var(--ativ-peso-display);
+  font-size: clamp(38px, 6.4vw, 96px);
+  line-height: .96;
+  letter-spacing: -.03em;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+#ativ-titulo-secao,
+.ativ-titulo-secao {
+  font-family: var(--ativ-font-display);
+  font-weight: var(--ativ-peso-secao);
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+#ativ-texto,
+.ativ-texto {
+  font-family: var(--ativ-font-corpo);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ativ-texto-corpo);
+  text-wrap: pretty;
+}
+
+#ativ-rotulo,
+.ativ-rotulo {
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+}
+
+#ativ-dado,
+.ativ-dado {
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  color: var(--ativ-texto-corpo);
+}
+
+#ativ-link,
+.ativ-link {
+  color: var(--ativ-destaque);
+  text-decoration: none;
+  transition: color var(--ativ-transicao);
+}
+
+#ativ-link:hover,
+.ativ-link:hover {
+  color: var(--ativ-destaque-hover);
+}
+
+#ativ-divisor,
+.ativ-divisor {
+  height: var(--ativ-borda);
+  background: var(--ativ-borda-cor);
+  border: none;
+  margin: 0;
+}
+
+/* =====================================================================
+   LOGOTIPO — respiro e minimos
+   ===================================================================== */
+
+#ativ-logo,
+.ativ-logo {
+  display: block;
+  height: auto;
+}
+
+.ativ-logo--completo {
+  min-width: 120px;
+}
+
+.ativ-logo--wordmark {
+  min-width: 60px;
+}
+
+.ativ-logo--simbolo {
+  min-width: 18px;
+}
+
+.ativ-logo-respiro {
+  padding: calc(var(--respiro, 1em));
+}
+
+/* =====================================================================
+   FOCO DE TECLADO
+   ===================================================================== */
+
+#ativ-foco,
+.ativ-foco,
+.ativ-link,
+a[href],
+button,
+input,
+select,
+textarea,
+summary,
+[tabindex]:not([tabindex="-1"]) {
+  outline: none;
+}
+
+#ativ-foco:focus-visible,
+.ativ-foco:focus-visible,
+.ativ-link:focus-visible,
+a[href]:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: var(--ativ-foco-anel) solid var(--ativ-foco-cor);
+  outline-offset: var(--ativ-foco-folga);
+}
+
+.ativ-grupo:focus-within {
+  outline: var(--ativ-foco-anel) solid var(--ativ-foco-cor);
+  outline-offset: var(--ativ-foco-folga);
+}
+
+.ativ-grupo:focus-within :focus-visible {
+  outline: none;
+}
+
+.ativ-sobre-ambar :focus-visible {
+  outline-color: var(--ativ-indigo-profundo);
+}
+
+#ativ-salto,
+.ativ-salto {
+  position: absolute;
+  left: var(--ativ-e-4);
+  top: var(--ativ-e-4);
+  transform: translateY(-200%);
+  z-index: 999;
+  background: var(--ativ-destaque);
+  color: var(--ativ-sobre-destaque);
+  font-family: var(--ativ-font-dados);
+  font-size: 12px;
+  font-weight: var(--ativ-peso-forte);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: var(--ativ-raio-controle);
+  transition: transform var(--ativ-dur-rapido) var(--ativ-ease-entrada);
+}
+
+#ativ-salto:focus,
+.ativ-salto:focus {
+  transform: translateY(0);
+}
+
+/* =====================================================================
+   ESPACO E GRADE
+   ===================================================================== */
+
+#ativ-secao,
+.ativ-secao {
+  padding: var(--ativ-e-8) var(--ativ-grade-margem);
+}
+
+@media (min-width: 900px) {
+  #ativ-secao,
+  .ativ-secao {
+    padding: var(--ativ-e-9) var(--ativ-grade-margem);
+  }
+}
+
+.ativ-secao--abertura {
+  padding-top: var(--ativ-e-10);
+}
+
+.ativ-secao--densa {
+  padding-block: var(--ativ-e-7);
+}
+
+#ativ-container,
+.ativ-container {
+  max-width: var(--ativ-grade-max);
+  margin-inline: auto;
+  width: 100%;
+}
+
+#ativ-grade,
+.ativ-grade {
+  display: grid;
+  grid-template-columns: repeat(var(--ativ-grade-colunas), minmax(0, 1fr));
+  gap: var(--ativ-grade-calha);
+}
+
+.ativ-grade--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ativ-grade--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ativ-grade--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ativ-grade--auto {
+  grid-template-columns: repeat(auto-fit, minmax(var(--ativ-min-col, 280px), 1fr));
+}
+
+@media (max-width: 860px) {
+  .ativ-grade--2,
+  .ativ-grade--3,
+  .ativ-grade--4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ativ-col--3 {
+  grid-column: span 3;
+}
+
+.ativ-col--4 {
+  grid-column: span 4;
+}
+
+.ativ-col--5 {
+  grid-column: span 5;
+}
+
+.ativ-col--6 {
+  grid-column: span 6;
+}
+
+.ativ-col--7 {
+  grid-column: span 7;
+}
+
+.ativ-col--8 {
+  grid-column: span 8;
+}
+
+.ativ-col--12 {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 860px) {
+  [class*="ativ-col--"] {
+    grid-column: 1 / -1;
+  }
+}
+
+#ativ-pilha,
+.ativ-pilha {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ativ-e-4);
+}
+
+.ativ-pilha--1 {
+  gap: var(--ativ-e-1);
+}
+
+.ativ-pilha--2 {
+  gap: var(--ativ-e-2);
+}
+
+.ativ-pilha--3 {
+  gap: var(--ativ-e-3);
+}
+
+.ativ-pilha--5 {
+  gap: var(--ativ-e-5);
+}
+
+.ativ-pilha--6 {
+  gap: var(--ativ-e-6);
+}
+
+.ativ-pilha--7 {
+  gap: var(--ativ-e-7);
+}
+
+#ativ-linha,
+.ativ-linha {
+  display: flex;
+  align-items: center;
+  gap: var(--ativ-e-3);
+  flex-wrap: wrap;
+}
+
+#ativ-medida,
+.ativ-medida {
+  max-width: var(--ativ-grade-texto);
+}
+
+.ativ-medida--curta {
+  max-width: 46ch;
+}
+
+.ativ-medida--titulo {
+  max-width: 22ch;
+}
+
+/* =====================================================================
+   MOVIMENTO
+   ===================================================================== */
+
+#ativ-mov,
+.ativ-mov {
+  transition-duration: var(--ativ-dur-padrao);
+  transition-timing-function: var(--ativ-ease-padrao);
+}
+
+.ativ-mov--instante {
+  transition-duration: var(--ativ-dur-instante);
+}
+
+.ativ-mov--rapido {
+  transition-duration: var(--ativ-dur-rapido);
+}
+
+.ativ-mov--amplo {
+  transition-duration: var(--ativ-dur-amplo);
+}
+
+.ativ-mov--entra {
+  transition-timing-function: var(--ativ-ease-entrada);
+}
+
+.ativ-mov--sai {
+  transition-timing-function: var(--ativ-ease-saida);
+}
+
+.ativ-mov--firme {
+  transition-timing-function: var(--ativ-ease-firme);
+}
+
+@keyframes ativ-entra {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ativ-desloca));
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ativ-entra-lateral {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--ativ-desloca) * -1));
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ativ-revela {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+#ativ-entra,
+.ativ-entra {
+  animation: ativ-entra var(--ativ-dur-amplo) var(--ativ-ease-entrada) both;
+}
+
+.ativ-entra--lateral {
+  animation-name: ativ-entra-lateral;
+}
+
+.ativ-entra--revela {
+  animation-name: ativ-revela;
+  animation-timing-function: var(--ativ-ease-firme);
+}
+
+.ativ-cascata > * {
+  animation: ativ-entra var(--ativ-dur-amplo) var(--ativ-ease-entrada) both;
+}
+
+.ativ-cascata > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.ativ-cascata > *:nth-child(2) {
+  animation-delay: 60ms;
+}
+
+.ativ-cascata > *:nth-child(3) {
+  animation-delay: 120ms;
+}
+
+.ativ-cascata > *:nth-child(4) {
+  animation-delay: 180ms;
+}
+
+.ativ-cascata > *:nth-child(5) {
+  animation-delay: 240ms;
+}
+
+.ativ-cascata > *:nth-child(6) {
+  animation-delay: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =====================================================================
+   ICONOGRAFIA — Lucide
+   ===================================================================== */
+
+#ativ-icone,
+.ativ-icone {
+  width: var(--ativ-icone-24);
+  height: var(--ativ-icone-24);
+  stroke: currentColor;
+  stroke-width: var(--ativ-icone-traco);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  flex-shrink: 0;
+  display: block;
+}
+
+.ativ-icone--16 {
+  width: var(--ativ-icone-16);
+  height: var(--ativ-icone-16);
+  stroke-width: 2;
+}
+
+.ativ-icone--20 {
+  width: var(--ativ-icone-20);
+  height: var(--ativ-icone-20);
+  stroke-width: 2;
+}
+
+.ativ-icone--24 {
+  width: var(--ativ-icone-24);
+  height: var(--ativ-icone-24);
+  stroke-width: 2;
+}
+
+.ativ-icone--32 {
+  width: var(--ativ-icone-32);
+  height: var(--ativ-icone-32);
+  stroke-width: 1.75;
+}
+
+.ativ-icone--48 {
+  width: var(--ativ-icone-48);
+  height: var(--ativ-icone-48);
+  stroke-width: 1.5;
+}
+
+.ativ-icone--destaque {
+  color: var(--ativ-destaque);
+}
+
+.ativ-icone--suave {
+  color: var(--ativ-texto-suave);
+}
+
+#ativ-icone-selo,
+.ativ-icone-selo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ativ-alvo-min);
+  height: var(--ativ-alvo-min);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-controle);
+  background: var(--ativ-superficie);
+  color: var(--ativ-destaque);
+}

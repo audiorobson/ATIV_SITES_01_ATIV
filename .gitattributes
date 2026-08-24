@@ -1,0 +1,4 @@
+brand/tokens.json text eol=lf
+packages/ui/**/*.json text eol=lf
+packages/ui/**/*.css text eol=lf
+packages/ui/**/*.mjs text eol=lf
