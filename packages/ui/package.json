@@ -12,7 +12,8 @@
     "./styles/foundations.css": "./src/styles/foundations.css",
     "./styles/layout.css": "./src/styles/layout.css",
     "./styles/controls.css": "./src/styles/controls.css",
-    "./styles/technical-data.css": "./src/styles/technical-data.css"
+    "./styles/technical-data.css": "./src/styles/technical-data.css",
+    "./styles/editorial.css": "./src/styles/editorial.css"
   },
   "files": [
     "src",

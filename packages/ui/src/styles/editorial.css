@@ -1,0 +1,269 @@
+/*
+ * ATIV — primitives editoriais de producao.
+ * Consumir depois de tokens, foundations, layout, controls e technical-data
+ * (ou via @ativ/ui/styles.css).
+ *
+ * Tipografia longa nao existia no CSS mestre. As receitas compostam
+ * medida de texto (--ativ-grade-texto), tipo de corpo/dado e borda.
+ * Sem hex, sem sombra, sem razao fotografica e sem copy comercial.
+ */
+
+.ativ-editorial {
+  max-inline-size: var(--ativ-grade-texto);
+  font-family: var(--ativ-font-corpo);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ativ-texto-corpo);
+  text-wrap: pretty;
+  user-select: text;
+}
+
+.ativ-editorial > * + * {
+  margin-block-start: var(--ativ-e-5);
+}
+
+.ativ-editorial > * + h2 {
+  margin-block-start: var(--ativ-e-7);
+}
+
+.ativ-editorial > * + h3 {
+  margin-block-start: var(--ativ-e-6);
+}
+
+.ativ-editorial h2 {
+  font-family: var(--ativ-font-display);
+  font-weight: var(--ativ-peso-secao);
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--ativ-texto);
+  text-wrap: pretty;
+  margin: 0;
+}
+
+.ativ-editorial h3 {
+  font-family: var(--ativ-font-display);
+  font-weight: var(--ativ-peso-secao);
+  font-size: 1.35em;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  color: var(--ativ-texto);
+  margin: 0;
+}
+
+.ativ-editorial h4 {
+  font-family: var(--ativ-font-corpo);
+  font-weight: var(--ativ-peso-forte);
+  font-size: 1em;
+  line-height: 1.4;
+  color: var(--ativ-texto);
+  margin: 0;
+  margin-block-start: var(--ativ-e-5);
+}
+
+.ativ-editorial p,
+.ativ-editorial ul,
+.ativ-editorial ol,
+.ativ-editorial table,
+.ativ-editorial blockquote,
+.ativ-editorial figure,
+.ativ-editorial pre {
+  margin: 0;
+}
+
+.ativ-editorial ul,
+.ativ-editorial ol {
+  padding-inline-start: var(--ativ-e-6);
+}
+
+.ativ-editorial li + li {
+  margin-block-start: var(--ativ-e-2);
+}
+
+.ativ-editorial a,
+.ativ-editorial .ativ-link {
+  color: var(--ativ-destaque);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: var(--ativ-borda);
+}
+
+.ativ-editorial a:hover,
+.ativ-editorial .ativ-link:hover {
+  color: var(--ativ-destaque-hover);
+}
+
+.ativ-citacao,
+.ativ-editorial blockquote {
+  margin: 0;
+  padding-inline-start: var(--ativ-e-4);
+  border-inline-start: var(--ativ-foco-anel) solid var(--ativ-borda-forte);
+  color: var(--ativ-texto);
+}
+
+.ativ-citacao footer,
+.ativ-citacao cite,
+.ativ-editorial blockquote footer,
+.ativ-editorial blockquote cite {
+  display: block;
+  margin-block-start: var(--ativ-e-3);
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+}
+
+.ativ-editorial figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ativ-e-3);
+}
+
+.ativ-editorial figcaption {
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+}
+
+.ativ-nota {
+  margin: 0;
+  padding: var(--ativ-e-4);
+  background: var(--ativ-fundo-fundo);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  border-radius: var(--ativ-raio-controle);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ativ-texto-corpo);
+}
+
+.ativ-nota__rotulo {
+  display: block;
+  margin-block-end: var(--ativ-e-2);
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+}
+
+.ativ-chamada {
+  margin: 0;
+  padding: var(--ativ-e-5);
+  background: var(--ativ-superficie);
+  border: var(--ativ-borda) solid var(--ativ-borda-forte);
+  border-radius: var(--ativ-raio-cartao);
+  color: var(--ativ-texto-corpo);
+}
+
+.ativ-fonte {
+  margin: 0;
+  padding-block-start: var(--ativ-e-4);
+  border-block-start: var(--ativ-borda) solid var(--ativ-borda-cor);
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ativ-texto-suave);
+}
+
+.ativ-editorial table {
+  width: 100%;
+  max-inline-size: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.ativ-editorial th,
+.ativ-editorial td {
+  border-block-end: var(--ativ-borda) solid var(--ativ-borda-cor);
+  padding: var(--ativ-e-3) var(--ativ-e-2);
+  text-align: start;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.ativ-editorial thead th {
+  font-family: var(--ativ-font-dados);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ativ-texto-suave);
+}
+
+@media (max-width: 860px) {
+  .ativ-editorial table,
+  .ativ-editorial thead,
+  .ativ-editorial tbody,
+  .ativ-editorial tr,
+  .ativ-editorial th,
+  .ativ-editorial td {
+    display: block;
+    width: 100%;
+  }
+
+  .ativ-editorial thead {
+    position: absolute;
+    clip-path: inset(50%);
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    white-space: nowrap;
+  }
+
+  .ativ-editorial td::before {
+    content: attr(data-rotulo);
+    display: block;
+    font-family: var(--ativ-font-dados);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ativ-texto-suave);
+    margin-block-end: var(--ativ-e-1);
+  }
+
+  .ativ-editorial tr {
+    border: var(--ativ-borda) solid var(--ativ-borda-cor);
+    margin-block-end: var(--ativ-e-3);
+    padding: var(--ativ-e-3);
+  }
+}
+
+@media print {
+  .ativ-editorial {
+    max-inline-size: none;
+    background: var(--ativ-branco);
+    color: var(--ativ-indigo-profundo);
+  }
+
+  .ativ-editorial h2,
+  .ativ-editorial h3,
+  .ativ-editorial h4,
+  .ativ-citacao,
+  .ativ-editorial blockquote {
+    color: var(--ativ-indigo-profundo);
+  }
+
+  .ativ-editorial a,
+  .ativ-editorial .ativ-link {
+    color: var(--ativ-indigo-profundo);
+    text-decoration: underline;
+  }
+
+  .ativ-nota,
+  .ativ-chamada {
+    background: transparent;
+    border-color: var(--ativ-indigo-profundo);
+    color: var(--ativ-indigo-profundo);
+  }
+}
