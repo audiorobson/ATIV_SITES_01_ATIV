@@ -1,7 +1,8 @@
 # `@ativ/ui`
 
-Contrato visual framework-neutral da ATIV. Esta rodada entrega tokens canônicos e
-foundations CSS. Não contém componentes React, Radix, shadcn ou Motion.
+Contrato visual framework-neutral da ATIV. Esta rodada entrega tokens canônicos,
+foundations CSS, controles extraídos, logos de produção e um showcase HTML
+estático. Não contém componentes React, Radix, shadcn ou Motion.
 
 ## Fonte de verdade
 
@@ -38,13 +39,21 @@ Ou, de forma explícita:
 ```
 
 ```ts
-import { tokens, cssExports, logos, contrast } from "@ativ/ui";
+import { tokens, cssExports, logos, contrast, typography } from "@ativ/ui";
 ```
 
 Logos de UI: `logos.ui.escuro.lockup` → `brand/logo/logo-2t-claro.svg`. Não recolorir.
 
 Aplique `.ativ-escuro` ou `.ativ-claro` no contêiner. Componentes leem papéis
 (`--ativ-fundo`, `--ativ-texto`, `--ativ-destaque`), nunca hex.
+
+O contrato de tipografia (`typography`) declara Archivo, IBM Plex Sans e IBM Plex
+Mono, fallbacks `sans-serif`/`monospace`, `font-display: swap` e proíbe Arial,
+Calibri, Helvetica, Times e Inter. O pacote não embute `@font-face`.
+
+Showcase interno (não é rota pública): abra `packages/ui/showcase/index.html`.
+Usa o CSS relativo do pacote, skip link, um H1 e as superfícies `.ativ-escuro` e
+`.ativ-claro`. Sem JavaScript de página e sem CDN.
 
 ## Validação local
 
@@ -68,6 +77,6 @@ node packages/ui/scripts/sync-tokens.mjs
 
 ## Fora desta fatia
 
-Navegação global, formulário completo com estados, dado técnico, React/Radix/shadcn
-e SVGs de logo não entram neste pacote. A sombra do dropdown e `.ativ-pulso` continuam
-omitidas de propósito. Ver `docs/design-system-implementation.md`.
+Navegação global, formulário completo com estados, dado técnico e React/Radix/shadcn
+não entram neste pacote. A sombra do dropdown e `.ativ-pulso` continuam omitidas de
+propósito. Ver `docs/design-system-implementation.md`.
