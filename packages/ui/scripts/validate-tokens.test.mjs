@@ -13,6 +13,7 @@ import {
   productionTokensCssPath,
   prohibited,
   recipes,
+  typography,
 } from "./lib/token-meta.mjs";
 import { contrastRatio, ratioLabel } from "./lib/contrast.mjs";
 import {
@@ -203,6 +204,55 @@ test("logos de producao copiam o kit e mapeiam superficies de UI", () => {
     assert.equal(logos.documentOnly.includes(file), false, file);
     assert.equal(logos.notUi.includes(file), false, file);
   }
+});
+
+test("contrato de tipografia usa familias do mestre e nao aponta CDN", () => {
+  const parsed = JSON.parse(readRepo(brandTokensPath));
+  const tokens = parsed.tokens;
+
+  assert.deepEqual(parsed.typography, typography);
+  assert.equal(parsed.typography.loading.remoteImport, false);
+  assert.equal(parsed.typography.loading.fontDisplay, "swap");
+  assert.equal(parsed.typography.loading.strategy, "local");
+  assert.equal(tokens["--ativ-font-display"].value, "'Archivo', sans-serif");
+  assert.equal(tokens["--ativ-font-corpo"].value, "'IBM Plex Sans', sans-serif");
+  assert.equal(tokens["--ativ-font-dados"].value, "'IBM Plex Mono', monospace");
+  assert.equal(tokens["--ativ-peso-display"].value, "900");
+  assert.equal(tokens["--ativ-peso-secao"].value, "800");
+  assert.equal(tokens["--ativ-peso-forte"].value, "600");
+
+  const cssBundle = [
+    readRepo("packages/ui/src/styles/tokens.css"),
+    readRepo("packages/ui/src/styles/foundations.css"),
+    readRepo("packages/ui/src/styles/controls.css"),
+    readRepo("packages/ui/src/styles/index.css"),
+  ].join("\n");
+
+  assert.equal(hasRemoteImport(cssBundle), false);
+  assert.equal(/@font-face/i.test(cssBundle), false);
+  assert.equal(/fonts\.google|gstatic\.com/i.test(cssBundle), false);
+
+  for (const family of parsed.typography.forbiddenFamilies) {
+    const pattern = new RegExp(`font-family:[^;]*${family}\\b`, "i");
+    assert.equal(pattern.test(cssBundle), false, family);
+  }
+});
+
+test("showcase interno e estatico, semantico e sem host remoto", () => {
+  const html = readRepo("packages/ui/showcase/index.html");
+
+  assert.match(html, /class="ativ-salto"/);
+  assert.match(html, /href="#conteudo"/);
+  assert.match(html, /id="conteudo"/);
+  assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1);
+  assert.match(html, /ativ-escuro/);
+  assert.match(html, /ativ-claro/);
+  assert.match(html, /href="\.\.\/src\/styles\/index\.css"/);
+  assert.match(html, /brand\/logo\/logo-2t-claro\.svg/);
+  assert.match(html, /brand\/logo\/logo-2t-indigo\.svg/);
+  assert.match(html, /noindex/);
+  assert.equal(/<script[\s>]/i.test(html), false);
+  assert.equal(/googleapis|gstatic|fonts\.google|cdn\.|unpkg|jsdelivr|typekit/i.test(html), false);
 });
 
 test("pares de contraste do kit batem com os HEX canonicos", () => {
