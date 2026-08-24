@@ -31,7 +31,7 @@ lacuna, sem padrão genérico.
 | `packages/ui/src/data/tokens.json` | Cópia verificada para export do pacote. Deve permanecer idêntica ao arquivo em `brand/`. |
 | `packages/ui/src/styles/tokens.css` | `:root` de produção, gerado a partir do CSS mestre. |
 | `packages/ui/src/styles/foundations.css` | Superfícies, tipografia, raio aplicado, foco, salto, movimento, iconografia e mínimos de logo. |
-| `packages/ui/src/styles/layout.css` | Seção, container, pilha, agrupamento, grade 12/auto-fit, lateral, quadro (vazio/foto/documento/sobrepor) e somente-leitura. |
+| `packages/ui/src/styles/layout.css` | Seção, container, pilha, agrupamento, grade 12/auto-fit, lateral, quadro (vazio/foto/documento/sobrepor), figura com legenda e somente-leitura. |
 | `packages/ui/src/styles/controls.css` | Cartão, botões, campos, seleção, slider, paginação, chip, status e badge extraídos do CSS mestre. |
 | `packages/ui/src/styles/technical-data.css` | Ficha, pares chave/valor, métrica com unidade, estado rotulado, legenda, configuração e fluxo textual. |
 | `packages/ui/src/styles/editorial.css` | Medida de leitura, hierarquia h2–h4, listas, tabela editorial, citação, figura, nota, chamada neutra e rastreio. |
@@ -132,8 +132,15 @@ node packages/ui/scripts/sync-tokens.mjs
   global com título visível. Sem captura de lead.
 - Chrome: `.ativ-topo` com nav de 44px, submenu em `details`, condensação a 860px
   (símbolo + `.ativ-menu`), trilha, `.ativ-rodape`, `.ativ-abertura` / `.ativ-faixa`.
-  Quadro vazio, foto (`object-fit: cover`), documento A4 e sobreposição do logo
-  branco. Sem 16/9 inventado.
+  Quadro vazio, foto (`object-fit: cover`), documento A4, sobreposição do logo
+  branco e `.ativ-figura` + `.ativ-legenda` para mídia candidata. Sem 16/9 inventado.
+- Viewports do chrome: desktop (`min-width: 861px` ou `.ativ-topo--largo`) mantém
+  lockup/wordmark e nav inline; tablet/mobile (`max-width: 860px` ou
+  `.ativ-topo--estreito`) troca para símbolo e `details.ativ-menu`. O painel aberto
+  ocupa a largura da barra, não os 44px do summary. Padding de faixa sobe de
+  `--ativ-e-8` para `--ativ-e-9` a partir de 900px, como a seção do mestre.
+  Teclado: `summary` nativo, anel de foco das foundations em `a` e `summary`,
+  `prefers-reduced-motion` herdado (chrome não anima). Overlay modal continua lacuna.
 
 ## Lacunas preservadas
 
@@ -144,10 +151,10 @@ inventadas famílias visuais para fechá-las.
 | --- | --- |
 | Dado técnico (tabela de spec, medidor, unidade, diagrama de sinal) | Ficha, par, métrica, estado rotulado, config e fluxo textual entregues. Diagrama de rack, planta com cotas e elevação permanecem lacuna — exigiriam desenho, não CSS. |
 | Iconografia proprietária e repertório por setor | Lucide permanece a família vigente; conjunto próprio não aprovado. |
-| Navegação global, submenu, condensação mobile, breadcrumb | Topo, submenu `details`, menu condensado e trilha entregues. Overlay modal e abas com ARIA continuam lacuna (precisam de JS). |
+| Navegação global, submenu, condensação mobile, breadcrumb | Topo, submenu `details`, menu condensado (painel na largura da barra) e trilha entregues. Overlay modal e abas com ARIA continuam lacuna (precisam de JS). |
 | Formulário completo, validação, vazio, loading, erro, sucesso | Contrato visual entregue. Sem backend, sem vazio de página, sem modal/gaveta/404. Campo do mestre permanece 15px (zoom iOS é lacuna). |
 | Modal, gaveta, abas de produto, 404/500 | Não extraído. |
-| Direção fotográfica e o que entra nos slots de mídia | Tratamento de quadro (vazio, cover, A4, logo branco) entregue. O que fotografar e 16/9 continuam lacuna; `--ativ-quadro-proporcao` segue do consumidor. |
+| Direção fotográfica e o que entra nos slots de mídia | Quadro (vazio, cover, A4, logo branco) e `.ativ-figura` + `.ativ-legenda` para candidata entregues. O que fotografar e 16/9 continuam lacuna; `--ativ-quadro-proporcao` segue do consumidor. |
 | Tipografia editorial longa (citação, nota, legenda, artigo) | Entregue como CSS de artigo. Sem loader Markdown, sem conteúdo real e sem depoimento de cliente. |
 | Abertura de página interna | `.ativ-abertura` cobre abertura de topo. Abertura de página interna de setor continua lacuna. |
 | Norma de quando usar movimento/fundo | Tokens existem; política de uso ainda é lacuna. |
