@@ -3,7 +3,8 @@
 **Status: READY para o Codex integrar a fatia de tokens** em
 `feat/design-tokens-foundation` (`bee5055`). Pacote: `docs/HANDOFF_CURSOR_TO_CODEX.md`.
 
-Esta branch (`feat/ui-control-foundations`) continua a Fase 2 com controles CSS.
+Esta branch (`feat/ui-control-foundations`) continua a Fase 2 com controles CSS,
+logos, contraste, contrato de tipografia e showcase interno estático.
 Não bloqueia e não altera o handoff congelado.
 
 Este documento descreve o contrato visual entregue nessa branch.
@@ -32,6 +33,7 @@ não foram preenchidas com padrões genéricos.
 | `packages/ui/src/styles/controls.css` | Cartão, botões, campos, seleção, slider, paginação, chip, status e badge extraídos do CSS mestre. |
 | `packages/ui/src/styles/index.css` | Bundle local (`@import` relativo, sem CDN). |
 | `packages/ui/src/index.ts` | Export JS/TS do contrato e dos caminhos de CSS. |
+| `packages/ui/showcase/index.html` | Preview estático interno: skip link, um H1, superfícies escura e clara. Não é página pública. |
 | `packages/ui/scripts/` | Sincronização e validação independentes do workspace raiz. |
 
 ## Como importar
@@ -50,7 +52,7 @@ Imports explícitos:
 import "@ativ/ui/styles/tokens.css";
 import "@ativ/ui/styles/foundations.css";
 import "@ativ/ui/styles/controls.css";
-import { tokens, logos, contrast } from "@ativ/ui";
+import { tokens, logos, contrast, typography } from "@ativ/ui";
 ```
 
 HTML mínimo esperado:
@@ -101,6 +103,9 @@ node packages/ui/scripts/sync-tokens.mjs
   npm deste pacote.
 - Logos de UI mapeados por superfície; arquivos em `brand/logo/` idênticos ao kit.
 - Contraste de texto proibido: Âmbar sobre Gelo/branco; Índigo sobre Índigo Profundo.
+- Tipografia: Archivo / IBM Plex Sans / IBM Plex Mono, fallbacks do CSS mestre,
+  `font-display: swap`, sem `@font-face` e sem CDN neste pacote.
+- Showcase HTML interno em `packages/ui/showcase/` — não indexável, sem JS de página.
 
 ## Lacunas preservadas
 
@@ -145,6 +150,9 @@ Cobertura:
 - exports do `package.json` apontando para arquivos existentes;
 - Contraste medido do kit (Âmbar 2.0:1 sobre branco; Índigo 2.3:1 sobre Índigo
   Profundo) validado contra os HEX canônicos.
+- Contrato de tipografia alinhado às famílias do CSS mestre, sem `@font-face` e
+  sem import remoto;
+- Showcase interno sem CDN, com skip link, um H1 e ambas as superfícies.
 
 ## Gates que dependem do Codex
 
@@ -153,7 +161,8 @@ criado runner temporário na raiz. Depois da integração, o Codex precisa:
 
 1. reconhecer `@ativ/ui` no workspace `packages/*` (já previsto no ADR 0001);
 2. conectar o pacote à app mínima sem transformar a rota `/` em Home final;
-3. carregar fontes locais;
+3. carregar fontes locais (Archivo, IBM Plex Sans, IBM Plex Mono) com
+   `font-display: swap`, conforme `typography` no JSON;
 4. incluir `packages/ui` nos scripts de format/lint/typecheck se for o padrão do
    monorepo;
 5. executar `pnpm --filter @ativ/ui test` junto dos gates da TASK 001;
