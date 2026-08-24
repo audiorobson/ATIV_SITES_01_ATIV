@@ -414,6 +414,134 @@ edid: desligado</code></pre>
           </article>
         </div>
       </section>
+
+      <section class="ativ-secao" aria-labelledby="form-titulo">
+        <div class="ativ-container ativ-pilha ativ-pilha--7">
+          <p class="ativ-rotulo">Formulário</p>
+          <h2 id="form-titulo" class="ativ-titulo-secao">Estados acessíveis</h2>
+          <p class="ativ-texto ativ-medida">
+            Espécime estático. Não envia dados, não é captura de lead e não tem
+            backend. Mensagens ligadas por aria-describedby.
+          </p>
+
+          <div class="ativ-alerta ativ-alerta--erro" role="alert">
+            <span class="ativ-alerta__titulo">Erro</span>
+            Há um campo com erro neste espécime. A cor da borda não é o único aviso.
+          </div>
+
+          <form class="ativ-formulario" action="#" method="get" autocomplete="off">
+            <div class="ativ-campo-grupo">
+              <label class="ativ-campo-rotulo" for="form-nome">
+                Nome
+                <span class="ativ-obrigatorio">(obrigatório)</span>
+              </label>
+              <input
+                id="form-nome"
+                class="ativ-campo"
+                name="nome"
+                type="text"
+                required
+                aria-describedby="form-nome-ajuda"
+              />
+              <p id="form-nome-ajuda" class="ativ-campo-ajuda">Dica visível, não placeholder.</p>
+            </div>
+
+            <div class="ativ-campo-grupo">
+              <label class="ativ-campo-rotulo" for="form-erro">Campo com erro</label>
+              <input
+                id="form-erro"
+                class="ativ-campo"
+                name="erro"
+                type="text"
+                value="valor inválido — espécime"
+                aria-invalid="true"
+                aria-describedby="form-erro-msg"
+              />
+              <p id="form-erro-msg" class="ativ-campo-erro" role="alert">Erro: informe um valor de exemplo válido.</p>
+            </div>
+
+            <div class="ativ-campo-grupo ativ-campo-grupo--sucesso">
+              <label class="ativ-campo-rotulo" for="form-ok">Campo aceito</label>
+              <input
+                id="form-ok"
+                class="ativ-campo"
+                name="ok"
+                type="text"
+                value="aceito — espécime"
+                aria-describedby="form-ok-msg"
+              />
+              <p id="form-ok-msg" class="ativ-campo-sucesso">Sucesso: formato aceito neste espécime.</p>
+            </div>
+
+            <div class="ativ-campo-grupo" aria-busy="true">
+              <label class="ativ-campo-rotulo" for="form-load">Campo a carregar</label>
+              <input id="form-load" class="ativ-campo" name="load" type="text" value="" aria-describedby="form-load-msg" />
+              <p id="form-load-msg" class="ativ-carregando">Carregando — texto, sem pulso.</p>
+            </div>
+
+            <div class="ativ-campo-grupo">
+              <label class="ativ-campo-rotulo" for="form-ro">Somente leitura</label>
+              <input id="form-ro" class="ativ-campo" name="ro" type="text" readonly value="somente leitura — espécime" />
+            </div>
+
+            <div class="ativ-campo-grupo ativ-campo-grupo--desativado">
+              <label class="ativ-campo-rotulo" for="form-off">Desativado</label>
+              <input id="form-off" class="ativ-campo" name="off" type="text" disabled value="desativado" />
+            </div>
+
+            <div class="ativ-campo-grupo">
+              <label class="ativ-campo-rotulo" for="form-msg">Mensagem</label>
+              <textarea id="form-msg" class="ativ-textarea" name="msg" aria-describedby="form-msg-ajuda"></textarea>
+              <p id="form-msg-ajuda" class="ativ-campo-ajuda">Textarea com mínimo na escala e-10.</p>
+            </div>
+
+            <div class="ativ-campo-grupo">
+              <label class="ativ-campo-rotulo" for="form-sel">Seleção</label>
+              <select id="form-sel" class="ativ-select" name="sel">
+                <option value="">Escolher — espécime</option>
+                <option value="a">Opção A</option>
+                <option value="b">Opção B</option>
+              </select>
+            </div>
+
+            <fieldset class="ativ-conjunto">
+              <legend>Escolha única</legend>
+              <div class="ativ-pilha ativ-pilha--2">
+                <label class="ativ-escolha">
+                  <input type="radio" name="escolha" value="um" checked />
+                  Um
+                </label>
+                <label class="ativ-escolha">
+                  <input type="radio" name="escolha" value="dois" />
+                  Dois
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="ativ-conjunto">
+              <legend>Escolha múltipla</legend>
+              <label class="ativ-escolha">
+                <input type="checkbox" name="check" value="sim" checked />
+                Marcado — espécime
+              </label>
+            </fieldset>
+
+            <div class="ativ-linha">
+              <button type="button" class="ativ-btn ativ-btn--primario">Enviar (inativo)</button>
+              <button type="button" class="ativ-btn ativ-btn--secundario">Cancelar</button>
+            </div>
+          </form>
+
+          <div class="ativ-alerta ativ-alerta--sucesso" role="status">
+            <span class="ativ-alerta__titulo">Sucesso</span>
+            Mensagem global de espécime. Nada foi enviado.
+          </div>
+          <div class="ativ-alerta ativ-alerta--carregando" role="status">
+            <span class="ativ-alerta__titulo">Carregando</span>
+            Estado global sem animação fora da escala.
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>

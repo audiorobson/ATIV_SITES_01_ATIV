@@ -95,6 +95,7 @@ test("CSS de producao reproduz o :root canonico e nao importa remoto", () => {
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/controls.css")), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/technical-data.css")), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/editorial.css")), false);
+  assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/forms.css")), false);
   assert.equal(hasRemoteImport(readRepo("packages/ui/src/styles/index.css")), false);
   assert.equal(bracesBalanced(actual), true);
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/foundations.css")), true);
@@ -102,6 +103,7 @@ test("CSS de producao reproduz o :root canonico e nao importa remoto", () => {
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/controls.css")), true);
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/technical-data.css")), true);
   assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/editorial.css")), true);
+  assert.equal(bracesBalanced(readRepo("packages/ui/src/styles/forms.css")), true);
   assert.deepEqual(parseRootCustomProperties(actual), masterTokens);
 });
 
@@ -118,6 +120,7 @@ test("ausencia de hex nao aprovado e de preto puro", () => {
   const controlHex = extractHex(readRepo("packages/ui/src/styles/controls.css"));
   const technicalHex = extractHex(readRepo("packages/ui/src/styles/technical-data.css"));
   const editorialHex = extractHex(readRepo("packages/ui/src/styles/editorial.css"));
+  const formsHex = extractHex(readRepo("packages/ui/src/styles/forms.css"));
 
   for (const hex of productionHex) {
     assert.equal(approved.has(hex), true, hex);
@@ -129,6 +132,7 @@ test("ausencia de hex nao aprovado e de preto puro", () => {
   assert.deepEqual(controlHex, []);
   assert.deepEqual(technicalHex, []);
   assert.deepEqual(editorialHex, []);
+  assert.deepEqual(formsHex, []);
   assert.equal(approved.has("#000000"), false);
   assert.equal(approved.has("#000"), false);
 });
@@ -156,12 +160,14 @@ test("tokens de espaco, raio, duracao e curva ficam no sistema", () => {
   const controlCss = readRepo("packages/ui/src/styles/controls.css");
   const technicalCss = readRepo("packages/ui/src/styles/technical-data.css");
   const editorialCss = readRepo("packages/ui/src/styles/editorial.css");
+  const formsCss = readRepo("packages/ui/src/styles/forms.css");
   const rawCubics = [
     ...(foundationCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
     ...(layoutCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
     ...(controlCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
     ...(technicalCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
     ...(editorialCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
+    ...(formsCss.match(/cubic-bezier\([^)]+\)/g) ?? []),
   ];
   assert.deepEqual(rawCubics, []);
 
@@ -184,6 +190,7 @@ test("exports do pacote apontam somente para arquivos existentes", () => {
     pkg.exports["./styles/controls.css"],
     pkg.exports["./styles/technical-data.css"],
     pkg.exports["./styles/editorial.css"],
+    pkg.exports["./styles/forms.css"],
   ];
 
   for (const target of exportTargets) {
@@ -240,6 +247,26 @@ test("editorial usa medida oficial, print e nao inventa cor", () => {
   assert.match(css, /text-decoration:\s*underline/);
   assert.equal(/box-shadow/i.test(css), false);
   assert.equal(/linear-gradient|radial-gradient|conic-gradient/i.test(css), false);
+  assert.equal(hasRemoteImport(css), false);
+  assert.equal(extractHex(css).length, 0);
+});
+
+test("formularios associam mensagem e nao dependem so de cor", () => {
+  const css = readRepo("packages/ui/src/styles/forms.css");
+  assert.match(css, /\.ativ-formulario\b/);
+  assert.match(css, /\.ativ-campo-grupo\b/);
+  assert.match(css, /\.ativ-textarea\b/);
+  assert.match(css, /\.ativ-select\b/);
+  assert.match(css, /\.ativ-conjunto\b/);
+  assert.match(css, /\.ativ-escolha\b/);
+  assert.match(css, /\.ativ-campo-erro\b/);
+  assert.match(css, /\.ativ-alerta\b/);
+  assert.match(css, /aria-invalid/);
+  assert.match(css, /:user-invalid/);
+  assert.match(css, /min-height:\s*var\(--ativ-alvo-min\)/);
+  assert.match(css, /accent-color:\s*var\(--ativ-destaque\)/);
+  assert.equal(/box-shadow/i.test(css), false);
+  assert.equal(/1\.6s/.test(css), false);
   assert.equal(hasRemoteImport(css), false);
   assert.equal(extractHex(css).length, 0);
 });
@@ -308,6 +335,7 @@ test("contrato de tipografia usa familias do mestre e nao aponta CDN", () => {
     readRepo("packages/ui/src/styles/controls.css"),
     readRepo("packages/ui/src/styles/technical-data.css"),
     readRepo("packages/ui/src/styles/editorial.css"),
+    readRepo("packages/ui/src/styles/forms.css"),
     readRepo("packages/ui/src/styles/index.css"),
   ].join("\n");
 
@@ -363,6 +391,11 @@ test("showcase interno e estatico, semantico e sem host remoto", () => {
   assert.match(html, /ativ-chamada/);
   assert.match(html, /ativ-fonte/);
   assert.match(html, /Texto fictício/);
+  assert.match(html, /ativ-formulario/);
+  assert.match(html, /ativ-campo-grupo/);
+  assert.match(html, /aria-describedby/);
+  assert.match(html, /ativ-alerta/);
+  assert.match(html, /ativ-conjunto/);
 });
 
 test("pares de contraste do kit batem com os HEX canonicos", () => {
