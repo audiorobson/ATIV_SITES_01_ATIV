@@ -1,0 +1,10 @@
+{
+  "extends": "../config/typescript/base.json",
+  "compilerOptions": {
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts"]
+}
