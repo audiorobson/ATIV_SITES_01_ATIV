@@ -11,7 +11,7 @@
     "dev": "pnpm --filter @ativ/web dev",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "pnpm -r --if-present typecheck",
-    "test": "vitest run",
+    "test": "vitest run && pnpm --filter @ativ/ui test",
     "build": "pnpm --filter @ativ/web build",
     "seo:check": "pnpm build && node scripts/seo-check.mjs",
     "build:hostgator": "pnpm build && node scripts/seo-check.mjs && node scripts/prepare-hostgator.mjs",
