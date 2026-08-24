@@ -3,9 +3,9 @@
 **Status: READY para o Codex integrar a fatia de tokens** em
 `feat/design-tokens-foundation` (`bee5055`). Pacote: `docs/HANDOFF_CURSOR_TO_CODEX.md`.
 
-Esta branch (`feat/ui-control-foundations`) continua a Fase 2 com controles CSS,
-logos, contraste, contrato de tipografia e showcase interno estático.
-Não bloqueia e não altera o handoff congelado.
+Esta branch (`feat/ui-layout-foundations`) continua a Fase 2 com primitives CSS
+de layout, a partir de `feat/ui-control-foundations` (`ed6a2fb`).
+Não bloqueia e não altera o handoff congelado de tokens.
 
 Este documento descreve o contrato visual entregue nessa branch.
 Ele não conclui a Fase 2 nem a TASK 002. Não há páginas finais, componentes React
@@ -29,7 +29,8 @@ não foram preenchidas com padrões genéricos.
 | `brand/logo/` | 28 SVGs do kit, copiados sem alteração, para consumo de produção. |
 | `packages/ui/src/data/tokens.json` | Cópia verificada para export do pacote. Deve permanecer idêntica ao arquivo em `brand/`. |
 | `packages/ui/src/styles/tokens.css` | `:root` de produção, gerado a partir do CSS mestre. |
-| `packages/ui/src/styles/foundations.css` | Superfícies, tipografia, espaço, grade, raio aplicado, foco, salto, movimento, iconografia e mínimos de logo. |
+| `packages/ui/src/styles/foundations.css` | Superfícies, tipografia, raio aplicado, foco, salto, movimento, iconografia e mínimos de logo. |
+| `packages/ui/src/styles/layout.css` | Seção, container, pilha, agrupamento, grade 12/auto-fit, lateral, quadro e somente-leitura. |
 | `packages/ui/src/styles/controls.css` | Cartão, botões, campos, seleção, slider, paginação, chip, status e badge extraídos do CSS mestre. |
 | `packages/ui/src/styles/index.css` | Bundle local (`@import` relativo, sem CDN). |
 | `packages/ui/src/index.ts` | Export JS/TS do contrato e dos caminhos de CSS. |
@@ -51,6 +52,7 @@ Imports explícitos:
 ```ts
 import "@ativ/ui/styles/tokens.css";
 import "@ativ/ui/styles/foundations.css";
+import "@ativ/ui/styles/layout.css";
 import "@ativ/ui/styles/controls.css";
 import { tokens, logos, contrast, typography } from "@ativ/ui";
 ```
@@ -60,7 +62,7 @@ HTML mínimo esperado:
 ```html
 <body class="ativ-escuro">
   <a class="ativ-salto" href="#conteudo">Ir para o conteúdo</a>
-  <main id="conteudo"></main>
+  <main id="conteudo" class="ativ-alvo-salto" tabindex="-1"></main>
 </body>
 ```
 
@@ -106,6 +108,8 @@ node packages/ui/scripts/sync-tokens.mjs
 - Tipografia: Archivo / IBM Plex Sans / IBM Plex Mono, fallbacks do CSS mestre,
   `font-display: swap`, sem `@font-face` e sem CDN neste pacote.
 - Showcase HTML interno em `packages/ui/showcase/` — não indexável, sem JS de página.
+- Layout: seção, container, pilha, agrupamento, grade auto-fit, lateral por
+  `min-inline-size`, quadro sem razão fotográfica inventada, somente-leitura.
 
 ## Lacunas preservadas
 
@@ -119,7 +123,7 @@ inventadas famílias visuais para fechá-las.
 | Navegação global, submenu, condensação mobile, breadcrumb | Não definida como linguagem de produto. |
 | Formulário completo, validação, vazio, loading, erro, sucesso | Controles soltos existem no CSS mestre; estados não. |
 | Modal, gaveta, abas de produto, 404/500 | Não extraído. |
-| Direção fotográfica e o que entra nos slots de mídia | Não definida. |
+| Direção fotográfica e o que entra nos slots de mídia | Não definida. `.ativ-quadro--proporcao` espera `--ativ-quadro-proporcao` do consumidor; 16/9 não foi inventado. |
 | Tipografia editorial longa (citação, nota, legenda, artigo) | Não definida. |
 | Abertura de página interna | Só abertura de topo no guia. |
 | Norma de quando usar movimento/fundo | Tokens existem; política de uso ainda é lacuna. |
@@ -153,6 +157,7 @@ Cobertura:
 - Contrato de tipografia alinhado às famílias do CSS mestre, sem `@font-face` e
   sem import remoto;
 - Showcase interno sem CDN, com skip link, um H1 e ambas as superfícies.
+- Primitives de layout sem hex, sem 16/9 e sem import remoto.
 
 ## Gates que dependem do Codex
 
@@ -187,9 +192,9 @@ aqui. O pacote usa `node:test` para permanecer independente.
 - Importar o CSS mestre e o CSS de `@ativ/ui` ao mesmo tempo duplica regras.
   Produção deve consumir `@ativ/ui`; o arquivo em `design_guide/` permanece
   referência.
-- `foundations.css` cobre o contrato de superfície. `controls.css` cobre os
-  controles do mestre, sem sombra de dropdown e sem `.ativ-pulso`.
-  Usá-los não substitui navegação, formulário completo ou dado técnico.
+- `foundations.css` cobre o contrato de superfície. `layout.css` cobre disposição.
+  `controls.css` cobre os controles do mestre, sem sombra de dropdown e sem
+  `.ativ-pulso`. Usá-los não substitui navegação, formulário completo ou dado técnico.
 - O export `./tokens.json` é cópia verificada. Editar só um dos JSONs quebra o
   teste; usar o script de sync.
 - Sem os SVGs de logo no caminho `brand/logo`, a app não consegue cumprir as

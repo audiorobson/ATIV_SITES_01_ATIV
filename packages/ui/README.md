@@ -1,8 +1,8 @@
 # `@ativ/ui`
 
 Contrato visual framework-neutral da ATIV. Esta rodada entrega tokens canônicos,
-foundations CSS, controles extraídos, logos de produção e um showcase HTML
-estático. Não contém componentes React, Radix, shadcn ou Motion.
+foundations CSS, controles extraídos, logos de produção, primitives de layout e um
+showcase HTML estático. Não contém componentes React, Radix, shadcn ou Motion.
 
 ## Fonte de verdade
 
@@ -17,9 +17,10 @@ quando existir, é consumidor derivado — nunca fonte.
 | `@ativ/ui` | contrato JSON tipado (`src/index.ts`) |
 | `@ativ/ui/tokens.json` | o mesmo contrato em JSON |
 | `@ativ/ui/styles/tokens.css` | custom properties canônicas |
-| `@ativ/ui/styles/foundations.css` | superfícies, tipo, espaço, grade, foco, movimento, ícone e logo |
+| `@ativ/ui/styles/foundations.css` | superfícies, tipo, foco, movimento, ícone e logo |
+| `@ativ/ui/styles/layout.css` | seção, container, pilha, agrupamento, grade, lateral, quadro e somente-leitura |
 | `@ativ/ui/styles/controls.css` | cartão, botões, campos, seleção, slider, paginação, chip, status e badge |
-| `@ativ/ui/styles.css` | bundle local (`tokens` + `foundations` + `controls`) |
+| `@ativ/ui/styles.css` | bundle local (`tokens` + `foundations` + `layout` + `controls`) |
 
 ## Como importar
 
@@ -35,6 +36,7 @@ Ou, de forma explícita:
 ```css
 @import "@ativ/ui/styles/tokens.css";
 @import "@ativ/ui/styles/foundations.css";
+@import "@ativ/ui/styles/layout.css";
 @import "@ativ/ui/styles/controls.css";
 ```
 
@@ -53,8 +55,8 @@ Calibri, Helvetica, Times e Inter. O pacote não embute `@font-face`.
 
 Showcase interno (não é rota pública): abra `packages/ui/showcase/index.html`.
 Usa o CSS relativo do pacote, skip link, um H1 e as superfícies `.ativ-escuro` e
-`.ativ-claro`. Inclui espécimes estáticos de busca, dropdown (painel aberto, sem
-sombra), toggle, rádio, checkbox e slider. Sem JavaScript de página e sem CDN.
+`.ativ-claro`. Inclui espécimes de busca, dropdown, seleção, slider, agrupamento,
+lateral, grade auto-fit e quadro. Sem JavaScript de página e sem CDN.
 
 ## Validação local
 
