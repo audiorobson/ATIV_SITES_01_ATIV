@@ -25,7 +25,7 @@ não foram preenchidas com padrões genéricos.
 
 | Artefato | Papel |
 | --- | --- |
-| `brand/tokens.json` | Contrato canônico serializável. Cada entrada aponta para `--ativ-*`. |
+| `brand/logo/` | 28 SVGs do kit, copiados sem alteração, para consumo de produção. |
 | `packages/ui/src/data/tokens.json` | Cópia verificada para export do pacote. Deve permanecer idêntica ao arquivo em `brand/`. |
 | `packages/ui/src/styles/tokens.css` | `:root` de produção, gerado a partir do CSS mestre. |
 | `packages/ui/src/styles/foundations.css` | Superfícies, tipografia, espaço, grade, raio aplicado, foco, salto, movimento, iconografia e mínimos de logo. |
@@ -49,7 +49,8 @@ Imports explícitos:
 ```ts
 import "@ativ/ui/styles/tokens.css";
 import "@ativ/ui/styles/foundations.css";
-import tokens from "@ativ/ui/tokens.json";
+import "@ativ/ui/styles/controls.css";
+import { tokens, logos, contrast } from "@ativ/ui";
 ```
 
 HTML mínimo esperado:
@@ -98,6 +99,8 @@ node packages/ui/scripts/sync-tokens.mjs
 - `prefers-reduced-motion` centralizado, como no CSS mestre.
 - Iconografia Lucide em CSS (grade, traço, tamanhos). Lucide não é dependência
   npm deste pacote.
+- Logos de UI mapeados por superfície; arquivos em `brand/logo/` idênticos ao kit.
+- Contraste de texto proibido: Âmbar sobre Gelo/branco; Índigo sobre Índigo Profundo.
 
 ## Lacunas preservadas
 
@@ -115,7 +118,7 @@ inventadas famílias visuais para fechá-las.
 | Tipografia editorial longa (citação, nota, legenda, artigo) | Não definida. |
 | Abertura de página interna | Só abertura de topo no guia. |
 | Norma de quando usar movimento/fundo | Tokens existem; política de uso ainda é lacuna. |
-| Arquivos SVG de logo em `design_guide/brand/logo/` | Citados no README do kit; não versionados neste clone. Classes de mínimo e respiro estão no CSS. |
+| Arquivos SVG de logo | Versionados em `brand/logo/`, idênticos ao kit. Variantes `*-preto.svg` são só documento; UI usa Índigo Profundo. Não há wordmark sobre âmbar. |
 | Padding do cartão `26px 28px` | Extraído como receita do mestre, sem virar token. |
 | Medidas soltas de botão, campo, dropdown, toggle | Extraídas como receitas. Não promovidas a tokens. |
 | Sombra do dropdown | Continua omitida; sombra decorativa fica fora do contrato. |
@@ -140,7 +143,8 @@ Cobertura:
 - foundations sem hex e sem curvas cruas;
 - CSS parseável, sem `@import` remoto;
 - exports do `package.json` apontando para arquivos existentes;
-- pacote sem dependências de runtime.
+- Contraste medido do kit (Âmbar 2.0:1 sobre branco; Índigo 2.3:1 sobre Índigo
+  Profundo) validado contra os HEX canônicos.
 
 ## Gates que dependem do Codex
 
@@ -179,5 +183,6 @@ aqui. O pacote usa `node:test` para permanecer independente.
   Usá-los não substitui navegação, formulário completo ou dado técnico.
 - O export `./tokens.json` é cópia verificada. Editar só um dos JSONs quebra o
   teste; usar o script de sync.
-- Sem os SVGs de logo, a app não consegue cumprir as variantes por fundo até o
-  Brand Kit versionar os arquivos.
+- Sem os SVGs de logo no caminho `brand/logo`, a app não consegue cumprir as
+  variantes por fundo. Os arquivos já estão nessa pasta; o Codex só precisa
+  publicá-los/servi-los, sem recolorir.
