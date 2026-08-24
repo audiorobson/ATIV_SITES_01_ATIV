@@ -53,12 +53,15 @@ main {
 }
 
 .site-brand {
-  color: var(--ativ-texto);
-  font-family: var(--ativ-font-display);
-  font-size: 24px;
-  font-weight: var(--ativ-peso-forte);
-  letter-spacing: -0.04em;
+  display: inline-flex;
+  flex: 0 0 auto;
   text-decoration: none;
+}
+
+.site-brand__logo {
+  height: 46px;
+  min-width: 90px;
+  width: auto;
 }
 
 .site-navigation {

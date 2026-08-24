@@ -1,3 +1,5 @@
+import { SiteLogo } from "./site-logo";
+
 const navigation = [
   { href: "#conteudo-principal", label: "Fundação" },
 ] as const;
@@ -7,7 +9,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="ativ-container site-header__inner">
         <a className="site-brand" href="#inicio" aria-label="ATIV — início">
-          <span aria-hidden="true">ATIV</span>
+          <SiteLogo className="site-brand__logo" />
         </a>
         <nav aria-label="Navegação principal">
           <ul className="site-navigation">
