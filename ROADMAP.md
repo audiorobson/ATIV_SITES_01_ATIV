@@ -1,221 +1,261 @@
 # ROADMAP — Nova Plataforma ATIV
 
-Este roadmap é sequencial. Fases podem se sobrepor apenas quando não criarem dependência circular. Nenhum agente deve “pular para o visual final” antes de as fundações críticas estarem estabelecidas.
+Este roadmap é sequencial. Nenhum agente deve pular fundações críticas, patrimônio SEO, contrato de marca ou portabilidade de deploy para acelerar a camada visual.
+
+## Decisão transversal de hosting
+
+A baseline atual de produção é **HostGator com publicação direta dos artefatos finais do site**.
+
+Ler obrigatoriamente:
+
+`docs/hostgator-deployment-contract.md`
+
+Enquanto não houver ADR alterando a hospedagem:
+
+- desenvolver com Next.js + TypeScript é permitido;
+- produção deve ser static-first;
+- não assumir Node.js em runtime;
+- não assumir Docker;
+- não assumir banco para servir páginas públicas;
+- SEO essencial deve estar incorporado ao build;
+- conteúdo versionado deve continuar disponível em `content/`;
+- recursos incompatíveis com upload para `public_html` exigem ADR antes de implementação.
+
+---
 
 ## Fase 0 — Discovery e inventário
 
 **Objetivo:** conhecer patrimônio atual, riscos e requisitos antes da reconstrução.
 
 ### Entregáveis
+
 - auditoria técnica do `ativpro.com`;
-- crawl completo das URLs atuais;
 - inventário em `seo/url-inventory.csv`;
-- captura de title, H1, canonical, status, indexabilidade, links internos e tipo de página;
-- exportação do Search Console quando disponível: cliques, impressões, CTR e posição por URL/query;
-- exportação de landing pages e conversões do Google Ads quando disponível;
-- diagnóstico do motivo exato de reprovação do Google Ads;
+- title, H1, canonical, status, indexabilidade e tipo de página;
+- dados de Search Console/Ads quando disponíveis;
+- diagnóstico de destinos de Ads;
 - inventário de ativos de marca, fotos, cases, documentos e provas;
-- mapa preliminar de concorrentes e SERPs prioritários.
+- mapa preliminar de concorrentes e SERPs.
 
 ### Critério de saída
-Nenhuma URL importante está “desconhecida”; riscos de migração estão classificados; lacunas de dados externas estão documentadas.
+
+URLs prioritárias e riscos de migração estão classificados; lacunas externas estão documentadas.
 
 ---
 
-## Fase 1 — Arquitetura de produto e fundação técnica
+## Fase 1 — Arquitetura e fundação técnica
 
-**Objetivo:** criar a base de código sustentável.
+**Objetivo:** criar base sustentável e portável.
 
 ### Entregáveis
-- ADR da stack final;
-- bootstrap do monorepo/workspace;
-- Next.js + TypeScript em strict mode;
-- package manager fixado;
-- lint, format, typecheck, unit test e build;
+
+- ADR da stack;
+- bootstrap workspace/monorepo;
+- Next.js + TypeScript strict;
+- pnpm/lockfile;
+- lint, format, typecheck, test e build;
 - `.env.example`;
-- CI inicial no GitHub Actions;
-- estrutura de `apps/` e `packages/`;
-- configuração inicial de segurança e headers;
-- estratégia de ambientes local/staging/production.
+- estrutura `apps/`, `packages/`, `content/`, `scripts/`;
+- `packages/seo` inicial;
+- estratégia static-first;
+- documentação HostGator;
+- primeiro build exportável sem runtime Node em produção.
 
 ### Critério de saída
-Fresh clone consegue instalar, testar e fazer build com comandos documentados.
+
+Fresh clone instala, testa, gera build e existe caminho claro para artefato estático publicável.
 
 ---
 
 ## Fase 2 — Brand System e UI foundations
 
-**Objetivo:** converter o Brand Kit em sistema de interface próprio.
+**Objetivo:** converter o Brand System aprovado em interface própria.
 
 ### Entregáveis
-- `brand/tokens.json`;
-- tipografia e fallback stack;
-- escala de espaço, grid, container e breakpoints;
-- tokens de cor e contraste;
+
+- tokens oficiais conforme fonte de verdade do Brand System;
+- tipografia;
+- escala de espaço/grid;
+- cores/contraste;
 - regras de logo;
 - iconografia;
 - motion tokens;
-- primitives de UI ATIV;
-- Storybook ou showcase interno equivalente apenas se agregar manutenção real;
-- validação de WCAG 2.2 AA nos componentes fundamentais.
+- primitives/componentes ATIV;
+- WCAG 2.2 AA nos componentes fundamentais.
 
 ### Critério de saída
-É possível construir novas páginas sem inventar estilos locais ou depender da aparência padrão de bibliotecas.
+
+É possível construir páginas sem inventar estilos locais ou adotar aparência genérica de biblioteca.
 
 ---
 
 ## Fase 3 — Informação, SEO e conteúdo
 
-**Objetivo:** definir o mapa do site a partir de intenção de busca e jornada comercial.
+**Objetivo:** definir mapa do site a partir de intenção de busca e jornada comercial.
 
 ### Entregáveis
-- arquitetura final de informação;
-- keyword map por página;
+
+- arquitetura de informação;
+- keyword map;
 - clusters prioritários;
-- plano de internal linking;
+- internal linking;
 - templates de Solution, Sector, Case, Insight e Landing Page;
-- intake editorial versionado em `content/inbox/` para receber textos-fonte em Markdown antes da revisão e modelagem no CMS;
+- `content/` como fonte editorial versionada;
 - Claim Registry;
 - schema strategy;
 - canonical strategy;
-- sitemap strategy;
-- redirect map proposto, ainda sem ativar em produção;
-- calendário editorial inicial.
+- sitemap/robots strategy;
+- redirect map proposto;
+- calendário editorial;
+- contrato de conteúdo técnico/RAG.
 
-### Clusters prioritários iniciais
+### Clusters prioritários
+
 1. integração audiovisual corporativa;
 2. salas de reunião e colaboração híbrida;
 3. Microsoft Teams Rooms / UC;
 4. videowalls e salas de controle;
-5. NOC / SOC / centro de comando e controle;
+5. NOC / SOC / CCO;
 6. auditórios e plenários;
-7. AV over IP e áudio sobre IP;
-8. governo, tribunais, câmaras e órgãos públicos;
-9. serviços, manutenção e suporte AV;
+7. AV-over-IP e áudio sobre IP;
+8. Governo, Tribunais e órgãos públicos;
+9. manutenção e suporte AV;
 10. engenharia, projetos e especificações.
 
 ### Critério de saída
-Cada página planejada possui intenção, palavra-chave principal, secundárias, CTA, links internos e evidência necessária.
+
+Cada página planejada possui intenção, keywords, CTA, links internos e evidências necessárias.
 
 ---
 
-## Fase 4 — CMS e Content Platform
+## Fase 4 — Content Platform portável
 
-**Objetivo:** permitir manutenção editorial sem sacrificar design, SEO ou integridade técnica.
+**Objetivo:** permitir produção editorial estruturada sem criar dependência prematura de backend.
 
-### Entregáveis
-- Payload CMS e PostgreSQL;
-- collections: pages, solutions, sectors, cases, insights, people/experts se aprovado, media, redirects, claims;
-- globals: navigation, footer, company, SEO defaults, contact config;
-- drafts/versioning;
-- roles e permissions;
-- preview;
-- image pipeline;
-- migrations;
-- seed de desenvolvimento.
+### Baseline
+
+- Markdown versionado em `content/`;
+- frontmatter tipado/indexável;
+- loaders de conteúdo em build time;
+- templates previsíveis;
+- drafts controlados por Git/branch;
+- media catalogada;
+- geração estática de páginas;
+- conteúdo técnico reaproveitável por RAG/site.
+
+### CMS
+
+Payload CMS + PostgreSQL ficam **DEFER** enquanto a baseline for HostGator compartilhado/static-first.
+
+Somente adotar CMS runtime após ADR de mudança/compatibilidade de hosting.
 
 ### Critério de saída
-Editor consegue publicar conteúdo dentro de componentes aprovados sem quebrar layout ou metadata.
+
+Conteúdo pode ser criado, revisado e publicado no site sem banco/runtime server-side.
 
 ---
 
 ## Fase 5 — Shell e páginas fundamentais
 
-**Objetivo:** construir a primeira experiência navegável completa.
+**Objetivo:** primeira experiência navegável completa.
 
 ### Ordem sugerida
-1. Header / navigation / mega menu;
-2. Footer institucional e compliance;
+
+1. Header/navigation;
+2. Footer;
 3. Home;
 4. Soluções hub;
-5. Solução template;
+5. Solution template;
 6. Setores hub;
 7. Governo;
 8. Corporativo;
-9. Cases hub + case template;
-10. Insights hub + article template;
-11. Sobre / empresa;
+9. Cases;
+10. Insights;
+11. Sobre;
 12. Contato;
 13. páginas legais.
 
 ### Critério de saída
-Jornadas principais funcionam ponta a ponta em desktop e mobile, com conteúdo real ou explicitamente marcado como placeholder editorial não indexável em staging.
+
+Jornadas principais funcionam em desktop/mobile e o HTML final contém conteúdo/metadata indexáveis.
 
 ---
 
 ## Fase 6 — Motion e experiências premium
 
-**Objetivo:** adicionar diferenciação visual sem comprometer usabilidade ou performance.
+**Objetivo:** diferenciação visual sem comprometer portabilidade, SEO ou performance.
 
 ### Possibilidades
-- hero audiovisual baseado em topologia de sinal;
-- transições de conteúdo guiadas por scroll;
-- diagrama técnico interativo;
-- visualização de videowall/controle;
-- microinterações em cards e CTAs;
-- WebGL/Three.js somente em experiências justificadas.
+
+- hero baseado em topologia/sinal;
+- transições guiadas por scroll;
+- diagramas técnicos interativos;
+- visualização de videowall;
+- microinterações;
+- WebGL/Three.js somente quando justificado.
 
 ### Guardrails
+
 - progressive enhancement;
 - lazy load;
 - fallback estático;
 - `prefers-reduced-motion`;
-- medir LCP/INP/CLS e memória/GPU em dispositivos medianos.
+- conteúdo semântico preservado;
+- nenhuma dependência de servidor adicional.
 
 ### Critério de saída
-Nenhum efeito reduz conversão, legibilidade, indexabilidade ou Core Web Vitals além dos budgets aceitos.
+
+Efeitos não reduzem indexabilidade, conversão ou Core Web Vitals além do aceitável.
 
 ---
 
-## Fase 7 — Leads, CRM e automação
+## Fase 7 — Leads e recursos dinâmicos
 
-**Objetivo:** transformar tráfego em oportunidade rastreável.
+**Objetivo:** capturar oportunidade sem quebrar o contrato de hosting.
 
-### Entregáveis
-- formulários server-side;
-- anti-spam/rate limit;
-- qualificação progressiva;
-- persistência de attribution context;
-- integração com CRM/plataforma de automação escolhida;
-- WhatsApp contextual;
-- e-mail transactional;
-- estados de sucesso/erro robustos;
-- lead routing.
+### Baseline
 
-### Eventos mínimos
-- `cta_click`;
-- `contact_start`;
-- `contact_submit`;
-- `lead_qualified` quando houver backend adequado;
-- `whatsapp_start`;
-- `meeting_request`;
-- `case_view`;
-- `document_download`;
-- `government_intent`.
+- formulários acessíveis no frontend;
+- preservação de attribution context no browser;
+- validação client-side apenas como UX, nunca como única proteção;
+- decisão server-side via task/ADR própria.
+
+### Se HostGator compartilhado continuar como produção
+
+Avaliar endpoint PHP coimplantado para:
+
+- validação server-side;
+- anti-spam;
+- envio/persistência;
+- integração externa;
+- segurança de segredos.
+
+Não usar API Route/Server Action Node como requisito sem mudança de hosting.
 
 ### Critério de saída
-Lead de teste pode ser rastreado da origem até o destino comercial sem perda dos identificadores permitidos.
+
+Lead de teste percorre fluxo aprovado no ambiente real sem expor segredo e sem depender de serviço SEO externo.
 
 ---
 
 ## Fase 8 — Ads, analytics e consentimento
 
-**Objetivo:** produzir medição confiável e destinos aderentes.
+**Objetivo:** medição confiável e destinos aderentes.
 
 ### Entregáveis
+
 - dataLayer contract;
-- GTM;
-- GA4;
-- Google Ads conversion actions;
-- Enhanced Conversions quando aplicável;
+- GTM/GA4 quando IDs reais forem aprovados;
+- Google Ads conversions;
 - Microsoft UET;
-- Consent Mode/configuração equivalente conforme decisão jurídica/técnica;
-- auditoria de redirects e AdsBot;
-- landing pages específicas quando justificadas;
-- dashboard básico de aquisição e conversão.
+- consentimento conforme decisão técnica/jurídica;
+- landing pages `/lp/**` estáticas;
+- preservação de UTM, `gclid`, `gbraid`, `wbraid`, `msclkid`;
+- auditoria de redirects e destino.
 
 ### Critério de saída
-Tags disparam apenas quando previsto; destinos são rastreáveis e consistentes; eventos são reproduzíveis em staging/preview apropriado.
+
+Tags e parâmetros funcionam sem interferir no conteúdo indexável e sem exigir runtime Node.
 
 ---
 
@@ -223,43 +263,57 @@ Tags disparam apenas quando previsto; destinos são rastreáveis e consistentes;
 
 **Objetivo:** preparar release sem regressões invisíveis.
 
-### Entregáveis
-- Playwright E2E das jornadas críticas;
-- axe automatizado;
+### Entregáveis obrigatórios no repositório
+
+- `pnpm lint`;
+- `pnpm typecheck`;
+- `pnpm test`;
+- `pnpm seo:check`;
+- `pnpm build`;
+- `pnpm build:hostgator`;
 - metadata/canonical tests;
-- redirect tests;
-- schema validation;
-- Lighthouse CI budgets;
-- security headers;
-- dependency audit;
-- backup/restore test do CMS;
-- logging e error monitoring;
-- cross-browser smoke test.
+- route/indexability tests;
+- schema structural validation;
+- security/config review;
+- cross-browser smoke tests.
+
+### Ferramentas externas
+
+Lighthouse, Lychee, Unlighthouse e SiteOne podem ser usados manualmente, mas não são requisito de produção ou deploy.
 
 ### Critério de saída
-Todos os release blockers de `docs/quality-gates.md` passam.
+
+Todos os blockers internos passam e o diretório final pode ser servido estaticamente.
 
 ---
 
-## Fase 10 — Migração SEO e lançamento controlado
+## Fase 10 — Migração SEO e lançamento HostGator
 
-**Objetivo:** substituir a plataforma sem destruir patrimônio orgânico ou campanhas.
+**Objetivo:** substituir a plataforma preservando patrimônio orgânico e campanhas.
 
 ### Entregáveis
+
 - freeze final do URL inventory;
 - redirect map aprovado;
+- `.htaccess`/regras Apache aprovadas;
 - canonical/robots/sitemap finais;
-- validação de todas as URLs antigas;
-- comparação staging x produção;
-- backup completo;
+- validação de URLs antigas;
+- backup completo do site atual;
+- diretório final de deploy;
+- checklist de upload `public_html`;
 - plano de rollback;
 - deploy;
-- submissão/monitoramento Search Console;
+- Search Console;
 - validação AdsBot;
-- smoke tests de analytics e leads.
+- smoke test de analytics/leads.
 
 ### Critério de saída
-Nenhuma URL prioritária retorna 404 inesperado; redirects são single-hop; sitemap contém somente URLs canônicas 200; leads e tags funcionam.
+
+- nenhuma URL P0 retorna 404 inesperado;
+- redirects são single-hop;
+- sitemap contém somente URLs canônicas válidas;
+- HTML/metadata/schema estão presentes no servidor;
+- site funciona sem processo Node permanente.
 
 ---
 
@@ -267,32 +321,43 @@ Nenhuma URL prioritária retorna 404 inesperado; redirects são single-hop; site
 
 **Objetivo:** tratar o site como produto contínuo.
 
-### Janelas de monitoramento
-- D+1: indexação, 404, redirects, forms, tags, erros;
+### Janelas
+
+- D+1: indexação, 404, redirects, forms, tags;
 - D+7: Search Console, CWV, Ads, queries e leads;
-- D+30: perda/ganho por cluster, conversão e conteúdo;
-- trimestral: arquitetura, conteúdos, cases, performance, dependências.
+- D+30: clusters, conversão e conteúdo;
+- trimestral: arquitetura, conteúdo, performance e dependências.
 
 ### Backlog contínuo
+
 - publicar cases verificáveis;
-- aprofundar clusters com evidência de demanda;
-- melhorar páginas com alto impression/baixo CTR;
-- melhorar páginas com bom tráfego/baixa conversão;
-- atualizar conteúdos técnicos;
-- reduzir JS e dívida técnica;
-- experimentos CRO controlados.
+- aprofundar clusters;
+- melhorar CTR e conversão;
+- atualizar conteúdo técnico;
+- reduzir JS/dívida técnica;
+- CRO controlado;
+- reavaliar hosting somente quando requisito real justificar.
+
+---
 
 ## Release blockers globais
 
 Bloquear release quando houver:
+
 - URL prioritária perdida sem redirect aprovado;
-- canonical incorreto em escala;
+- canonical incorreto;
 - robots/noindex acidental;
 - formulário principal quebrado;
-- segredo commitado;
-- erro de build/typecheck;
-- falha grave de acessibilidade em navegação/contato;
-- tracking de conversão duplicado ou ausente;
-- regressão grave de Core Web Vitals;
-- claim comercial relevante sem evidência;
-- desvio significativo do Brand Kit.
+- segredo commitado/exposto no client;
+- erro de build/typecheck/test/seo-check;
+- falha grave de acessibilidade;
+- tracking duplicado/incorreto quando habilitado;
+- regressão grave de performance;
+- claim relevante sem evidência;
+- desvio do Brand System;
+- feature que exige Node/Docker/backend não aprovado;
+- artefato que não pode ser publicado diretamente no target HostGator.
+
+## Regra final do roadmap
+
+> O caminho crítico é: conteúdo e SEO sólidos → build portável → experiência premium. Nenhuma feature visual ou de backend pode invalidar o contrato de publicação direta no HostGator sem ADR explícito.
