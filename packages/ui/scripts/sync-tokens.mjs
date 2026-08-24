@@ -48,6 +48,7 @@ export function buildTokenDocument() {
           "packages/ui/src/styles/editorial.css",
           "packages/ui/src/styles/forms.css",
           "packages/ui/src/styles/chrome.css",
+          "packages/ui/src/styles/pages.css",
         ],
         package: "@ativ/ui",
         tailwind: "derived-only",

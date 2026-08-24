@@ -405,6 +405,16 @@ export const recipes = {
     values: ["210 / 297"],
     note: "Foto nao ganha 16/9. Documento A4 vem dos mockups oficiais do kit. Slot vazio usa min-block-size --ativ-e-10. Sobreposicao posiciona o logo branco da regra de foto. Candidata usa figure + .ativ-legenda; nao e case.",
   },
+  "pages.abertura-interna": {
+    selectors: [".ativ-pagina", ".ativ-abertura-pagina", ".ativ-pagina--solucao", ".ativ-pagina--setor"],
+    values: ["62px", "22ch", "860px", "900px"],
+    note: "Abertura de pagina interna compostam e-10, titulo de pagina e CTA existentes. Setor nao usa coluna de midia. 62px no scroll-margin e sticky reusa a altura da barra da biblioteca.",
+  },
+  "pages.indice-relacionados": {
+    selectors: [".ativ-indice", ".ativ-especificacao", ".ativ-integracoes", ".ativ-relacionados", ".ativ-proxima"],
+    values: ["44px"],
+    note: "Indice local usa ancoras e :target, sem JS. Solucao: coluna sticky acima de 860px. Setor e estreito: indice em linha com wrap. Relacionados e proxima leitura nao sao rotas de producao. 320px: box-sizing border-box e min-inline-size 0 no com-lateral da pagina, para nao herdar 68ch de overflow.",
+  },
 };
 
 export const masterExceptionsNotExtracted = [
@@ -451,6 +461,7 @@ export const cssExports = {
   editorial: "@ativ/ui/styles/editorial.css",
   forms: "@ativ/ui/styles/forms.css",
   chrome: "@ativ/ui/styles/chrome.css",
+  pages: "@ativ/ui/styles/pages.css",
   bundle: "@ativ/ui/styles.css",
   json: "@ativ/ui/tokens.json",
 };
