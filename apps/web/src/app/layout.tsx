@@ -1,4 +1,5 @@
 import { buildMetadata } from "@ativ/seo";
+import "@ativ/ui/styles.css";
 import type { ReactNode } from "react";
 
 import "./globals.css";
@@ -18,7 +19,7 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body className="ativ-escuro">
         <a className="skip-link" href="#conteudo-principal">
           Pular para o conteúdo
         </a>
