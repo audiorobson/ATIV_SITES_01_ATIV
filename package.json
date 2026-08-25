@@ -8,13 +8,13 @@
     "pnpm": ">=11.19.0 <12"
   },
   "scripts": {
-    "dev": "pnpm --filter @ativ/web dev",
+    "dev": "corepack pnpm --filter @ativ/web dev",
     "lint": "eslint . --max-warnings=0",
-    "typecheck": "pnpm -r --if-present typecheck",
-    "test": "vitest run && pnpm --filter @ativ/ui test",
-    "build": "pnpm --filter @ativ/web build",
-    "seo:check": "pnpm build && node scripts/seo-check.mjs",
-    "build:hostgator": "pnpm build && node scripts/seo-check.mjs && node scripts/prepare-hostgator.mjs",
+    "typecheck": "tsc --noEmit -p apps/web/tsconfig.json && tsc --noEmit -p packages/seo/tsconfig.json && tsc --noEmit -p packages/content/tsconfig.json",
+    "test": "vitest run && node --test packages/ui/scripts/validate-tokens.test.mjs",
+    "build": "corepack pnpm --filter @ativ/web build",
+    "seo:check": "corepack pnpm --filter @ativ/web build && node scripts/seo-check.mjs",
+    "build:hostgator": "corepack pnpm --filter @ativ/web build && node scripts/seo-check.mjs && node scripts/prepare-hostgator.mjs",
     "format": "prettier --write apps packages docs/adr docs/agents PARALLEL_DEV_START_HERE.md design_guide/INSTRUCAO_AGENTE_PAGINAS_E_DESIGN.md package.json pnpm-workspace.yaml eslint.config.mjs vitest.config.ts .github/workflows/ci.yml",
     "format:check": "prettier --check apps packages docs/adr docs/agents PARALLEL_DEV_START_HERE.md design_guide/INSTRUCAO_AGENTE_PAGINAS_E_DESIGN.md package.json pnpm-workspace.yaml eslint.config.mjs vitest.config.ts .github/workflows/ci.yml"
   },
