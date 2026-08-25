@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import { readdir, readFile, stat } from "node:fs/promises";
 import path from "node:path";
 
@@ -134,6 +135,47 @@ assert.doesNotMatch(
   sitemap,
   /<loc>[^<]*\/lp\//i,
   "sitemap must exclude /lp/**",
+);
+assert.doesNotMatch(
+  sitemap,
+  /<loc>[^<]*\/404/i,
+  "sitemap must exclude the 404 surface",
+);
+
+const notFoundFile = [
+  path.join(exportRoot, "404.html"),
+  path.join(exportRoot, "404", "index.html"),
+].find((file) => existsSync(file));
+
+assert.ok(notFoundFile, "static 404 export is required");
+const notFoundHtml = await readFile(notFoundFile, "utf8");
+assert.equal(
+  (notFoundHtml.match(/<h1(?:\s[^>]*)?>/gi) ?? []).length,
+  1,
+  "404: exactly one H1 required",
+);
+assert.match(notFoundHtml, /noindex/i, "404: must stay noindex");
+assert.match(
+  notFoundHtml,
+  /ativ-titulo-pagina/,
+  "404: must use the display heading role",
+);
+assert.doesNotMatch(
+  notFoundHtml,
+  /This page could not be found/i,
+  "404: must not keep the default Next.js copy",
+);
+assert.doesNotMatch(
+  notFoundHtml,
+  /fonts\.googleapis|fonts\.gstatic|typekit/i,
+  "404: remote font host is forbidden",
+);
+
+const htaccess = await readFile(path.join(exportRoot, ".htaccess"), "utf8");
+assert.match(
+  htaccess,
+  /ErrorDocument\s+404\s+\/404\.html/,
+  ".htaccess must map Apache 404 to the static ATIV surface",
 );
 
 console.log(`SEO checks passed for ${htmlFiles.length} exported page(s).`);
