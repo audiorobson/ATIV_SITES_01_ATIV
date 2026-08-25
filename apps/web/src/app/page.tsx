@@ -1,4 +1,4 @@
-import { foundationChecks } from "@/lib/foundation";
+import { foundationChecks, foundationHeadingClass } from "@/lib/foundation";
 
 export default function FoundationPage() {
   return (
@@ -11,7 +11,7 @@ export default function FoundationPage() {
         <div className="ativ-container ativ-com-lateral">
           <div className="ativ-pilha ativ-pilha--5">
             <p className="ativ-rotulo">Fundação — não é Home comercial</p>
-            <h1 className="ativ-titulo-pagina">Fundação técnica</h1>
+            <h1 className={foundationHeadingClass}>Fundação técnica</h1>
             <p className="ativ-texto ativ-medida">
               Esta superfície temporária valida roteamento, React Server
               Components, metadata, tipagem e o contrato visual de página

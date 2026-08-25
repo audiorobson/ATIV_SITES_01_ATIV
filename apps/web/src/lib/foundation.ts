@@ -4,7 +4,10 @@ export const foundationChecks = [
   "Navegação por teclado com atalho para o conteúdo",
   "TypeScript em modo strict",
   "Build de produção reproduzível",
+  "Fontes locais com font-display: swap",
 ] as const;
+
+export const foundationHeadingClass = "ativ-titulo-pagina";
 
 export const foundationPageContract = {
   pageClass: "ativ-pagina--solucao",
