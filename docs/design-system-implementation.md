@@ -150,9 +150,11 @@ node packages/ui/scripts/sync-tokens.mjs
   Teclado: `summary` nativo, anel de foco das foundations em `a` e `summary`,
   `prefers-reduced-motion` herdado (chrome não anima). Overlay modal continua lacuna.
 - Viewports de página interna: desktop (`min-width: 861px` ou `.ativ-pagina--largo`)
-  mantém índice em coluna sticky na solução; tablet/mobile (`max-width: 860px` ou
-  `.ativ-pagina--estreito` / `--setor`) reflowa o índice em linha. `overflow-wrap`
-  e `overflow-x: clip` no `.ativ-pagina` para 320px e zoom 200%. Sem scroll suave.
+  mantém índice em coluna sticky na solução e `.ativ-com-lateral` em duas colunas;
+  tablet/mobile (`max-width: 860px` ou `.ativ-pagina--estreito` / `--setor`) reflowa
+  o índice em linha e empilha `.ativ-com-lateral` em coluna de largura total.
+  `overflow-wrap` e `overflow-x: clip` no `.ativ-pagina` para 320px e zoom 200%.
+  Sem scroll suave.
 
 ## Lacunas preservadas
 

@@ -343,6 +343,14 @@ test("paginas internas usam ancoras, alvo 44px e nao inventam 16/9", () => {
   assert.match(css, /max-width:\s*860px/);
   assert.match(css, /min-height:\s*var\(--ativ-alvo-min\)/);
   assert.match(css, /box-sizing:\s*border-box/);
+  assert.match(
+    css,
+    /\.ativ-pagina:not\(\.ativ-pagina--largo\) \.ativ-com-lateral\s*\{[^}]*flex-direction:\s*column/,
+  );
+  assert.match(
+    css,
+    /\.ativ-pagina--estreito \.ativ-com-lateral\s*\{[^}]*flex-direction:\s*column/,
+  );
   assert.equal(/16\s*\/\s*9/.test(css), false);
   assert.equal(/box-shadow/i.test(css), false);
   assert.equal(/linear-gradient|backdrop-filter|glass/i.test(css), false);

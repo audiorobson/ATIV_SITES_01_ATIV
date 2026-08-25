@@ -15,7 +15,7 @@ function NavigationItems() {
 
 export function SiteHeader() {
   return (
-    <header className="ativ-topo">
+    <header className="ativ-topo" id="inicio">
       <div className="ativ-topo__barra ativ-container">
         <a
           className="ativ-topo__marca"
