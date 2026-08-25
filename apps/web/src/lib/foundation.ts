@@ -9,6 +9,12 @@ export const foundationChecks = [
 
 export const foundationHeadingClass = "ativ-titulo-pagina";
 
+export const foundationPageContract = {
+  pageClass: "ativ-pagina--solucao",
+  skipTarget: "conteudo-principal",
+  sectionIds: ["contexto", "validacoes", "limites"],
+} as const;
+
 export function hasUniqueFoundationChecks(checks: readonly string[]): boolean {
   return new Set(checks).size === checks.length;
 }

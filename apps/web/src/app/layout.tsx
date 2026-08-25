@@ -34,8 +34,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
       ))}
       <body className="ativ-escuro">
-        <a className="skip-link" href="#conteudo-principal">
-          Pular para o conteúdo
+        <a className="ativ-salto" href="#conteudo-principal">
+          Ir para o conteúdo
         </a>
         <SiteHeader />
         {children}
