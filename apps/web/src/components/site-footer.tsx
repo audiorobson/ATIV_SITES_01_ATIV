@@ -8,7 +8,7 @@ export function SiteFooter() {
           <div className="ativ-rodape__marca ativ-pilha ativ-pilha--3">
             <a
               className="ativ-topo__marca"
-              href="#inicio"
+              href="/"
               aria-label="ATIV — voltar ao início"
             >
               <SiteLogo />
@@ -19,10 +19,13 @@ export function SiteFooter() {
             <p className="ativ-rotulo">Plataforma</p>
             <ul className="ativ-rodape__lista">
               <li>
-                <a href="#conteudo-principal">Fundação</a>
+                <a href="/">Fundação</a>
               </li>
               <li>
-                <a href="#inicio">Voltar ao início</a>
+                <a href="/sobre/">Sobre</a>
+              </li>
+              <li>
+                <a href="/contato/">Contato</a>
               </li>
             </ul>
           </nav>

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   definePaidLandingRoute,
+  implementedRouteContracts,
   sitemapRoutes,
   validateRouteContracts,
   type RouteContract,
@@ -17,6 +18,27 @@ describe("route contracts", () => {
       includeInSitemap: false,
     });
     expect(sitemapRoutes([paidRoute])).toEqual([]);
+  });
+
+  it("keeps reserved inventory URLs technical and out of the sitemap", () => {
+    expect(implementedRouteContracts).toEqual(
+      expect.arrayContaining([
+        {
+          pathname: "/contato/",
+          kind: "technical",
+          indexable: false,
+          includeInSitemap: false,
+        },
+        {
+          pathname: "/sobre/",
+          kind: "technical",
+          indexable: false,
+          includeInSitemap: false,
+        },
+      ]),
+    );
+    expect(validateRouteContracts(implementedRouteContracts)).toEqual([]);
+    expect(sitemapRoutes(implementedRouteContracts)).toEqual([]);
   });
 
   it("rejects noindex routes included in the sitemap", () => {

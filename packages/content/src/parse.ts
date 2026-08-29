@@ -77,11 +77,32 @@ export function parseContentDocument(
     );
   }
 
-  return {
+  const document: ContentDocument = {
     sourcePath,
     frontmatter: data as ContentFrontmatter,
     body: rawBody.trim(),
   };
+  requirePublicationFields(document);
+  return document;
+}
+
+const publicationTextFields = [
+  "seo_title",
+  "meta_description",
+  "heading",
+] as const;
+
+export function requirePublicationFields(document: ContentDocument): void {
+  if (!isPublishable(document)) return;
+
+  for (const field of publicationTextFields) {
+    const value = document.frontmatter[field];
+    if (typeof value !== "string" || !value.trim()) {
+      throw new Error(
+        `${document.sourcePath}: ${field} is required for publication.`,
+      );
+    }
+  }
 }
 
 export function isPublishable(document: ContentDocument): boolean {

@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@ativ/content": "workspace:*",
     "@ativ/seo": "workspace:*",
     "@ativ/ui": "workspace:*",
     "next": "16.3.2",

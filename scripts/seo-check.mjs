@@ -141,6 +141,64 @@ assert.doesNotMatch(
   /<loc>[^<]*\/404/i,
   "sitemap must exclude the 404 surface",
 );
+assert.doesNotMatch(
+  sitemap,
+  /<loc>[^<]*\/contato/i,
+  "sitemap must exclude the reserved contact surface",
+);
+assert.doesNotMatch(
+  sitemap,
+  /<loc>[^<]*\/sobre/i,
+  "sitemap must exclude the reserved about surface",
+);
+
+const contactFile = [
+  path.join(exportRoot, "contato.html"),
+  path.join(exportRoot, "contato", "index.html"),
+].find((file) => existsSync(file));
+
+assert.ok(contactFile, "static /contato/ export is required");
+const contactHtml = await readFile(contactFile, "utf8");
+assert.equal(
+  (contactHtml.match(/<h1(?:\s[^>]*)?>/gi) ?? []).length,
+  1,
+  "contato: exactly one H1 required",
+);
+assert.match(contactHtml, /noindex/i, "contato: must stay noindex");
+assert.match(
+  contactHtml,
+  /ativ-titulo-pagina/,
+  "contato: must use the display heading role",
+);
+assert.doesNotMatch(
+  contactHtml,
+  /\+55\s*\(11\)\s*0000-0000/,
+  "contato: must not republish the placeholder phone",
+);
+
+const aboutFile = [
+  path.join(exportRoot, "sobre.html"),
+  path.join(exportRoot, "sobre", "index.html"),
+].find((file) => existsSync(file));
+
+assert.ok(aboutFile, "static /sobre/ export is required");
+const aboutHtml = await readFile(aboutFile, "utf8");
+assert.equal(
+  (aboutHtml.match(/<h1(?:\s[^>]*)?>/gi) ?? []).length,
+  1,
+  "sobre: exactly one H1 required",
+);
+assert.match(aboutHtml, /noindex/i, "sobre: must stay noindex");
+assert.match(
+  aboutHtml,
+  /ativ-titulo-pagina/,
+  "sobre: must use the display heading role",
+);
+assert.doesNotMatch(
+  aboutHtml,
+  /ATIV\s+PRO/i,
+  "sobre: must not use ATIV Pro as the company name",
+);
 
 const notFoundFile = [
   path.join(exportRoot, "404.html"),

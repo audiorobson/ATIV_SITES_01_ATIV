@@ -75,6 +75,9 @@ technical_reviewer:
 seo_reviewer:
 commercial_reviewer:
 last_reviewed:
+seo_title: # obrigatório em approved/published
+meta_description: # obrigatório em approved/published
+heading: # obrigatório em approved/published
 ```
 
 ## Princípio editorial

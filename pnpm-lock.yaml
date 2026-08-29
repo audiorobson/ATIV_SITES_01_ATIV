@@ -35,6 +35,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@ativ/content':
+        specifier: workspace:*
+        version: link:../../packages/content
       '@ativ/seo':
         specifier: workspace:*
         version: link:../../packages/seo

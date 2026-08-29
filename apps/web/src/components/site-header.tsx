@@ -1,8 +1,9 @@
 import { SiteLogo } from "./site-logo";
 
 const navigation = [
-  { href: "#conteudo-principal", label: "Fundação" },
-  { href: "#contato", label: "Contato" },
+  { href: "/", label: "Fundação" },
+  { href: "/sobre/", label: "Sobre" },
+  { href: "/contato/", label: "Contato" },
 ] as const;
 
 function NavigationItems() {
@@ -19,7 +20,7 @@ export function SiteHeader() {
       <div className="ativ-topo__barra ativ-container">
         <a
           className="ativ-topo__marca"
-          href="#inicio"
+          href="/"
           aria-label="ATIV — início"
         >
           <SiteLogo />
