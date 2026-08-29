@@ -24,6 +24,9 @@ technical_reviewer: pessoa
 seo_reviewer: pessoa
 commercial_reviewer: pessoa
 last_reviewed: 2026-08-24
+seo_title: Integração audiovisual | ATIV
+meta_description: Página de solução aprovada para o contrato de publicação.
+heading: Integração audiovisual
 ---
 # Conteúdo aprovado`;
 
@@ -41,6 +44,15 @@ describe("content contract", () => {
         "ads/lp.md",
       ),
     ).toThrow(/noindex,follow/);
+  });
+
+  it("rejects approved content without publication fields", () => {
+    expect(() =>
+      parseContentDocument(
+        valid.replace("seo_title: Integração audiovisual | ATIV\n", ""),
+        "pages/solution.md",
+      ),
+    ).toThrow(/seo_title is required for publication/);
   });
 
   it("keeps drafts out of publication", () => {

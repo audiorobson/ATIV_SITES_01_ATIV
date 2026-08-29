@@ -31,6 +31,9 @@ export type ContentFrontmatter = Readonly<{
   seo_reviewer: string;
   commercial_reviewer: string;
   last_reviewed: string;
+  seo_title?: string;
+  meta_description?: string;
+  heading?: string;
   robots?: "noindex,follow";
 }>;
 

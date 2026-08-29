@@ -22,8 +22,8 @@ export default function FoundationPage() {
               <a className="ativ-btn ativ-btn--primario" href="#validacoes">
                 Ver validações
               </a>
-              <a className="ativ-btn ativ-btn--secundario" href="#contato">
-                Ir ao rodapé
+              <a className="ativ-btn ativ-btn--secundario" href="/contato/">
+                Ir ao contato
               </a>
             </div>
           </div>
@@ -92,6 +92,14 @@ export default function FoundationPage() {
               </h2>
               <ul className="ativ-texto ativ-medida">
                 <li>Rota `/` permanece técnica e `noindex`.</li>
+                <li>
+                  `/contato/` está reservada e `noindex`, sem telefone ou
+                  e-mail inventado.
+                </li>
+                <li>
+                  `/sobre/` está reservada e `noindex`, sem história ou
+                  certificação inventada.
+                </li>
                 <li>
                   Não cria `/solucoes/` nem `/setores/` antes do conteúdo.
                 </li>
