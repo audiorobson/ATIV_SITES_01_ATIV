@@ -71,6 +71,9 @@ describe("published content boundary", () => {
         reservedTechnicalRoutes(),
       ),
     ).toThrow(/collides with a technical surface: \/contato\//);
+    expect(() =>
+      assertPublicationBoundary([document("/500/")], reservedTechnicalRoutes()),
+    ).toThrow(/collides with a technical surface: \/500\//);
   });
 
   it("rejects a published route missing from the route plan", () => {

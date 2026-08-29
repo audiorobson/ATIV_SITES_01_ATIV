@@ -25,7 +25,14 @@ const files = await walk(exportRoot);
 const htmlFiles = files.filter((file) => {
   if (!file.endsWith(".html")) return false;
   const relative = path.relative(exportRoot, file).replaceAll("\\", "/");
-  return relative !== "404.html" && !relative.startsWith("404/");
+  return (
+    relative !== "404.html" &&
+    !relative.startsWith("404/") &&
+    relative !== "_not-found.html" &&
+    !relative.startsWith("_not-found/") &&
+    relative !== "500.html" &&
+    !relative.startsWith("500/")
+  );
 });
 assert.ok(htmlFiles.length > 0, "At least one exported HTML page is required");
 
@@ -143,6 +150,11 @@ assert.doesNotMatch(
 );
 assert.doesNotMatch(
   sitemap,
+  /<loc>[^<]*\/500/i,
+  "sitemap must exclude the 500 surface",
+);
+assert.doesNotMatch(
+  sitemap,
   /<loc>[^<]*\/contato/i,
   "sitemap must exclude the reserved contact surface",
 );
@@ -229,11 +241,50 @@ assert.doesNotMatch(
   "404: remote font host is forbidden",
 );
 
+const serverErrorFile = [
+  path.join(exportRoot, "500.html"),
+  path.join(exportRoot, "500", "index.html"),
+].find((file) => existsSync(file));
+
+assert.ok(serverErrorFile, "static 500 export is required");
+const serverErrorHtml = await readFile(serverErrorFile, "utf8");
+assert.equal(
+  (serverErrorHtml.match(/<h1(?:\s[^>]*)?>/gi) ?? []).length,
+  1,
+  "500: exactly one H1 required",
+);
+assert.match(serverErrorHtml, /noindex/i, "500: must stay noindex");
+assert.match(
+  serverErrorHtml,
+  /ativ-titulo-pagina/,
+  "500: must use the display heading role",
+);
+assert.match(
+  serverErrorHtml,
+  /href="\/"/,
+  "500: must offer a path back to the foundation",
+);
+assert.doesNotMatch(
+  serverErrorHtml,
+  /Internal Server Error|Application error/i,
+  "500: must not keep the default Next.js copy",
+);
+assert.doesNotMatch(
+  serverErrorHtml,
+  /fonts\.googleapis|fonts\.gstatic|typekit/i,
+  "500: remote font host is forbidden",
+);
+
 const htaccess = await readFile(path.join(exportRoot, ".htaccess"), "utf8");
 assert.match(
   htaccess,
   /ErrorDocument\s+404\s+\/404\.html/,
   ".htaccess must map Apache 404 to the static ATIV surface",
+);
+assert.match(
+  htaccess,
+  /ErrorDocument\s+500\s+\/500\.html/,
+  ".htaccess must map Apache 500 to the static ATIV surface",
 );
 
 console.log(`SEO checks passed for ${htmlFiles.length} exported page(s).`);

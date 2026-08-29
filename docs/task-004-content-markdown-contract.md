@@ -8,7 +8,7 @@
 - rotas publicáveis duplicadas falham o build;
 - landing pages pagas exigem `robots: noindex,follow`;
 - status `approved` ou `published` exige `seo_title`, `meta_description` e `heading`;
-- o app Next consome o loader em build time e recusa colisão com `/`, `/contato/` e `/sobre/`;
+- o app Next consome o loader em build time e recusa colisão com `/`, `/contato/`, `/sobre/` e `/500/`;
 - a rota dinâmica `[...slug]` só entra quando houver ao menos um documento aprovado (export estático não aceita `generateStaticParams` vazio);
 - o corpo Markdown permanece texto nesta etapa; renderização HTML pertence ao template futuro.
 

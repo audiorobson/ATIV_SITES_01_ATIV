@@ -35,6 +35,12 @@ describe("route contracts", () => {
           indexable: false,
           includeInSitemap: false,
         },
+        {
+          pathname: "/500/",
+          kind: "technical",
+          indexable: false,
+          includeInSitemap: false,
+        },
       ]),
     );
     expect(validateRouteContracts(implementedRouteContracts)).toEqual([]);
