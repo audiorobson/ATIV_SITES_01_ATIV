@@ -1,3 +1,6 @@
+import Image from "next/image";
+
+import { foundationDiagram } from "@/lib/editorial-page";
 import { foundationChecks, foundationHeadingClass } from "@/lib/foundation";
 
 export default function FoundationPage() {
@@ -22,20 +25,24 @@ export default function FoundationPage() {
               <a className="ativ-btn ativ-btn--primario" href="#validacoes">
                 Ver validações
               </a>
-              <a className="ativ-btn ativ-btn--secundario" href="#contato">
-                Ir ao rodapé
+              <a className="ativ-btn ativ-btn--secundario" href="/contato/">
+                Ir ao contato
               </a>
             </div>
           </div>
           <figure className="ativ-figura">
-            <div
-              className="ativ-quadro ativ-quadro--vazio"
-              aria-label="Slot de mídia vazio"
-            >
-              <p className="ativ-dado">Slot vazio — sem fotografia de case</p>
+            <div className="ativ-quadro">
+              <Image
+                src={foundationDiagram.src}
+                alt={foundationDiagram.alt}
+                width={foundationDiagram.width}
+                height={foundationDiagram.height}
+                priority
+                decoding="async"
+              />
             </div>
             <figcaption className="ativ-legenda">
-              Candidata — fundação técnica. Não é case.
+              {foundationDiagram.caption}
             </figcaption>
           </figure>
         </div>
@@ -70,8 +77,8 @@ export default function FoundationPage() {
               </h2>
               <p className="ativ-texto ativ-medida">
                 Header, rodapé e recipes de página interna já existem. A Home
-                comercial, hubs de soluções e setores só entram com conteúdo
-                aprovado, rotas do inventário SEO e sem claims inventados.
+                comercial permanece nesta superfície técnica. Hubs de soluções
+                e setores já exibem texto em revisão, sem indexação.
               </p>
             </section>
 
@@ -93,7 +100,16 @@ export default function FoundationPage() {
               <ul className="ativ-texto ativ-medida">
                 <li>Rota `/` permanece técnica e `noindex`.</li>
                 <li>
-                  Não cria `/solucoes/` nem `/setores/` antes do conteúdo.
+                  `/contato/` tem texto em revisão e `noindex`, com e-mail,
+                  telefone e endereço confirmados, sem envio eletrônico.
+                </li>
+                <li>
+                  `/sobre/` está reservada e `noindex`, sem história ou
+                  certificação inventada.
+                </li>
+                <li>
+                  `/solucoes/` e `/setores/` existem como texto em revisão,
+                  `noindex` e fora do sitemap.
                 </li>
                 <li>Não altera sitemap, canonical nem redirects.</li>
               </ul>

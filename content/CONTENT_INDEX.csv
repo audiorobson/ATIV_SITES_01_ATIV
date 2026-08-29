@@ -1,5 +1,15 @@
 content_id,source_file,content_type,status,target_route,technical_review,seo_review,commercial_review,notes
 PAGE-HOME-001,content/pages/home.md,page_brief,brief,/,pending,pending,pending,Briefing P0; não publicar antes das três aprovações
+PAGE-CONTATO-001,content/pages/contato.md,page_draft,draft,/contato/,pending,pending,pending,Superfície noindex; e-mail, telefone e endereço confirmados; envio ainda na fase de leads
+PAGE-SOL-HUB-001,content/pages/solucoes/index.md,page_draft,draft,/solucoes/,pending,pending,pending,Superfície noindex; diagrama ilustrativo catalogado em content/media/diagramas
+PAGE-SOL-AV-001,content/pages/solucoes/audiovisual.md,page_draft,draft,/solucoes/audiovisual/,pending,pending,pending,Superfície noindex; não promover sem as três revisões
+PAGE-SOL-SALA-001,content/pages/solucoes/sala-reuniao-hibrida-sao-paulo.md,page_draft,draft,/solucoes/sala-reuniao-hibrida-sao-paulo/,pending,pending,pending,Superfície noindex; não promover sem as três revisões
+PAGE-SOL-NOC-001,content/pages/solucoes/centro-comando-controle-noc-soc-sao-paulo.md,page_draft,draft,/solucoes/centro-comando-controle-noc-soc-sao-paulo/,pending,pending,pending,Superfície noindex; Easywall omitido até claim registry
+PAGE-SOL-AUD-001,content/pages/solucoes/auditorio-corporativo-sao-paulo.md,page_draft,draft,/solucoes/auditorio-corporativo-sao-paulo/,pending,pending,pending,Superfície noindex; não promover sem as três revisões
+PAGE-SOL-TRIB-001,content/pages/solucoes/governo-tribunais-sao-paulo.md,page_draft,draft,/solucoes/governo-tribunais-sao-paulo/,pending,pending,pending,Superfície noindex; não promover sem as três revisões
+PAGE-SET-HUB-001,content/pages/setores/index.md,page_draft,draft,/setores/,pending,pending,pending,Superfície noindex; rota do inventário
+PAGE-SET-CORP-001,content/pages/setores/corporativo.md,page_draft,draft,/setores/corporativo/,pending,pending,pending,Superfície noindex; não promover sem as três revisões
+PAGE-SET-GOV-001,content/pages/setores/governo.md,page_draft,draft,/setores/governo/,pending,pending,pending,Superfície noindex; não promover sem as três revisões
 ATIV-CT-001-R00,content/inbox/ATIV-CT-001-R00.md,editorial_backlog,technical_review,,pending,pending,pending,Backlog interno; não publicar
 CT-AUD-02-R00,content/inbox/CT-AUD-02-R00.md,technical_article,draft,,pending,pending,pending,Exige validação de fontes e claims
 CT-AUD-04-R00,content/inbox/CT-AUD-04-R00.md,technical_article,draft,,pending,pending,pending,Exige validação de fontes e claims

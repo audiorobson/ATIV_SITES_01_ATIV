@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:mobile": "next dev --port 3001",
     "typecheck": "tsc --noEmit",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "@ativ/content": "workspace:*",
     "@ativ/seo": "workspace:*",
     "@ativ/ui": "workspace:*",
     "next": "16.3.2",

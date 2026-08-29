@@ -14,6 +14,24 @@ export const implementedRouteContracts = [
     indexable: false,
     includeInSitemap: false,
   },
+  {
+    pathname: "/contato/",
+    kind: "technical",
+    indexable: false,
+    includeInSitemap: false,
+  },
+  {
+    pathname: "/sobre/",
+    kind: "technical",
+    indexable: false,
+    includeInSitemap: false,
+  },
+  {
+    pathname: "/500/",
+    kind: "technical",
+    indexable: false,
+    includeInSitemap: false,
+  },
 ] as const satisfies readonly RouteContract[];
 
 export function definePaidLandingRoute(

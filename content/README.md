@@ -28,6 +28,8 @@ content/
 ├── templates/
 │   ├── page-copy-template.md
 │   └── ads-landing-template.md
+├── media/
+│   └── diagramas/
 ├── pages/
 │   ├── home.md
 │   ├── solutions/
@@ -75,6 +77,9 @@ technical_reviewer:
 seo_reviewer:
 commercial_reviewer:
 last_reviewed:
+seo_title: # obrigatório em approved/published
+meta_description: # obrigatório em approved/published
+heading: # obrigatório em approved/published
 ```
 
 ## Princípio editorial

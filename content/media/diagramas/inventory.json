@@ -1,0 +1,65 @@
+{
+  "kind": "technical_diagram",
+  "status": "illustrative",
+  "generator": "magnific",
+  "palette": ["#12152C", "#1B1F3B", "#4B4FA6", "#F5A623"],
+  "caption": "Ilustração técnica — não é fotografia de obra.",
+  "assets": [
+    {
+      "id": "MEDIA-DIAG-AV-001",
+      "file": "integracao-audiovisual.jpg",
+      "public_path": "/media/diagramas/integracao-audiovisual.jpg",
+      "magnific_id": "IfF8b7DtvE",
+      "width": 2048,
+      "height": 1152,
+      "alt": "Diagrama ilustrativo de integração audiovisual: fontes, processamento, displays e rede AV.",
+      "routes": ["/", "/solucoes/", "/solucoes/audiovisual/", "/setores/"]
+    },
+    {
+      "id": "MEDIA-DIAG-SALA-001",
+      "file": "sala-reuniao-hibrida.jpg",
+      "public_path": "/media/diagramas/sala-reuniao-hibrida.jpg",
+      "magnific_id": "ovuBHJt829",
+      "width": 2048,
+      "height": 1152,
+      "alt": "Diagrama ilustrativo de sala de reunião híbrida: microfones, câmera, display, DSP e colaboração.",
+      "routes": [
+        "/solucoes/sala-reuniao-hibrida-sao-paulo/",
+        "/setores/corporativo/"
+      ]
+    },
+    {
+      "id": "MEDIA-DIAG-NOC-001",
+      "file": "noc-videowall.jpg",
+      "public_path": "/media/diagramas/noc-videowall.jpg",
+      "magnific_id": "s74L6eNl8e",
+      "width": 2048,
+      "height": 1152,
+      "alt": "Diagrama ilustrativo de videowall em centro de operação: fontes, VLANs, processador e consoles.",
+      "routes": ["/solucoes/centro-comando-controle-noc-soc-sao-paulo/"]
+    },
+    {
+      "id": "MEDIA-DIAG-AUD-001",
+      "file": "auditorio-corporativo.jpg",
+      "public_path": "/media/diagramas/auditorio-corporativo.jpg",
+      "magnific_id": "hubmk6WvqL",
+      "width": 2048,
+      "height": 1152,
+      "alt": "Diagrama ilustrativo de auditório: palco, cobertura de áudio, tela e processamento por zonas.",
+      "routes": ["/solucoes/auditorio-corporativo-sao-paulo/"]
+    },
+    {
+      "id": "MEDIA-DIAG-TRIB-001",
+      "file": "plenario-tribunal.jpg",
+      "public_path": "/media/diagramas/plenario-tribunal.jpg",
+      "magnific_id": "3z0iMHIREY",
+      "width": 2048,
+      "height": 1152,
+      "alt": "Diagrama ilustrativo de plenário: microfonia por assento, câmeras, DSP e caminhos de registro.",
+      "routes": [
+        "/solucoes/governo-tribunais-sao-paulo/",
+        "/setores/governo/"
+      ]
+    }
+  ]
+}

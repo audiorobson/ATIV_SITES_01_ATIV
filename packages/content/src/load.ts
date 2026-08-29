@@ -1,7 +1,11 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
-import { isPublishable, parseContentDocument } from "./parse";
+import {
+  isFoundationRenderable,
+  isPublishable,
+  parseContentDocument,
+} from "./parse";
 import type { ContentDocument } from "./types";
 
 async function markdownFiles(directory: string): Promise<string[]> {
@@ -18,7 +22,7 @@ async function markdownFiles(directory: string): Promise<string[]> {
   return files;
 }
 
-export async function loadPublishableContent(
+async function loadVersionedDocuments(
   contentRoot: string,
 ): Promise<ContentDocument[]> {
   const approvedRoots = [
@@ -28,7 +32,8 @@ export async function loadPublishableContent(
   const files = (await Promise.all(approvedRoots.map(markdownFiles)))
     .flat()
     .sort();
-  const documents = await Promise.all(
+
+  return Promise.all(
     files.map(async (file) =>
       parseContentDocument(
         await readFile(file, "utf8"),
@@ -36,16 +41,37 @@ export async function loadPublishableContent(
       ),
     ),
   );
+}
 
-  const publishable = documents.filter(isPublishable);
+function assertUniqueRoutes(
+  documents: readonly ContentDocument[],
+  label: string,
+): void {
   const routes = new Set<string>();
-  for (const document of publishable) {
+  for (const document of documents) {
     if (routes.has(document.frontmatter.route)) {
-      throw new Error(
-        `Duplicate published route: ${document.frontmatter.route}`,
-      );
+      throw new Error(`${label}: ${document.frontmatter.route}`);
     }
     routes.add(document.frontmatter.route);
   }
+}
+
+export async function loadPublishableContent(
+  contentRoot: string,
+): Promise<ContentDocument[]> {
+  const publishable = (await loadVersionedDocuments(contentRoot)).filter(
+    isPublishable,
+  );
+  assertUniqueRoutes(publishable, "Duplicate published route");
   return publishable;
+}
+
+export async function loadFoundationContent(
+  contentRoot: string,
+): Promise<ContentDocument[]> {
+  const renderable = (await loadVersionedDocuments(contentRoot)).filter(
+    isFoundationRenderable,
+  );
+  assertUniqueRoutes(renderable, "Duplicate foundation route");
+  return renderable;
 }

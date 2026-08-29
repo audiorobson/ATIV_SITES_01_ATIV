@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   poweredByHeader: false,
   reactStrictMode: true,
+  distDir: process.env.ATIV_NEXT_DIST || ".next",
 };
 
 export default nextConfig;

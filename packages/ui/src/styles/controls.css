@@ -18,6 +18,27 @@
   border: var(--ativ-borda) solid var(--ativ-borda-cor);
   border-radius: var(--ativ-raio-cartao);
   padding: 26px 28px;
+  transition:
+    border-color var(--ativ-transicao),
+    background var(--ativ-transicao),
+    color var(--ativ-transicao);
+}
+
+.ativ-cartao--interativo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ativ-e-3);
+  min-height: var(--ativ-alvo-min);
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ativ-cartao--interativo:hover,
+.ativ-cartao--interativo:focus-visible {
+  border-color: var(--ativ-destaque);
+  background: var(--ativ-fundo-fundo);
 }
 
 /* =====================================================================

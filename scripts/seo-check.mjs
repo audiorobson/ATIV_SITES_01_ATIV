@@ -117,6 +117,45 @@ for (const fileName of localFontFiles) {
   );
 }
 
+const technicalDiagrams = [
+  "integracao-audiovisual.jpg",
+  "sala-reuniao-hibrida.jpg",
+  "noc-videowall.jpg",
+  "auditorio-corporativo.jpg",
+  "plenario-tribunal.jpg",
+];
+
+for (const fileName of technicalDiagrams) {
+  assert.equal(
+    (await stat(path.join(exportRoot, "media", "diagramas", fileName))).isFile(),
+    true,
+    `missing technical diagram ${fileName}`,
+  );
+}
+
+const foundationFile = path.join(exportRoot, "index.html");
+assert.equal(
+  (await stat(foundationFile)).isFile(),
+  true,
+  "static / export is required",
+);
+const foundationHtml = await readFile(foundationFile, "utf8");
+assert.match(
+  foundationHtml,
+  /\/media\/diagramas\/integracao-audiovisual\.jpg/,
+  "foundation: must fill the media slot with the integration diagram",
+);
+assert.match(
+  foundationHtml,
+  /Ilustração técnica — não é fotografia de obra/,
+  "foundation: must label the diagram as illustration",
+);
+assert.doesNotMatch(
+  foundationHtml,
+  /Slot vazio/i,
+  "foundation: must not keep the empty media slot",
+);
+
 const cssBundle = (
   await Promise.all(
     files
@@ -152,6 +191,186 @@ assert.doesNotMatch(
   sitemap,
   /<loc>[^<]*\/500/i,
   "sitemap must exclude the 500 surface",
+);
+assert.doesNotMatch(
+  sitemap,
+  /<loc>[^<]*\/contato/i,
+  "sitemap must exclude the reserved contact surface",
+);
+assert.doesNotMatch(
+  sitemap,
+  /<loc>[^<]*\/sobre/i,
+  "sitemap must exclude the reserved about surface",
+);
+assert.doesNotMatch(
+  sitemap,
+  /<loc>[^<]*\/solucoes/i,
+  "sitemap must exclude draft solution surfaces",
+);
+assert.doesNotMatch(
+  sitemap,
+  /<loc>[^<]*\/setores/i,
+  "sitemap must exclude draft sector surfaces",
+);
+
+const draftSurfaces = [
+  "solucoes",
+  "solucoes/audiovisual",
+  "solucoes/sala-reuniao-hibrida-sao-paulo",
+  "solucoes/centro-comando-controle-noc-soc-sao-paulo",
+  "solucoes/auditorio-corporativo-sao-paulo",
+  "solucoes/governo-tribunais-sao-paulo",
+  "setores",
+  "setores/corporativo",
+  "setores/governo",
+];
+
+for (const surface of draftSurfaces) {
+  const draftFile = [
+    path.join(exportRoot, `${surface}.html`),
+    path.join(exportRoot, surface, "index.html"),
+  ].find((file) => existsSync(file));
+  assert.ok(draftFile, `static /${surface}/ export is required`);
+  const draftHtml = await readFile(draftFile, "utf8");
+  assert.equal(
+    (draftHtml.match(/<h1(?:\s[^>]*)?>/gi) ?? []).length,
+    1,
+    `${surface}: exactly one H1 required`,
+  );
+  assert.match(draftHtml, /noindex/i, `${surface}: must stay noindex`);
+  assert.match(
+    draftHtml,
+    /ativ-titulo-pagina/,
+    `${surface}: must use the display heading role`,
+  );
+  assert.match(
+    draftHtml,
+    /Texto em revisão/,
+    `${surface}: must declare draft review status`,
+  );
+  assert.doesNotMatch(
+    draftHtml,
+    /Easywall/i,
+    `${surface}: must not publish unverified Easywall claims`,
+  );
+  assert.doesNotMatch(
+    draftHtml,
+    /\+55\s*\(11\)\s*0000-0000/,
+    `${surface}: must not republish the placeholder phone`,
+  );
+  assert.match(
+    draftHtml,
+    /\/media\/diagramas\/[a-z0-9-]+\.jpg/,
+    `${surface}: must use a catalogued technical diagram`,
+  );
+  assert.match(
+    draftHtml,
+    /Ilustração técnica — não é fotografia de obra/,
+    `${surface}: must label the diagram as illustration`,
+  );
+  assert.match(
+    draftHtml,
+    /<figcaption class="ativ-legenda">Ilustração técnica — não é fotografia de obra\.<\/figcaption>/,
+    `${surface}: caption must stay on the figure, not claim a delivered project`,
+  );
+  assert.match(
+    draftHtml,
+    /ativ-relacionados/,
+    `${surface}: must use the related-reading recipe`,
+  );
+  assert.match(
+    draftHtml,
+    /ativ-proxima/,
+    `${surface}: must use the next-reading recipe`,
+  );
+}
+
+const contactFile = [
+  path.join(exportRoot, "contato.html"),
+  path.join(exportRoot, "contato", "index.html"),
+].find((file) => existsSync(file));
+
+assert.ok(contactFile, "static /contato/ export is required");
+const contactHtml = await readFile(contactFile, "utf8");
+assert.equal(
+  (contactHtml.match(/<h1(?:\s[^>]*)?>/gi) ?? []).length,
+  1,
+  "contato: exactly one H1 required",
+);
+assert.match(contactHtml, /noindex/i, "contato: must stay noindex");
+assert.match(
+  contactHtml,
+  /ativ-titulo-pagina/,
+  "contato: must use the display heading role",
+);
+assert.match(
+  contactHtml,
+  /Texto em revisão/,
+  "contato: must declare draft review status",
+);
+assert.match(
+  contactHtml,
+  /id="formulario"/,
+  "contato: must keep the planned-fields anchor",
+);
+assert.doesNotMatch(
+  contactHtml,
+  /<form[\s>]/i,
+  "contato: must not fake a working form before the lead endpoint",
+);
+assert.doesNotMatch(
+  contactHtml,
+  /Recebemos o escopo/i,
+  "contato: must not claim a successful submission",
+);
+assert.doesNotMatch(
+  contactHtml,
+  /\+55\s*\(11\)\s*0000-0000/,
+  "contato: must not republish the placeholder phone",
+);
+assert.match(
+  contactHtml,
+  /mailto:contato@ativpro\.com/,
+  "contato: must publish the verified email",
+);
+assert.match(
+  contactHtml,
+  /tel:\+5511911110115/,
+  "contato: must publish the verified phone link",
+);
+assert.match(
+  contactHtml,
+  /Joaquim Barreto/,
+  "contato: must publish the verified address",
+);
+assert.match(
+  contactHtml,
+  /06700-170/,
+  "contato: must publish the verified postal code",
+);
+
+const aboutFile = [
+  path.join(exportRoot, "sobre.html"),
+  path.join(exportRoot, "sobre", "index.html"),
+].find((file) => existsSync(file));
+
+assert.ok(aboutFile, "static /sobre/ export is required");
+const aboutHtml = await readFile(aboutFile, "utf8");
+assert.equal(
+  (aboutHtml.match(/<h1(?:\s[^>]*)?>/gi) ?? []).length,
+  1,
+  "sobre: exactly one H1 required",
+);
+assert.match(aboutHtml, /noindex/i, "sobre: must stay noindex");
+assert.match(
+  aboutHtml,
+  /ativ-titulo-pagina/,
+  "sobre: must use the display heading role",
+);
+assert.doesNotMatch(
+  aboutHtml,
+  /ATIV\s+PRO/i,
+  "sobre: must not use ATIV Pro as the company name",
 );
 
 const notFoundFile = [
