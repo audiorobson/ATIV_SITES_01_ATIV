@@ -312,6 +312,11 @@ test("chrome de navegacao usa details, alvo 44px e nao inventa 16/9", () => {
   const css = readRepo("packages/ui/src/styles/chrome.css");
   assert.match(css, /\.ativ-topo\b/);
   assert.match(css, /\.ativ-nav\b/);
+  assert.match(css, /\.ativ-nav__ramo\b/);
+  assert.match(css, /\.ativ-nav__submenu\b/);
+  assert.match(css, /\.ativ-nav__submenu--painel\b/);
+  assert.match(css, /\.ativ-nav__destaques\b/);
+  assert.match(css, /\.ativ-topo__acoes\b/);
   assert.match(css, /\.ativ-menu\b/);
   assert.match(css, /\.ativ-rodape\b/);
   assert.match(css, /\.ativ-abertura\b/);
@@ -338,6 +343,9 @@ test("paginas internas usam ancoras, alvo 44px e nao inventam 16/9", () => {
   assert.match(css, /\.ativ-integracoes\b/);
   assert.match(css, /\.ativ-relacionados\b/);
   assert.match(css, /\.ativ-proxima\b/);
+  assert.match(css, /\.ativ-carrossel\b/);
+  assert.match(css, /scroll-snap-type:\s*x\s+mandatory/);
+  assert.match(css, /@view-transition|ativ-carrossel/);
   assert.match(css, /:target/);
   assert.match(css, /position:\s*sticky/);
   assert.match(css, /max-width:\s*860px/);

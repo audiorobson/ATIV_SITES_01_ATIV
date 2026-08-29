@@ -71,6 +71,17 @@
   margin: 0;
 }
 
+.ativ-editorial pre {
+  overflow-x: auto;
+  padding: var(--ativ-e-4);
+  border: var(--ativ-borda) solid var(--ativ-borda-cor);
+  background: var(--ativ-fundo-fundo);
+  font-family: var(--ativ-font-dados);
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre;
+}
+
 .ativ-editorial ul,
 .ativ-editorial ol {
   padding-inline-start: var(--ativ-e-6);

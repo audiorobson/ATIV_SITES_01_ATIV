@@ -10,6 +10,7 @@ route,purpose,indexation,primary_intent,primary_keyword,ads_eligible,organic_own
 /solucoes/governo-tribunais-sao-paulo/,organic_commercial,index,government_procurement,sistema audiovisual para tribunal,yes,/solucoes/governo-tribunais-sao-paulo/,existing_preserve,self,yes,P0,"Own tribunal/plenary solution intent"
 /solucoes/av-over-ip/,organic_commercial,index,commercial,AV over IP,yes,/solucoes/av-over-ip/,candidate_new,self,yes,P1,"Commercial solution page distinct from informational guides"
 /solucoes/automacao-controle/,organic_commercial,index,commercial,automação audiovisual,yes,/solucoes/automacao-controle/,existing_strengthen,self,yes,P1,"Fix metadata/H1 before paid use"
+/setores/,sector_index,index,commercial,integração audiovisual por setor,yes,/setores/,existing_strengthen,self,yes,P1,"Existing inventory URL; draft surface stays noindex until approved"
 /setores/corporativo/,sector_hub,index,commercial,audiovisual corporativo,yes,/setores/corporativo/,existing_expand,self,yes,P0,"Decision hub; link to rooms/auditorium/videowall/UC instead of duplicating them"
 /setores/governo/,sector_hub,index,government_procurement,integração audiovisual para governo,yes,/setores/governo/,existing_expand,self,yes,P0,"Broad public-sector authority hub; link to tribunal/plenary solution"
 /servicos/consultoria-engenharia/,organic_service,index,commercial,engenharia audiovisual,yes,/servicos/consultoria-engenharia/,existing_strengthen,self,yes,P1,"Owner for engineering/project/specification intent"

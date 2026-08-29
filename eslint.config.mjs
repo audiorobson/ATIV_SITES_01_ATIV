@@ -12,6 +12,7 @@ export default defineConfig([
   },
   globalIgnores([
     "**/.next/**",
+    "**/.next-mobile/**",
     "**/out/**",
     "dist/**",
     "**/coverage/**",

@@ -76,6 +76,7 @@ export function parseContentDocument(
       `${sourcePath}: paid landing pages require noindex,follow.`,
     );
   }
+  requireMediaFields(data, sourcePath);
 
   const document: ContentDocument = {
     sourcePath,
@@ -91,6 +92,30 @@ const publicationTextFields = [
   "meta_description",
   "heading",
 ] as const;
+
+function requireMediaFields(
+  data: Record<string, unknown>,
+  sourcePath: string,
+): void {
+  const hasMedia =
+    data.media_src !== undefined ||
+    data.media_alt !== undefined ||
+    data.media_caption !== undefined;
+  if (!hasMedia) return;
+
+  if (typeof data.media_src !== "string" || !data.media_src.startsWith("/media/")) {
+    throw new Error(`${sourcePath}: media_src must be a /media/ path.`);
+  }
+  if (typeof data.media_alt !== "string" || !data.media_alt.trim()) {
+    throw new Error(`${sourcePath}: media_alt is required when media_src is set.`);
+  }
+  if (
+    data.media_caption !== undefined &&
+    (typeof data.media_caption !== "string" || !data.media_caption.trim())
+  ) {
+    throw new Error(`${sourcePath}: media_caption must be text when present.`);
+  }
+}
 
 export function requirePublicationFields(document: ContentDocument): void {
   if (!isPublishable(document)) return;
@@ -110,4 +135,9 @@ export function isPublishable(document: ContentDocument): boolean {
     document.frontmatter.status === "approved" ||
     document.frontmatter.status === "published"
   );
+}
+
+export function isFoundationRenderable(document: ContentDocument): boolean {
+  const { status, route } = document.frontmatter;
+  return status !== "brief" && status !== "retired" && route !== "/";
 }

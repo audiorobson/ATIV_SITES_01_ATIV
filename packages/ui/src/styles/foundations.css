@@ -327,6 +327,21 @@ summary:focus-visible,
   animation-delay: 300ms;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root) {
+    animation: ativ-entra-lateral var(--ativ-dur-amplo) var(--ativ-ease-saida)
+      reverse both;
+  }
+
+  ::view-transition-new(root) {
+    animation: ativ-revela var(--ativ-dur-amplo) var(--ativ-ease-entrada) both;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -93,19 +93,32 @@
   gap: var(--ativ-e-1);
 }
 
-.ativ-indice a {
+.ativ-indice a,
+.ativ-indice [aria-current="page"] {
   display: inline-flex;
   align-items: center;
   min-height: var(--ativ-alvo-min);
   padding-inline: var(--ativ-e-3);
+  overflow-wrap: anywhere;
+}
+
+.ativ-indice a {
   color: var(--ativ-destaque);
   text-decoration: underline;
   text-underline-offset: 0.2em;
-  overflow-wrap: anywhere;
 }
 
 .ativ-indice a:hover {
   color: var(--ativ-texto);
+}
+
+.ativ-indice [aria-current="page"] {
+  color: var(--ativ-texto);
+  text-decoration: none;
+}
+
+.ativ-indice .ativ-rotulo:not(:first-child) {
+  margin-block-start: var(--ativ-e-5);
 }
 
 @media (min-width: 861px) {
@@ -123,8 +136,8 @@
   max-inline-size: none;
 }
 
-.ativ-pagina--setor .ativ-indice ol,
-.ativ-pagina--estreito .ativ-indice ol {
+.ativ-pagina--setor .ativ-indice ol:not(.ativ-indice__solucoes),
+.ativ-pagina--estreito .ativ-indice ol:not(.ativ-indice__solucoes) {
   flex-direction: row;
   flex-wrap: wrap;
   gap: var(--ativ-e-2);
@@ -148,7 +161,7 @@
     max-inline-size: none;
   }
 
-  .ativ-pagina:not(.ativ-pagina--largo) .ativ-indice ol {
+  .ativ-pagina:not(.ativ-pagina--largo) .ativ-indice ol:not(.ativ-indice__solucoes) {
     flex-direction: row;
     flex-wrap: wrap;
     gap: var(--ativ-e-2);
@@ -262,4 +275,83 @@
 
 .ativ-proxima a:hover {
   border-color: var(--ativ-destaque);
+}
+
+/* =====================================================================
+   CARROSSEL — trilho com snap, sem JS e sem autoplay
+   ===================================================================== */
+
+.ativ-carrossel {
+  display: flex;
+  gap: var(--ativ-e-4);
+  margin: 0;
+  padding: 0;
+  padding-block-end: var(--ativ-e-3);
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--ativ-e-3);
+}
+
+.ativ-carrossel > * {
+  flex: 0 0 min(100%, 22rem);
+  min-inline-size: 0;
+  scroll-snap-align: start;
+}
+
+.ativ-carrossel .ativ-cartao {
+  min-block-size: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    .ativ-carrossel > * {
+      animation: ativ-carrossel-passo auto linear both;
+      animation-timeline: view(inline);
+    }
+
+    .ativ-pagina__corpo section {
+      animation: ativ-entra auto var(--ativ-ease-entrada) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+@keyframes ativ-carrossel-passo {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+
+  50% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =====================================================================
+   DIAGRAMA EM ESPACO — CSS 3D raso, sem WebGL
+   ===================================================================== */
+
+.ativ-figura--espaco .ativ-quadro {
+  perspective: var(--ativ-grade-max);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ativ-figura--espaco .ativ-quadro > img,
+  .ativ-figura--espaco .ativ-quadro > svg {
+    transform: rotateY(-8deg) rotateX(4deg);
+    transform-origin: 50% 50%;
+    transition: transform var(--ativ-dur-amplo) var(--ativ-ease-firme);
+  }
+
+  .ativ-figura--espaco:hover .ativ-quadro > img,
+  .ativ-figura--espaco:hover .ativ-quadro > svg,
+  .ativ-figura--espaco:focus-within .ativ-quadro > img,
+  .ativ-figura--espaco:focus-within .ativ-quadro > svg {
+    transform: none;
+  }
 }

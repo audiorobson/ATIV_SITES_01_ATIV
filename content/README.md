@@ -28,6 +28,8 @@ content/
 ├── templates/
 │   ├── page-copy-template.md
 │   └── ads-landing-template.md
+├── media/
+│   └── diagramas/
 ├── pages/
 │   ├── home.md
 │   ├── solutions/

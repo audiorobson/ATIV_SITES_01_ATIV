@@ -9,7 +9,8 @@
 - landing pages pagas exigem `robots: noindex,follow`;
 - status `approved` ou `published` exige `seo_title`, `meta_description` e `heading`;
 - o app Next consome o loader em build time e recusa colisão com `/`, `/contato/`, `/sobre/` e `/500/`;
-- a rota dinâmica `[...slug]` só entra quando houver ao menos um documento aprovado (export estático não aceita `generateStaticParams` vazio);
-- o corpo Markdown permanece texto nesta etapa; renderização HTML pertence ao template futuro.
+- a rota dinâmica `[...slug]` só entra com `generateStaticParams` não vazio (export estático recusa lista vazia);
+- superfícies `draft` de soluções e setores podem ser renderizadas como `noindex` fora do sitemap, sem promover o status editorial;
+- o renderer Markdown é conservador (`h2`/`h3`, parágrafos, listas, tabelas, `pre` e links internos) e omite Chrome, links duplicados e notas ao revisor.
 
 O pacote usa YAML apenas durante desenvolvimento/build e preserva a baseline HostGator estática.

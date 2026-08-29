@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "corepack pnpm --filter @ativ/web dev",
+    "dev:mobile": "node scripts/dev-mobile.mjs",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit -p apps/web/tsconfig.json && tsc --noEmit -p packages/seo/tsconfig.json && tsc --noEmit -p packages/content/tsconfig.json",
     "test": "vitest run && node --test packages/ui/scripts/validate-tokens.test.mjs",

@@ -2,8 +2,12 @@ import { readFile } from "node:fs/promises";
 
 import { describe, expect, it } from "vitest";
 
-import { loadPublishableContent } from "./load";
-import { isPublishable, parseContentDocument } from "./parse";
+import { loadFoundationContent, loadPublishableContent } from "./load";
+import {
+  isFoundationRenderable,
+  isPublishable,
+  parseContentDocument,
+} from "./parse";
 
 const valid = `---
 content_id: PAGE-001
@@ -55,6 +59,27 @@ describe("content contract", () => {
     ).toThrow(/seo_title is required for publication/);
   });
 
+  it("rejects media without a catalog path and alt", () => {
+    expect(() =>
+      parseContentDocument(
+        valid.replace(
+          "heading: Integração audiovisual\n",
+          "heading: Integração audiovisual\nmedia_src: /images/stock.jpg\n",
+        ),
+        "pages/solution.md",
+      ),
+    ).toThrow(/media_src must be a \/media\/ path/);
+    expect(() =>
+      parseContentDocument(
+        valid.replace(
+          "heading: Integração audiovisual\n",
+          "heading: Integração audiovisual\nmedia_src: /media/diagramas/integracao-audiovisual.jpg\n",
+        ),
+        "pages/solution.md",
+      ),
+    ).toThrow(/media_alt is required/);
+  });
+
   it("keeps drafts out of publication", () => {
     const document = parseContentDocument(
       valid.replace("status: approved", "status: draft"),
@@ -69,6 +94,28 @@ describe("content contract", () => {
 
     expect(home.frontmatter.route).toBe("/");
     expect(home.frontmatter.status).toBe("brief");
+    expect(isFoundationRenderable(home)).toBe(false);
     await expect(loadPublishableContent("content")).resolves.toEqual([]);
+  });
+
+  it("loads draft solution and sector surfaces without publishing them", async () => {
+    const documents = await loadFoundationContent("content");
+    const routes = documents
+      .map((document) => document.frontmatter.route)
+      .sort();
+
+    expect(documents.every((document) => !isPublishable(document))).toBe(true);
+    expect(routes).toEqual([
+      "/contato/",
+      "/setores/",
+      "/setores/corporativo/",
+      "/setores/governo/",
+      "/solucoes/",
+      "/solucoes/audiovisual/",
+      "/solucoes/auditorio-corporativo-sao-paulo/",
+      "/solucoes/centro-comando-controle-noc-soc-sao-paulo/",
+      "/solucoes/governo-tribunais-sao-paulo/",
+      "/solucoes/sala-reuniao-hibrida-sao-paulo/",
+    ]);
   });
 });

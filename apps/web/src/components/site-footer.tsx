@@ -1,4 +1,6 @@
+import { ContactChannels } from "./contact-channels";
 import { SiteLogo } from "./site-logo";
+import { sectorMenu, solutionMenu } from "@/lib/site-navigation";
 
 export function SiteFooter() {
   return (
@@ -15,12 +17,27 @@ export function SiteFooter() {
             </a>
             <p className="ativ-dado">Conteúdo comercial ainda não publicado.</p>
           </div>
+          <nav aria-label="Soluções">
+            <p className="ativ-rotulo">Soluções</p>
+            <ul className="ativ-rodape__lista">
+              {solutionMenu.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <nav aria-label="Navegação do rodapé">
             <p className="ativ-rotulo">Plataforma</p>
             <ul className="ativ-rodape__lista">
               <li>
                 <a href="/">Fundação</a>
               </li>
+              {sectorMenu.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
               <li>
                 <a href="/sobre/">Sobre</a>
               </li>
@@ -29,6 +46,7 @@ export function SiteFooter() {
               </li>
             </ul>
           </nav>
+          <ContactChannels />
         </div>
         <p className="ativ-rodape__nota ativ-dado">
           Shell global preparado para receber conteúdo aprovado.
