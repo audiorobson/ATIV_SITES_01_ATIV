@@ -117,7 +117,7 @@ O site deve publicar, sem depender de ferramenta externa:
 - breadcrumbs visíveis;
 - links internos;
 - alt text;
-- páginas 404;
+- páginas 404 e 500;
 - regras de index/noindex;
 - preservação de parâmetros de aquisição quando aplicável.
 
